@@ -1,4 +1,5 @@
 #include <cmath>
+#include <memory>
 #include <string>
 #include "playablecharacter.h"
 #include "enemy.h"
@@ -10,15 +11,15 @@ PlayableCharacter::PlayableCharacter(int atk, int def, int hp): attack{atk}, def
 
 string PlayableCharacter::getRace() const { return ""; }
 
-void PlayableCharacter::takeDmg(Enemy *pc) {
+void PlayableCharacter::takeDmg(Enemy *enemy) {
     cout << "playerchar has " << this->getHP() << " hp. ";
-    int dmg = ceil((100.0 / (100.0 + defense)) * pc->getAttack());
+    int dmg = ceil((100.0 / (100.0 + defense)) * enemy->getAttack());
     setHP(max(0, this->getHP() - dmg));
     cout << "playerchar took " << dmg << " damage. now, he has " << this->getHP() << " hp" << endl;
 }
 
-void PlayableCharacter::dealDmg(Enemy *pc) {
-    pc->takeDmg(this);
+void PlayableCharacter::dealDmg(unique_ptr<Enemy> enemy) {
+    enemy->takeDmg(this);
 }
 
 int PlayableCharacter::getAttack() const {

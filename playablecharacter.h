@@ -1,6 +1,7 @@
 #ifndef PLAYABLECHARACTER_H
 #define PLAYABLECHARACTER_H
 
+#include <memory>
 #include <string>
 
 class Enemy;
@@ -16,8 +17,8 @@ class PlayableCharacter {
   public:
     PlayableCharacter(int attack, int defense, int hp);
     virtual std::string getRace() const;
-    void takeDmg(Enemy *entity);
-    void dealDmg(Enemy *entity);
+    void takeDmg(Enemy *e);
+    void dealDmg(std::unique_ptr<Enemy> e);
     virtual int getAttack() const;
     virtual int getDefense() const;
     virtual int getHP() const;

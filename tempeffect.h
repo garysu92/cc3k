@@ -1,12 +1,13 @@
 #ifndef TEMPEFFECT_H
 #define TEMPEFFECT_H
 
+#include <memory>
 #include "playablecharacter.h"
 
 class TempEffect : public PlayableCharacter {
-    PlayableCharacter *p;
+    std::unique_ptr<PlayableCharacter> p;
   public:
-    TempEffect(PlayableCharacter *pc, int atkEffect, int defEffect);
+    TempEffect(std::unique_ptr<PlayableCharacter> pc, int atkEffect, int defEffect);
     virtual int getAttack() const override;
     virtual int getDefense() const override;
     virtual int getHP() const override;

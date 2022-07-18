@@ -1,10 +1,11 @@
 #include <algorithm>
+#include <memory>
 #include "boostdefense.h"
 #include "playablecharacter.h"
 
 using namespace std;
 
-BoostDefense::BoostDefense(PlayableCharacter *pc): TempEffect{pc, 0, 5} {}
+BoostDefense::BoostDefense(unique_ptr<PlayableCharacter> pc): TempEffect{move(pc), 0, 5} {}
 
 int BoostDefense::getAttack() const {
     return max(0, attack + TempEffect::getAttack());
@@ -21,3 +22,7 @@ int BoostDefense::getHP() const {
 void BoostDefense::setHP(int hp) {
     TempEffect::setHP(hp);
 }
+/*
+BoostDefense::~BoostDefense() {
+    TempEffect::~TempEffect();
+}*/

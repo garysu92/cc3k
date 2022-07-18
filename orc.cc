@@ -7,3 +7,9 @@ Orc::Orc(): PlayableCharacter{30, 25, 180} {}
 string Orc::getRace() const {
     return "Orc";
 }
+
+int Orc::getAttack() const {
+    return PlayableCharacter::getAttack();
+}
+
+Orc::~Orc() {}

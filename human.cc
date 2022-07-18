@@ -8,3 +8,8 @@ string Human::getRace() const {
     return "Human";
 }
 
+int Human::getAttack() const {
+    return PlayableCharacter::getAttack();
+}
+
+Human::~Human() {}

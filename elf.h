@@ -7,6 +7,8 @@ class Elf : public PlayableCharacter {
   public:
     Elf();
     std::string getRace() const override;
+    int getAttack() const override;
+    ~Elf();
 };
 
 #endif

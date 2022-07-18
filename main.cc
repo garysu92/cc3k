@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "playablecharacter.h"
 #include "enemy.h"
 #include "human.h"
@@ -8,14 +9,21 @@
 #include "wounddefense.h"
 #include "boostattack.h"
 #include "boostdefense.h"
+
 using namespace std;
 
 int main() {
-    PlayableCharacter *pc = new Human();
-    Enemy *e = new Goblin{};
-    e->dealDmg(pc);
-    //cout << pc->getAttack() << endl;
-    TempEffect *te = new WoundDefense{pc};
+    unique_ptr<PlayableCharacter> pc = make_unique<Human>();
+    //PlayableCharacter *p = new Human();
+    unique_ptr<Enemy> e = make_unique<Goblin>();
+    // e->dealDmg(move(pc));
+    cout << e->getAttack() << endl;
+    cout << pc->getAttack() << endl;
+    unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(pc));
+    pc = move(te);
+    cout << pc->getAttack();
+    /*
+    unique_ptr<WoundDefense> te = make_unique(); //new WoundDefense{pc};
     TempEffect *te2 = new WoundDefense{te};
     TempEffect *te3 = new WoundDefense{te2};
     pc = te3;
@@ -26,6 +34,8 @@ int main() {
     TempEffect *te5 = new WoundDefense{te4};
     pc = te5;
     cout << pc->getDefense() << endl;
+    delete pc;
+    */
     //cout << pc->getHP() << endl;
     //cout << te->getHP();
     //e->dealDmg(pc);

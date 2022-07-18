@@ -2,6 +2,7 @@
 #include "enemy.h"
 #include "playablecharacter.h"
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void Enemy::takeDmg(PlayableCharacter *pc) {
     cout << "playerchar took " << dmg << " damage. now, he has " << this->getHP() << " hp" << endl;
 }
 
-void Enemy::dealDmg(PlayableCharacter *pc) {
+void Enemy::dealDmg(unique_ptr<PlayableCharacter> pc) {
     pc->takeDmg(this);
 }
 

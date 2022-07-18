@@ -1,10 +1,11 @@
 #include <algorithm>
+#include <memory>
 #include "woundattack.h"
 #include "playablecharacter.h"
 
 using namespace std;
 
-WoundAttack::WoundAttack(PlayableCharacter *pc): TempEffect{pc, -5, 0} {}
+WoundAttack::WoundAttack(unique_ptr<PlayableCharacter> pc): TempEffect{move(pc), -5, 0} {}
 
 int WoundAttack::getAttack() const {
     return max(0, attack + TempEffect::getAttack());
@@ -21,3 +22,9 @@ int WoundAttack::getHP() const {
 void WoundAttack::setHP(int hp) {
     TempEffect::setHP(hp);
 }
+
+/*
+WoundAttack::~WoundAttack() {
+    TempEffect::~TempEffect();
+}
+*/

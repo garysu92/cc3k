@@ -1,10 +1,11 @@
 #include "tempeffect.h"
+#include <memory>
 #include <iostream> 
 using namespace std;
 
 class PlayableCharacter;
 
-TempEffect::TempEffect(PlayableCharacter *pc, int atkEffect, int defEffect): PlayableCharacter{atkEffect, defEffect, 0}, p{pc} {}
+TempEffect::TempEffect(unique_ptr<PlayableCharacter> pc, int atkEffect, int defEffect): PlayableCharacter{atkEffect, defEffect, 0}, p{std::move(pc)} {}
 
 int TempEffect::getAttack() const {
     return p->getAttack();
