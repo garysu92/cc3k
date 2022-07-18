@@ -18,8 +18,8 @@ class PlayableCharacter {
     virtual std::string getRace() const;
     void takeDmg(Enemy *entity);
     void dealDmg(Enemy *entity);
-    int getAttack() const;
-    int getDefense() const;
+    virtual int getAttack() const;
+    virtual int getDefense() const;
     int getHP() const;
     int getMaxHP() const;
     void giveCompass();

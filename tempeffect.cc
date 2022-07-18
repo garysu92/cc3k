@@ -1,13 +1,17 @@
 #include "tempeffect.h"
+#include <iostream> 
+using namespace std;
 
 class PlayableCharacter;
 
 TempEffect::TempEffect(PlayableCharacter *pc, int atkEffect, int defEffect): PlayableCharacter{atkEffect, defEffect, 0}, p{pc} {}
 
-int TempEffect::getAttack() {
-    return attack + p->getAttack();
+int TempEffect::getAttack() const {
+    return p->getAttack();
 }
 
-int TempEffect::getDefense() {
-    return defense + p->getDefense();
+int TempEffect::getDefense() const {
+    cout << "defense: " << defense << endl;
+    cout << "defense2: " << p->getDefense() << endl;
+    return p->getDefense();
 }

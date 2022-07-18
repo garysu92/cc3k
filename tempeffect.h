@@ -7,8 +7,8 @@ class TempEffect : public PlayableCharacter {
     PlayableCharacter *p;
   public:
     TempEffect(PlayableCharacter *pc, int atkEffect, int defEffect);
-    int getAttack();
-    int getDefense();
+    virtual int getAttack() const override;
+    virtual int getDefense() const override;
 };
 
 #endif
