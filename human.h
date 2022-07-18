@@ -8,7 +8,6 @@ class Human: public PlayableCharacter {
   public:
     Human();
     std::string getRace() const override;
-    int getAttack() const override;
     ~Human();
 };
 

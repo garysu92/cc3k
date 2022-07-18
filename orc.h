@@ -7,7 +7,6 @@ class Orc : public PlayableCharacter {
   public:
     Orc();
     std::string getRace() const override;
-    int getAttack() const override;
     ~Orc();
 };
 

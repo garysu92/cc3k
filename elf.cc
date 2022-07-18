@@ -8,8 +8,4 @@ string Elf::getRace() const {
     return "Elf";
 }
 
-int Elf::getAttack() const {
-    return PlayableCharacter::getAttack();
-}
-
 Elf::~Elf() {}

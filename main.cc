@@ -18,10 +18,15 @@ int main() {
     unique_ptr<Enemy> e = make_unique<Goblin>();
     // e->dealDmg(move(pc));
     cout << e->getAttack() << endl;
-    cout << pc->getAttack() << endl;
+    cout << pc->getDefense() << endl;
     unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(pc));
-    pc = move(te);
-    cout << pc->getAttack();
+    unique_ptr<TempEffect> te2 = make_unique<BoostDefense>(move(te));
+    pc = move(te2);
+    cout << pc->getAttack() << endl;
+    cout << pc->getDefense() << endl;
+    cout << pc->getHP() << endl;
+    pc->setHP(100);
+    cout << pc->getHP() << endl;
     /*
     unique_ptr<WoundDefense> te = make_unique(); //new WoundDefense{pc};
     TempEffect *te2 = new WoundDefense{te};

@@ -8,8 +8,4 @@ string Orc::getRace() const {
     return "Orc";
 }
 
-int Orc::getAttack() const {
-    return PlayableCharacter::getAttack();
-}
-
 Orc::~Orc() {}

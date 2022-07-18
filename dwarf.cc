@@ -8,8 +8,4 @@ string Dwarf::getRace() const {
     return "Dwarf";
 }
 
-int Dwarf::getAttack() const {
-    return PlayableCharacter::getAttack();
-}
-
 Dwarf::~Dwarf() {}
