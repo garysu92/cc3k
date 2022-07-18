@@ -9,6 +9,8 @@ class WoundDefense : public TempEffect {
     WoundDefense(PlayableCharacter *pc);
     int getAttack() const override;
     int getDefense() const override;
+    int getHP() const override;
+    void setHP(int hp) override;
 };
 
 #endif

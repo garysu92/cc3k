@@ -1,12 +1,12 @@
-#ifndef WOUNDATTACK_H
-#define WOUNDATTACK_H
+#ifndef BOOSTDEFENSE_H
+#define BOOSTDEFENSE_H
 
 #include "tempeffect.h"
 class PlayableCharacter;
 
-class WoundAttack : public TempEffect {
+class BoostDefense : public TempEffect {
   public:
-    WoundAttack(PlayableCharacter *pc);
+    BoostDefense(PlayableCharacter *pc);
     int getAttack() const override;
     int getDefense() const override;
     int getHP() const override;

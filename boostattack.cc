@@ -1,23 +1,23 @@
 #include <algorithm>
-#include "wounddefense.h"
+#include "boostattack.h"
 #include "playablecharacter.h"
 
 using namespace std;
 
-WoundDefense::WoundDefense(PlayableCharacter *pc): TempEffect{pc, 0, -5} {}
+BoostAttack::BoostAttack(PlayableCharacter *pc): TempEffect{pc, 5, 0} {}
 
-int WoundDefense::getAttack() const {
+int BoostAttack::getAttack() const {
     return max(0, attack + TempEffect::getAttack());
 }
 
-int WoundDefense::getDefense() const {
+int BoostAttack::getDefense() const {
     return max(0, defense + TempEffect::getDefense());
 }
 
-int WoundDefense::getHP() const {
+int BoostAttack::getHP() const {
     return TempEffect::getHP();
 }
 
-void WoundDefense::setHP(int hp) {
+void BoostAttack::setHP(int hp) {
     TempEffect::setHP(hp);
 }

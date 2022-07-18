@@ -20,7 +20,8 @@ class PlayableCharacter {
     void dealDmg(Enemy *entity);
     virtual int getAttack() const;
     virtual int getDefense() const;
-    int getHP() const;
+    virtual int getHP() const;
+    virtual void setHP(int k);
     int getMaxHP() const;
     void giveCompass();
     virtual ~PlayableCharacter() = 0;

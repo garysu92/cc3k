@@ -11,10 +11,10 @@ PlayableCharacter::PlayableCharacter(int atk, int def, int hp): attack{atk}, def
 string PlayableCharacter::getRace() const { return ""; }
 
 void PlayableCharacter::takeDmg(Enemy *pc) {
-    cout << "playerchar has " << hp << " hp. ";
+    cout << "playerchar has " << this->getHP() << " hp. ";
     int dmg = ceil((100.0 / (100.0 + defense)) * pc->getAttack());
-    hp = max(0, hp - dmg);
-    cout << "playerchar took " << dmg << " damage. now, he has " << hp << " hp" << endl;
+    setHP(max(0, this->getHP() - dmg));
+    cout << "playerchar took " << dmg << " damage. now, he has " << this->getHP() << " hp" << endl;
 }
 
 void PlayableCharacter::dealDmg(Enemy *pc) {
@@ -31,6 +31,11 @@ int PlayableCharacter::getDefense() const {
 
 int PlayableCharacter::getHP() const {
     return hp;
+}
+
+void PlayableCharacter::setHP(int k) {
+    if (k > maxHP || k < 0) return;
+    hp = k;
 }
 
 void PlayableCharacter::giveCompass() {

@@ -14,10 +14,10 @@ int Enemy::goldDropped() {
 bool Enemy::isHostile() { return true; }
 
 void Enemy::takeDmg(PlayableCharacter *pc) {
-    cout << "playerchar has " << hp << " hp ";
+    cout << "playerchar has " << hp << " hp. ";
     int dmg = ceil((100.0 / (100.0 + defense)) * pc->getAttack());
     hp = max(0, hp - dmg);
-    cout << "playerchar took " << dmg << " damage. now, he has " << hp << " hp" << endl;
+    cout << "playerchar took " << dmg << " damage. now, he has " << this->getHP() << " hp" << endl;
 }
 
 void Enemy::dealDmg(PlayableCharacter *pc) {

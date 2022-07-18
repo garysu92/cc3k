@@ -11,7 +11,15 @@ int TempEffect::getAttack() const {
 }
 
 int TempEffect::getDefense() const {
-    cout << "defense: " << defense << endl;
-    cout << "defense2: " << p->getDefense() << endl;
+    //cout << "defense: " << defense << endl;
+    //cout << "defense2: " << p->getDefense() << endl;
     return p->getDefense();
+}
+
+int TempEffect::getHP() const {
+    return p->getHP();
+}
+
+void TempEffect::setHP(int k) {
+    p->setHP(k);
 }
