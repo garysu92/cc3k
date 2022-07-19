@@ -17,7 +17,6 @@ void CC3KGameRunner::play() {
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
     try {
-        cin >> cmd;
 
         // running game
         while (true) {
