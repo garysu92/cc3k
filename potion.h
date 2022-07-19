@@ -1,6 +1,6 @@
 #ifndef POTION_H
 #define POTION_H
 
-enum Potion {RestoreHealth, BoostAttack, BoostDefense, PoisonHealth, WoundAttack, WoundDefense};
+enum Potion {RESTOREHEALTH, BOOSTATTACK, BOOSTDEFENSE, POISONHEALTH, WOUNDATTACK, WOUNDDEFENSE};
 
 #endif

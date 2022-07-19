@@ -9,10 +9,13 @@
 #include "wounddefense.h"
 #include "boostattack.h"
 #include "boostdefense.h"
+#include "potion.h"
 
 using namespace std;
 
 int main() {
+    Potion p{RESTOREHEALTH};
+    if (p == RESTOREHEALTH) cout << "yes" << endl;
     unique_ptr<PlayableCharacter> pc = make_unique<Human>();
     //PlayableCharacter *p = new Human();
     unique_ptr<Enemy> e = make_unique<Goblin>();
