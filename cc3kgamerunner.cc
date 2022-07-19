@@ -9,7 +9,9 @@
 #include "human.h"
 #include "orc.h"
 
-CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{} {}
+CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{""} {}
+
+CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()}, d{}, filename{filename} {}
 
 using namespace std;
 void CC3KGameRunner::play() {
