@@ -1,6 +1,4 @@
 #include "vampire.h"
-// bruh
-#icnlude "werewolf.h"
 
 using namespace std;
 
