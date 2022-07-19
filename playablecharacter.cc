@@ -39,6 +39,10 @@ void PlayableCharacter::setHP(int k) {
     hp = k;
 }
 
+bool PlayableCharacter::hasCompass() {
+    return compass;
+}
+
 void PlayableCharacter::giveCompass() {
     compass = true;
 }

@@ -21,7 +21,9 @@ class Enemy {
     int getDefense() const;
     int getHP() const;
     int getMaxHP() const;
+    bool hasCompass();
     void giveCompass();
+    void dropCompass();
     virtual ~Enemy() = 0;
 };
 

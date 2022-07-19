@@ -24,6 +24,7 @@ class PlayableCharacter {
     virtual int getHP() const;
     virtual void setHP(int k);
     int getMaxHP() const;
+    bool hasCompass();
     void giveCompass();
     virtual ~PlayableCharacter() = 0;
 };

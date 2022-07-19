@@ -37,8 +37,16 @@ int Enemy::getHP() const {
     return hp;
 }
 
+bool Enemy::hasCompass() {
+    return compass;
+}
+
 void Enemy::giveCompass() {
     compass = true;
+}
+
+void Enemy::dropCompass() {
+    compass = false;
 }
 
 Enemy::~Enemy() {}

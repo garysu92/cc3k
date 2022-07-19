@@ -4,7 +4,7 @@
 
 #include <vector>
 
-class Dungeon{
+class Dungeon {
     std::vector<Floor> floors; 
 };
 
