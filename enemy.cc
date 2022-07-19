@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n): attack{atk}, defense{def}, hp{hp}, goldDrop{n} {}
+Enemy::Enemy(int atk, int def, int hp, int n):  goldDrop{n},hp{hp}, attack{atk}, defense{def}{}
 
 int Enemy::goldDropped() {
     return goldDrop;
