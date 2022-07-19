@@ -18,7 +18,7 @@ class PlayableCharacter {
     PlayableCharacter(int attack, int defense, int hp);
     virtual std::string getRace() const;
     void takeDmg(Enemy *e);
-    void dealDmg(std::unique_ptr<Enemy> e);
+    void dealDmg(std::unique_ptr<Enemy> &e);
     virtual int getAttack() const;
     virtual int getDefense() const;
     virtual int getHP() const;

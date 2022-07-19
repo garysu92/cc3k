@@ -20,16 +20,18 @@ int main() {
     //PlayableCharacter *p = new Human();
     unique_ptr<Enemy> e = make_unique<Goblin>();
     // e->dealDmg(move(pc));
-    cout << e->getAttack() << endl;
-    cout << pc->getDefense() << endl;
+    cout << "goblin attack (5): " << e->getAttack() << endl;
+    cout << "player character defense (20): " << pc->getDefense() << endl;
     unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(pc));
     unique_ptr<TempEffect> te2 = make_unique<BoostDefense>(move(te));
     pc = move(te2);
-    cout << pc->getAttack() << endl;
-    cout << pc->getDefense() << endl;
-    cout << pc->getHP() << endl;
+    cout << "player character attack (20 - 5 = 15): " << pc->getAttack() << endl;
+    cout << "player character defense (20 + 5 = 25): " << pc->getDefense() << endl;
+    cout << "player character hp (140): " << pc->getHP() << endl;
+    e->dealDmg(pc);
+    cout << "player character hp (140 - 5 = 135): " << pc->getHP() << endl;
     pc->setHP(100);
-    cout << pc->getHP() << endl;
+    cout << "player character hp (set to 100): " << pc->getHP() << endl;
     /*
     unique_ptr<WoundDefense> te = make_unique(); //new WoundDefense{pc};
     TempEffect *te2 = new WoundDefense{te};
