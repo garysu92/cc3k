@@ -3,11 +3,43 @@
 #include <iostream>
 #include <string>
 
+#include "direction.h"
 #include "dwarf.h"
 #include "elf.h"
 #include "floor.h"
 #include "human.h"
 #include "orc.h"
+
+
+static bool isDirection(string s) {
+    if (s == "no" || s == "so" || s == "ea" || s == "we" || s == "ne" || s == "nw" 
+        || s == "se" || s == "sw") {
+            return true;
+    }
+    return false;
+}
+
+// MAYBE handle non-direction strings
+static Direction getDirection(string s) {
+    if (s == "no" ) {
+        return Direction::NO;
+    } else if (s == "so") {
+        return Direction::SO;
+    } else if (s == "ea") {
+        return Direction::EA;
+    } else if (s == "we") {
+        return Direction::WE;
+    } else if (s == "NE") {
+        return Direction::NE;
+    } else if (s == "NW") {
+        return Direction::NW;
+    } else if (s == "SE") {
+        return Direction::SE;
+    } else {
+        //sw
+        return Direction::SW;
+    }
+}
 
 CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{""} {}
 
@@ -19,20 +51,23 @@ void CC3KGameRunner::play() {
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
     try {
-
         // running game
         while (true) {
             cin >> cmd;
+            bool invalidInput = false;
             if (!gameStarted) {
-                // choose race
-                cout << "Select a race, type \"Human\" is the default" << endl;
-                cout << "[Type] - [Enter to Select]:" << endl;
-                cout << "Human - h" << endl;
-                cout << "Elf - e" << endl;
-                cout << "Dwarf - d" << endl;
-                cout << "Orc - o" << endl;
+                // game has not started, so choosing race is valid input, can choose multiple
+                // times
 
-                cout << "Enter your race: ";
+                // choose race
+                // cout << "Select a race, type \"Human\" is the default" << endl;
+                // cout << "[Type] - [Enter to Select]:" << endl;
+                // cout << "Human - h" << endl;
+                // cout << "Elf - e" << endl;
+                // cout << "Dwarf - d" << endl;
+                // cout << "Orc - o" << endl;
+
+                // cout << "Enter your race: ";
 
                 if (cmd == "h") {
                     p = make_unique<Human>();
@@ -44,20 +79,51 @@ void CC3KGameRunner::play() {
                     p = make_unique<Orc>();
                 }
                 // else do nothing
+                continue;
             }
 
             // play game commands
-
             if (cmd == "r") {
                 //restart
+                // NOTE need to reinitialize fields
+                play();
+                return;
             } else if (cmd == "q") {
                 // quit
                 return;
             } else if (cmd == "u") {
                 // use potion
+                cin >> cmd;
+                if (isDirection(cmd)){
+                    Direction temp = getDirection(cmd);
+                    //game.usePotion(temp);
+                } else {
+                    invalidInput = true;
+                }
             } else if (cmd == "a") {
                 // attack
+                cin >> cmd;
+                if (isDirection(cmd)){
+                    Direction temp = getDirection(cmd);
+                    //game.usePotion(temp);
+                } else {
+                    invalidInput = true;
+                }
+            } else if (isDirection(cmd)) {
+                Direction temp = getDirection(cmd);
+                //game.move(temp);
+            } else {
+                // else invalid input
+                invalidInput = true;
             }
+            if (invalidInput) {
+                cout << "Invalid Input" << endl;
+                continue;
+            }
+
+            //
+            gameStarted = true; // if this line runs, then game has started, 
+                                // cannot choose race anymore
         }
     } catch (ios::failure &) {
     }
