@@ -41,9 +41,10 @@ static Direction getDirection(string s) {
     }
 }
 
-CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{""} {}
+CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{} {}
 
-CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()}, d{}, filename{filename} {}
+CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()},
+                                                     d{}, filename{make_unique(filename)} {}
 
 using namespace std;
 void CC3KGameRunner::play() {
@@ -122,8 +123,16 @@ void CC3KGameRunner::play() {
             }
 
             //
-            gameStarted = true; // if this line runs, then game has started, 
+            if (!gameStarted) {
+                gameStarted = true; // if this line runs, then game has started, 
                                 // cannot choose race anymore
+                if (filename != nullptr) {
+                    // this means the filename for floor layout was specified
+                    game = make_unique(filename.get());
+                } else {
+                    game = make_unique();
+                }
+            }
         }
     } catch (ios::failure &) {
     }

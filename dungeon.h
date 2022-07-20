@@ -11,10 +11,11 @@ class Dungeon {
     std::vector<Floor> floors; 
     int curFloor;
     int numFloors; 
-
+    PlayableCharacter *p;
     public: 
         // Constructor
-        Dungeon(string fileName, int curFloor=1, int numFloors=5)
+        Dungeon(string fileName, int curFloor=1, int numFloors=5);
+        Dungeon(int curFloor=1, int numFloors=5);
 
         // Getters
         int get_curFloor();

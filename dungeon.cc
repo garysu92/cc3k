@@ -1,7 +1,9 @@
 #include <string>
 #include "dungeon.h"
 
-Dungeon::Dungeon(string fileName, int curFloor, int numFloors) : fileName{fileName}, curfloor{curFloor}, numfloors{numFloors} {}
+using namespace std;
+
+Dungeon::Dungeon(string fileName, int curFloor, int numFloors) : fileName{fileName}, curFloor{curFloor}, numFloors{numFloors} {}
 
 int Dungeon::get_curFloor() {
     return this->curFloor;

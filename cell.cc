@@ -23,7 +23,7 @@ unique_ptr<Enemy> Cell::getEnemy() {
     return this->foe;
 }
 
-// unique_ptr<Item> Cell::getItem() {
+//  Item * Cell::getItem() {
 //     return this->onFloor;
 // }
 
@@ -39,11 +39,10 @@ void Cell::setY(int y) {
     this->y = y;
 }
 
+void Cell::setPC(PlayableCharacter * PC) {
+    this->PC = PC;
+}
 
-// Setters
-        void setX(int x);
-        void setY(int y)
-        void setPC(std::unique_ptr<PlayableCharacter> PC);
-        void setEnemy(std::unique_ptr<Enemy> foe);
-        // void setItem(std::unique_ptr<Item> onFloor);
-        void setsymbolRep(char sym);
+void Cell::setEnemy(Enemy * foe) {
+    this->foe = foe;
+}

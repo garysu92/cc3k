@@ -8,10 +8,10 @@
 #include "textdisplay.h"
 
 class CC3KGameRunner{
-    Dungeon game;
+    std::unique_ptr<Dungeon> game;
     std::unique_ptr<PlayableCharacter> p;
-    TextDisplay d;
-    string filename;
+    std::unique_ptr<TextDisplay> d;
+    std::unique_ptr<string> filename;
 
     public: 
         CC3KGameRunner(string filename);
