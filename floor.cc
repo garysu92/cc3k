@@ -1,4 +1,5 @@
 #include <vector>
+#include <stack>
 #include <cstdlib>
 #include "floor.h"
 #include "posn.h"
@@ -13,13 +14,15 @@
 
 using namespace std;
 
-Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p} {
+Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p}, content{}, chambers{}, chamberMap{} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
         content.emplace_back();
+        chamberMap.emplace_back();
         for (int j = 0; j < col; j++) {
             char c = v[i][j];
+            chamberMap[i].emplace_back(0);
             if (c == '|' || c == '-') content[i].emplace_back(Wall(col, row, c));
             else if (c == '#') content[i].emplace_back(Passage(col, row, c));
             else if (c == '+') content[i].emplace_back(Door(col, row, c));
@@ -55,6 +58,42 @@ Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p} {
             label:
         }
     }
+
+    // vector<vector<bool>> isVisited(row, vector<bool>(col, false)); // initializes 2d isvisited array all false
+    // int chamberCount = 0;
+    // for (int i = 1; i < row - 1; ++i) {
+    //     for (int j = 1; j < col - 1; ++j) {
+    //         if (!isVisited[i][j] && v[i][j] == '.') {
+    //             // new chamber
+    //             chamberCount++;
+    //             chamberMap[i][j] = chamberCount;
+    //             chambers.emplace_back();
+    //             chambers[chamberCount - 1].emplace_back(j, i);
+
+    //             isVisited[i][j] = true;
+    //             stack<Posn> next{};
+    //             next.emplace(j, i);
+    //             while (!next.empty()) {
+    //                 Posn tempP = next.top();
+    //                 next.pop();
+    //                 for (int a = -1; a <= 1; a++) {
+    //                     for (int b = -1; b <= 1; b++) {
+    //                         if (!isVisited[i][j] && v[i][j] == '.') {
+    //                             isVisited[i][j] = true;
+    //                             chambers[chamberCount - 1].emplace_back(j, i);
+    //                             chamberMap[i][j] = chamberCount;
+    //                             next.emplace(j,i);
+    //                         } else if (!isVisited[i][j]) {
+    //                             isVisited[i][j] = true;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         } else if (!isVisited[i][j]) {
+    //             isVisited[i][j] = true;
+    //         }
+    //     }
+    // }
 }
 
 void Floor::generate() {
