@@ -15,15 +15,15 @@ int Cell::getY() {
     return this->y;
 }
 
-unique_ptr<PlayableCharacter> Cell::getPC() {
+PlayableCharacter * Cell::getPC() {
     return this->PC;
 }
 
-unique_ptr<Enemy> Cell::getEnemy() {
+Enemy * Cell::getEnemy() {
     return this->foe;
 }
 
-//  Item * Cell::getItem() {
+// Item * Cell::getItem() {
 //     return this->onFloor;
 // }
 
@@ -45,4 +45,12 @@ void Cell::setPC(PlayableCharacter * PC) {
 
 void Cell::setEnemy(Enemy * foe) {
     this->foe = foe;
+}
+
+// void Cell::setItem(Item * onFloor) {
+//     this->onFloor = onFloor;
+// }
+
+void Cell::setsymbolRep(char sym) {
+    this->symbolRep = sym;
 }
