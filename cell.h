@@ -13,7 +13,7 @@ class Cell {
     char symbolRep;
 
     public:
-        Cell(int x, int y);
+        Cell(int x, int y, char sym);
 
         // Getters
         int getX();

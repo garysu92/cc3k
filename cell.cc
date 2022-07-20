@@ -5,7 +5,7 @@
 #include "cell.h"
 using namespace std;
 
-Cell::Cell(int x, int y) : x{x}, y{y}; // All other fields are initalized within the subclasses
+Cell::Cell(int x, int y, char sym) : x{x}, y{y}, symbolRep{sym};
 
 int Cell::getX() {
     return this->x;
