@@ -25,7 +25,7 @@ class Cell {
 
         // Setters
         void setX(int x);
-        void setY(int y)
+        void setY(int y);
         void setPC(PlayableCharacter * PC);
         void setEnemy(Enemy * foe);
         // void setItem(Item * onFloor);

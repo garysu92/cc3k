@@ -1,7 +1,9 @@
 #include <vector>
 #include <cstdlib>
 #include "floor.h"
-
+#include "posn.h"
+#include "playablecharacter.h"
+#include "cell.h"
 /*
 #include "wall.h"
 #include "passage.h"
@@ -11,7 +13,7 @@
 
 using namespace std;
 
-Floor::Floor(vector<vector<char>> v) {
+Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p} {
     int x = v.size();
     int y = v[0].size();
     for (int i = 0; i < x; i++) {
@@ -53,5 +55,25 @@ Floor::Floor(vector<vector<char>> v) {
 
 void Floor::generate() {
     int numChambers = chambers.size();
-    int random = rand() % numChambers;
+    // generate player location
+    int random1 = rand() % numChambers; // 0 to numChambers - 1
+    int numTilesInChamber = chambers[random1].size();
+    int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
+    int x = chambers[random1][random2].x;
+    int y = chambers[random1][random2].y;
+    content[x][y].setPC(p);
+    // chambers[random1][random2] would be the posn that we spawn the character in
+
+    // spawn the stair
+    int random3 = rand() % numChambers;
+    // ensure that stair chamber and player chamber are not the same
+    while (random3 != random1) {
+        random3 = rand() % numChambers;
+    }
+    numTilesInChamber = chambers[random3].size();
+    int random4 = rand() % numTilesInChamber;
+    int x = chambers[random3][random4].x;
+    int y = chambers[random3][random4].y;    
+    // chambers[random3][random4]  would be the posn that we spawn the stair in
+
 }
