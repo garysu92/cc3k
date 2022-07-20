@@ -1,4 +1,5 @@
 #include <vector>
+#include <cstdlib>
 #include "floor.h"
 
 /*
@@ -14,13 +15,14 @@ Floor::Floor(vector<vector<char>> v) {
     int x = v.size();
     int y = v[0].size();
     for (int i = 0; i < x; i++) {
+        content.emplace_back();
         for (int j = 0; j < y; j++) {
             char c = v[i][j];
-            if (c == '|' || c == '-') content.emplace_back(Wall(x, y, c));
-            else if (c == '#') content.emplace_back(Passage(x, y, c));
-            else if (c == '+') content.emplace_back(Door(x, y, c));
-            else if (c == '.') content.emplace_back(Tile(x, y, c));
-            else content.emplace_back(Space(x, y, c));
+            if (c == '|' || c == '-') content[i].emplace_back(Wall(x, y, c));
+            else if (c == '#') content[i].emplace_back(Passage(x, y, c));
+            else if (c == '+') content[i].emplace_back(Door(x, y, c));
+            else if (c == '.') content[i].emplace_back(Tile(x, y, c));
+            else content[i].emplace_back(Space(x, y, c));
         }
     }
     // make a temp 2D array that stores the positions of floors in chambers that are already visited
@@ -47,4 +49,9 @@ Floor::Floor(vector<vector<char>> v) {
             label:
         }
     }
+}
+
+void Floor::generate() {
+    int numChambers = chambers.size();
+    int random = rand() % numChambers;
 }
