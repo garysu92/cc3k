@@ -14,39 +14,43 @@
 using namespace std;
 
 Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p} {
-    int x = v.size();
-    int y = v[0].size();
-    for (int i = 0; i < x; i++) {
+    int row = v.size();
+    int col = v[0].size();
+    for (int i = 0; i < row; i++) {
         content.emplace_back();
-        for (int j = 0; j < y; j++) {
+        for (int j = 0; j < col; j++) {
             char c = v[i][j];
-            if (c == '|' || c == '-') content[i].emplace_back(Wall(x, y, c));
-            else if (c == '#') content[i].emplace_back(Passage(x, y, c));
-            else if (c == '+') content[i].emplace_back(Door(x, y, c));
-            else if (c == '.') content[i].emplace_back(Tile(x, y, c));
-            else content[i].emplace_back(Space(x, y, c));
+            if (c == '|' || c == '-') content[i].emplace_back(Wall(col, row, c));
+            else if (c == '#') content[i].emplace_back(Passage(col, row, c));
+            else if (c == '+') content[i].emplace_back(Door(col, row, c));
+            else if (c == '.') content[i].emplace_back(Tile(col, row, c));
+            else content[i].emplace_back(Space(col, row, c));
         }
     }
     // make a temp 2D array that stores the positions of floors in chambers that are already visited
-    int temp[x][y] = {0};
-    for (int i = 0; i < x; i++) {
-        for (int j = 0; j < y; j++) {
-            if (v[x][y] == '.') {
+    int temp[row][col] = {0};
+    for (int i = 1; i < row - 1; i++) {
+        for (int j = 1; j < col - 1; j++) {
+            if (v[i][j] == '.') {
                 // check neighbours
+                // bool newChamber = true;
                 for (int a = -1; a <= 1; a++) {
                     for (int b = -1; b <= 1; b++) {
                         // if neighbour is found to already be in chamber
-                        if (b != a && i + a >= 0 && i + a < x && j + b >= 0 && j + b < y && temp[i + a][j + b] != 0) {
+                        if (!(b == 0 && a == 0) && temp[i + a][j + b] != 0) {
                             chambers[temp[i + a][j + b] - 1].emplace_back(i, j);
-                            temp[i][j] = temp[i + a][j + b] - 1;
+                            temp[i][j] = temp[i + a][j + b];
+                            // newChamber = false;
                             goto label;
                         }
                     }
                 }
+                //if (newChamber) {
                 // all neighbours are not in a chamber (yet?)
                 chambers.emplace_back();
                 chambers[chambers.size() - 1].emplace_back(i, j);
-                temp[i][j] = chambers.size() - 1;
+                temp[i][j] = chambers.size();
+                //}
             }
             label:
         }
