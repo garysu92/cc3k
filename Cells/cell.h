@@ -2,17 +2,16 @@
 #define CELL_H
 
 #include <memory>
-// Note all of the header below can likely be replaced with a forward declaration of the classes
-#include "playablecharacter.h"
-#include "enemy.h"
-#include "item.h"
 
-using namespace std;
+class PlayableCharacter;
+class Enemy;
+class Item;
+
 class Cell {
     int x, y; 
-    PlayableCharacter *pc; // Not unique pointers as these objects can all move, and thus exist outside of the context of the Cell
+    PlayableCharacter *pc; // Not unique ptr as PC and enemy can move off of the Cell
     Enemy *enemy;
-    unique_ptr<Item> item;
+    std::unique_ptr<Item> item;
     char symbolRep;
     bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
     bool isStair; // Does this need be defined here?
@@ -29,16 +28,16 @@ class Cell {
         int getY();
         PlayableCharacter *getPC();
         Enemy *getEnemy();
-        // Item * getItem(); 
+        std::unique_ptr<Item> getItem(); 
         char getsymbolRep();
-        bool getiseffWall(); // function name weird???
+        bool getisEffWall();
 
         // Setters
         void setX(int x);
         void setY(int y);
         void setPC(PlayableCharacter *pc);
         void setEnemy(Enemy *enemy);
-        void setItem(unique_ptr<Item> &item); // Unique ptr??
+        void setItem(std::unique_ptr<Item> &item);
         void setsymbolRep(char sym);
         void setisEffWall(bool iseffWall);
         void setStair(); 
