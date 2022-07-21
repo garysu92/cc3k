@@ -19,6 +19,7 @@
 #include "tile.h"
 #include "door.h"
 #include "space.h"
+#include "stair.h"
 
 using namespace std;
 
@@ -115,7 +116,7 @@ void Floor::generate() {
     int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
     int x = chambers[random1][random2].x;
     int y = chambers[random1][random2].y;
-    content[x][y].setPC(p);
+    content[x][y]->setPC(p);
     // erase that position from available
     chambers[random1].erase(chambers[random1].begin() + random2);
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
@@ -136,6 +137,8 @@ void Floor::generate() {
     int y = chambers[random3][random4].y;
     stairLocation.x = x;
     stairLocation.y = y;
+    unique_ptr<Cell> stair = make_unique<Stair>();
+    content[x][y] = stair;
     chambers[random3].erase(chambers[random3].begin() + random4);
     if (chambers[random3].size() == 0)  {
         chambers.erase(chambers.begin() + random3);
