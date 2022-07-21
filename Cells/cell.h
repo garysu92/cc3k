@@ -15,7 +15,7 @@ class Cell {
     unique_ptr<Item> item;
     char symbolRep;
     bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
-    bool isStair = false; // Does this need be defined here?
+    bool isStair; // Does this need be defined here?
 
     public:
         // Constructor
