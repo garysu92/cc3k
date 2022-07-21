@@ -74,6 +74,6 @@ bool Cell::hasItem() {
     return item != nullptr;
 }
 
-void Cell::setisEffWall(bool iseffWall) {
-    this->isEffWall = iseffWall;
+void Cell::setisEffWall(bool isEffWall) {
+    this->isEffWall = isEffWall;
 }
