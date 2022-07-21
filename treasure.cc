@@ -1,3 +1,4 @@
 #include "treasure.h"
+#include "item.h"
 
-Treasure::Treasure(int amount): amount{amount} {}
+Treasure::Treasure(int amount): Item{}, amount{amount} {}
