@@ -57,6 +57,7 @@ void CC3KGameRunner::play() {
         while (true) {
             cin >> cmd;
             bool invalidInput = false;
+            char directionCommandType = '\0'; // default is move, not used if not move, use potion, attack
             if (!gameStarted) {
                 // game has not started, so choosing race is valid input, can choose multiple
                 // times
@@ -96,37 +97,51 @@ void CC3KGameRunner::play() {
             } else if (cmd == "u") {
                 // use potion
                 cin >> cmd;
-                if (isDirection(cmd)){
-                    Direction temp = getDirection(cmd);
-                    //game.usePotion(temp);
-                } else {
-                    invalidInput = true;
-                }
+                directionCommandType = 'u';
+                // if (isDirection(cmd)){
+                //     Direction temp = getDirection(cmd);
+                //     //game.usePotion(temp);
+                // } else {
+                //     invalidInput = true;
+                // }
             } else if (cmd == "a") {
                 // attack
                 cin >> cmd;
-                if (isDirection(cmd)){
-                    Direction temp = getDirection(cmd);
+                directionCommandType = 'a';
+                // if (isDirection(cmd)){
+                //     Direction temp = getDirection(cmd);
+                //     //game.usePotion(temp);
+                // } else {
+                //     invalidInput = true;
+                // }
+            }
+            
+
+            if (isDirection(cmd)) {
+                Direction temp = getDirection(cmd);
+                if (directionCommandType = 'a') {
+                    //game.attack(temp);
+                } else if (directionCommandType = 'u') {
                     //game.usePotion(temp);
                 } else {
-                    invalidInput = true;
+                    // move
+                    //game.move(temp);
                 }
-            } else if (isDirection(cmd)) {
-                Direction temp = getDirection(cmd);
-                //game.move(temp);
             } else {
                 // else invalid input
                 invalidInput = true;
             }
+
             if (invalidInput) {
                 cout << "Invalid Input" << endl;
                 continue;
             }
 
-            //
+
             if (!gameStarted) {
                 gameStarted = true; // if this line runs, then game has started, 
                                 // cannot choose race anymore
+                // this part only runs when user executes a valid non-choose race command
                 if (filename != nullptr) {
                     // this means the filename for floor layout was specified
                     game = make_unique<Dungeon>(filename.get());
