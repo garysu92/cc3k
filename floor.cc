@@ -24,6 +24,7 @@
 #include "normalgold.h"
 #include "dragongold.h"
 #include "merchantgold.h"
+#include "dragon.h"
 
 using namespace std;
 
@@ -210,6 +211,13 @@ void Floor::generate() {
             // spawn the dragon guarding the hoarde
             vector<Posn> neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
+            int where = rand() % numNeighbours + 1;
+            // ensure that we are not generating an enemy on a stair
+            while (neighbours[where].x == stairLocation.x && neighbours[where].y == stairLocation.y) {
+                int where = rand() % numNeighbours + 1;
+            }
+            unique_ptr<Enemy> dragon = make_unique<Dragon>();
+            content[x][y]->setEnemy(dragon.get());
         }
         // content[x][y].setItem(some gold)
         chambers[chamb].erase(chambers[chamb].begin() + random6);
