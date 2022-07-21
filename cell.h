@@ -43,9 +43,9 @@ class Cell {
         void setStair(); 
         
         // Checkers check what's atop of the Cell
-        // bool hasEnemy();
-        // bool hasPC();
-        // bool hasItem();
+        bool hasEnemy();
+        bool hasPC();
+        bool hasItem();
 };
 
 #endif
