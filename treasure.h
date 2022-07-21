@@ -1,9 +1,7 @@
 #ifndef TREASURE_H
 #define TREASURE_H
 
-#include "object.h"
-
-class Treasure : public Object {
+class Treasure : public Item {
     int amount;
   public:
     Treasure(int amount);

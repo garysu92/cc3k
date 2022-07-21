@@ -20,6 +20,10 @@
 #include "door.h"
 #include "space.h"
 #include "stair.h"
+#include "smallgold.h"
+#include "normalgold.h"
+#include "dragongold.h"
+#include "merchantgold.h"
 
 using namespace std;
 
@@ -138,7 +142,7 @@ void Floor::generate() {
     stairLocation.x = x;
     stairLocation.y = y;
     unique_ptr<Cell> stair = make_unique<Stair>();
-    content[x][y] = stair;
+    content[x][y] = stair.get();
     chambers[random3].erase(chambers[random3].begin() + random4);
     if (chambers[random3].size() == 0)  {
         chambers.erase(chambers.begin() + random3);
@@ -161,22 +165,22 @@ void Floor::generate() {
         // WD = wound defense
         if (randomPotion == 1) {
             unique_ptr<Item> ptr = make_unique<RH>();
-            content[x][y].setItem(ptr);
+            content[x][y]->setItem(ptr);
         } else if (randomPotion == 2) {
             unique_ptr<Item> ptr = make_unique<BA>();
-            content[x][y].setItem(ptr);
+            content[x][y]->setItem(ptr);
         } else if (randomPotion == 3) {
             unique_ptr<Item> ptr = make_unique<BD>();
-            content[x][y].setItem(ptr);
+            content[x][y]->setItem(ptr);
         } else if (randomPotion == 4) {
             unique_ptr<Item> ptr = make_unique<PH>();
-            content[x][y].setItem(ptr);
+            content[x][y]->setItem(ptr);
         } else if (randomPotion == 5) {
             unique_ptr<Item> ptr = make_unique<WA>();
-            content[x][y].setItem(ptr);
+            content[x][y]->setItem(ptr);
         } else if (randomPotion == 6) {
             unique_ptr<Item> ptr = make_unique<WD>();
-            content[x][y].setItem(ptr);
+            content[x][y]->setItem(ptr);
         }
         chambers[chamb].erase(chambers[chamb].begin() + random5);
         if (chambers[chamb].size() == 0)  {
@@ -193,6 +197,20 @@ void Floor::generate() {
         int x = chambers[chamb][random6].x;
         int y = chambers[chamb][random6].y;
         // randomly pick a gold
+        int whichGold = rand() % 8 + 1;
+        if (whichGold <= 5) {
+            unique_ptr<Item> sg = make_unique<SmallGold>();
+            content[x][y]->setItem(sg);
+        } else if (whichGold <= 7) {
+            unique_ptr<Item> ng = make_unique<NormalGold>();
+            content[x][y]->setItem(ng);
+        } else {
+            unique_ptr<Item> dg = make_unique<SmallGold>();
+            content[x][y]->setItem(dg);
+            // spawn the dragon guarding the hoarde
+            vector<Posn> neighbours = Floor::neighbours(x, y);
+            int numNeighbours = neighbours.size();
+        }
         // content[x][y].setItem(some gold)
         chambers[chamb].erase(chambers[chamb].begin() + random6);
         if (chambers[chamb].size() == 0)  {
@@ -218,3 +236,14 @@ void Floor::generate() {
     }
 }
 
+vector<Posn> Floor::neighbours(int x, int y) {
+    vector<Posn> tmp;
+    for (int i = -1; i <= 1; i++) {
+        for (int k = -1; k <= 1; k++) {
+            if (x + i >= 0 && x + i < 25 && y + k >= 0 && y + k < 79 && content[i][k]->getsymbolRep() == '.') {
+                tmp.emplace_back(x + i, y + k);
+            }
+        }
+    }
+    return tmp;
+}

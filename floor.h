@@ -22,6 +22,7 @@ class Floor {
     void generate();
     void movePC();
     void moveEnemies();
+    std::vector<Posn> neighbours(int x, int y);
 };
 
 #endif
