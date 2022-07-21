@@ -1,10 +1,10 @@
 #include "playablecharacter.h"
 #include "enemy.h"
-// #include "item.h"
+#include "item.h"
 #include "cell.h"
 using namespace std;
 
-Cell::Cell(int x, int y, char sym, bool iseffWall) : x{x}, y{y}, symbolRep{sym}, iseffWall{iseffWall};
+Cell::Cell(int x, int y, char sym, bool iseffWall, bool isStair) : x{x}, y{y}, symbolRep{sym}, pc{nullptr}, enemy{nullptr}, item{nullptr}, iseffWall{iseffWall}, isStair{isStair} {}
 
 int Cell::getX() {
     return this->x;
@@ -14,12 +14,12 @@ int Cell::getY() {
     return this->y;
 }
 
-PlayableCharacter * Cell::getPC() {
-    return this->PC;
+PlayableCharacter *Cell::getPC() {
+    return this->pc;
 }
 
 Enemy * Cell::getEnemy() {
-    return this->foe;
+    return this->enemy;
 }
 
 // Item * Cell::getItem() {
@@ -42,20 +42,36 @@ void Cell::setY(int y) {
     this->y = y;
 }
 
-void Cell::setPC(PlayableCharacter * PC) {
-    this->PC = PC;
+void Cell::setPC(PlayableCharacter *pc) {
+    this->pc = pc;
 }
 
-void Cell::setEnemy(Enemy * foe) {
-    this->foe = foe;
+void Cell::setEnemy(Enemy *enemy) {
+    this->enemy = enemy;
 }
 
-// void Cell::setItem(Item * onFloor) {
-//     this->onFloor = onFloor;
-// }
+void Cell::setItem(unique_ptr<Item> &item) {
+    item = move(item);
+}
 
 void Cell::setsymbolRep(char sym) {
-    this->symbolRep = sym;
+    symbolRep = sym;
+}
+
+void Cell::setStair() {
+    isStair = true;
+}
+
+bool Cell::hasEnemy() {
+    return enemy != nullptr;
+}
+
+bool Cell::hasPC() {
+    return pc != nullptr;
+}
+
+bool Cell::hasItem() {
+    return item != nullptr;
 }
 
 void Cell::setiseffWall(bool iseffWall) {

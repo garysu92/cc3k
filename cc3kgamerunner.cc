@@ -1,8 +1,8 @@
-#include "cc3kgamerunner.h"
-
 #include <iostream>
 #include <string>
+#include <memory>
 
+#include "cc3kgamerunner.h"
 #include "direction.h"
 #include "dwarf.h"
 #include "elf.h"
@@ -10,6 +10,7 @@
 #include "human.h"
 #include "orc.h"
 
+using namespace std;
 
 static bool isDirection(string s) {
     if (s == "no" || s == "so" || s == "ea" || s == "we" || s == "ne" || s == "nw" 
@@ -22,40 +23,48 @@ static bool isDirection(string s) {
 // MAYBE handle non-direction strings
 static Direction getDirection(string s) {
     if (s == "no" ) {
-        return Direction::NO;
+        return Direction::no;
     } else if (s == "so") {
-        return Direction::SO;
+        return Direction::so;
     } else if (s == "ea") {
-        return Direction::EA;
+        return Direction::ea;
     } else if (s == "we") {
-        return Direction::WE;
+        return Direction::we;
     } else if (s == "NE") {
-        return Direction::NE;
+        return Direction::ne;
     } else if (s == "NW") {
-        return Direction::NW;
+        return Direction::nw;
     } else if (s == "SE") {
-        return Direction::SE;
+        return Direction::se;
     } else {
         //sw
-        return Direction::SW;
+        return Direction::sw;
     }
 }
 
 CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{} {}
 
 CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()},
-                                                     d{}, filename{make_unique(filename)} {}
+                                                     d{}, filename{make_unique<string>(filename)} {}
 
 using namespace std;
 void CC3KGameRunner::play() {
+    // reinitializing fields
+    game{};
+    p{p{make_unique<Human>()};
+    d{};
+
+
     bool gameStarted = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
     try {
         // running game
         while (true) {
+
             cin >> cmd;
             bool invalidInput = false;
+            char directionCommandType = '\0'; // default is move, not used if not move, use potion, attack
             if (!gameStarted) {
                 // game has not started, so choosing race is valid input, can choose multiple
                 // times
@@ -72,15 +81,19 @@ void CC3KGameRunner::play() {
 
                 if (cmd == "h") {
                     p = make_unique<Human>();
+                    continue;
                 } else if (cmd == "e") {
                     p = make_unique<Elf>();
+                    continue;
                 } else if (cmd == "d") {
                     p = make_unique<Dwarf>();
+                    continue;
                 } else if (cmd == "o") {
                     p = make_unique<Orc>();
+                    continue;
                 }
                 // else do nothing
-                continue;
+                
             }
 
             // play game commands
@@ -95,42 +108,56 @@ void CC3KGameRunner::play() {
             } else if (cmd == "u") {
                 // use potion
                 cin >> cmd;
-                if (isDirection(cmd)){
-                    Direction temp = getDirection(cmd);
-                    //game.usePotion(temp);
-                } else {
-                    invalidInput = true;
-                }
+                directionCommandType = 'u';
+                // if (isDirection(cmd)){
+                //     Direction temp = getDirection(cmd);
+                //     //game.usePotion(temp);
+                // } else {
+                //     invalidInput = true;
+                // }
             } else if (cmd == "a") {
                 // attack
                 cin >> cmd;
-                if (isDirection(cmd)){
-                    Direction temp = getDirection(cmd);
+                directionCommandType = 'a';
+                // if (isDirection(cmd)){
+                //     Direction temp = getDirection(cmd);
+                //     //game.usePotion(temp);
+                // } else {
+                //     invalidInput = true;
+                // }
+            }
+            
+
+            if (isDirection(cmd)) {
+                Direction temp = getDirection(cmd);
+                if (directionCommandType = 'a') {
+                    //game.attack(temp);
+                } else if (directionCommandType = 'u') {
                     //game.usePotion(temp);
                 } else {
-                    invalidInput = true;
+                    // move
+                    //game.move(temp);
                 }
-            } else if (isDirection(cmd)) {
-                Direction temp = getDirection(cmd);
-                //game.move(temp);
             } else {
                 // else invalid input
                 invalidInput = true;
             }
+
             if (invalidInput) {
                 cout << "Invalid Input" << endl;
                 continue;
             }
 
-            //
+
             if (!gameStarted) {
                 gameStarted = true; // if this line runs, then game has started, 
                                 // cannot choose race anymore
+                // this part only runs when user executes a valid non-choose race command
                 if (filename != nullptr) {
                     // this means the filename for floor layout was specified
-                    game = make_unique(filename.get());
+                    game = make_unique<Dungeon>(*filename, p.get());
                 } else {
-                    game = make_unique();
+                    game = make_unique<Dungeon>(p.get());
                 }
             }
         }
