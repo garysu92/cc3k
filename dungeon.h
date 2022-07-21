@@ -4,7 +4,11 @@
 #include <memory>
 #include <vector>
 #include <string>
+
 #include "floor.h"
+#include "direction.h"
+
+std::string floorLayout = "cc3kfloor.txt";
 
 class Dungeon {
     string fileName;
@@ -12,10 +16,11 @@ class Dungeon {
     int curFloor;
     int numFloors; 
     PlayableCharacter *p;
+    bool saveState;
     public: 
         // Constructor
-        Dungeon(string fileName, PlayableCharacter *p, int curFloor = 1, int numFloors = 5);
-        Dungeon(PlayableCharacter *p, int curFloor = 1, int numFloors = 5);
+        Dungeon(string fileName, PlayableCharacter *p, bool save = false);
+        Dungeon(PlayableCharacter *p, int numFloors = 5);
 
         // Getters
         int get_curFloor();
@@ -24,6 +29,11 @@ class Dungeon {
         // Setters
         void set_curFloor(int curF); 
         void set_numFloors(int newF);
+
+        // 
+        void playerMove(Direction d);
+        void playerAttack(Direction d);
+        void playerUsePotion(Direction d);
 };
 
 #endif

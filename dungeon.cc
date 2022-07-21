@@ -8,7 +8,7 @@
 using namespace std;
 
 // constructor makes numFloors number of floors with same layout
-Dungeon::Dungeon(string fileName, PlayableCharacter *p, int curFloor, int numFloors) : fileName{fileName}, p{p}, curFloor{curFloor}, numFloors{numFloors} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
     vector<vector<char>> v;
     try{
         ifstream file{fileName};
@@ -54,6 +54,16 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, int curFloor, int numFlo
     }
 }
 
+// specified layout
+Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
+    fileName{fileName}, p{p}, curFloor{1}, numFloors{1}{
+        try{
+            fstream file{fileName};
+            vector<vector<char>>
+        } catch (...) {}
+        
+}
+
 int Dungeon::get_curFloor() {
     return this->curFloor;
 }
@@ -68,4 +78,16 @@ void Dungeon::set_curFloor(int curF) {
 
 void Dungeon::set_curFloor(int newF) {
     this->curFloor = newF;
+}
+
+void Dungeon::playerMove(Direction d) {
+
+}
+
+void Dungeon::playerAttack(Direction d) {
+    
+}
+
+void Dungeon::playerUsePotion(Direction d) {
+    
 }
