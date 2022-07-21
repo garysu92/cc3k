@@ -49,12 +49,19 @@ CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()
 
 using namespace std;
 void CC3KGameRunner::play() {
+    // reinitializing fields
+    game{};
+    p{p{make_unique<Human>()};
+    d{};
+
+
     bool gameStarted = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
     try {
         // running game
         while (true) {
+
             cin >> cmd;
             bool invalidInput = false;
             char directionCommandType = '\0'; // default is move, not used if not move, use potion, attack
@@ -74,15 +81,19 @@ void CC3KGameRunner::play() {
 
                 if (cmd == "h") {
                     p = make_unique<Human>();
+                    continue;
                 } else if (cmd == "e") {
                     p = make_unique<Elf>();
+                    continue;
                 } else if (cmd == "d") {
                     p = make_unique<Dwarf>();
+                    continue;
                 } else if (cmd == "o") {
                     p = make_unique<Orc>();
+                    continue;
                 }
                 // else do nothing
-                continue;
+                
             }
 
             // play game commands
@@ -144,9 +155,9 @@ void CC3KGameRunner::play() {
                 // this part only runs when user executes a valid non-choose race command
                 if (filename != nullptr) {
                     // this means the filename for floor layout was specified
-                    game = make_unique<Dungeon>(filename.get());
+                    game = make_unique<Dungeon>(*filename, p.get());
                 } else {
-                    game = make_unique<Dungeon>();
+                    game = make_unique<Dungeon>(p.get());
                 }
             }
         }
