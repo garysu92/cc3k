@@ -131,12 +131,12 @@ void CC3KGameRunner::play() {
             if (isDirection(cmd)) {
                 Direction temp = getDirection(cmd);
                 if (directionCommandType = 'a') {
-                    //game.attack(temp);
+                    //game.playerAttack(temp);
                 } else if (directionCommandType = 'u') {
-                    //game.usePotion(temp);
+                    //game.playerUsePotion(temp);
                 } else {
                     // move
-                    //game.move(temp);
+                    //game.playerMove(temp);
                 }
             } else {
                 // else invalid input
