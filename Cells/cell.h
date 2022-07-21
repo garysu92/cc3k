@@ -13,7 +13,7 @@ class Cell {
     Enemy *enemy;
     unique_ptr<Item> item;
     char symbolRep;
-    bool iseffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
+    bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
     bool isStair = false; // Does this need be defined here?
 
     public:
@@ -39,7 +39,7 @@ class Cell {
         void setEnemy(Enemy *enemy);
         void setItem(unique_ptr<Item> &item); // Unique ptr??
         void setsymbolRep(char sym);
-        void setiseffWall(bool iseffWall);
+        void setisEffWall(bool iseffWall);
         void setStair(); 
         
         // Checkers check what's atop of the Cell

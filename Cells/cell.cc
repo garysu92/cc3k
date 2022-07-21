@@ -4,7 +4,7 @@
 #include "cell.h"
 using namespace std;
 
-Cell::Cell(int x, int y, char sym, bool iseffWall, bool isStair) : x{x}, y{y}, symbolRep{sym}, pc{nullptr}, enemy{nullptr}, item{nullptr}, iseffWall{iseffWall}, isStair{isStair} {}
+Cell::Cell(int x, int y, char sym, bool iseffWall, bool isStair) : x{x}, y{y}, symbolRep{sym}, pc{nullptr}, enemy{nullptr}, item{nullptr}, isEffWall{iseffWall}, isStair{isStair} {}
 
 int Cell::getX() {
     return this->x;
@@ -74,6 +74,6 @@ bool Cell::hasItem() {
     return item != nullptr;
 }
 
-void Cell::setiseffWall(bool iseffWall) {
-    this->iseffWall = iseffWall;
+void Cell::setisEffWall(bool iseffWall) {
+    this->isEffWall = iseffWall;
 }
