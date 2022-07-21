@@ -33,6 +33,8 @@ class Cell {
         void setItem(unique_ptr<Item> &item);
         void setsymbolRep(char sym);
         void setStair();
+        
+        // check what's on this cell
         bool hasEnemy();
         bool hasPC();
         bool hasItem();

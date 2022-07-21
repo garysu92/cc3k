@@ -23,22 +23,22 @@ static bool isDirection(string s) {
 // MAYBE handle non-direction strings
 static Direction getDirection(string s) {
     if (s == "no" ) {
-        return Direction::NO;
+        return Direction::no;
     } else if (s == "so") {
-        return Direction::SO;
+        return Direction::so;
     } else if (s == "ea") {
-        return Direction::EA;
+        return Direction::ea;
     } else if (s == "we") {
-        return Direction::WE;
+        return Direction::we;
     } else if (s == "NE") {
-        return Direction::NE;
+        return Direction::ne;
     } else if (s == "NW") {
-        return Direction::NW;
+        return Direction::nw;
     } else if (s == "SE") {
-        return Direction::SE;
+        return Direction::se;
     } else {
         //sw
-        return Direction::SW;
+        return Direction::sw;
     }
 }
 

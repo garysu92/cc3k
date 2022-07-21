@@ -14,8 +14,8 @@ class Dungeon {
     PlayableCharacter *p;
     public: 
         // Constructor
-        Dungeon(string fileName, int curFloor=1, int numFloors=5);
-        Dungeon(int curFloor=1, int numFloors=5);
+        Dungeon(string fileName, PlayableCharacter *p, int curFloor = 1, int numFloors = 5);
+        Dungeon(PlayableCharacter *p, int curFloor = 1, int numFloors = 5);
 
         // Getters
         int get_curFloor();
