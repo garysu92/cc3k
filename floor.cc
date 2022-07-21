@@ -22,7 +22,7 @@
 
 using namespace std;
 
-Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p}, content{}, chambers{}, chamberMap{} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content{}, chambers{}, chamberMap{} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {

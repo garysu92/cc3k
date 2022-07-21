@@ -7,27 +7,51 @@
 
 using namespace std;
 
+// constructor makes numFloors number of floors with same layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, int curFloor, int numFloors) : fileName{fileName}, p{p}, curFloor{curFloor}, numFloors{numFloors} {
-    ifstream file;
-    char c;
-    char count = 0;
+    vector<vector<char>> v;
+    try{
+        ifstream file{fileName};
+        /*file >> noskipws;
+        
+        while(!file.eof()) {
+            v.emplace_back();
+            char c = '\0';
+            file >> c;
+            while (c != '\n') {
+                v.at(v.size() - 1).emplace_back(c);
+            }
+        }*/
+        while (true) {
+            string s = "";
+            getline(file, s);
+            if (s != "") {
+                v.emplace_back();
+                for (int i = 0; i < s.length(); i++) {
+                    v.at(v.size() - 1).emplace_back(s[i]);
+                }
+            } else {
+                // empty line, break
+                break;
+            }
+        }
+
+        file.close();
+    } catch(...){
+    }
     // loop 5 times to read in 5 potential different floor designs
     for (int q = 0; q < numFloors; q++) {
-        vector<vector<char>> v;
-        v.emplace_back();
         // loop 25 times to read the 25 lines
-        for (int r = 0; r < 25; r++) {
+        /*for (int r = 0; r < 25; r++) {
             // loop 79 times to read the 79 columns
             for (int t = 0; t < 79; t++) {
                 file >> c;
                 v[r].emplace_back(c);
             }
             v.emplace_back();
-        }
-        // calls floor ctor
+        }*/
         floors.emplace_back(v, p);
     }
-    file.close();
 }
 
 int Dungeon::get_curFloor() {

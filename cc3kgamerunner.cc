@@ -50,9 +50,9 @@ CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()
 using namespace std;
 void CC3KGameRunner::play() {
     // reinitializing fields
-    game{};
-    p{p{make_unique<Human>()};
-    d{};
+    game = unique_ptr<Dungeon>{};
+    p = make_unique<Human>();
+    d = unique_ptr<TextDisplay>{};// maybe not necessary
 
 
     bool gameStarted = false;
