@@ -166,22 +166,22 @@ void Floor::generate() {
         // WD = wound defense
         if (randomPotion == 1) {
             unique_ptr<Item> ptr = make_unique<RH>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 2) {
             unique_ptr<Item> ptr = make_unique<BA>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 3) {
             unique_ptr<Item> ptr = make_unique<BD>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 4) {
             unique_ptr<Item> ptr = make_unique<PH>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 5) {
             unique_ptr<Item> ptr = make_unique<WA>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 6) {
             unique_ptr<Item> ptr = make_unique<WD>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         }
         chambers[chamb].erase(chambers[chamb].begin() + random5);
         if (chambers[chamb].size() == 0)  {
@@ -201,13 +201,13 @@ void Floor::generate() {
         int whichGold = rand() % 8 + 1;
         if (whichGold <= 5) {
             unique_ptr<Item> sg = make_unique<SmallGold>();
-            content[x][y]->setItem(sg);
+            content[x][y]->setItem(sg.get());
         } else if (whichGold <= 7) {
             unique_ptr<Item> ng = make_unique<NormalGold>();
-            content[x][y]->setItem(ng);
+            content[x][y]->setItem(ng.get());
         } else {
             unique_ptr<Item> dg = make_unique<SmallGold>();
-            content[x][y]->setItem(dg);
+            content[x][y]->setItem(dg.get());
             // spawn the dragon guarding the hoarde
             vector<Posn> neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
