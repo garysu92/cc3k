@@ -1,8 +1,8 @@
-#include "cc3kgamerunner.h"
-
 #include <iostream>
 #include <string>
+#include <memory>
 
+#include "cc3kgamerunner.h"
 #include "direction.h"
 #include "dwarf.h"
 #include "elf.h"
@@ -10,6 +10,7 @@
 #include "human.h"
 #include "orc.h"
 
+using namespace std;
 
 static bool isDirection(string s) {
     if (s == "no" || s == "so" || s == "ea" || s == "we" || s == "ne" || s == "nw" 
@@ -44,7 +45,7 @@ static Direction getDirection(string s) {
 CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{} {}
 
 CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()},
-                                                     d{}, filename{make_unique(filename)} {}
+                                                     d{}, filename{make_unique<string>(filename)} {}
 
 using namespace std;
 void CC3KGameRunner::play() {
@@ -128,9 +129,9 @@ void CC3KGameRunner::play() {
                                 // cannot choose race anymore
                 if (filename != nullptr) {
                     // this means the filename for floor layout was specified
-                    game = make_unique(filename.get());
+                    game = make_unique<Dungeon>(filename.get());
                 } else {
-                    game = make_unique();
+                    game = make_unique<Dungeon>();
                 }
             }
         }
