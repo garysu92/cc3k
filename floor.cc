@@ -1,10 +1,7 @@
 #include <vector>
-<<<<<<< HEAD
 #include <memory>
 #include <algorithm>
-=======
 #include <stack>
->>>>>>> 5f2ba6c643b05797cc4b95a4c0a980c104bd6090
 #include <cstdlib>
 #include "floor.h"
 #include "posn.h"
