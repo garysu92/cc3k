@@ -18,7 +18,7 @@ class Cell {
 
     public:
         // Constructor
-        Cell(int x, int y, char sym, bool iseffWall, bool isStair);
+        Cell(int x, int y, char sym, bool isEffWall);
 
         // Destructor (Pure Virtual???)
         // Virtual ~Cell() = 0;
