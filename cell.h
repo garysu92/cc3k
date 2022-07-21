@@ -1,8 +1,9 @@
 #ifndef CELL_H
 #define CELL_H
 
+// All of these can likely be replaced with a forward declaration of the classes
 #include "playablecharacter.h"
-#include "enemy.h"
+#include "enemy.h" 
 // #include "item.h"
 
 class Cell {
@@ -11,9 +12,14 @@ class Cell {
     Enemy * foe;
     // Item * onFloor;
     char symbolRep;
+    bool iseffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
 
     public:
-        Cell(int x, int y, char sym);
+        // Constructor
+        Cell(int x, int y, char sym, bool iseffWall);
+
+        // Destructor (Pure Virtual???)
+        // Virtual ~Cell() = 0;
 
         // Getters
         int getX();
@@ -22,6 +28,7 @@ class Cell {
         Enemy * getEnemy();
         // Item * getItem(); // Possibly a unique pointer???
         char getsymbolRep();
+        bool getiseffWall(); // function name weird?
 
         // Setters
         void setX(int x);
@@ -30,6 +37,7 @@ class Cell {
         void setEnemy(Enemy * foe);
         // void setItem(Item * onFloor);
         void setsymbolRep(char sym);
+        void setiseffWall(bool iseffWall);
 };
 
 #endif

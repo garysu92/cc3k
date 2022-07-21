@@ -1,11 +1,10 @@
-#include <memory>
 #include "playablecharacter.h"
 #include "enemy.h"
 // #include "item.h"
 #include "cell.h"
 using namespace std;
 
-Cell::Cell(int x, int y, char sym) : x{x}, y{y}, symbolRep{sym};
+Cell::Cell(int x, int y, char sym, bool iseffWall) : x{x}, y{y}, symbolRep{sym}, iseffWall{iseffWall};
 
 int Cell::getX() {
     return this->x;
@@ -31,6 +30,10 @@ char Cell::getsymbolRep() {
     return this->symbolRep;
 }
 
+bool Cell::getiseffWall() {
+    return this->isEffWall;
+}
+
 void Cell::setX(int x) {
     this->x = x;
 }
@@ -53,4 +56,8 @@ void Cell::setEnemy(Enemy * foe) {
 
 void Cell::setsymbolRep(char sym) {
     this->symbolRep = sym;
+}
+
+void Cell::setiseffWall(bool iseffWall) {
+    this->iseffWall = iseffWall;
 }
