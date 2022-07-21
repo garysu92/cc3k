@@ -86,13 +86,15 @@ Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p}, content{}, cha
                     next.pop();
                     for (int a = -1; a <= 1; a++) {
                         for (int b = -1; b <= 1; b++) {
-                            if (!isVisited[i][j] && v[i][j] == '.') {
-                                isVisited[i][j] = true;
-                                chambers[chamberCount - 1].emplace_back(j, i);
-                                chamberMap[i][j] = chamberCount;
-                                next.emplace(j,i);
-                            } else if (!isVisited[i][j]) {
-                                isVisited[i][j] = true;
+                            int x = tempP.x + b;
+                            int y = tempP.y + a;
+                            if (!isVisited.at(y).at(x) && v.at(y).at(x) == '.') {
+                                isVisited.at(y).at(x) = true;
+                                chambers.at(chamberCount - 1).emplace_back(x, y);
+                                chamberMap.at(y).at(x) = chamberCount;
+                                next.emplace(x,y);
+                            } else if (!isVisited.at(y).at(x)) {
+                                isVisited.at(y).at(x) = true;
                             }
                         }
                     }
