@@ -38,70 +38,70 @@ Floor::Floor(vector<vector<char>> v, PlayableCharacter *p): p{p}, content{}, cha
             else content[i].emplace_back(Space(col, row));
         }
     }
-    // make a temp 2D array that stores the positions of floors in chambers that are already visited
-    int temp[row][col] = {0};
-    for (int i = 1; i < row - 1; i++) {
-        for (int j = 1; j < col - 1; j++) {
-            if (v[i][j] == '.') {
-                // check neighbours
-                // bool newChamber = true;
-                for (int a = -1; a <= 1; a++) {
-                    for (int b = -1; b <= 1; b++) {
-                        // if neighbour is found to already be in chamber
-                        if (!(b == 0 && a == 0) && temp[i + a][j + b] != 0) {
-                            chambers[temp[i + a][j + b] - 1].emplace_back(i, j);
-                            temp[i][j] = temp[i + a][j + b];
-                            // newChamber = false;
-                            goto label;
-                        }
-                    }
-                }
-                //if (newChamber) {
-                // all neighbours are not in a chamber (yet?)
-                chambers.emplace_back();
-                chambers[chambers.size() - 1].emplace_back(i, j);
-                temp[i][j] = chambers.size();
-                //}
-            }
-            label:
-        }
-    }
-
-    // vector<vector<bool>> isVisited(row, vector<bool>(col, false)); // initializes 2d isvisited array all false
-    // int chamberCount = 0;
-    // for (int i = 1; i < row - 1; ++i) {
-    //     for (int j = 1; j < col - 1; ++j) {
-    //         if (!isVisited[i][j] && v[i][j] == '.') {
-    //             // new chamber
-    //             chamberCount++;
-    //             chamberMap[i][j] = chamberCount;
-    //             chambers.emplace_back();
-    //             chambers[chamberCount - 1].emplace_back(j, i);
-
-    //             isVisited[i][j] = true;
-    //             stack<Posn> next{};
-    //             next.emplace(j, i);
-    //             while (!next.empty()) {
-    //                 Posn tempP = next.top();
-    //                 next.pop();
-    //                 for (int a = -1; a <= 1; a++) {
-    //                     for (int b = -1; b <= 1; b++) {
-    //                         if (!isVisited[i][j] && v[i][j] == '.') {
-    //                             isVisited[i][j] = true;
-    //                             chambers[chamberCount - 1].emplace_back(j, i);
-    //                             chamberMap[i][j] = chamberCount;
-    //                             next.emplace(j,i);
-    //                         } else if (!isVisited[i][j]) {
-    //                             isVisited[i][j] = true;
-    //                         }
+    // // make a temp 2D array that stores the positions of floors in chambers that are already visited
+    // int temp[row][col] = {0};
+    // for (int i = 1; i < row - 1; i++) {
+    //     for (int j = 1; j < col - 1; j++) {
+    //         if (v[i][j] == '.') {
+    //             // check neighbours
+    //             // bool newChamber = true;
+    //             for (int a = -1; a <= 1; a++) {
+    //                 for (int b = -1; b <= 1; b++) {
+    //                     // if neighbour is found to already be in chamber
+    //                     if (!(b == 0 && a == 0) && temp[i + a][j + b] != 0) {
+    //                         chambers[temp[i + a][j + b] - 1].emplace_back(i, j);
+    //                         temp[i][j] = temp[i + a][j + b];
+    //                         // newChamber = false;
+    //                         goto label;
     //                     }
     //                 }
     //             }
-    //         } else if (!isVisited[i][j]) {
-    //             isVisited[i][j] = true;
+    //             //if (newChamber) {
+    //             // all neighbours are not in a chamber (yet?)
+    //             chambers.emplace_back();
+    //             chambers[chambers.size() - 1].emplace_back(i, j);
+    //             temp[i][j] = chambers.size();
+    //             //}
     //         }
+    //         label:
     //     }
     // }
+
+    vector<vector<bool>> isVisited(row, vector<bool>(col, false)); // initializes 2d isvisited array all false
+    int chamberCount = 0;
+    for (int i = 1; i < row - 1; ++i) {
+        for (int j = 1; j < col - 1; ++j) {
+            if (!isVisited[i][j] && v[i][j] == '.') {
+                // new chamber
+                chamberCount++;
+                chamberMap[i][j] = chamberCount;
+                chambers.emplace_back();
+                chambers[chamberCount - 1].emplace_back(j, i);
+
+                isVisited[i][j] = true;
+                stack<Posn> next{};
+                next.emplace(j, i);
+                while (!next.empty()) {
+                    Posn tempP = next.top();
+                    next.pop();
+                    for (int a = -1; a <= 1; a++) {
+                        for (int b = -1; b <= 1; b++) {
+                            if (!isVisited[i][j] && v[i][j] == '.') {
+                                isVisited[i][j] = true;
+                                chambers[chamberCount - 1].emplace_back(j, i);
+                                chamberMap[i][j] = chamberCount;
+                                next.emplace(j,i);
+                            } else if (!isVisited[i][j]) {
+                                isVisited[i][j] = true;
+                            }
+                        }
+                    }
+                }
+            } else if (!isVisited[i][j]) {
+                isVisited[i][j] = true;
+            }
+        }
+    }
 }
 
 void Floor::generate() {
