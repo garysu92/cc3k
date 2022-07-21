@@ -22,15 +22,15 @@ Enemy * Cell::getEnemy() {
     return this->enemy;
 }
 
-// Item * Cell::getItem() {
-//     return this->onFloor;
-// }
+unique_ptr<Item> Cell::getItem() {
+     return this->onFloor;
+}
 
 char Cell::getsymbolRep() {
     return this->symbolRep;
 }
 
-bool Cell::getiseffWall() {
+bool Cell::getisEffWall() {
     return this->isEffWall;
 }
 
