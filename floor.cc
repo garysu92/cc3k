@@ -19,10 +19,11 @@
 #include "tile.h"
 #include "door.h"
 #include "space.h"
+#include "stair.h"
 
 using namespace std;
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content{}, chambers{}, chamberMap{} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -31,11 +32,11 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content
         for (int j = 0; j < col; j++) {
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
-            if (c == '|' || c == '-') content[i].emplace_back(Wall(col, row, c));
-            else if (c == '#') content[i].emplace_back(Passage(col, row));
-            else if (c == '+') content[i].emplace_back(Door(col, row));
-            else if (c == '.') content[i].emplace_back(Tile(col, row));
-            else content[i].emplace_back(Space(col, row));
+            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c));
+            else if (c == '#') content[i].emplace_back(make_unique<Passage>(col, row));
+            else if (c == '+') content[i].emplace_back(make_unique<Door>(col, row));
+            else if (c == '.') content[i].emplace_back(make_unique<Tile>(col, row));
+            else content[i].emplace_back(make_unique<Space>(col, row));
         }
     }
     // // make a temp 2D array that stores the positions of floors in chambers that are already visited
@@ -115,7 +116,7 @@ void Floor::generate() {
     int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
     int x = chambers[random1][random2].x;
     int y = chambers[random1][random2].y;
-    content[x][y].setPC(p);
+    content[x][y]->setPC(p);
     // erase that position from available
     chambers[random1].erase(chambers[random1].begin() + random2);
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
@@ -134,7 +135,10 @@ void Floor::generate() {
     int random4 = rand() % numTilesInChamber;
     int x = chambers[random3][random4].x;
     int y = chambers[random3][random4].y;
-    content[x][y].setStair();
+    stairLocation.x = x;
+    stairLocation.y = y;
+    unique_ptr<Cell> stair = make_unique<Stair>();
+    content[x][y] = stair;
     chambers[random3].erase(chambers[random3].begin() + random4);
     if (chambers[random3].size() == 0)  {
         chambers.erase(chambers.begin() + random3);
