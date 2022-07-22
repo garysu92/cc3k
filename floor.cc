@@ -119,6 +119,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content
 }
 
 void Floor::generate() {
+    
     int numChambers = chambers.size();
 
     // generate player location
