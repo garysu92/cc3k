@@ -2,9 +2,13 @@
 #define ITEM_H
 
 class Item {
+    char sym;
   public:
-    Item();
+    Item(char c): sym{c} {}
     virtual ~Item() = 0;
+    char getSymbol() {
+      return sym;
+    }
 };
 
 #endif

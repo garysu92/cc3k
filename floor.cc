@@ -304,7 +304,10 @@ void Floor::print() {
     for (int i = 0; i < content.size(); i++) {
         for (int j = 0; j < content[0].size(); j++) {
             if (content[i][j]->hasPC()) cout << '@';
-            else if (content[i][j]->hasEnemy()) cout << 'e'
+            else if (content[i][j]->hasEnemy()) cout << content[i][j]->getEnemy()->getSymbol();
+            else if (content[i][j]->hasItem()) cout << content[i][j]->getItem()->getSymbol();
+            else cout << content[i][j]->getsymbolRep();
         }
+        cout << endl;
     }
 }
