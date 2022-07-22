@@ -2,9 +2,9 @@
 #define FLOOR_H
 
 #include <vector>
-#include "cell.h"
-#include "playablecharacter.h"
-#include "enemy.h"
+#include "Cells/cell.h"
+#include "Entities/playablecharacter.h"
+#include "Entities/enemy.h"
 #include "posn.h"
 
 class Posn;
@@ -14,7 +14,7 @@ class Floor {
     std::vector<std::vector<Cell *>> content; // 2d array of the entire floor and the type of each cell (wall, tile, etc.)
     std::vector<std::vector<Posn>> chambers; // array of array of coordinates of every tile in each chamber, 
     std::vector<std::vector<int>> chamberMap; // 2d array containing the number(index) of the chamber that cells at that coordinate is located in
-    std::vector<Enemy> enemies;
+    std::vector<Enemy *> enemies;
     Posn stairLocation;
   public:
     Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p, bool exactLayout = false, bool save = false);

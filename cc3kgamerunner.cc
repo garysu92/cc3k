@@ -4,11 +4,11 @@
 
 #include "cc3kgamerunner.h"
 #include "direction.h"
-#include "dwarf.h"
-#include "elf.h"
+#include "Races/dwarf.h"
+#include "Races/elf.h"
 #include "floor.h"
-#include "human.h"
-#include "orc.h"
+#include "Races/human.h"
+#include "Races/orc.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef MERCHANT_H
 #define MERCHANT_H
 
-#include "enemy.h"
+#include "../Entities/enemy.h"
 
 class Merchant: public Enemy {
     static bool hostile;

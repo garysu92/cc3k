@@ -3,7 +3,7 @@
 
 class PlayableCharacter;
 class Enemy;
-class Item;
+class Item; 
 
 class Cell {
     int x, y; 

@@ -2,7 +2,7 @@
 #define TEMPEFFECT_H
 
 #include <memory>
-#include "playablecharacter.h"
+#include "Entities/playablecharacter.h"
 
 class TempEffect : public PlayableCharacter {
     std::unique_ptr<PlayableCharacter> p;

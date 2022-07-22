@@ -2,7 +2,7 @@
 #define HUMAN_H
 
 #include <string>
-#include "playablecharacter.h"
+#include "../Entities/playablecharacter.h"
 
 class Human: public PlayableCharacter {
   public:

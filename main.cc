@@ -1,11 +1,15 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <fstream>
+#include <vector>
+#include <iomanip>
 
+/*
 #include "cc3kgamerunner.h"
-#include "playablecharacter.h"
-#include "enemy.h"
-#include "human.h"
+#include "Entities/playablecharacter.h"
+#include "Entities/enemy.h"
+#include "Races/human.h"
 #include "goblin.h"
 #include "tempeffect.h"
 #include "woundattack.h"
@@ -13,10 +17,46 @@
 #include "boostattack.h"
 #include "boostdefense.h"
 #include "potion.h"
+#include "floor.h"
+*/
+
+#include "floor.h"
+#include "Entities/playablecharacter.h"
+#include "Races/human.h"
+#include "Cells/space.h"
+#include "Cells/door.h"
+#include "Cells/cell.h"
+#include "Cells/tile.h"
+#include "Cells/wall.h"
+#include "Cells/stair.h"
+#include "Cells/passage.h"
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
+    vector<vector<char>> v;
+    ifstream file{"cc3kfloor.txt"};
+    char c;
+    v.emplace_back();
+    for (int r = 0; r < 25; r++) {
+        // loop 79 times to read the 79 columns
+        for (int t = 0; t < 79; t++) {
+            file >> noskipws >> c;
+            v[r].emplace_back(c);
+        }
+        file >> noskipws >> c;
+        v.emplace_back();
+    }
+    for (int r = 0; r < 25; r++) {
+        // loop 79 times to read the 79 columns
+        for (int t = 0; t < 79; t++) {
+            cout << v[r][t];
+        }
+        cout << endl;
+    }
+    PlayableCharacter *p = new Human();
+    Floor f{v, p};
+    /*
     unique_ptr<CC3KGameRunner> game;
     if (argc == 3) {
         string filename{argv[1]};
@@ -30,6 +70,7 @@ int main(int argc, char* argv[]) {
         game = make_unique<CC3KGameRunner>();
     }
     game->play();
+    */
     // Potion p{RESTOREHEALTH};
     // if (p == RESTOREHEALTH) cout << "yes" << endl;
     // unique_ptr<PlayableCharacter> pc = make_unique<Human>();

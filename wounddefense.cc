@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <memory>
 #include "wounddefense.h"
-#include "playablecharacter.h"
+#include "Entities/playablecharacter.h"
 
 using namespace std;
 

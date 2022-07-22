@@ -1,7 +1,7 @@
 #ifndef DRAGON_H
 #define DRAGON_H
 
-#include "enemy.h"
+#include "../Entities/enemy.h"
 
 class Dragon : public Enemy {
   public:

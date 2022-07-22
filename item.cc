@@ -2,6 +2,6 @@
 
 using namespace std;
 
-Item::Item() {}
+Item::Item(char c): sym{c} {}
 
 Item::~Item() {}

@@ -1,7 +1,7 @@
 #ifndef ORC_H
 #define ORC_H
 
-#include "playablecharacter.h"
+#include "../Entities/playablecharacter.h"
 
 class Orc : public PlayableCharacter {
   public:

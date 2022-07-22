@@ -1,7 +1,7 @@
 #ifndef TROLL_H
 #define TROLL_H
 
-#include "enemy.h"
+#include "../Entities/enemy.h"
 
 class Troll : public Enemy {
   public:

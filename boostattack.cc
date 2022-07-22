@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <memory>
 #include "boostattack.h"
-#include "playablecharacter.h"
+#include "Entities/playablecharacter.h"
 
 using namespace std;
 

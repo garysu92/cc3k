@@ -22,10 +22,10 @@ void Enemy::takeDmg(PlayableCharacter *pc) {
     cout << "Enemy has " << this->hp << " hp. ";
     int dmg = ceil((100.0 / (100.0 + defense)) * pc->getAttack());
     this->hp = max(0, hp - dmg); // Use setter instead?
-    cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl;
+    cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl; 
 }
 
-void Enemy::dealDmg(unique_ptr<PlayableCharacter> &pc) {
+void Enemy::dealDmg(unique_ptr<PlayableCharacter> &pc) { 
     pc->takeDmg(this);
 }
 

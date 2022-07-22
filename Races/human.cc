@@ -1,4 +1,4 @@
-#include "playablecharacter.h"
+#include "../Entities/playablecharacter.h"
 #include "human.h"
 
 using namespace std;

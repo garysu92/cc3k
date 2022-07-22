@@ -1,10 +1,10 @@
-#include "enemy.h"
-#include "playablecharacter.h"
-#include "troll.h"
+#include "Entities/enemy.h"
+#include "Entities/playablecharacter.h"
+#include "Enemies/troll.h"
 #include "elf.h"
 #include "human.h"
 #include "orc.h"
-#include "dwarf.h"
+#include "Races/dwarf.h"
 
 int main() {
     return 0;

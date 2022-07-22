@@ -1,4 +1,4 @@
-#include "playablecharacter.h"
+#include "Entities/playablecharacter.h"
 #include "dwarf.h"
 
 using namespace std;

@@ -1,7 +1,7 @@
 #ifndef ELF_H
 #define ELF_H
 
-#include "playablecharacter.h"
+#include "../Entities/playablecharacter.h"
 
 class Elf : public PlayableCharacter {
   public:

@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include "dungeon.h"
-#include "playablecharacter.h"
+#include "Entities/playablecharacter.h"
 #include "textdisplay.h"
 
 class CC3KGameRunner{

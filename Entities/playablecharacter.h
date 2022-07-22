@@ -28,7 +28,7 @@ class PlayableCharacter {
     int getMaxHP() const;
 
     // Setters
-    void setHP(int k);
+    virtual void setHP(int k);
 
     // Checkers
     bool checkCompass();

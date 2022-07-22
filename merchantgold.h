@@ -8,4 +8,4 @@ class MerchantGold : public Treasure {
     MerchantGold();
 };
 
-#endif;
+#endif

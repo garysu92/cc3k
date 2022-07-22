@@ -4,7 +4,7 @@
 class Item {
     char sym;
   public:
-    Item(char c): sym{c} {}
+    Item(char c);
     virtual ~Item() = 0;
     char getSymbol() {
       return sym;
