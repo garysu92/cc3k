@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false} {}
+Enemy::Enemy(int atk, int def, int hp, int n, char symbol):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol} {}
 
 int Enemy::goldDropped() {
     return this->goldDrop;
@@ -39,6 +39,10 @@ int Enemy::getDefense() const {
 
 int Enemy::getHP() const {
     return this->hp;
+}
+
+char Enemy::getSymbol() const {
+    return symbol;
 }
 
 bool Enemy::checkCompass() {

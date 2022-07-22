@@ -14,7 +14,8 @@ class Dungeon {
     string fileName;
     std::vector<Floor> floors; 
     int curFloor;
-    int numFloors; 
+    int numFloors;
+    int floorWithBarrierSuit;
     PlayableCharacter *p;
     bool saveState;
     public: 

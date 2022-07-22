@@ -11,10 +11,10 @@ class Enemy {
     int attack;
     int defense;
     bool hasCompass;
-
+    char symbol;
   public:
     // Constructor and Destructor
-    Enemy(int atk, int def, int hp, int n);
+    Enemy(int atk, int def, int hp, int n, char symbol);
     virtual ~Enemy() = 0;
 
     // Getters
@@ -22,6 +22,7 @@ class Enemy {
     int getDefense() const;
     int getHP() const;
     int getMaxHP() const;
+    char getSymbol() const;
 
     // Checkers
     bool checkCompass();

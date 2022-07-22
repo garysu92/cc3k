@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Phoenix::Phoenix(): Enemy{35, 20, 50, 1} {}
+Phoenix::Phoenix(): Enemy{35, 20, 50, 1, 'X'} {}
 
 bool Phoenix::isHostile() { 
     return true; 

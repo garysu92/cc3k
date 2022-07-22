@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <stack>
 #include <cstdlib>
+#include <iostream>
 #include "floor.h"
 #include "posn.h"
 #include "playablecharacter.h"
@@ -297,4 +298,13 @@ vector<Posn> Floor::neighbours(int x, int y) {
         }
     }
     return tmp;
+}
+
+void Floor::print() {
+    for (int i = 0; i < content.size(); i++) {
+        for (int j = 0; j < content[0].size(); j++) {
+            if (content[i][j]->hasPC()) cout << '@';
+            else if (content[i][j]->hasEnemy()) cout << 'e'
+        }
+    }
 }

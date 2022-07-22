@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <iomanip>
+#include <cstdlib>
 #include "dungeon.h"
 #include "floor.h"
 
@@ -20,8 +21,9 @@ static bool endOfRoom(string s) {
 
 // constructor makes numFloors number of floors with same layout
 Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
+    floorWithBarrierSuit = rand() % 5 + 1;
     vector<vector<char>> v;
-    try{
+    try {
         ifstream file{fileName};
         /*file >> noskipws;
         
