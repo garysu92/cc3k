@@ -140,7 +140,7 @@ void Floor::generate() {
     int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
     int x = tempChambers[random1][random2].x;
     int y = tempChambers[random1][random2].y;
-    content[x][y]->setPC(p);
+    content[y][x]->setPC(p);
     // erase that position from available
     tempChambers[random1].erase(tempChambers[random1].begin() + random2);
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
@@ -162,7 +162,7 @@ void Floor::generate() {
     stairLocation.x = x;
     stairLocation.y = y;
     unique_ptr<Cell> stair = make_unique<Stair>();
-    content[x][y] = stair.get();
+    content[y][x] = stair.get();
     tempChambers[random3].erase(tempChambers[random3].begin() + random4);
     if (tempChambers[random3].size() == 0)  {
         tempChambers.erase(tempChambers.begin() + random3);
@@ -185,22 +185,22 @@ void Floor::generate() {
         // WD = wound defense
         if (randomPotion == 1) {
             unique_ptr<Item> ptr = make_unique<RH>();
-            content[x][y]->setItem(ptr.get());
+            content[y][x]->setItem(ptr.get());
         } else if (randomPotion == 2) {
             unique_ptr<Item> ptr = make_unique<BA>();
-            content[x][y]->setItem(ptr.get());
+            content[y][x]->setItem(ptr.get());
         } else if (randomPotion == 3) {
             unique_ptr<Item> ptr = make_unique<BD>();
-            content[x][y]->setItem(ptr.get());
+            content[y][x]->setItem(ptr.get());
         } else if (randomPotion == 4) {
             unique_ptr<Item> ptr = make_unique<PH>();
-            content[x][y]->setItem(ptr.get());
+            content[y][x]->setItem(ptr.get());
         } else if (randomPotion == 5) {
             unique_ptr<Item> ptr = make_unique<WA>();
-            content[x][y]->setItem(ptr.get());
+            content[y][x]->setItem(ptr.get());
         } else if (randomPotion == 6) {
             unique_ptr<Item> ptr = make_unique<WD>();
-            content[x][y]->setItem(ptr.get());
+            content[y][x]->setItem(ptr.get());
         }
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random5);
         if (tempChambers[chamb].size() == 0)  {
@@ -220,13 +220,13 @@ void Floor::generate() {
         int whichGold = rand() % 8 + 1;
         if (whichGold <= 5) {
             unique_ptr<Item> sg = make_unique<SmallGold>();
-            content[x][y]->setItem(sg.get());
+            content[y][x]->setItem(sg.get());
         } else if (whichGold <= 7) {
             unique_ptr<Item> ng = make_unique<NormalGold>();
-            content[x][y]->setItem(ng.get());
+            content[y][x]->setItem(ng.get());
         } else {
             unique_ptr<Item> dg = make_unique<SmallGold>();
-            content[x][y]->setItem(dg.get());
+            content[y][x]->setItem(dg.get());
             // spawn the dragon guarding the hoarde
             vector<Posn> neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
@@ -237,9 +237,9 @@ void Floor::generate() {
             }
             unique_ptr<Enemy> dragon = make_unique<Dragon>();
             enemies.emplace_back(dragon.get());
-            content[x][y]->setEnemy(dragon.get());
+            content[y][x]->setEnemy(dragon.get());
         }
-        // content[x][y].setItem(some gold)
+        // content[y][x].setItem(some gold)
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
         if (tempChambers[chamb].size() == 0)  {
             tempChambers.erase(tempChambers.begin() + chamb);
@@ -255,29 +255,29 @@ void Floor::generate() {
         int x = tempChambers[chamb][random6].x;
         int y = tempChambers[chamb][random6].y;
         // randomly pick an enemy
-        // content[x][y].setItem(some enemy)
+        // content[y][x].setItem(some enemy)
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
 
         int whichEnemy = rand() % 18 + 1;
         if (whichEnemy <= 4) {
             unique_ptr<Enemy> e = make_unique<Werewolf>();
-            content[x][y]->setEnemy(e.get());
+            content[y][x]->setEnemy(e.get());
             enemies.emplace_back(e.get());
         } else if (whichEnemy <= 7) {
             unique_ptr<Enemy> e = make_unique<Vampire>();
-            content[x][y]->setEnemy(e.get());
+            content[y][x]->setEnemy(e.get());
         } else if (whichEnemy <= 12) {
             unique_ptr<Enemy> e = make_unique<Goblin>();
-            content[x][y]->setEnemy(e.get());
+            content[y][x]->setEnemy(e.get());
         } else if (whichEnemy <= 14) {
             unique_ptr<Enemy> e = make_unique<Troll>();
-            content[x][y]->setEnemy(e.get());
+            content[y][x]->setEnemy(e.get());
         } else if (whichEnemy <= 16) {
             unique_ptr<Enemy> e = make_unique<Phoenix>();
-            content[x][y]->setEnemy(e.get());
+            content[y][x]->setEnemy(e.get());
         } else {
             unique_ptr<Enemy> e = make_unique<Merchant>();
-            content[x][y]->setEnemy(e.get());
+            content[y][x]->setEnemy(e.get());
         }
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
         if (tempChambers[chamb].size() == 0)  {
