@@ -7,7 +7,7 @@
 
 using namespace std;
 
-PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, attack{atk}, defense{def}, compass{false} {}
+PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, hasBarrierSuit{false} {}
 
 string PlayableCharacter::getRace() const { 
     return ""; 
@@ -27,15 +27,15 @@ void PlayableCharacter::dealDmg(unique_ptr<Enemy> &enemy) {
 }
 
 int PlayableCharacter::getAttack() const {
-    return attack;
+    return this->attack;
 }
 
 int PlayableCharacter::getDefense() const {
-    return defense;
+    return this->defense;
 }
 
 int PlayableCharacter::getHP() const {
-    return hp;
+    return this->hp;
 }
 
 void PlayableCharacter::setHP(int k) {
@@ -48,12 +48,20 @@ void PlayableCharacter::setHP(int k) {
     }
 }
 
-bool PlayableCharacter::hasCompass() {
-    return compass;
+bool PlayableCharacter::checkCompass() {
+    return this->hasCompass;
+}
+
+bool PlayableCharacter::checkBarrierSuit() {
+    return this->hasBarrierSuit;
 }
 
 void PlayableCharacter::giveCompass() {
-    compass = true;
+    this->hasCompass = true;
+}
+
+void PlayableCharacter::giveBarrierSuit() {
+    this->hasBarrierSuit = true;
 }
 
 PlayableCharacter::~PlayableCharacter() {}

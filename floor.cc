@@ -25,6 +25,12 @@
 #include "dragongold.h"
 #include "merchantgold.h"
 #include "dragon.h"
+#include "werewolf.h"
+#include "vampire.h"
+#include "goblin.h"
+#include "troll.h"
+#include "phoenix.h"
+#include "merchant.h"
 
 using namespace std;
 
@@ -123,6 +129,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
 }
 
 void Floor::generate() {
+    
     int numChambers = chambers.size();
 
     vector<vector<Posn>> tempChambers{chambers};
@@ -229,6 +236,7 @@ void Floor::generate() {
                 int where = rand() % numNeighbours + 1;
             }
             unique_ptr<Enemy> dragon = make_unique<Dragon>();
+            enemies.emplace_back(dragon.get());
             content[x][y]->setEnemy(dragon.get());
         }
         // content[x][y].setItem(some gold)
@@ -240,7 +248,7 @@ void Floor::generate() {
     }
 
     // generate the enemies
-    for (int i = 0; i < 20; i++) {
+    while (enemies.size() < 20) {
         int chamb = rand() % numChambers;
         numTilesInChamber = tempChambers[chamb].size();
         int random6 = rand() % numTilesInChamber;
@@ -248,6 +256,29 @@ void Floor::generate() {
         int y = tempChambers[chamb][random6].y;
         // randomly pick an enemy
         // content[x][y].setItem(some enemy)
+        tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
+
+        int whichEnemy = rand() % 18 + 1;
+        if (whichEnemy <= 4) {
+            unique_ptr<Enemy> e = make_unique<Werewolf>();
+            content[x][y]->setEnemy(e.get());
+            enemies.emplace_back(e.get());
+        } else if (whichEnemy <= 7) {
+            unique_ptr<Enemy> e = make_unique<Vampire>();
+            content[x][y]->setEnemy(e.get());
+        } else if (whichEnemy <= 12) {
+            unique_ptr<Enemy> e = make_unique<Goblin>();
+            content[x][y]->setEnemy(e.get());
+        } else if (whichEnemy <= 14) {
+            unique_ptr<Enemy> e = make_unique<Troll>();
+            content[x][y]->setEnemy(e.get());
+        } else if (whichEnemy <= 16) {
+            unique_ptr<Enemy> e = make_unique<Phoenix>();
+            content[x][y]->setEnemy(e.get());
+        } else {
+            unique_ptr<Enemy> e = make_unique<Merchant>();
+            content[x][y]->setEnemy(e.get());
+        }
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
         if (tempChambers[chamb].size() == 0)  {
             tempChambers.erase(tempChambers.begin() + chamb);

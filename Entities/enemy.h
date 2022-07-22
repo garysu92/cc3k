@@ -10,7 +10,7 @@ class Enemy {
     int hp;
     int attack;
     int defense;
-    bool compass = false;
+    bool hasCompass;
 
   public:
     // Constructor and Destructor
@@ -24,7 +24,7 @@ class Enemy {
     int getMaxHP() const;
 
     // Checkers
-    bool hasCompass();
+    bool checkCompass();
     void giveCompass();
     void dropCompass();
 

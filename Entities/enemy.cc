@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n):  goldDrop{n}, hp{hp}, attack{atk}, defense{def} {}
+Enemy::Enemy(int atk, int def, int hp, int n):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false} {}
 
 int Enemy::goldDropped() {
     return this->goldDrop;
@@ -30,27 +30,27 @@ void Enemy::dealDmg(unique_ptr<PlayableCharacter> &pc) {
 }
 
 int Enemy::getAttack() const {
-    return attack;
+    return this->attack;
 }
 
 int Enemy::getDefense() const {
-    return defense;
+    return this->defense;
 }
 
 int Enemy::getHP() const {
-    return hp;
+    return this->hp;
 }
 
-bool Enemy::hasCompass() {
-    return compass;
+bool Enemy::checkCompass() {
+    return this->hasCompass;
 }
 
 void Enemy::giveCompass() {
-    compass = true;
+    this->hasCompass = true;
 }
 
 void Enemy::dropCompass() {
-    compass = false;
+    this->hasCompass = false;
 }
 
 Enemy::~Enemy() {}

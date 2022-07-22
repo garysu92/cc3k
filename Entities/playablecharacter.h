@@ -13,7 +13,8 @@ class PlayableCharacter {
     int hp;
     int attack;
     int defense;
-    bool compass;
+    bool hasCompass;
+    bool hasBarrierSuit;
 
   public:
     // Constructor and Destructor
@@ -30,13 +31,15 @@ class PlayableCharacter {
     void setHP(int k);
 
     // Checkers
-    bool hasCompass();
+    bool checkCompass();
+    bool checkBarrierSuit();
 
     // Misc
     virtual std::string getRace() const; // Maybe pure virtual??? Check implementation
     void takeDmg(Enemy *e);
     void dealDmg(std::unique_ptr<Enemy> &e);
     void giveCompass();
+    void giveBarrierSuit();
 };
 
 #endif
