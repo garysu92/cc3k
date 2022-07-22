@@ -7,6 +7,17 @@
 
 using namespace std;
 
+
+// maybe make static function of class
+static bool endOfRoom(string s) {
+    for (int i = 1; i < s.size() - 1; i++) {
+        if (s[i] != '-') {
+            return false;
+        }
+    }
+    return true;
+}
+
 // constructor makes numFloors number of floors with same layout
 Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
     vector<vector<char>> v;
@@ -59,7 +70,35 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
     fileName{fileName}, p{p}, curFloor{1}, numFloors{1}{
         try{
             fstream file{fileName};
-            vector<vector<char>>
+            
+            while (true) {
+                string s = "";
+                getline(file, s);
+                if (s == "") {
+                    break;
+                }
+                // new floor
+                vector<vector<char>> v{};
+                v.emplace_back();
+                while(true){
+                    for (int i = 0; i < s.length(); i++) {
+                        v.at(v.size() - 1).emplace_back(s[i]);
+                    }
+                    getline(file, s);
+                    if (endOfRoom(s)) {
+                        break;
+                    }
+                }
+                for (int i = 0; i < s.length(); i++) {
+                        v.at(v.size() - 1).emplace_back(s[i]);
+                }
+                if (save) {
+                    floors.emplace_back(v, p, true, true);
+                } else {
+                    floors.emplace_back(v, p, true, false);
+                }
+            }
+            
         } catch (...) {}
         
 }

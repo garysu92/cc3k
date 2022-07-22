@@ -34,7 +34,7 @@
 
 using namespace std;
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -46,8 +46,8 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content
             if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c));
             else if (c == '#') content[i].emplace_back(make_unique<Passage>(col, row));
             else if (c == '+') content[i].emplace_back(make_unique<Door>(col, row));
-            else if (c == '.') content[i].emplace_back(make_unique<Tile>(col, row));
-            else content[i].emplace_back(make_unique<Space>(col, row));
+            else if (c == ' ') content[i].emplace_back(make_unique<Space>(col, row));
+            else content[i].emplace_back(make_unique<Tile>(col, row));
         }
     }
     // // make a temp 2D array that stores the positions of floors in chambers that are already visited
@@ -115,6 +115,14 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p): p{p}, content
                 isVisited[i][j] = true;
             }
         }
+    }
+    
+    if (save && exactLayout) {
+        for ()
+    } else if (exactLayout) {
+        
+    } else {
+        //generate();
     }
 }
 
