@@ -17,7 +17,7 @@ class Floor {
     std::vector<Enemy> enemies;
     Posn stairLocation;
   public:
-    Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p);
+    Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p, bool exactLayout = false, bool save = false);
     // generates based on PC, stairway, potions, gold, enemy
     void generate();
     void movePC();
