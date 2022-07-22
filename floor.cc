@@ -38,6 +38,7 @@ class Enemy;
 using namespace std;
 
 Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1} {
+    cout << "hi" << endl;
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -46,11 +47,11 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
         for (int j = 0; j < col; j++) {
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
-            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c).get());
-            else if (c == '#') content[i].emplace_back(make_unique<Passage>(col, row).get());
-            else if (c == '+') content[i].emplace_back(make_unique<Door>(col, row).get());
-            else if (c == ' ') content[i].emplace_back(make_unique<Space>(col, row).get());
-            else content[i].emplace_back(make_unique<Tile>(col, row).get());
+            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c));
+            else if (c == '#') content[i].emplace_back(make_unique<Passage>(col, row));
+            else if (c == '+') content[i].emplace_back(make_unique<Door>(col, row));
+            else if (c == ' ') content[i].emplace_back(make_unique<Space>(col, row));
+            else content[i].emplace_back(make_unique<Tile>(col, row));
         }
     }
     // // make a temp 2D array that stores the positions of floors in chambers that are already visited
@@ -165,7 +166,7 @@ void Floor::generate() {
     stairLocation.x = x;
     stairLocation.y = y;
     unique_ptr<Cell> stair = make_unique<Stair>(x, y);
-    content[y][x] = stair.get();
+    content[y][x] = move(stair);
     tempChambers[random3].erase(tempChambers[random3].begin() + random4);
     if (tempChambers[random3].size() == 0)  {
         tempChambers.erase(tempChambers.begin() + random3);
@@ -305,10 +306,10 @@ vector<Posn> Floor::neighbours(int x, int y) {
 void Floor::print() {
     for (int i = 0; i < content.size(); i++) {
         for (int j = 0; j < content[0].size(); j++) {
-            if (content[i][j]->hasPC()) cout << '@';
-            else if (content[i][j]->hasEnemy()) cout << content[i][j]->getEnemy()->getSymbol();
-            else if (content[i][j]->hasItem()) cout << content[i][j]->getItem()->getSymbol();
-            else cout << content[i][j]->getsymbolRep();
+            if (content.at(i).at(j)->hasPC()) cout << '@';
+            else if (content.at(i).at(j)->hasEnemy()) cout << content.at(i).at(j)->getEnemy()->getSymbol();
+            else if (content.at(i).at(j)->hasItem()) cout << content.at(i).at(j)->getItem()->getSymbol();
+            else cout << content.at(i).at(j)->getsymbolRep();
         }
         cout << endl;
     }

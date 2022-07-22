@@ -56,6 +56,7 @@ int main(int argc, char *argv[]) {
     }
     PlayableCharacter *p = new Human();
     Floor f{v, p};
+    //f.print();
     /*
     unique_ptr<CC3KGameRunner> game;
     if (argc == 3) {
