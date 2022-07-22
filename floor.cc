@@ -38,13 +38,16 @@ class Enemy;
 using namespace std;
 
 Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1} {
-    cout << "hi" << endl;
+    //cout << "hi" << endl;
     int row = v.size();
+    cout << row;
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
         content.emplace_back();
         chamberMap.emplace_back();
+        //cout << "hi1" << endl;
         for (int j = 0; j < col; j++) {
+            //cout << "hi2" << endl;
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
             if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c));
@@ -54,6 +57,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
             else content[i].emplace_back(make_unique<Tile>(col, row));
         }
     }
+    cout << "hi3" << endl;
     // // make a temp 2D array that stores the positions of floors in chambers that are already visited
     // int temp[row][col] = {0};
     // for (int i = 1; i < row - 1; i++) {

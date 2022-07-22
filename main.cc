@@ -37,15 +37,15 @@ int main(int argc, char *argv[]) {
     vector<vector<char>> v;
     ifstream file{"cc3kfloor.txt"};
     char c;
-    v.emplace_back();
     for (int r = 0; r < 25; r++) {
+        v.emplace_back();       
         // loop 79 times to read the 79 columns
         for (int t = 0; t < 79; t++) {
             file >> noskipws >> c;
             v[r].emplace_back(c);
         }
         file >> noskipws >> c;
-        v.emplace_back();
+        
     }
     for (int r = 0; r < 25; r++) {
         // loop 79 times to read the 79 columns
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     }
     PlayableCharacter *p = new Human();
     Floor f{v, p};
-    //f.print();
+    f.print();
     /*
     unique_ptr<CC3KGameRunner> game;
     if (argc == 3) {
