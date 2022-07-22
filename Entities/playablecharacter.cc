@@ -18,6 +18,9 @@ string PlayableCharacter::getRace() const {
 void PlayableCharacter::takeDmg(Enemy *enemy) {
     cout << "PC has " << this->getHP() << " hp. ";
     int dmg = ceil((100.0 / (100.0 + defense)) * enemy->getAttack());
+    if (this->hasBarrierSuit) {
+        dmg = ceil(dmg/2);
+    }
     setHP(max(0, this->getHP() - dmg));
     cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
 }
