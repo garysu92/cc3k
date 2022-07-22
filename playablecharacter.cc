@@ -1,13 +1,13 @@
 #include <cmath>
 #include <memory>
 #include <string>
+#include <iostream>
 #include "playablecharacter.h"
 #include "enemy.h"
-#include <iostream>
 
 using namespace std;
 
-PlayableCharacter::PlayableCharacter(int atk, int def, int hp): attack{atk}, defense{def}, hp{hp}, maxHP{hp}, currGold{0} {}
+PlayableCharacter::PlayableCharacter(int atk, int def, int hp): attack{atk}, defense{def}, hp{hp}, maxHP{hp}, curGold{0} {}
 
 string PlayableCharacter::getRace() const { return ""; }
 

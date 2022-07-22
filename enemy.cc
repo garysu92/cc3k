@@ -1,6 +1,6 @@
-#include <cmath>
 #include "enemy.h"
 #include "playablecharacter.h"
+#include <cmath>
 #include <iostream>
 #include <memory>
 
