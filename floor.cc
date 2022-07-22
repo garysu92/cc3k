@@ -112,7 +112,9 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
     }
     
     if (save && exactLayout) {
-        for ()
+        //for () {
+
+        //}
     } else if (exactLayout) {
         
     } else {
@@ -123,18 +125,20 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
 void Floor::generate() {
     int numChambers = chambers.size();
 
+    vector<vector<Posn>> tempChambers{chambers};
+
     // generate player location
-    int random1 = rand() % numChambers; // 0 to numChambers - 1
-    int numTilesInChamber = chambers[random1].size();
+    int random1 = rand() % numChambers; // 0 to numtempChambers - 1
+    int numTilesInChamber = tempChambers[random1].size();
     int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
-    int x = chambers[random1][random2].x;
-    int y = chambers[random1][random2].y;
+    int x = tempChambers[random1][random2].x;
+    int y = tempChambers[random1][random2].y;
     content[x][y]->setPC(p);
     // erase that position from available
-    chambers[random1].erase(chambers[random1].begin() + random2);
+    tempChambers[random1].erase(tempChambers[random1].begin() + random2);
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
-    if (chambers[random1].size() == 0)  {
-        chambers.erase(chambers.begin() + random1);
+    if (tempChambers[random1].size() == 0)  {
+        tempChambers.erase(tempChambers.begin() + random1);
         numChambers--;
     }
 
@@ -144,27 +148,27 @@ void Floor::generate() {
     while (random3 != random1) {
         random3 = rand() % numChambers;
     }
-    numTilesInChamber = chambers[random3].size();
+    numTilesInChamber = tempChambers[random3].size();
     int random4 = rand() % numTilesInChamber;
-    int x = chambers[random3][random4].x;
-    int y = chambers[random3][random4].y;
+    int x = tempChambers[random3][random4].x;
+    int y = tempChambers[random3][random4].y;
     stairLocation.x = x;
     stairLocation.y = y;
     unique_ptr<Cell> stair = make_unique<Stair>();
     content[x][y] = stair.get();
-    chambers[random3].erase(chambers[random3].begin() + random4);
-    if (chambers[random3].size() == 0)  {
-        chambers.erase(chambers.begin() + random3);
+    tempChambers[random3].erase(tempChambers[random3].begin() + random4);
+    if (tempChambers[random3].size() == 0)  {
+        tempChambers.erase(tempChambers.begin() + random3);
         numChambers--;
     }
 
     // generate the potions
     for (int i = 0; i < 10; i++) {
         int chamb = rand() % numChambers;
-        numTilesInChamber = chambers[chamb].size();
+        numTilesInChamber = tempChambers[chamb].size();
         int random5 = rand() % numTilesInChamber;
-        int x = chambers[chamb][random5].x;
-        int y = chambers[chamb][random5].y;
+        int x = tempChambers[chamb][random5].x;
+        int y = tempChambers[chamb][random5].y;
         int randomPotion = rand() % 6 + 1;
         // RH = restore health
         // BA = boost attack
@@ -174,26 +178,26 @@ void Floor::generate() {
         // WD = wound defense
         if (randomPotion == 1) {
             unique_ptr<Item> ptr = make_unique<RH>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 2) {
             unique_ptr<Item> ptr = make_unique<BA>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 3) {
             unique_ptr<Item> ptr = make_unique<BD>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 4) {
             unique_ptr<Item> ptr = make_unique<PH>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 5) {
             unique_ptr<Item> ptr = make_unique<WA>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         } else if (randomPotion == 6) {
             unique_ptr<Item> ptr = make_unique<WD>();
-            content[x][y]->setItem(ptr);
+            content[x][y]->setItem(ptr.get());
         }
-        chambers[chamb].erase(chambers[chamb].begin() + random5);
-        if (chambers[chamb].size() == 0)  {
-            chambers.erase(chambers.begin() + chamb);
+        tempChambers[chamb].erase(tempChambers[chamb].begin() + random5);
+        if (tempChambers[chamb].size() == 0)  {
+            tempChambers.erase(tempChambers.begin() + chamb);
             numChambers--;
         }
     }
@@ -201,21 +205,21 @@ void Floor::generate() {
     // generate the gold
     for (int i = 0; i < 10; i++) {
         int chamb = rand() % numChambers;
-        numTilesInChamber = chambers[chamb].size();
+        numTilesInChamber = tempChambers[chamb].size();
         int random6 = rand() % numTilesInChamber;
-        int x = chambers[chamb][random6].x;
-        int y = chambers[chamb][random6].y;
+        int x = tempChambers[chamb][random6].x;
+        int y = tempChambers[chamb][random6].y;
         // randomly pick a gold
         int whichGold = rand() % 8 + 1;
         if (whichGold <= 5) {
             unique_ptr<Item> sg = make_unique<SmallGold>();
-            content[x][y]->setItem(sg);
+            content[x][y]->setItem(sg.get());
         } else if (whichGold <= 7) {
             unique_ptr<Item> ng = make_unique<NormalGold>();
-            content[x][y]->setItem(ng);
+            content[x][y]->setItem(ng.get());
         } else {
             unique_ptr<Item> dg = make_unique<SmallGold>();
-            content[x][y]->setItem(dg);
+            content[x][y]->setItem(dg.get());
             // spawn the dragon guarding the hoarde
             vector<Posn> neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
@@ -228,9 +232,9 @@ void Floor::generate() {
             content[x][y]->setEnemy(dragon.get());
         }
         // content[x][y].setItem(some gold)
-        chambers[chamb].erase(chambers[chamb].begin() + random6);
-        if (chambers[chamb].size() == 0)  {
-            chambers.erase(chambers.begin() + chamb);
+        tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
+        if (tempChambers[chamb].size() == 0)  {
+            tempChambers.erase(tempChambers.begin() + chamb);
             numChambers--;
         }
     }
@@ -238,15 +242,15 @@ void Floor::generate() {
     // generate the enemies
     for (int i = 0; i < 20; i++) {
         int chamb = rand() % numChambers;
-        numTilesInChamber = chambers[chamb].size();
+        numTilesInChamber = tempChambers[chamb].size();
         int random6 = rand() % numTilesInChamber;
-        int x = chambers[chamb][random6].x;
-        int y = chambers[chamb][random6].y;
+        int x = tempChambers[chamb][random6].x;
+        int y = tempChambers[chamb][random6].y;
         // randomly pick an enemy
         // content[x][y].setItem(some enemy)
-        chambers[chamb].erase(chambers[chamb].begin() + random6);
-        if (chambers[chamb].size() == 0)  {
-            chambers.erase(chambers.begin() + chamb);
+        tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
+        if (tempChambers[chamb].size() == 0)  {
+            tempChambers.erase(tempChambers.begin() + chamb);
             numChambers--;
         }
     }
