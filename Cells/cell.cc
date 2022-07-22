@@ -1,10 +1,13 @@
-#include "playablecharacter.h"
-#include "enemy.h"
-#include "item.h"
+#include <utility>
 #include "cell.h"
+
+class PlayableCharacter;
+class Enemy;
+class Item;
+
 using namespace std;
 
-Cell::Cell(int x, int y, char sym, bool isEffWall) : x{x}, y{y}, symbolRep{sym}, pc{nullptr}, enemy{nullptr}, item{nullptr}, isEffWall{isEffWall}, isStair{false} {}
+Cell::Cell(int x, int y, char sym, bool isEffWall, bool isStair) : x{x}, y{y}, pc{nullptr}, enemy{nullptr}, item{nullptr},  symbolRep{sym}, isEffWall{isEffWall}, isStair{false} {}
 
 int Cell::getX() {
     return this->x;
@@ -18,12 +21,12 @@ PlayableCharacter *Cell::getPC() {
     return this->pc;
 }
 
-Enemy * Cell::getEnemy() {
+Enemy *Cell::getEnemy() {
     return this->enemy;
 }
 
-unique_ptr<Item> Cell::getItem() {
-     return this->onFloor;
+Item *Cell::getItem() {
+    return this->item;
 }
 
 char Cell::getsymbolRep() {
@@ -50,7 +53,7 @@ void Cell::setEnemy(Enemy *enemy) {
     this->enemy = enemy;
 }
 
-void Cell::setItem(unique_ptr<Item> &item) {
+void Cell::setItem(Item *item) {
     item = move(item);
 }
 

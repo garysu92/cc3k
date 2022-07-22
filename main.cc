@@ -18,7 +18,10 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     unique_ptr<CC3KGameRunner> game;
-    if (argc > 1) {
+    if (argc == 3) {
+        string filename{argv[1]};
+        //game = make_uniq
+    } else if (argc == 2) {
         // passed in command line arg
         string filename{argv[1]};
         game = make_unique<CC3KGameRunner>(filename);
