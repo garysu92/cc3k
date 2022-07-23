@@ -16,13 +16,19 @@ string PlayableCharacter::getRace() const {
 // What about when playchar has barrier suit?
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
 void PlayableCharacter::takeDmg(Enemy *enemy) {
-    cout << "PC has " << this->getHP() << " hp. ";
+    cout << "PC currently has " << this->getHP() << " hp. ";
     int dmg = ceil((100.0 / (100.0 + defense)) * enemy->getAttack());
     if (this->hasBarrierSuit) {
         dmg = ceil(dmg/2);
     }
     setHP(max(0, this->getHP() - dmg));
-    cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
+    if (this->getHP() == 0) {
+        this->setState(true); 
+        cout << "PC took " << dmg << " damage, now PC is Dead. "
+    }
+    else {
+        cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
+    }
 }
 
 void PlayableCharacter::dealDmg(Enemy *e) {
@@ -49,8 +55,16 @@ int PlayableCharacter::getHP() const {
     return this->cellConnection;
  }
 
+bool PlayableCharacter::getState() const {
+    return this->isDead;
+}
+
  void PlayableCharacter::setCell(Cell * newCell) {
     this->cellConnection = newCell;
+ }
+
+ void PlayableCharacter::setState(bool alive) {
+    this->isDead = alive;
  }
 
 void PlayableCharacter::setHP(int k) {

@@ -17,6 +17,7 @@ class PlayableCharacter {
     bool hasCompass;
     bool hasBarrierSuit;
     Cell * cellConnection;
+    bool isDead;
 
   protected:
     // Setters
@@ -32,10 +33,11 @@ class PlayableCharacter {
     virtual int getDefense() const;
     virtual int getHP() const;
     int getMaxHP() const;
-    Cell * getCell(Cell * newCell) const;
+    Cell * getCell() const;
 
     // Setters
-    void setCell();
+    void setCell(Cell * newCell);
+    void setState(bool alive);
 
     // Checkers
     bool checkCompass();

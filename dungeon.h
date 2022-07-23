@@ -18,7 +18,6 @@ class Dungeon {
     int floorWithBarrierSuit;
     PlayableCharacter *p;
     bool saveState;
-    bool isPlayerDead;
 
     public: 
         // Constructor
