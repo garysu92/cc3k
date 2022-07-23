@@ -20,7 +20,7 @@ class Dungeon {
     bool saveState;
 
     public: 
-        // Constructor
+        // Constructor(s)
         Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save = false);
         Dungeon(shared_ptr<PlayableCharacter> p, int numFloors = 5);
 

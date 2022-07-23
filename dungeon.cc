@@ -8,18 +8,7 @@
 
 using namespace std;
 
-
-// maybe make static function of class
-static bool endOfRoom(string s) {
-    for (int i = 1; i < s.size() - 1; i++) {
-        if (s[i] != '-') {
-            return false;
-        }
-    }
-    return true;
-}
-
-// constructor makes numFloors number of floors with same layout
+// Constructor which makes numFloors floors with same layout for each
 Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
     floorWithBarrierSuit = rand() % 5 + 1;
     vector<vector<char>> v;
@@ -48,9 +37,9 @@ Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floo
     }
 }
 
-// specified layout
+// Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save) : 
-    fileName{fileName}, p{p}, curFloor{1}, numFloors{1}{
+    fileName{fileName}, p{p}, curFloor{1}, numFloors{1} {
         try{
             fstream file{fileName};
             
@@ -84,6 +73,16 @@ Dungeon::Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save) :
             
         } catch (...) {}
         
+}
+
+// maybe make static function of class
+static bool endOfRoom(string s) {
+    for (int i = 1; i < s.size() - 1; i++) {
+        if (s[i] != '-') {
+            return false;
+        }
+    }
+    return true;
 }
 
 int Dungeon::get_curFloor() {
