@@ -145,7 +145,7 @@ void CC3KGameRunner::play() {
             // Ensure going up a staircase sets newFloorDisplay = true, increment curFloor when going up stairs?
             if (newFloorDisplay) {
                 newFloorDisplay = false; 
-                curDisplay{game->}
+                curDisplay{game->getFloor(curFloor)};
             }
 
             Direction temp = getDirection(cmd);
