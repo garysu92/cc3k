@@ -5,7 +5,7 @@
 #include <vector>
 #include <iomanip>
 
-
+/*
 #include "cc3kgamerunner.h"
 #include "Entities/playablecharacter.h"
 #include "Entities/enemy.h"
@@ -18,7 +18,7 @@
 #include "boostdefense.h"
 #include "potion.h"
 #include "floor.h"
-
+*/
 
 #include "floor.h"
 #include "Entities/playablecharacter.h"
@@ -79,12 +79,12 @@ int main(int argc, char *argv[]) {
     // Potion p{RESTOREHEALTH};
     // if (p == RESTOREHEALTH) cout << "yes" << endl;
     // unique_ptr<PlayableCharacter> pc = make_unique<Human>();
-    PlayableCharacter *p = new Human();
+    //PlayableCharacter *p = new Human();
     // unique_ptr<Enemy> e = make_unique<Goblin>();
     // // e->dealDmg(move(pc));
     // cout << "goblin attack (5): " << e->getAttack() << endl;
     // cout << "player character defense (20): " << pc->getDefense() << endl;
-    unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(p));
+    //unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(p));
     // unique_ptr<TempEffect> te2 = make_unique<BoostDefense>(move(te));
     // cout << "player character attack (20 - 5 = 15): " << pc->getAttack() << endl;
     // cout << "player character defense (20 + 5 = 25): " << pc->getDefense() << endl;

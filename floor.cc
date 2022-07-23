@@ -262,7 +262,7 @@ void Floor::generate() {
             neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
             int where = randnum() % numNeighbours;
-		    unique_ptr<Enemy> dragon = make_unique<Dragon>();
+		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
             content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
 			// delete the dragon position from the available generation spots
@@ -395,7 +395,7 @@ void Floor::attack(Direction d) {
         p->dealDmg(content[ax][ay]->getEnemy());
     }
 }
-
+/*
 void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
@@ -419,3 +419,4 @@ void Floor::usePotion(Direction d) {
         }
     }
 }
+*/

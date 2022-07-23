@@ -65,7 +65,7 @@ void Cell::setPotion(unique_ptr<Potion> &potion) {
 }
 
 void Cell::setTreasure(unique_ptr<Treasure> &treasure) {
-    this->potion = std::move(potion);
+    this->treasure = std::move(treasure);
 }
 
 void Cell::setsymbolRep(char sym) {
