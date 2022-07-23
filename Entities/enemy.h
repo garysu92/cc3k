@@ -4,8 +4,10 @@
 #include <memory>
 
 class PlayableCharacter;
+class Cell;
 
 class Enemy {
+    Cell *whereOn;
     const int goldDrop;
     int hp;
     int attack;
@@ -16,6 +18,8 @@ class Enemy {
     // Constructor and Destructor
     Enemy(int atk, int def, int hp, int n, char symbol);
     virtual ~Enemy() = 0;
+
+    void setCell(Cell *c);
 
     // Getters
     int getAttack() const;

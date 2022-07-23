@@ -80,3 +80,9 @@ bool Cell::hasItem() {
 void Cell::setisEffWall(bool isEffWall) {
     this->isEffWall = isEffWall;
 }
+
+void Cell::clear() {
+    if (hasPC()) pc = nullptr;
+    else if (hasEnemy()) enemy = nullptr;
+    else if (hasItem()) item = nullptr;
+}

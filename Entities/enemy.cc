@@ -2,11 +2,12 @@
 #include "playablecharacter.h"
 #include <cmath>
 #include <iostream>
+#include "cell.h"
 #include <memory>
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n, char symbol):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol} {}
+Enemy::Enemy(int atk, int def, int hp, int n, char symbol):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, whereOn{nullptr} {}
 
 int Enemy::goldDropped() {
     return this->goldDrop;
@@ -55,6 +56,10 @@ void Enemy::giveCompass() {
 
 void Enemy::dropCompass() {
     this->hasCompass = false;
+}
+
+void Enemy::setCell(Cell *c) {
+    this->whereOn = c;
 }
 
 Enemy::~Enemy() {}

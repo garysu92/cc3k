@@ -44,6 +44,9 @@ class Cell {
         bool hasEnemy();
         bool hasPC();
         bool hasItem();
+
+        // Removing
+        void clear();
 };
 
 #endif
