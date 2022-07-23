@@ -29,6 +29,9 @@ class Floor {
     std::vector<Posn> neighbours(int x, int y);
     void print();
     void movePC(Direction d);
+
+    void usePotion(Direction d);
+    void attack(Direction d);
 };
 
 #endif

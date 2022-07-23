@@ -122,13 +122,13 @@ void Dungeon::set_curFloor(int newF) {
 }
 
 void Dungeon::playerMove(Direction d) {
-
+    floors[curFloor].movePC();
 }
 
 void Dungeon::playerAttack(Direction d) {
-    
+    floors[curFloor].attack(d);
 }
 
 void Dungeon::playerUsePotion(Direction d) {
-    
+    floors[curFloor].usePotion(d);
 }

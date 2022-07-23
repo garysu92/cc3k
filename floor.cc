@@ -98,7 +98,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
             }
         }
     }
-    
+    /*
     if (exactLayout) {
         for () {
             
@@ -109,6 +109,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
     } else {
         generate();
     }
+    */
 }
 
 static unsigned int randnum() {
@@ -372,4 +373,42 @@ void Floor::movePC(Direction d) {
         pcLocation.y = cy;
         content[pcLocation.x][pcLocation.y]->setPC(p);
     }
+}
+
+void Floor::attack(Direction d) {
+    int ax, ay;
+    if (d == Direction::no) {
+        ax = pcLocation.x;
+        ay = pcLocation.y - 1;
+    } else if (d == Direction::ea) {
+        ax = pcLocation.x + 1;
+        ay = pcLocation.y;
+    } else if (d == Direction::so) {
+        ax = pcLocation.x;
+        ay = pcLocation.y + 1;
+    } else if (d == Direction::we) {
+        ax = pcLocation.x - 1;
+        ay = pcLocation.y;
+    } else if (d == Direction::ne) {
+        ax = pcLocation.x + 1;
+        ay = pcLocation.y - 1;
+    } else if (d == Direction::nw) {
+        ax = pcLocation.x - 1;
+        ay = pcLocation.y - 1;
+    } else if (d == Direction::se) {
+        ax = pcLocation.x + 1;
+        ay = pcLocation.y + 1;
+    } else if (d == Direction::sw) {
+        ax = pcLocation.x - 1;
+        ay = pcLocation.y + 1;
+    }
+    if (ax >= 0 && ay >= 0 && ax <= content.size() && ay <= content[0].size() \
+        && content[ax][ay]->hasEnemy()) {
+        Enemy *e = content[ax][ay]->getEnemy();
+        p->dealDmg(e);
+    }
+}
+
+void Floor::usePotion(Direction d) {
+    
 }
