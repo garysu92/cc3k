@@ -26,7 +26,7 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
 }
 
 void PlayableCharacter::dealDmg(Enemy *e) {
-    enemy->takeDmg(this);
+    e->takeDmg(this);
 }
 
 int PlayableCharacter::getAttack() const {

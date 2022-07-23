@@ -26,7 +26,7 @@ void Enemy::takeDmg(PlayableCharacter *pc) {
     cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl; 
 }
 
-void Enemy::dealDmg(unique_ptr<PlayableCharacter> &pc) { 
+void Enemy::dealDmg(PlayableCharacter *pc) { 
     pc->takeDmg(this);
 }
 
