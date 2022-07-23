@@ -334,7 +334,7 @@ vector<Posn> Floor::neighbours(int x, int y) {
 void Floor::print() {
     for (int i = 0; i < content.size(); i++) {
         for (int j = 0; j < content[0].size(); j++) {
-            if (content.at(i).at(j)->hasPC()) cout << '@';
+            if (content.at(i).at(j)->hasPC()) cout <<" \033[1;31m" << '@' << "\033[0m";
             else if (content.at(i).at(j)->hasEnemy()) cout << content.at(i).at(j)->getEnemy()->getSymbol();
             else if (content.at(i).at(j)->hasPotion()) cout << content.at(i).at(j)->getPotion()->getSymbol();
             else if (content.at(i).at(j)->hasTreasure()) cout << content.at(i).at(j)->getTreasure()->getSymbol();
