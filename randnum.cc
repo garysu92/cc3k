@@ -1,15 +1,16 @@
+#include <algorithm>
 #include <random>
 #include <chrono>
 
-static unsigned int randnum() {
+unsigned int randNum() {
     unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
-    default_random_engine rng{seed};
+    std::default_random_engine rng{seed};
 
-    vector<int> v{};
+    std::vector<int> v{};
 
     for (int i = 0; i < 10000; i++) {
         v.emplace_back(i);
     }
-    shuffle(v.begin(), v.end(), rng);
+    std::shuffle(v.begin(), v.end(), rng);
     return v[0];
 }
