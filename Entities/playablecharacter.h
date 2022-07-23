@@ -34,6 +34,7 @@ class PlayableCharacter {
     virtual int getHP() const;
     int getMaxHP() const;
     Cell * getCell() const;
+    bool getState() const;
 
     // Setters
     void setCell(Cell * newCell);

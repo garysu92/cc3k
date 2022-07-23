@@ -23,8 +23,10 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
     }
     setHP(max(0, this->getHP() - dmg));
     if (this->getHP() == 0) {
-        this->setState(true); 
-        cout << "PC took " << dmg << " damage, now PC is Dead. "
+        this->setState(true); // Set PCs state to Dead
+        Cell * curPcell = this->getCell();
+        curPcell->
+        cout << "PC took " << dmg << " damage, now PC is Dead."
     }
     else {
         cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
