@@ -45,15 +45,12 @@ class Enemy;
 using namespace std;
 
 Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
-    //cout << "hi" << endl;
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
         content.emplace_back();
         chamberMap.emplace_back();
-        //cout << "hi1" << endl;
         for (int j = 0; j < col; j++) {
-            //cout << "hi2" << endl;
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
             if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c));
@@ -63,34 +60,6 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
             else content[i].emplace_back(make_unique<Tile>(col, row));
         }
     }
-    // // make a temp 2D array that stores the positions of floors in chambers that are already visited
-    // int temp[row][col] = {0};
-    // for (int i = 1; i < row - 1; i++) {
-    //     for (int j = 1; j < col - 1; j++) {
-    //         if (v[i][j] == '.') {
-    //             // check neighbours
-    //             // bool newChamber = true;
-    //             for (int a = -1; a <= 1; a++) {
-    //                 for (int b = -1; b <= 1; b++) {
-    //                     // if neighbour is found to already be in chamber
-    //                     if (!(b == 0 && a == 0) && temp[i + a][j + b] != 0) {
-    //                         chambers[temp[i + a][j + b] - 1].emplace_back(i, j);
-    //                         temp[i][j] = temp[i + a][j + b];
-    //                         // newChamber = false;
-    //                         goto label;
-    //                     }
-    //                 }
-    //             }
-    //             //if (newChamber) {
-    //             // all neighbours are not in a chamber (yet?)
-    //             chambers.emplace_back();
-    //             chambers[chambers.size() - 1].emplace_back(i, j);
-    //             temp[i][j] = chambers.size();
-    //             //}
-    //         }
-    //         label:
-    //     }
-    // }
 
     vector<vector<bool>> isVisited(row, vector<bool>(col, false)); // initializes 2d isvisited array all false
     int chamberCount = 0;
@@ -130,14 +99,15 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
         }
     }
     
-    if (save && exactLayout) {
-        //for () {
-
-        //}
-    } else if (exactLayout) {
-        
+    if (exactLayout) {
+        for () {
+            
+        }
+        if (save) {
+            
+        }
     } else {
-        //generate();
+        generate();
     }
 }
 

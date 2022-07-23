@@ -109,37 +109,13 @@ void CC3KGameRunner::play() {
                 // use potion
                 cin >> cmd;
                 directionCommandType = 'u';
-                // if (isDirection(cmd)){
-                //     Direction temp = getDirection(cmd);
-                //     //game.usePotion(temp);
-                // } else {
-                //     invalidInput = true;
-                // }
             } else if (cmd == "a") {
                 // attack
                 cin >> cmd;
                 directionCommandType = 'a';
-                // if (isDirection(cmd)){
-                //     Direction temp = getDirection(cmd);
-                //     //game.usePotion(temp);
-                // } else {
-                //     invalidInput = true;
-                // }
             }
             
-
-            if (isDirection(cmd)) {
-                Direction temp = getDirection(cmd);
-                if (directionCommandType = 'a') {
-                    //game.playerAttack(temp);
-                } else if (directionCommandType = 'u') {
-                    //game.playerUsePotion(temp);
-                } else {
-                    // move
-                    //game.playerMove(temp);
-                }
-            } else {
-                // else invalid input
+            if (!isDirection(cmd)) {
                 invalidInput = true;
             }
 
@@ -148,7 +124,8 @@ void CC3KGameRunner::play() {
                 continue;
             }
 
-
+            // game starts when first valid command that is not choosing a character
+            // is given
             if (!gameStarted) {
                 gameStarted = true; // if this line runs, then game has started, 
                                 // cannot choose race anymore
@@ -159,6 +136,16 @@ void CC3KGameRunner::play() {
                 } else {
                     game = make_unique<Dungeon>(p.get());
                 }
+            }
+
+            Direction temp = getDirection(cmd);
+            if (directionCommandType = 'a') {
+                //game.playerAttack(temp);
+            } else if (directionCommandType = 'u') {
+                //game.playerUsePotion(temp);
+            } else {
+                // move
+                //game.playerMove(temp);
             }
         }
     } catch (ios::failure &) {
