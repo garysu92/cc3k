@@ -25,16 +25,6 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p
     vector<vector<char>> v;
     try {
         ifstream file{fileName};
-        /*file >> noskipws;
-        
-        while(!file.eof()) {
-            v.emplace_back();
-            char c = '\0';
-            file >> c;
-            while (c != '\n') {
-                v.at(v.size() - 1).emplace_back(c);
-            }
-        }*/
         while (true) {
             string s = "";
             getline(file, s);
@@ -54,15 +44,6 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p
     }
     // loop 5 times to read in 5 potential different floor designs
     for (int q = 0; q < numFloors; q++) {
-        // loop 25 times to read the 25 lines
-        /*for (int r = 0; r < 25; r++) {
-            // loop 79 times to read the 79 columns
-            for (int t = 0; t < 79; t++) {
-                file >> c;
-                v[r].emplace_back(c);
-            }
-            v.emplace_back();
-        }*/
         floors.emplace_back(v, p);
     }
 }
