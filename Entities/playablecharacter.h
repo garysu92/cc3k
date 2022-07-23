@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include "cell.h"
+#include "../Cells/cell.h"
 
 class Enemy;
 

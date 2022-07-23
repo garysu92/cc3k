@@ -86,7 +86,6 @@ int main(int argc, char *argv[]) {
     // cout << "player character defense (20): " << pc->getDefense() << endl;
     unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(p));
     // unique_ptr<TempEffect> te2 = make_unique<BoostDefense>(move(te));
-    skakdljfas;
     // cout << "player character attack (20 - 5 = 15): " << pc->getAttack() << endl;
     // cout << "player character defense (20 + 5 = 25): " << pc->getDefense() << endl;
     // cout << "player character hp (140): " << pc->getHP() << endl;

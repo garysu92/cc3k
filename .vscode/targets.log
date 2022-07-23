@@ -9,10 +9,9 @@ make: *** No rule to make target 'all'.  Stop.
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Sat Jul 23 14:33:02 2022
+# Make data base, printed on Sat Jul 23 16:32:24 2022
 
 # Variables
- 
 
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
@@ -26,6 +25,7 @@ LC_ALL = C
 USERPROFILE = C:\Users\garys
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+ 
 # environment
 LOCALAPPDATA = C:\Users\garys\AppData\Local
 # environment
@@ -41,7 +41,7 @@ MAKE_COMMAND := make
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12708_DVXCIBYGPKHJVUGW
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10276_PWHCLCFXQVEYHIUW
 # environment
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
@@ -75,7 +75,7 @@ CURDIR := /c/Users/garys/Desktop/cc3k
 # makefile (from 'Makefile', line 5)
 DEPENDS = ${OBJECTS:.o=.d}
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -87,7 +87,6 @@ MFLAGS = -pqrR
 # environment
 !C: = c:\Users\garys\Desktop\cc3k
 # environment
- 
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
@@ -98,7 +97,7 @@ MAKEFILE_LIST := Makefile
 # environment
 PT8HOME = C:\Program Files\Cisco Packet Tracer 8.0
 # environment
-VSCODE_PID = 12708
+VSCODE_PID = 10276
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -114,6 +113,7 @@ ONEDRIVECONSUMER = C:\Users\garys\OneDrive
 # default
 MAKE_HOST := x86_64-pc-msys
 # environment
+ 
 PROGRAMDATA = C:\ProgramData
 # default
 SHELL := /bin/sh
@@ -162,7 +162,7 @@ PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # makefile (from 'Makefile', line 4)
-OBJECTS = main.o floor.o Entities/playablecharacter.o Races/human.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o potion.o item.o smallgold.o normalgold.o dragongold.o treasure.o
+OBJECTS = main.o floor.o Entities/playablecharacter.o Races/human.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o potion.o smallgold.o normalgold.o dragongold.o treasure.o
 # environment
 USERDOMAIN = LAPTOP-9IOP1GSK
 # 'override' directive
@@ -175,7 +175,6 @@ OS = Windows_NT
 MAKE_VERSION := 4.3
 # environment
 PROGRAMFILES(X86) = C:\Program Files (x86)
- 
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9IOP1GSK
 # environment
@@ -187,6 +186,7 @@ APPDATA = C:\Users\garys\AppData\Roaming
 # environment
 HOMEDRIVE = C:
 # environment
+ 
 PROCESSOR_ARCHITECTURE = AMD64
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
@@ -231,14 +231,13 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
 
 # Directories
 
-# . (device 1653366647, inode 16044073672826125): 52 files, no impossibilities.
+# . (device 1653366647, inode 16044073672826125): 50 files, no impossibilities.
 
-# 52 files, no impossibilities in 1 directories.
+# 50 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
- 
 
 # Files
 
@@ -256,24 +255,11 @@ Enemies/vampire.o:
 #  File has not been updated.
 
 # Not a target:
-item.d:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
-
-# Not a target:
 potion.d:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
-
-# Not a target:
-item.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 Enemies/dragon.o:
@@ -297,6 +283,7 @@ Races/human.d:
 
 # Not a target:
 treasure.d:
+ 
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
@@ -316,7 +303,6 @@ floor.o:
 #  File has not been updated.
 
 # Not a target:
- 
 Cells/cell.d:
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -326,7 +312,7 @@ Cells/cell.d:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-23 03:24:48
+#  Last modified 2022-07-23 16:27:50.2159301
 #  File has been updated.
 #  Successfully updated.
 
@@ -358,6 +344,7 @@ Cells/stair.o:
 # Not a target:
 Cells/door.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -395,7 +382,6 @@ Enemies/vampire.d:
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
- 
 
 # Not a target:
 Enemies/phoenix.d:
@@ -415,6 +401,7 @@ Enemies/goblin.d:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
+ 
 #  Failed to be updated.
 
 # Not a target:
@@ -468,6 +455,7 @@ Cells/space.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # Not a target:
 Entities/enemy.o:
@@ -504,7 +492,6 @@ Cells/passage.d:
 # Not a target:
 Entities/playablecharacter.o:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -535,6 +522,7 @@ Cells/tile.o:
 #  File has not been updated.
 
 # Not a target:
+ 
 Cells/passage.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -585,14 +573,13 @@ normalgold.o:
 #  File has not been updated.
 
 # Not a target:
- 
 Enemies/troll.d:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
 
-program: main.o floor.o Entities/playablecharacter.o Races/human.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o potion.o item.o smallgold.o normalgold.o dragongold.o treasure.o
+program: main.o floor.o Entities/playablecharacter.o Races/human.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o potion.o smallgold.o normalgold.o dragongold.o treasure.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -610,21 +597,22 @@ Enemies/goblin.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # files hash-table stats:
-# Load=57/1024=6%, Rehash=0, Collisions=0/119=0%
+# Load=55/1024=5%, Rehash=0, Collisions=0/115=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 109 / storage = 1340 B / avg = 12 B
-# current buf: size = 8162 B / used = 1340 B / count = 109 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 105 / storage = 1311 B / avg = 12 B
+# current buf: size = 8162 B / used = 1311 B / count = 105 / avg = 12 B
 
-# strcache performance: lookups = 142 / hit rate = 23%
+# strcache performance: lookups = 137 / hit rate = 23%
 # hash-table stats:
-# Load=109/8192=1%, Rehash=0, Collisions=0/142=0%
-# Finished Make data base on Sat Jul 23 14:33:02 2022
+# Load=105/8192=1%, Rehash=0, Collisions=0/137=0%
+# Finished Make data base on Sat Jul 23 16:32:24 2022
 
  

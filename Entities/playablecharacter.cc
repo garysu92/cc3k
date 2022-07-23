@@ -26,15 +26,14 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
         this->setState(true);               // Set PCs state to Dead
         Cell * curPcell = this->getCell();  // Find the Cell PC is standing on
         curPcell->setPC(nullptr);           // Set the ptr from Cell to PC to nullptr, as PC is no longer is alive
-        cout << "PC took " << dmg << " damage, now PC is Dead."
-    }
-    else {
+        cout << "PC took " << dmg << " damage, now PC is Dead.";
+    } else {
         cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
     }
 }
 
 void PlayableCharacter::dealDmg(Enemy *e) {
-    enemy->takeDmg(this);
+    e->takeDmg(this);
 }
 
 int PlayableCharacter::getAttack() const {
