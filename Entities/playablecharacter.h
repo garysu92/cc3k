@@ -19,10 +19,6 @@ class PlayableCharacter {
     Cell * cellConnection;
     bool isDead;
 
-  protected:
-    // Setters
-    virtual void setHP(int k);
-
   public:
     // Constructor and Destructor
     PlayableCharacter(int attack, int defense, int hp);
@@ -39,6 +35,8 @@ class PlayableCharacter {
     // Setters
     void setCell(Cell * newCell);
     void setState(bool alive);
+    virtual void setHP(int k);
+
 
     // Checkers
     bool checkCompass();

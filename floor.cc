@@ -395,32 +395,39 @@ void Floor::attack(Direction d) {
     int ax = pos.x;
     int ay = pos.y;
     if (ax >= 0 && ay >= 0 && ax <= content.size() && ay <= content[0].size() \
-        && content[ax][ay]->hasEnemy()) {
-        p->dealDmg(content[ax][ay]->getEnemy());
+        && content[ay][ax]->hasEnemy()) {
+        p->dealDmg(content[ay][ax]->getEnemy());
     }
 }
-/*
+
 void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
     int py = pos.y;
     if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
-        && content[px][py]->hasPotion()) {
-        content[px][py]->getPotion()->setVisible();
-        if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            shared_ptr<TempEffect> tmp = p;
-            p = make_shared<BoostAttack>(p)
-        } else if (content[px][py]->getPotion()->getType() == Potion::PH) {
-
-        } else if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::BD) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::WA) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::WD) {
-            
+        && content[py][px]->hasPotion()) {
+        content[py][px]->getPotion()->setVisible();
+        if (content[py][px]->getPotion()->getType() == Potion::BA) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<BoostAttack>(tmp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::PH) {
+            int hp = p->getHP();
+            hp = max(0, hp - 10);
+            p->setHP(hp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::RH) {
+            int hp = p->getHP();
+            hp = min(p->getMaxHP(), hp + 10);
+            p->setHP(hp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::BD) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<BoostDefense>(tmp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::WA) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<WoundAttack>(tmp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::WD) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<WoundDefense>(tmp);
         }
     }
 }
-*/
+
