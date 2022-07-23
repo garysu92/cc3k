@@ -30,6 +30,9 @@
 #include "Cells/wall.h"
 #include "Cells/stair.h"
 #include "Cells/passage.h"
+#include "item.h"
+#include "potion.h"
+
 
 using namespace std;
 
@@ -56,6 +59,7 @@ int main(int argc, char *argv[]) {
     }
     PlayableCharacter *p = new Human();
     Floor f{v, p};
+    f.generate();
     f.print();
     /*
     unique_ptr<CC3KGameRunner> game;

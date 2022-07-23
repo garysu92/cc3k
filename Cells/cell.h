@@ -1,15 +1,18 @@
 #ifndef CELL_H
 #define CELL_H
 
+#include "../item.h"
+#include "../Entities/enemy.h"
+
 class PlayableCharacter;
-class Enemy;
-class Item; 
+
+#include <memory> 
 
 class Cell {
     int x, y; 
     PlayableCharacter *pc; // Not unique ptr as PC and enemy can move off of the Cell
     Enemy *enemy;
-    Item *item;
+    std::unique_ptr<Item> item;
     char symbolRep;
     bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
     bool isStair; // Does this need be defined here?
@@ -26,7 +29,7 @@ class Cell {
         int getY();
         PlayableCharacter *getPC();
         Enemy *getEnemy();
-        Item *getItem(); 
+        std::unique_ptr<Item> &getItem(); 
         char getsymbolRep();
         bool getisEffWall();
 
@@ -35,7 +38,7 @@ class Cell {
         void setY(int y);
         void setPC(PlayableCharacter *pc);
         void setEnemy(Enemy *enemy);
-        void setItem(Item *item);
+        void setItem(std::unique_ptr<Item> &item);
         void setsymbolRep(char sym);
         void setisEffWall(bool isEffWall);
         void setStair(); 

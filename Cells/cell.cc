@@ -1,9 +1,11 @@
 #include <utility>
+#include <memory>
 #include "cell.h"
 
+#include "../item.h"
+#include "../Entities/enemy.h"
+
 class PlayableCharacter;
-class Enemy;
-class Item;
 
 using namespace std;
 
@@ -25,7 +27,7 @@ Enemy *Cell::getEnemy() {
     return this->enemy;
 }
 
-Item *Cell::getItem() {
+unique_ptr<Item> &Cell::getItem() {
     return this->item;
 }
 
@@ -53,8 +55,8 @@ void Cell::setEnemy(Enemy *enemy) {
     this->enemy = enemy;
 }
 
-void Cell::setItem(Item *item) {
-    item = move(item);
+void Cell::setItem(unique_ptr<Item> &item) {
+    this->item = std::move(item);
 }
 
 void Cell::setsymbolRep(char sym) {

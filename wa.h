@@ -6,6 +6,7 @@
 class WA : public Potion {
     static bool visible;
   public:
+  	WA(): Potion() {}
     Type getType() override {
         return Potion::WA;
     }
