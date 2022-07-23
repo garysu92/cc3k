@@ -18,6 +18,7 @@ class Floor {
     std::vector<std::vector<int>> chamberMap; // 2d array containing the number(index) of the chamber that cells at that coordinate is located in
     std::vector<std::pair<Enemy *, Posn>> enemies;
     Posn stairLocation;
+    Posn pcLocation;
   public:
     Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p, bool exactLayout = false, bool save = false);
     // generates based on PC, stairway, potions, gold, enemy
