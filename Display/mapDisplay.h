@@ -4,10 +4,10 @@
 class Cell;
 
 class Mapdisplay {
-    std::vector<std::vector<std::unique_ptr<Cell>>> map;
+    std::vector<std::vector<const * Cell>> map;
     
     public:
-        Mapdisplay(std::vector<std::vector<std::unique_ptr<Cell>>> newFloor);
+        Mapdisplay(std::vector<std::vector<std::unique_ptr<Cell>>> & newFloor);
         printMap();
 };
 

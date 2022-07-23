@@ -2,7 +2,17 @@
 #include "cell.h"
 #include "mapDisplay.h"
 
-Mapdisplay::Mapdisplay(std::vector<std::vector<std::unique_ptr<Cell>>> newFloor) : map{newFloor} {}
+using namespace std;
+
+Mapdisplay::Mapdisplay(vector<vector<unique_ptr<Cell>>> & newFloor) : map{} {
+    int dimx_len = newfloor.size();
+    int dimy_len = (newfloor.at(0)).size();
+    for (int i = 0; i < dimx_len; i++) {
+        for (j = 0; j < dimy_len; j++) {
+            (map.at(i)).emplace_back(&(newFloor.at(i).at(j)));
+        }
+    }
+}
 
 void Mapdisplay::printMap() {
     for (int i = 0; i < map.size(); i++) {
