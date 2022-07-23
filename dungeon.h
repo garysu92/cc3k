@@ -8,6 +8,8 @@
 #include "floor.h"
 #include "direction.h"
 
+class Cell;
+
 std::string floorLayout = "cc3kfloor.txt";
 
 class Dungeon {
@@ -25,7 +27,7 @@ class Dungeon {
         Dungeon(shared_ptr<PlayableCharacter> p, int numFloors = 5);
 
         // Getters
-        Floor * get_floor(int n);
+        std::vector<std::vector<std::unique_ptr<Cell>>> get_floorCells(int n);
         int get_curFloor();
         int get_numFloors(); 
 

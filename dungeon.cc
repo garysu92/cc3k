@@ -6,6 +6,7 @@
 #include "dungeon.h"
 #include "floor.h"
 #include "randnum.h"
+#include "cell.h"
 
 using namespace std;
 
@@ -87,12 +88,12 @@ static bool endOfRoom(string s) {
     return true;
 }
 
-Floor * Dungeon::get_floor(int n) {
+std::vector<std::vector<std::unique_ptr<Cell>>> Dungeon::get_floorCells(int n) {
     if (n >= 1 && n <= this->get_numFloors()) {
-        return &(floors.at(n));
+        return ((this->floors).at(n)).content;
     }
     else {
-        cerr << "Error, Attempting to Get Invalid Floor." << endl;
+        cerr << "Error, Attempting to Get The Cells of an Invalid Floor." << endl;
     }
 }
 
