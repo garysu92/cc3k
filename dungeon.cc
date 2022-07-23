@@ -5,12 +5,13 @@
 #include <cstdlib>
 #include "dungeon.h"
 #include "floor.h"
+#include "randnum.h"
 
 using namespace std;
 
 // Constructor which makes numFloors floors with same layout for each
 Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
-    floorWithBarrierSuit = rand() % 5 + 1;
+    floorWithBarrierSuit = randNum() % 5 + 1;
     vector<vector<char>> v;
     try {
         ifstream file{fileName};
