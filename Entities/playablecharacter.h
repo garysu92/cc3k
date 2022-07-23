@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+#include "../Cells/cell.h"
 
 class Enemy;
 
@@ -15,6 +16,12 @@ class PlayableCharacter {
     int defense;
     bool hasCompass;
     bool hasBarrierSuit;
+    Cell * cellConnection;
+    bool isDead;
+
+  protected:
+    // Setters
+    virtual void setHP(int k);
 
   public:
     // Constructor and Destructor
@@ -26,9 +33,12 @@ class PlayableCharacter {
     virtual int getDefense() const;
     virtual int getHP() const;
     int getMaxHP() const;
+    Cell * getCell() const;
+    bool getState() const;
 
     // Setters
-    virtual void setHP(int k);
+    void setCell(Cell * newCell);
+    void setState(bool alive);
 
     // Checkers
     bool checkCompass();

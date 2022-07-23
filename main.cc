@@ -30,8 +30,8 @@
 #include "Cells/wall.h"
 #include "Cells/stair.h"
 #include "Cells/passage.h"
-#include "item.h"
 #include "potion.h"
+
 
 
 using namespace std;
@@ -79,14 +79,13 @@ int main(int argc, char *argv[]) {
     // Potion p{RESTOREHEALTH};
     // if (p == RESTOREHEALTH) cout << "yes" << endl;
     // unique_ptr<PlayableCharacter> pc = make_unique<Human>();
-    // //PlayableCharacter *p = new Human();
+    //PlayableCharacter *p = new Human();
     // unique_ptr<Enemy> e = make_unique<Goblin>();
     // // e->dealDmg(move(pc));
     // cout << "goblin attack (5): " << e->getAttack() << endl;
     // cout << "player character defense (20): " << pc->getDefense() << endl;
-    // unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(pc));
+    //unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(p));
     // unique_ptr<TempEffect> te2 = make_unique<BoostDefense>(move(te));
-    // pc = move(te2);
     // cout << "player character attack (20 - 5 = 15): " << pc->getAttack() << endl;
     // cout << "player character defense (20 + 5 = 25): " << pc->getDefense() << endl;
     // cout << "player character hp (140): " << pc->getHP() << endl;

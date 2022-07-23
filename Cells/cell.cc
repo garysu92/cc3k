@@ -1,15 +1,16 @@
 #include <utility>
 #include <memory>
 #include "cell.h"
+#include "../potion.h"
+#include "../treasure.h"
 
-#include "../item.h"
 #include "../Entities/enemy.h"
 
 class PlayableCharacter;
 
 using namespace std;
 
-Cell::Cell(int x, int y, char sym, bool isEffWall, bool isStair) : x{x}, y{y}, pc{nullptr}, enemy{nullptr}, item{nullptr},  symbolRep{sym}, isEffWall{isEffWall}, isStair{false} {}
+Cell::Cell(int x, int y, char sym, bool isEffWall, bool isStair) : x{x}, y{y}, pc{nullptr}, enemy{nullptr}, potion{}, treasure{}, symbolRep{sym}, isEffWall{isEffWall}, isStair{false} {}
 
 int Cell::getX() {
     return this->x;
@@ -27,8 +28,12 @@ Enemy *Cell::getEnemy() {
     return this->enemy;
 }
 
-unique_ptr<Item> &Cell::getItem() {
-    return this->item;
+unique_ptr<Potion> &Cell::getPotion() {
+    return this->potion;
+}
+
+unique_ptr<Treasure> &Cell::getTreasure() {
+    return this->treasure;
 }
 
 char Cell::getsymbolRep() {
@@ -55,8 +60,12 @@ void Cell::setEnemy(Enemy *enemy) {
     this->enemy = enemy;
 }
 
-void Cell::setItem(unique_ptr<Item> &item) {
-    this->item = std::move(item);
+void Cell::setPotion(unique_ptr<Potion> &potion) {
+    this->potion = std::move(potion);
+}
+
+void Cell::setTreasure(unique_ptr<Treasure> &treasure) {
+    this->treasure = std::move(treasure);
 }
 
 void Cell::setsymbolRep(char sym) {
@@ -75,8 +84,12 @@ bool Cell::hasPC() {
     return pc != nullptr;
 }
 
-bool Cell::hasItem() {
-    return item != nullptr;
+bool Cell::hasPotion() {
+    return potion != nullptr;
+}
+
+bool Cell::hasTreasure() {
+    return treasure != nullptr;
 }
 
 void Cell::setisEffWall(bool isEffWall) {
@@ -85,6 +98,7 @@ void Cell::setisEffWall(bool isEffWall) {
 
 void Cell::clear() {
     if (hasPC()) pc = nullptr;
-    else if (hasEnemy()) enemy = nullptr;
-    else if (hasItem()) item = nullptr;
+    if (hasEnemy()) enemy = nullptr;
+    if (hasPotion()) potion = nullptr;
+    if (hasTreasure()) treasure = nullptr;
 }

@@ -2,13 +2,15 @@
 #define POTION_H
 
 #include <string>
-#include "item.h"
 
-struct Potion : public Item {
+struct Potion {
+    char sym;
   public:
     Potion();
     enum Type {RH, BA, BD, PH, WA, WD};
     virtual Type getType() = 0;
+    char getSymbol();
+    virtual void setVisible() = 0;
     virtual ~Potion() = 0;
 };
 

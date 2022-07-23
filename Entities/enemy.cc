@@ -4,6 +4,10 @@
 #include <iostream>
 #include "../Cells/cell.h"
 #include <memory>
+#include <random>
+#include <chrono>
+#include <utility>
+#include <algorithm>
 
 using namespace std;
 
@@ -17,6 +21,19 @@ bool Enemy::isHostile() {
     return true; 
 }
 
+static unsigned int randnum() {
+    unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine rng{seed};
+
+    vector<int> v{};
+
+    for (int i = 0; i < 10000; i++) {
+        v.emplace_back(i);
+    }
+    std::shuffle(v.begin(), v.end(), rng);
+    return v[0];
+}
+
 // What about when playchar has barrier suit?
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar, and should change for every subclass rather than couting "enemy has"
 void Enemy::takeDmg(PlayableCharacter *pc) {
@@ -26,8 +43,9 @@ void Enemy::takeDmg(PlayableCharacter *pc) {
     cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl; 
 }
 
-void Enemy::dealDmg(unique_ptr<PlayableCharacter> &pc) { 
-    pc->takeDmg(this);
+void Enemy::dealDmg(PlayableCharacter *pc) {
+    int miss = randnum() % 2;
+    if (!miss) pc->takeDmg(this);
 }
 
 int Enemy::getAttack() const {

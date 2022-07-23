@@ -5,7 +5,7 @@
 #include <memory>
 #include "dungeon.h"
 #include "Entities/playablecharacter.h"
-#include "textdisplay.h"
+#include "Display/textdisplay.h"
 
 class CC3KGameRunner{
     std::unique_ptr<Dungeon> game;

@@ -18,6 +18,7 @@ class Dungeon {
     int floorWithBarrierSuit;
     shared_ptr<PlayableCharacter> p;
     bool saveState;
+
     public: 
         // Constructor
         Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save = false);
@@ -31,7 +32,7 @@ class Dungeon {
         void set_curFloor(int curF); 
         void set_numFloors(int newF);
 
-        // 
+        // Misc
         void playerMove(Direction d);
         void playerAttack(Direction d);
         void playerUsePotion(Direction d);
