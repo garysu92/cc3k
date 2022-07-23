@@ -9,6 +9,7 @@
 #include "floor.h"
 #include "Races/human.h"
 #include "Races/orc.h"
+#include "mapDisplay.h"
 
 using namespace std;
 
@@ -52,12 +53,14 @@ void CC3KGameRunner::play() {
     // reinitializing fields
     game = unique_ptr<Dungeon>{};
     p = make_unique<Human>();
-    d = unique_ptr<TextDisplay>{};// maybe not necessary
-
+    // d = unique_ptr<TextDisplay>{};// maybe not necessary
 
     bool gameStarted = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
+    bool newFloorDisplay;
+    int curFloor;
+    Mapdisplay * curMap;
     try {
         // running game
         while (true) {
@@ -135,6 +138,14 @@ void CC3KGameRunner::play() {
                 } else {
                     game = make_unique<Dungeon>(p.get());
                 }
+                newFloorDisplay = true;
+                curFloor = 1;
+            }
+
+            // Ensure going up a staircase sets newFloorDisplay = true, increment curFloor when going up stairs?
+            if (newFloorDisplay) {
+                newFloorDisplay = false; 
+                curDisplay{game->}
             }
 
             Direction temp = getDirection(cmd);
