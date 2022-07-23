@@ -2,10 +2,12 @@
 #define DRAGON_H
 
 #include "../Entities/enemy.h"
+#include "../posn.h"
 
 class Dragon : public Enemy {
+    Posn protectLocation;
   public:
-    Dragon();
+    Dragon(int x, int y);
     bool isHostile();
 };
 

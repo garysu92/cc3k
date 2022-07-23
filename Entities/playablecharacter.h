@@ -37,7 +37,7 @@ class PlayableCharacter {
     // Misc
     virtual std::string getRace() const; // Maybe pure virtual??? Check implementation
     void takeDmg(Enemy *e);
-    void dealDmg(std::unique_ptr<Enemy> &e);
+    void dealDmg(Enemy *e);
     void giveCompass();
     void giveBarrierSuit();
 };
