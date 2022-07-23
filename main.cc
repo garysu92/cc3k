@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
         }
         cout << endl;
     }
-    PlayableCharacter *p = new Human();
+    shared_ptr<PlayableCharacter> p = make_shared<Human>();
     Floor f{v, p};
     f.generate();
     f.print();

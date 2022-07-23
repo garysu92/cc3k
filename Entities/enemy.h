@@ -34,6 +34,11 @@ class Enemy {
     virtual bool isHostile() = 0;
     int goldDropped();
     void takeDmg(PlayableCharacter *pc);
+
+    // Non -virtual interface
+    // bool isDead();
+    // void attackPlayer(PlayableCharacter *pc);
+    // void getAttackedByPlayer(PlayableCharacter *pc);
     void dealDmg(PlayableCharacter *pc);
 };
 

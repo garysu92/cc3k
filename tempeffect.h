@@ -5,9 +5,9 @@
 #include "Entities/playablecharacter.h"
 
 class TempEffect : public PlayableCharacter {
-    std::unique_ptr<PlayableCharacter> p;
+    std::shared_ptr<PlayableCharacter> p;
   public:
-    TempEffect(std::unique_ptr<PlayableCharacter> pc, int atkEffect, int defEffect);
+    TempEffect(std::shared_ptr<PlayableCharacter> pc, int atkEffect, int defEffect);
     virtual int getAttack() const override;
     virtual int getDefense() const override;
     virtual int getHP() const override;

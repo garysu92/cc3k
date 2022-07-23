@@ -2,6 +2,7 @@
 #define FLOOR_H
 
 #include <vector>
+#include <memory>
 #include <utility>
 #include "Cells/cell.h"
 #include "Entities/playablecharacter.h"
@@ -12,7 +13,8 @@
 class Posn;
 
 class Floor {
-    PlayableCharacter *p;
+    std::shared_ptr<PlayableCharacter> p; // initially same player as the one given to it by dungeon, 
+                                      // may be decorated by floor
     std::vector<std::vector<std::unique_ptr<Cell>>> content; // 2d array of the entire floor and the type of each cell (wall, tile, etc.)
     std::vector<std::vector<Posn>> chambers; // array of array of coordinates of every tile in each chamber, 
     std::vector<std::vector<int>> chamberMap; // 2d array containing the number(index) of the chamber that cells at that coordinate is located in
@@ -20,8 +22,7 @@ class Floor {
     Posn stairLocation;
     Posn pcLocation;
   public:
-    // Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p);
-    Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p, bool exactLayout = false, bool save = false);
+    Floor(const std::vector<std::vector<char>> &v, std::shared_ptr<PlayableCharacter> p, bool exactLayout = false, bool save = false);
     // generates based on PC, stairway, potions, gold, enemy
     void generate();
     void movePC();

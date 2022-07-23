@@ -48,7 +48,7 @@ class Enemy;
 
 using namespace std;
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, shared_ptr<PlayableCharacter> p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -159,7 +159,7 @@ void Floor::generate() {
     int random2 = randnum() % numTilesInChamber; // to numTilesInChamber - 1
     int x = tempChambers[random1][random2].x;
     int y = tempChambers[random1][random2].y;
-    content[y][x]->setPC(p);
+    content[y][x]->setPC(p.get());
     // erase that position from available
     pcLocation.x = x;
     pcLocation.y = y;
@@ -344,6 +344,42 @@ void Floor::print() {
     }
 }
 
+void Floor::movePC(Direction d) {
+    int cx, cy;
+    if (d == Direction::no) {
+        cx = pcLocation.x;
+        cy = pcLocation.y - 1;
+    } else if (d == Direction::ea) {
+        cx = pcLocation.x + 1;
+        cy = pcLocation.y;
+    } else if (d == Direction::so) {
+        cx = pcLocation.x;
+        cy = pcLocation.y + 1;
+    } else if (d == Direction::we) {
+        cx = pcLocation.x - 1;
+        cy = pcLocation.y;
+    } else if (d == Direction::ne) {
+        cx = pcLocation.x + 1;
+        cy = pcLocation.y - 1;
+    } else if (d == Direction::nw) {
+        cx = pcLocation.x - 1;
+        cy = pcLocation.y - 1;
+    } else if (d == Direction::se) {
+        cx = pcLocation.x + 1;
+        cy = pcLocation.y + 1;
+    } else if (d == Direction::sw) {
+        cx = pcLocation.x - 1;
+        cy = pcLocation.y + 1;
+    }
+    if (cx >= 0 && cy >= 0 && cx <= content.size() && cy <= content[0].size() \
+        && !content[cx][cy]->hasEnemy()) {
+        content[pcLocation.x][pcLocation.y]->clear();
+        pcLocation.x = cx;
+        pcLocation.y = cy;
+        content[pcLocation.x][pcLocation.y]->setPC(p.get());
+    }
+}
+
 Posn Floor::getCoords(Direction d) {
     int ax, ay;
     if (d == Direction::no) {
@@ -382,7 +418,7 @@ void Floor::movePC(Direction d) {
         content[pcLocation.x][pcLocation.y]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
-        content[pcLocation.x][pcLocation.y]->setPC(p);
+        content[pcLocation.x][pcLocation.y]->setPC(p.get());
     }
 }
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-WoundAttack::WoundAttack(unique_ptr<PlayableCharacter> pc): TempEffect{move(pc), -5, 0} {}
+WoundAttack::WoundAttack(shared_ptr<PlayableCharacter> pc): TempEffect{pc, -5, 0} {}
 
 int WoundAttack::getAttack() const {
     return max(0, attack + TempEffect::getAttack());

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-BoostDefense::BoostDefense(unique_ptr<PlayableCharacter> pc): TempEffect{move(pc), 0, 5} {}
+BoostDefense::BoostDefense(shared_ptr<PlayableCharacter> pc): TempEffect{pc, 0, 5} {}
 
 int BoostDefense::getAttack() const {
     return max(0, attack + TempEffect::getAttack());
