@@ -25,6 +25,7 @@ class Dungeon {
         Dungeon(shared_ptr<PlayableCharacter> p, int numFloors = 5);
 
         // Getters
+        Floor * get_floor(int n);
         int get_curFloor();
         int get_numFloors(); 
 
