@@ -30,11 +30,11 @@ static Direction getDirection(string s) {
         return Direction::ea;
     } else if (s == "we") {
         return Direction::we;
-    } else if (s == "NE") {
+    } else if (s == "ne") {
         return Direction::ne;
-    } else if (s == "NW") {
+    } else if (s == "nw") {
         return Direction::nw;
-    } else if (s == "SE") {
+    } else if (s == "se") {
         return Direction::se;
     } else {
         //sw
@@ -93,7 +93,6 @@ void CC3KGameRunner::play() {
                     continue;
                 }
                 // else do nothing
-                
             }
 
             // play game commands
