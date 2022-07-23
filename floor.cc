@@ -142,6 +142,19 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
     }
 }
 
+static unsigned int random(unsigned int seed) {
+    unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine rng{seed};
+
+    vector<int> v{};
+
+    for (int i = 0; i < 10000000; i++) {
+        v.emplace_back(i);
+    }
+    shuffle(v.begin(), v.end(), rng);
+    return v[0];
+}
+
 void Floor::generate() {
     
     int numChambers = chambers.size();
