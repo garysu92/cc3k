@@ -324,7 +324,7 @@ void Floor::print() {
 void Floor::movePC(Direction d) {
     int cx, cy;
     if (d == Direction::no) {
-        cx = 
+        cx = g
     } else if (d == Direction::ea) {
     
     } else if (d == Direction::so) {
