@@ -49,6 +49,7 @@ class Enemy;
 using namespace std;
 
 Floor::Floor(const vector<vector<char>> &v, std::shared_ptr<PlayableCharacter> p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+    // hi
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
