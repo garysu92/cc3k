@@ -18,6 +18,8 @@ class Dungeon {
     int floorWithBarrierSuit;
     PlayableCharacter *p;
     bool saveState;
+    bool isPlayerDead;
+
     public: 
         // Constructor
         Dungeon(string fileName, PlayableCharacter *p, bool save = false);
@@ -31,7 +33,7 @@ class Dungeon {
         void set_curFloor(int curF); 
         void set_numFloors(int newF);
 
-        // 
+        // Misc
         void playerMove(Direction d);
         void playerAttack(Direction d);
         void playerUsePotion(Direction d);

@@ -41,6 +41,18 @@ int PlayableCharacter::getHP() const {
     return this->hp;
 }
 
+ int PlayableCharacter::getMaxHP() const {
+    return this->maxHP;
+ }
+
+ Cell * PlayableCharacter::getCell() const {
+    return this->cellConnection;
+ }
+
+ void PlayableCharacter::setCell(Cell * newCell) {
+    this->cellConnection = newCell;
+ }
+
 void PlayableCharacter::setHP(int k) {
     if (k > this->maxHP || k < 0) {
         cerr << "Invalid HP set" << endl;
