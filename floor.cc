@@ -1,3 +1,5 @@
+#include "floor.h"
+
 #include <vector>
 #include <memory>
 #include <algorithm>
@@ -5,7 +7,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <utility>
-#include "floor.h"
+#include <random>
+#include <chrono>
+
 #include "posn.h"
 #include "Cells/cell.h"
 #include "potion.h"
@@ -141,24 +145,45 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayo
 void Floor::generate() {
     
     int numChambers = chambers.size();
+    vector<vector<Posn>> tempChambers = chambers;
 
-    vector<vector<Posn>> tempChambers{chambers};
+    unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine rng{seed};
+
+    vector<int> tempChambersIndex{};
+
+    for (int i = 0; i < numChambers; i++) {
+        tempChambersIndex.emplace_back(i);
+    }
 
     // generate player location
-    int random1 = rand() % numChambers; // 0 to numtempChambers - 1
-    int numTilesInChamber = tempChambers[random1].size();
-    int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
-    int x = tempChambers[random1][random2].x;
-    int y = tempChambers[random1][random2].y;
-    content[y][x]->setPC(p);
-    // erase that position from available
-    tempChambers[random1].erase(tempChambers[random1].begin() + random2);
+
+    shuffle(tempChambersIndex.begin(), tempChambersIndex.end(), rng);
+    // take the first number in tempchambersindex as index of the randomly generated floor
+    int chamberIndex = tempChambersIndex.at(0);
+    // shuffle the coordinates of tiles in that chamber
+    shuffle(tempChambers.at(chamberIndex).begin(), tempChambers.at(chamberIndex).end(), rng);
+    // choose the first in the vector
+    Posn pcPosn = tempChambers.at(chamberIndex).at(0);
+    content.at(pcPosn.y).at(pcPosn.x)->setPC(p);
+
+
+    // int random1 = rand() % numChambers; // 0 to numtempChambers - 1
+    // int numTilesInChamber = tempChambers[random1].size();
+    // int random2 = rand() % numTilesInChamber; // to numTilesInChamber - 1
+    // int x = tempChambers[random1][random2].x;
+    // int y = tempChambers[random1][random2].y;
+    // content[y][x]->setPC(p);
+    // // erase that position from available
+    // tempChambers[random1].erase(tempChambers[random1].begin() + random2);
+
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
     if (tempChambers[random1].size() == 0)  {
         tempChambers.erase(tempChambers.begin() + random1);
         numChambers--;
     }
 
+    
     // spawn the stair
     int random3 = rand() % numChambers;
     // ensure that stair chamber and player chamber are not the same
