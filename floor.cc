@@ -4,6 +4,7 @@
 #include <stack>
 #include <cstdlib>
 #include <iostream>
+#include <utility>
 #include "floor.h"
 #include "posn.h"
 #include "Cells/cell.h"
@@ -31,6 +32,7 @@
 #include "Enemies/troll.h"
 #include "Enemies/phoenix.h"
 #include "Enemies/merchant.h"
+#include "direction.h"
 
 class PlayableCharacter;
 class Enemy;
@@ -244,7 +246,7 @@ void Floor::generate() {
                 int where = rand() % numNeighbours + 1;
             }
             unique_ptr<Enemy> dragon = make_unique<Dragon>();
-            enemies.emplace_back(dragon.get());
+            enemies.emplace_back(dragon.get(), Posn{y, x});
             content[y][x]->setEnemy(dragon.get());
         }
         // content[y][x].setItem(some gold)
@@ -270,7 +272,7 @@ void Floor::generate() {
         if (whichEnemy <= 4) {
             unique_ptr<Enemy> e = make_unique<Werewolf>();
             content[y][x]->setEnemy(e.get());
-            enemies.emplace_back(e.get());
+            enemies.emplace_back(e.get(), Posn{y, x});
         } else if (whichEnemy <= 7) {
             unique_ptr<Enemy> e = make_unique<Vampire>();
             content[y][x]->setEnemy(e.get());
@@ -316,5 +318,26 @@ void Floor::print() {
             else cout << content.at(i).at(j)->getsymbolRep();
         }
         cout << endl;
+    }
+}
+
+void Floor::movePC(Direction d) {
+    int cx, cy;
+    if (d == Direction::no) {
+        cx = 
+    } else if (d == Direction::ea) {
+    
+    } else if (d == Direction::so) {
+    
+    } else if (d == Direction::we) {
+    
+    } else if (d == Direction::ne) {
+    
+    } else if (d == Direction::nw) {
+    
+    } else if (d == Direction::se) {
+    
+    } else if (d == Direction::sw) {
+    
     }
 }
