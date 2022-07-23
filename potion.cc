@@ -1,5 +1,9 @@
 #include "potion.h"
 
-Potion::Potion(): Item{'P'} {}
+Potion::Potion(): sym{'P'} {}
 
 Potion::~Potion() {}
+
+char Potion::getSymbol() {
+    return sym;
+}

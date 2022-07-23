@@ -13,6 +13,7 @@
 #include "posn.h"
 #include "Cells/cell.h"
 #include "potion.h"
+#include "tempeffect.h"
 #include "rh.h"
 #include "ba.h"
 #include "bd.h"
@@ -37,7 +38,10 @@
 #include "Enemies/phoenix.h"
 #include "Enemies/merchant.h"
 #include "direction.h"
-#include "item.h"
+#include "woundattack.h"
+#include "wounddefense.h"
+#include "boostattack.h"
+#include "boostdefense.h"
 
 class PlayableCharacter;
 class Enemy;
@@ -200,23 +204,23 @@ void Floor::generate() {
         // WA = wound attack
         // WD = wound defense
         if (randomPotion == 1) {
-            unique_ptr<Item> ptr = make_unique<RH>();
-            content[y][x]->setItem(ptr);
+            unique_ptr<Potion> ptr = make_unique<RH>();
+            content[y][x]->setPotion(ptr);
         } else if (randomPotion == 2) {
-            unique_ptr<Item> ptr = make_unique<BA>();
-            content[y][x]->setItem(ptr);
+            unique_ptr<Potion> ptr = make_unique<BA>();
+            content[y][x]->setPotion(ptr);
         } else if (randomPotion == 3) {
-            unique_ptr<Item> ptr = make_unique<BD>();
-            content[y][x]->setItem(ptr);
+            unique_ptr<Potion> ptr = make_unique<BD>();
+            content[y][x]->setPotion(ptr);
         } else if (randomPotion == 4) {
-            unique_ptr<Item> ptr = make_unique<PH>();
-            content[y][x]->setItem(ptr);
+            unique_ptr<Potion> ptr = make_unique<PH>();
+            content[y][x]->setPotion(ptr);
         } else if (randomPotion == 5) {
-            unique_ptr<Item> ptr = make_unique<WA>();
-            content[y][x]->setItem(ptr);
+            unique_ptr<Potion> ptr = make_unique<WA>();
+            content[y][x]->setPotion(ptr);
         } else if (randomPotion == 6) {
-            unique_ptr<Item> ptr = make_unique<WD>();
-            content[y][x]->setItem(ptr);
+            unique_ptr<Potion> ptr = make_unique<WD>();
+            content[y][x]->setPotion(ptr);
         }
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random5);
         if (tempChambers[chamb].size() == 0)  {
@@ -235,11 +239,11 @@ void Floor::generate() {
 		vector<Posn> neighbours = Floor::neighbours(x, y);
 		int whichGold = randnum() % 8 + 1;
 		if (whichGold <= 5) {
-            unique_ptr<Item> sg = make_unique<SmallGold>();
-            content[y][x]->setItem(sg);
+            unique_ptr<Treasure> sg = make_unique<SmallGold>();
+            content[y][x]->setTreasure(sg);
         } else if (whichGold <= 7) {
-            unique_ptr<Item> ng = make_unique<NormalGold>();
-            content[y][x]->setItem(ng);
+            unique_ptr<Treasure> ng = make_unique<NormalGold>();
+            content[y][x]->setTreasure(ng);
         } else {
         	// ensure that at least one neighbour
         	while (neighbours.size() <= 0) {
@@ -252,8 +256,8 @@ void Floor::generate() {
                 y = tempChambers[whichChamber][whichTile].y;
                 neighbours = Floor::neighbours(x, y);
         	}
-        	unique_ptr<Item> dg = make_unique<DragonGold>();
-        	content[y][x]->setItem(dg);
+        	unique_ptr<Treasure> dg = make_unique<DragonGold>();
+        	content[y][x]->setTreasure(dg);
         	// spawn the dragon guarding the hoarde
             neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
@@ -319,7 +323,7 @@ vector<Posn> Floor::neighbours(int x, int y) {
         for (int k = -1; k <= 1; k++) {
             if (x + i >= 0 && x + i < 25 && y + k >= 0 && y + k < 79 && \
             	!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
-            	&& !content[k + y][x + i]->hasItem() && !content[k + y][x + i]->getisEffWall()) {
+            	&& !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall()) {
                 tmp.emplace_back(x + i, y + k);
             }
         }
@@ -332,50 +336,15 @@ void Floor::print() {
         for (int j = 0; j < content[0].size(); j++) {
             if (content.at(i).at(j)->hasPC()) cout << '@';
             else if (content.at(i).at(j)->hasEnemy()) cout << content.at(i).at(j)->getEnemy()->getSymbol();
-            else if (content.at(i).at(j)->hasItem()) cout << content.at(i).at(j)->getItem()->getSymbol();
+            else if (content.at(i).at(j)->hasPotion()) cout << content.at(i).at(j)->getPotion()->getSymbol();
+            else if (content.at(i).at(j)->hasTreasure()) cout << content.at(i).at(j)->getTreasure()->getSymbol();
             else cout << content.at(i).at(j)->getsymbolRep();
         }
         cout << endl;
     }
 }
 
-void Floor::movePC(Direction d) {
-    int cx, cy;
-    if (d == Direction::no) {
-        cx = pcLocation.x;
-        cy = pcLocation.y - 1;
-    } else if (d == Direction::ea) {
-        cx = pcLocation.x + 1;
-        cy = pcLocation.y;
-    } else if (d == Direction::so) {
-        cx = pcLocation.x;
-        cy = pcLocation.y + 1;
-    } else if (d == Direction::we) {
-        cx = pcLocation.x - 1;
-        cy = pcLocation.y;
-    } else if (d == Direction::ne) {
-        cx = pcLocation.x + 1;
-        cy = pcLocation.y - 1;
-    } else if (d == Direction::nw) {
-        cx = pcLocation.x - 1;
-        cy = pcLocation.y - 1;
-    } else if (d == Direction::se) {
-        cx = pcLocation.x + 1;
-        cy = pcLocation.y + 1;
-    } else if (d == Direction::sw) {
-        cx = pcLocation.x - 1;
-        cy = pcLocation.y + 1;
-    }
-    if (cx >= 0 && cy >= 0 && cx <= content.size() && cy <= content[0].size() \
-        && !content[cx][cy]->hasEnemy()) {
-        content[pcLocation.x][pcLocation.y]->clear();
-        pcLocation.x = cx;
-        pcLocation.y = cy;
-        content[pcLocation.x][pcLocation.y]->setPC(p);
-    }
-}
-
-void Floor::attack(Direction d) {
+Posn Floor::getCoords(Direction d) {
     int ax, ay;
     if (d == Direction::no) {
         ax = pcLocation.x;
@@ -402,13 +371,51 @@ void Floor::attack(Direction d) {
         ax = pcLocation.x - 1;
         ay = pcLocation.y + 1;
     }
+    return Posn(ax, ay);
+}
+void Floor::movePC(Direction d) {
+    Posn pos = getCoords(d);
+    int cx = pos.x;
+    int cy = pos.y;
+    if (cx >= 0 && cy >= 0 && cx <= content.size() && cy <= content[0].size() \
+        && !content[cx][cy]->hasEnemy() && !content[cx][cy]->hasPotion()) {
+        content[pcLocation.x][pcLocation.y]->clear();
+        pcLocation.x = cx;
+        pcLocation.y = cy;
+        content[pcLocation.x][pcLocation.y]->setPC(p);
+    }
+}
+
+void Floor::attack(Direction d) {
+    Posn pos = getCoords(d);
+    int ax = pos.x;
+    int ay = pos.y;
     if (ax >= 0 && ay >= 0 && ax <= content.size() && ay <= content[0].size() \
         && content[ax][ay]->hasEnemy()) {
-        Enemy *e = content[ax][ay]->getEnemy();
-        p->dealDmg(e);
+        p->dealDmg(content[ax][ay]->getEnemy());
     }
 }
 
 void Floor::usePotion(Direction d) {
-    
+    Posn pos = getCoords(d);
+    int px = pos.x;
+    int py = pos.y;
+    if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
+        && content[px][py]->hasPotion()) {
+        content[px][py]->getPotion()->setVisible();
+        if (content[px][py]->getPotion()->getType() == Potion::BA) {
+            unique_ptr<TempEffect> tmp = make_unique<BoostAttack>(move(p));
+            p = move(tmp.get());
+        } else if (content[px][py]->getPotion()->getType() == Potion::PH) {
+
+        } else if (content[px][py]->getPotion()->getType() == Potion::BA) {
+            
+        } else if (content[px][py]->getPotion()->getType() == Potion::BD) {
+            
+        } else if (content[px][py]->getPotion()->getType() == Potion::WA) {
+            
+        } else if (content[px][py]->getPotion()->getType() == Potion::WD) {
+            
+        }
+    }
 }

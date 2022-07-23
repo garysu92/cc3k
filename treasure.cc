@@ -1,6 +1,9 @@
 #include "treasure.h"
-#include "item.h"
 
-Treasure::Treasure(int amount): Item{'G'}, amount{amount} {}
+Treasure::Treasure(int amount): sym{'G'}, amount{amount} {}
 
 Treasure::~Treasure() {}
+
+char Treasure::getSymbol() {
+    return sym;
+}

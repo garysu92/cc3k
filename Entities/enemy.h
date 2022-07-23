@@ -34,7 +34,7 @@ class Enemy {
     virtual bool isHostile() = 0;
     int goldDropped();
     void takeDmg(PlayableCharacter *pc);
-    void dealDmg(std::unique_ptr<PlayableCharacter> &pc);
+    void dealDmg(PlayableCharacter *pc);
 };
 
 #endif
