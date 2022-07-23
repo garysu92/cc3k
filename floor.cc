@@ -379,11 +379,10 @@ void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
-    if (cx >= 0 && cy >= 0 && cx < content.size() && cy < content[0].size() \
-        && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion()) {
-        //(content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
-        /*|| content[cy][cx]->getsymbolRep() == '#')*/
-        cout << "movable" << endl;
+    if (!content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && !content[cy][cx]->hasTreasure() && \
+        (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
+        || content[cy][cx]->getsymbolRep() == '#')) {
+        cout << "movable: " << content[cy][cx]->getsymbolRep() << endl;
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
