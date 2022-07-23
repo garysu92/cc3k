@@ -2,7 +2,7 @@
 #include "playablecharacter.h"
 #include <cmath>
 #include <iostream>
-#include "cell.h"
+#include "../Cells/cell.h"
 #include <memory>
 
 using namespace std;
