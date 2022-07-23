@@ -404,7 +404,7 @@ void Floor::usePotion(Direction d) {
         && content[px][py]->hasPotion()) {
         content[px][py]->getPotion()->setVisible();
         if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            unique_ptr<TempEffect> tmp = make_unique<BoostAttack>(move(p));
+            unique_ptr<TempEffect> tmp = make_unique<BoostAttack>(p);
             p = move(tmp.get());
         } else if (content[px][py]->getPotion()->getType() == Potion::PH) {
 
