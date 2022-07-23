@@ -7,7 +7,7 @@ class PlayableCharacter;
 
 class BoostAttack : public TempEffect {
   public:
-    BoostAttack(std::unique_ptr<PlayableCharacter> pc);
+    BoostAttack(std::shared_ptr<PlayableCharacter> pc);
     int getAttack() const override;
     int getDefense() const override;
     int getHP() const override;

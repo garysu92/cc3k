@@ -9,7 +9,7 @@
 
 class CC3KGameRunner{
     std::unique_ptr<Dungeon> game;
-    std::unique_ptr<PlayableCharacter> p;
+    std::shared_ptr<PlayableCharacter> p;
     std::unique_ptr<TextDisplay> d;
     std::unique_ptr<std::string> filename;
 

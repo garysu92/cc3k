@@ -42,9 +42,9 @@ static Direction getDirection(string s) {
     }
 }
 
-CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, d{}, filename{} {}
+CC3KGameRunner::CC3KGameRunner() : game{}, p{make_shared<Human>()}, d{}, filename{} {}
 
-CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()},
+CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_shared<Human>()},
                                                      d{}, filename{make_unique<string>(filename)} {}
 
 using namespace std;
@@ -80,16 +80,16 @@ void CC3KGameRunner::play() {
                 // cout << "Enter your race: ";
 
                 if (cmd == "h") {
-                    p = make_unique<Human>();
+                    p = make_shared<Human>();
                     continue;
                 } else if (cmd == "e") {
-                    p = make_unique<Elf>();
+                    p = make_shared<Elf>();
                     continue;
                 } else if (cmd == "d") {
-                    p = make_unique<Dwarf>();
+                    p = make_shared<Dwarf>();
                     continue;
                 } else if (cmd == "o") {
-                    p = make_unique<Orc>();
+                    p = make_shared<Orc>();
                     continue;
                 }
                 // else do nothing

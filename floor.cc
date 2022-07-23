@@ -44,7 +44,7 @@ class Enemy;
 
 using namespace std;
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, shared_ptr<PlayableCharacter> p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -155,7 +155,7 @@ void Floor::generate() {
     int random2 = randnum() % numTilesInChamber; // to numTilesInChamber - 1
     int x = tempChambers[random1][random2].x;
     int y = tempChambers[random1][random2].y;
-    content[y][x]->setPC(p);
+    content[y][x]->setPC(p.get());
     // erase that position from available
     pcLocation.x = x;
     pcLocation.y = y;
@@ -371,7 +371,7 @@ void Floor::movePC(Direction d) {
         content[pcLocation.x][pcLocation.y]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
-        content[pcLocation.x][pcLocation.y]->setPC(p);
+        content[pcLocation.x][pcLocation.y]->setPC(p.get());
     }
 }
 

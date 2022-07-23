@@ -7,7 +7,7 @@ class PlayableCharacter;
 
 class WoundAttack : public TempEffect {
   public:
-    WoundAttack(std::unique_ptr<PlayableCharacter> pc);
+    WoundAttack(std::shared_ptr<PlayableCharacter> pc);
     int getAttack() const override;
     int getDefense() const override;
     int getHP() const override;

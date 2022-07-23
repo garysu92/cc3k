@@ -16,12 +16,12 @@ class Dungeon {
     int curFloor;
     int numFloors;
     int floorWithBarrierSuit;
-    PlayableCharacter *p;
+    shared_ptr<PlayableCharacter> p;
     bool saveState;
     public: 
         // Constructor
-        Dungeon(string fileName, PlayableCharacter *p, bool save = false);
-        Dungeon(PlayableCharacter *p, int numFloors = 5);
+        Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save = false);
+        Dungeon(shared_ptr<PlayableCharacter> p, int numFloors = 5);
 
         // Getters
         int get_curFloor();
