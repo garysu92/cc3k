@@ -35,6 +35,11 @@ class Enemy {
     int goldDropped();
     void takeDmg(PlayableCharacter *pc);
     void dealDmg(std::unique_ptr<PlayableCharacter> &pc);
+
+    // Non -virtual interface
+    // bool isDead();
+    // void attackPlayer(PlayableCharacter *pc);
+    // void getAttackedByPlayer(PlayableCharacter *pc);
 };
 
 #endif
