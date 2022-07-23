@@ -20,7 +20,7 @@ static bool endOfRoom(string s) {
 }
 
 // constructor makes numFloors number of floors with same layout
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
+Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
     floorWithBarrierSuit = rand() % 5 + 1;
     vector<vector<char>> v;
     try {
@@ -49,7 +49,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p
 }
 
 // specified layout
-Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
+Dungeon::Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save) : 
     fileName{fileName}, p{p}, curFloor{1}, numFloors{1}{
         try{
             fstream file{fileName};
