@@ -48,7 +48,7 @@ class Enemy;
 
 using namespace std;
 
-Floor::Floor(const vector<vector<char>> &v, std::shared_ptr<PlayableCharacter> p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -159,7 +159,7 @@ void Floor::generate() {
     int random2 = randnum() % numTilesInChamber; // to numTilesInChamber - 1
     int x = tempChambers[random1][random2].x;
     int y = tempChambers[random1][random2].y;
-    content[y][x]->setPC(p.get());
+    content[y][x]->setPC(p);
     // erase that position from available
     pcLocation.x = x;
     pcLocation.y = y;
@@ -378,15 +378,14 @@ void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
-    if (cx >= 0 && cy >= 0 && cx < content.size() && cy < content[0].size() \
-        && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion()) {
-        //(content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
-        /*|| content[cy][cx]->getsymbolRep() == '#')*/
-        cout << "movable" << endl;
+    if (!content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && !content[cy][cx]->hasTreasure() && \
+        (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
+        || content[cy][cx]->getsymbolRep() == '#')) {
+        cout << "movable: " << content[cy][cx]->getsymbolRep() << endl;
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
-        content[pcLocation.y][pcLocation.x]->setPC(p.get());
+        content[pcLocation.y][pcLocation.x]->setPC(p);
     }
 }
 
