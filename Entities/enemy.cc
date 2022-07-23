@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n, char symbol):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, whereOn{nullptr} {}
+Enemy::Enemy(int atk, int def, int hp, int n, char symbol):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol} {}
 
 int Enemy::goldDropped() {
     return this->goldDrop;
@@ -58,8 +58,5 @@ void Enemy::dropCompass() {
     this->hasCompass = false;
 }
 
-void Enemy::setCell(Cell *c) {
-    this->whereOn = c;
-}
 
 Enemy::~Enemy() {}
