@@ -11,7 +11,7 @@ using namespace std;
 
 // Constructor which makes numFloors floors with same layout for each
 Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
-    floorWithBarrierSuit = randNum() % 5 + 1;
+    floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
         ifstream file{fileName};
@@ -23,7 +23,8 @@ Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floo
                 for (int i = 0; i < s.length(); i++) {
                     v.at(v.size() - 1).emplace_back(s[i]);
                 }
-            } else {
+            } 
+            else {
                 // empty line, break
                 break;
             }
@@ -84,6 +85,15 @@ static bool endOfRoom(string s) {
         }
     }
     return true;
+}
+
+Floor * Dungeon::get_floor(int n) {
+    if (n >= 1 && n <= this->get_numFloors()) {
+        return &(floors.at(n));
+    }
+    else {
+        cerr << "Error, Attempting to Get Invalid Floor." << endl;
+    }
 }
 
 int Dungeon::get_curFloor() {
