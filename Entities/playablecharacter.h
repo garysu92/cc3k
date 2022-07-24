@@ -55,6 +55,9 @@ class PlayableCharacter {
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);
     void addPermanentEffects(int hp, int atk, int def);
+
+    void attackEnemy(Enemy *em);
+    void getAttackedByEnemy(Enemy *em);
 };
 
 #endif
