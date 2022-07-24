@@ -80,6 +80,12 @@ void Enemy::dropCompass() {
     this->hasCompass = false;
 }
 
-void Enemy::attackPlayer(Playable)
+void Enemy::attackPlayer(PlayableCharacter *pc) {
+
+}
+
+void Enemy::getAttackedByPlayer(PlayableCharacter *pc) {
+
+}
 
 Enemy::~Enemy() {}
