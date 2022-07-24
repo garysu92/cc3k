@@ -400,7 +400,7 @@ void Floor::movePC(Direction d) {
     }
 }
 
-void Floor::moveEnemies() {
+void Floor::updateEnemies() {
     sort(enemies.begin(), enemies.end(), cmpPair);
     for (int i = 0; i < 20; i++) {
         if (!enemies[i].first->isDragon()) {

@@ -25,7 +25,7 @@ class Floor {
     // generates based on PC, stairway, potions, gold, enemy
     void generate();
     void movePC();
-    void moveEnemies();
+    void updateEnemies();
     std::vector<Posn> neighbours(int x, int y, bool isPlayer);
     void print();
     void movePC(Direction d);
