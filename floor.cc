@@ -267,6 +267,17 @@ void Floor::generate() {
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
             content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
 			// delete the dragon position from the available generation spots
+            //     MIGHT    //
+            //     NEED     //
+            //     TO       //
+            //     DOUBLE   //
+            //     CHECK    //
+            //     THIS     //
+            for (int i = 0; i < tempChambers[whichChamber].size(); i++) {
+                if (tempChambers[whichChamber][i].x == x && tempChambers[whichChamber][i].y == y) {
+                    tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + i);
+                }
+            }
         }
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
         if (tempChambers[whichChamber].size() == 0)  {
