@@ -30,7 +30,7 @@ static bool endOfRoom(string s) {
 }
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{} {
     floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
@@ -57,13 +57,12 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
     for (int q = 0; q < numFloors; q++) {
         floors.emplace_back(v, p);
     }
-
     this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
 }
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{1}, p{p} {
+    fileName{fileName}, curFloor{1}, numFloors{1}, p{p}, curMap{} {
         try{
             fstream file{fileName};
             
@@ -117,9 +116,15 @@ void Dungeon::set_numFloors(int newF) {
 }
 
 void Dungeon::playerMove(Direction d) {
+    cerr << "Moving player " << endl;
     floors[curFloor].movePC(d);
+    cerr << "Player moved succesffuly " << endl;
+    cerr << "Moving enemies " << endl;
     floors[curFloor].updateEnemies();
+    cerr << "Enemies moved succesffuly " << endl;
+    cerr << "Printing map Display" << endl;
     (this->curMap)->printMap();
+    cerr << "Map display printed sucessfully" << endl;
 }
 
 void Dungeon::playerAttack(Direction d) {

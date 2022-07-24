@@ -6,11 +6,11 @@
 #include <string>
 
 #include "direction.h"
+#include "Display/mapDisplay.h"
 
 class Cell;
 class PlayableCharacter;
 class Floor;
-class Mapdisplay;
 
 const std::string floorLayout = "cc3kfloor.txt";
 
