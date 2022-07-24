@@ -2,6 +2,7 @@
 #define POTION_H
 
 #include <string>
+class PlayableCharacter;
 
 struct Potion {
     char sym;
@@ -12,6 +13,7 @@ struct Potion {
     char getSymbol();
     virtual void setVisible() = 0;
     virtual ~Potion() = 0;
+    virtual void applyEffect(PlayableCharacter *pc) const = 0;
 };
 
 #endif
