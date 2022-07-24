@@ -53,7 +53,7 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
     return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
 }
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -269,8 +269,14 @@ void Floor::generate() {
             int where = randnum() % numNeighbours;
 		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
-            content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
+            content[neighbours[where].y][neighbours[where].x]->setEnemy(dragon.get());
 			// delete the dragon position from the available generation spots
+            for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
+                if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
+                    tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
+                    break;
+                }
+            }
         }
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
         if (tempChambers[whichChamber].size() == 0)  {
@@ -278,9 +284,37 @@ void Floor::generate() {
         	numChambers--;
         }
 	}
+    if (bs) {
+        int whichC = randnum() % tempChambers.size();
+        int whichTile = randnum() % tempChambers[whichC].size();
+        x = tempChambers[whichC][whichTile].x;
+		y = tempChambers[whichC][whichTile].y;
+		vector<Posn> neighbours = Floor::neighbours(x, y, false);
+        while (neighbours.size() < 1) {
+            int whichC = randnum() % tempChambers.size();
+            int whichTile = randnum() % tempChambers[whichC].size();
+            x = tempChambers[whichC][whichTile].x;
+		    y = tempChambers[whichC][whichTile].y;
+		    vector<Posn> neighbours = Floor::neighbours(x, y, false);
+        }
+        // set this cell to barriersuit
+        content[y][x]->setBarrierSuit(true);
+        int where = randnum() % neighbours.size();
+        // set a random neighbour (where) to have a dragon
+        unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
+        enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
+        content[neighbours[where].y][neighbours[where].x]->setEnemy(dragon.get());
+        // delete the dragon position from the available generation spots
+        for (int w = 0; w < tempChambers[whichC].size(); w++) {
+            if (tempChambers[whichC][w].x == neighbours[where].x && tempChambers[whichC][w].y == neighbours[where].y) {
+                tempChambers[whichC].erase(tempChambers[whichC].begin() + w);
+                break;
+            }
+        }
+    }
     // generate the enemies
     while (enemies.size() < 20) {
-        int chamb = randnum() % chambers.size();
+        int chamb = randnum() % tempChambers.size();
         numTilesInChamber = tempChambers[chamb].size();
         int random6 = randnum() % numTilesInChamber;
         x = tempChambers[chamb][random6].x;
@@ -320,6 +354,7 @@ void Floor::generate() {
             numChambers--;
         }
     }
+    // give compass to one of the enemies
     int whichEnemy = randnum() % 20;
     enemies[whichEnemy].first->giveCompass();
 }

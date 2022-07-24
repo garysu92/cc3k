@@ -75,6 +75,10 @@ void Cell::setStair() {
     isStair = true;
 }
 
+void Cell::setBarrierSuit(bool b) {
+    bs = b;
+}
+
 bool Cell::hasEnemy() {
     return enemy != nullptr;
 }
@@ -89,6 +93,10 @@ bool Cell::hasPotion() {
 
 bool Cell::hasTreasure() {
     return treasure != nullptr;
+}
+
+bool Cell::hasBarrierSuit() {
+    return bs;
 }
 
 void Cell::setisEffWall(bool isEffWall) {

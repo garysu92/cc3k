@@ -16,6 +16,7 @@ class Cell {
     Enemy *enemy;
     std::unique_ptr<Potion> potion;
     std::unique_ptr<Treasure> treasure;
+    bool bs;
     char symbolRep;
     bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
     bool isStair; // Does this need be defined here?
@@ -47,12 +48,14 @@ class Cell {
         void setsymbolRep(char sym);
         void setisEffWall(bool isEffWall);
         void setStair(); 
+        void setBarrierSuit(bool has);
         
         // Checkers check what's atop of the Cell
         bool hasEnemy();
         bool hasPC();
         bool hasPotion();
         bool hasTreasure();
+        bool hasBarrierSuit();
 
         // Removing
         void clear();
