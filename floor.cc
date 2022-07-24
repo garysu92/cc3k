@@ -107,18 +107,18 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
             }
         }
     }
-    /*
+    
     if (exactLayout) {
-        for () {
+        /*for () {
             
-        }
+        }*/
         if (save) {
             
         }
     } else {
         generate();
     }
-    */
+    
 }
 
 static unsigned int randnum() {
