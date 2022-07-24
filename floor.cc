@@ -464,7 +464,7 @@ void Floor::updateEnemies() {
                 yy = enemies[i].second.y;
             }
             if (abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
-                enemies[i].first->dealDmg(p);
+                enemies[i].first->attackPlayer(p);
                 continue;
             }
         }
@@ -514,8 +514,8 @@ void Floor::attack(Direction d) {
     Posn pos = getCoords(d);
     int ax = pos.x;
     int ay = pos.y;
-    if (content[ax][ay]->hasEnemy()) {
-        p->dealDmg(content[ay][ax]->getEnemy());
+    if (content[ay][ax]->hasEnemy()) {
+        p->attackEnemy(content[ay][ax]->getEnemy());
     }
     
     // if (content[ax][ay]->getEnemy()->isDead()) {
@@ -534,25 +534,10 @@ void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
     int py = pos.y;
-    if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
-        && content[px][py]->hasPotion()) {
-        content[px][py]->getPotion()->setVisible();
-        p->usePotion(content[py][px]->getPotion().get());
-        /*
-        if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            unique_ptr<TempEffect> tmp = make_unique<BoostAttack>(p);
-            p = move(tmp.get());
-        } else if (content[px][py]->getPotion()->getType() == Potion::PH) {
-
-        } else if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::BD) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::WA) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::WD) {
-            
-        }*/
+    if (px >= 0 && py >= 0 && py <= content.size() && px <= content[0].size() \
+        && content[py][px]->hasPotion()) {
+        content[py][px]->getPotion()->setVisible();
+        p->usePotion(content[py][px]->getPotion().get()); 
     } else {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }

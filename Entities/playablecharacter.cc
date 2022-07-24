@@ -24,7 +24,7 @@ string PlayableCharacter::getRace() const {
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
 void PlayableCharacter::takeDmg(Enemy *enemy) {
     cout << "PC currently has " << this->getHP() << " hp. ";
-    int dmg = ceil((100.0 / (100.0 + defense)) * enemy->getAttack());
+    int dmg = ceil((100.0 / (100.0 + getDefense())) * enemy->getAttack());
     if (this->hasBarrierSuit) {
         dmg = ceil(dmg/2);
     }
@@ -39,9 +39,9 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
     }
 }
 
-void PlayableCharacter::dealDmg(Enemy *e) {
+/*void PlayableCharacter::dealDmg(Enemy *e) {
     e->takeDmg(this);
-}
+}*/
 
 int PlayableCharacter::getAttack() const {
     int atk = attack;
@@ -124,7 +124,6 @@ void PlayableCharacter::addTempEffect(unique_ptr<TempEffect> t) {
 }
 
 void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {
-    // ADD IMPLEMENTATION
     this->hp += hp;
     attack += atk;
     defense += def;
@@ -146,7 +145,16 @@ void PlayableCharacter::attackEnemy(Enemy *em) {
 }
 
 void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
-    
+    takeDmg(em);
 }    
+
+void PlayableCharacter::getDroppedGold(Enemy *em) {
+    int gold = em->goldDropped();
+    addGold(gold);
+}
+
+void PlayableCharacter::addGold(int gold) {
+    curGold += gold;
+}
 
 PlayableCharacter::~PlayableCharacter() {}

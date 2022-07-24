@@ -8,30 +8,20 @@
 #include <utility>
 #include <algorithm>
 #include "../Cells/cell.h"
+#include "../randnum.h"
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, drag{isDragon} {}
+Enemy::Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon):  goldDrop{n}, hp{hp},
+         attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, drag{isDragon},
+          hasDroppedGold{false}{}
 
-int Enemy::goldDropped() {
+/*int Enemy::goldDropped() {
     return this->goldDrop;
-}
+}*/
 
 bool Enemy::isHostile() { 
     return true; 
-}
-
-static unsigned int randnum() {
-    unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
-    default_random_engine rng{seed};
-
-    vector<int> v{};
-
-    for (int i = 0; i < 10000; i++) {
-        v.emplace_back(i);
-    }
-    std::shuffle(v.begin(), v.end(), rng);
-    return v[0];
 }
 
 // What about when playchar has barrier suit?
@@ -43,10 +33,10 @@ void Enemy::takeDmg(PlayableCharacter *pc) {
     cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl; 
 }
 
-void Enemy::dealDmg(PlayableCharacter *pc) {
-    int miss = randnum() % 2;
+/*void Enemy::dealDmg(PlayableCharacter *pc) {
+    int miss = randNum() % 2;
     if (!miss) pc->takeDmg(this);
-}
+}*/
 
 int Enemy::getAttack() const {
     return this->attack;
@@ -81,11 +71,43 @@ void Enemy::dropCompass() {
 }
 
 void Enemy::attackPlayer(PlayableCharacter *pc) {
+    int miss = randNum() % 2;
+    if (!miss) {
+        enemyAttack(pc);
+    }
+    // else do nothing
+}
 
+void Enemy::enemyAttack(PlayableCharacter *pc) {
+    pc->getAttackedByEnemy(this);
 }
 
 void Enemy::getAttackedByPlayer(PlayableCharacter *pc) {
+    // calculate damage 
+    takeDmg(pc);
+    if (isDead() && !hasDroppedGold) {
+        pc->getDroppedGold(this);
+        hasDroppedGold = true;
+    }
+}
 
+/*void Enemy::dropGold(PlayableCharacter *pc) {
+    if (isDead() && !hasDroppedGold) {
+        pc->getDroppedGold(this);
+    }
+}*/
+
+// returns the amount of gold that this enemy would drop in its
+// current state
+int Enemy::goldDropped() const {
+    if (isDead() && !hasDroppedGold) {
+        return goldDrop;
+    }
+    return 0;
+}
+
+bool Enemy::isDead() const{
+    return hp == 0;
 }
 
 Enemy::~Enemy() {}

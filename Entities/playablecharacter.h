@@ -47,17 +47,22 @@ class PlayableCharacter {
 
     // Misc
     virtual std::string getRace() const; // Maybe pure virtual??? Check implementation
-    void takeDmg(Enemy *e);
-    void dealDmg(Enemy *e);
+    
+    //void dealDmg(Enemy *e);
     void giveCompass();
     void giveBarrierSuit();
     void usePotion(Potion *p);
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);
-    void addPermanentEffects(int hp, int atk, int def);
+    virtual void addPermanentEffects(int hp, int atk, int def);
 
     void attackEnemy(Enemy *em);
     void getAttackedByEnemy(Enemy *em);
+    void getDroppedGold(Enemy *em);
+
+  private:
+    virtual void addGold(int gold);
+    void takeDmg(Enemy *e);
 };
 
 #endif
