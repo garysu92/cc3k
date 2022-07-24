@@ -2,12 +2,12 @@
 #include "playablecharacter.h"
 #include <cmath>
 #include <iostream>
-#include "../Cells/cell.h"
 #include <memory>
 #include <random>
 #include <chrono>
 #include <utility>
 #include <algorithm>
+#include "../Cells/cell.h"
 
 using namespace std;
 
