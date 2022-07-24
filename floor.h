@@ -20,6 +20,7 @@ class Floor {
     Posn stairLocation;
     Posn pcLocation;
     bool bs;
+    bool isOnStair;
     
   public:
     // Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p);
@@ -35,6 +36,7 @@ class Floor {
     Posn getCoords(Direction d);
     void usePotion(Direction d);
     void attack(Direction d);
+    bool PConStair();
 };
 
 #endif

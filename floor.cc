@@ -432,7 +432,7 @@ void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
-	if (!content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && !content[cy][cx]->hasTreasure() && \
+	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && !content[cy][cx]->hasTreasure() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
         || content[cy][cx]->getsymbolRep() == '#')) {
         content[pcLocation.y][pcLocation.x]->clear();
@@ -440,6 +440,13 @@ void Floor::movePC(Direction d) {
         pcLocation.y = cy;
         content[pcLocation.y][pcLocation.x]->setPC(p);
     }
+    if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
+        isOnStair = true;
+    }
+}
+
+bool Floor::PConStair() {
+    return isOnStair;
 }
 
 void Floor::updateEnemies() {
