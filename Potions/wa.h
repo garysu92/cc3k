@@ -9,6 +9,7 @@ class WA : public Potion {
   	WA(): Potion() {}
     Type getType() const override;
     void setVisible();
+    void applyEffect(PlayableCharacter *pc) const override;
 };
 
 bool WA::visible = false;

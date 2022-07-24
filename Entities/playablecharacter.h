@@ -20,7 +20,7 @@ class PlayableCharacter {
     bool hasBarrierSuit;
     Cell * cellConnection;
     bool isDead;
-    vector<TempEffect> tempEffects;
+    std::vector<TempEffect> tempEffects;
 
   public:
     // Constructor and Destructor

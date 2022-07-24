@@ -9,3 +9,7 @@ Potion::Type Potion::getType() const{
 void BD::setVisible() {
     visible = true;
 }
+
+void BD::applyEffect(PlayableCharacter *pc) const{
+    
+}

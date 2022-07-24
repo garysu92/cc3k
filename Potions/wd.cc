@@ -9,3 +9,7 @@ Potion::Type Potion::getType() const{
 void WD::setVisible() {
     visible = true;
 }
+
+void WD::applyEffect(PlayableCharacter *pc) const{
+    
+}

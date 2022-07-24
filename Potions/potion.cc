@@ -8,6 +8,4 @@ char Potion::getSymbol() {
     return sym;
 }
 
-void Potion::applyEffect(PlayableCharacter *pc) const{
 
-}

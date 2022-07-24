@@ -9,6 +9,7 @@ class RH : public Potion {
   	RH(): Potion() {}
     Type getType() const override;
     void setVisible();
+    void applyEffect(PlayableCharacter *pc) const override;
 };
 
 bool RH::visible = false;

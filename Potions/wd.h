@@ -9,6 +9,7 @@ class WD : public Potion {
   	WD(): Potion() {}
     Type getType() const override;
     void setVisible();
+    void applyEffect(PlayableCharacter *pc) const override;
 };
 
 

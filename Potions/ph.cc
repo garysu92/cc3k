@@ -9,3 +9,7 @@ Potion::Type Potion::getType() const{
 void PH::setVisible() {
     visible = true;
 }
+
+void PH::applyEffect(PlayableCharacter *pc) const{
+    
+}

@@ -9,6 +9,7 @@ class BD : public Potion {
   	BD(): Potion() {}
     Type getType() const override ;
     void setVisible();
+    void applyEffect(PlayableCharacter *pc) const override;
 };
 
 #endif

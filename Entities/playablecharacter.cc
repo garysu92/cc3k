@@ -1,10 +1,11 @@
 #include <cmath>
 #include <memory>
+#include <vector>
 #include <string>
 #include <iostream>
 #include "playablecharacter.h"
 #include "enemy.h"
-#include "../tempeffect.h"
+#include "../TempEffects/tempeffect.h"
 
 using namespace std;
 
