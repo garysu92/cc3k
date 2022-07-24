@@ -9,7 +9,7 @@ struct Potion {
   public:
     Potion();
     enum Type {RH, BA, BD, PH, WA, WD};
-    virtual Type getType() = 0;
+    virtual Type getType() const = 0;
     char getSymbol();
     virtual void setVisible() = 0;
     virtual ~Potion() = 0;

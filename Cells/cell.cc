@@ -1,8 +1,8 @@
 #include <utility>
 #include <memory>
 #include "cell.h"
-#include "../potion.h"
-#include "../treasure.h"
+#include "../Potions/potion.h"
+#include "../Treasure/treasure.h"
 
 #include "../Entities/enemy.h"
 

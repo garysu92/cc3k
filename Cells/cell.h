@@ -2,8 +2,8 @@
 #define CELL_H
 
 #include "../Entities/enemy.h"
-#include "../potion.h"
-#include "../treasure.h"
+#include "../Potions/potion.h"
+#include "../Treasure/treasure.h"
 
 class PlayableCharacter;
 

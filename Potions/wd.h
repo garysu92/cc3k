@@ -7,14 +7,9 @@ class WD : public Potion {
     static bool visible;
   public:
   	WD(): Potion() {}
-    Type getType() override {
-        return Potion::WD;
-    }
-    void setVisible() {
-      visible = true;
-    }
+    Type getType() const override;
+    void setVisible();
 };
 
-bool WD::visible = false;
 
 #endif

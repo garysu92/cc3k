@@ -1,6 +1,5 @@
 #include "potion.h"
-#include "Entities/playablecharacter.h"
-
+#include "../Entities/playablecharacter.h"
 Potion::Potion(): sym{'P'} {}
 
 Potion::~Potion() {}

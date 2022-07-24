@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <memory>
 #include "boostdefense.h"
-#include "Entities/playablecharacter.h"
+#include "../Entities/playablecharacter.h"
 
 using namespace std;
 

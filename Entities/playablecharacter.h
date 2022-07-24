@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include "../Cells/cell.h"
-#include "../tempeffect.h"
+#include "../TempEffects/tempeffect.h"
 
 class Enemy;
 

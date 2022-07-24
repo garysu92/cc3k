@@ -7,14 +7,8 @@ class BD : public Potion {
     static bool visible;
   public:
   	BD(): Potion() {}
-    Type getType() override {
-        return Potion::BD;
-    }
-    void setVisible() {
-      visible = true;
-    }
+    Type getType() const override ;
+    void setVisible();
 };
-
-bool BD::visible = false;
 
 #endif
