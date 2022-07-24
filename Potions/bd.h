@@ -3,12 +3,15 @@
 
 #include "potion.h"
 
+class PlayableCharacter;
+
 class BD : public Potion {
     static bool visible;
   public:
   	BD(): Potion() {}
     Type getType() const override ;
     void setVisible();
+  private:
     void applyEffect(PlayableCharacter *pc) const override;
 };
 

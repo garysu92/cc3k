@@ -20,7 +20,7 @@ class PlayableCharacter {
     bool hasBarrierSuit;
     Cell * cellConnection;
     bool isDead;
-    std::vector<TempEffect> tempEffects;
+    std::vector<std::unique_ptr<TempEffect>> tempEffects;
 
   public:
     // Constructor and Destructor
@@ -34,7 +34,6 @@ class PlayableCharacter {
     int getMaxHP() const;
     Cell * getCell() const;
     bool getState() const;
-
     // Setters
     void setCell(Cell * newCell);
     void setState(bool alive);
@@ -54,6 +53,8 @@ class PlayableCharacter {
 
     void usePotion(Potion *p);
     void removeTempEffects();
+    void addTempEffect(std::unique_ptr<TempEffect>);
+    void addPermanentEffects(int hp, int atk, int def);
 };
 
 #endif

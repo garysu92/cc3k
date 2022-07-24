@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <utility>
+#include <algorithm>
 #include "playablecharacter.h"
 #include "enemy.h"
 #include "../TempEffects/tempeffect.h"
@@ -42,11 +44,21 @@ void PlayableCharacter::dealDmg(Enemy *e) {
 }
 
 int PlayableCharacter::getAttack() const {
-    return this->attack;
+    int atk = attack;
+    for (int i = 0; i < tempEffects.size(); i++) {
+        atk += tempEffects.at(i)->getAttackEffect();
+    }
+
+    return max(0, atk);
 }
 
 int PlayableCharacter::getDefense() const {
-    return this->defense;
+    int def = defense;
+    for (int i = 0; i < tempEffects.size(); i++) {
+        def += tempEffects.at(i)->getDefenseEffect();
+    }
+
+    return max(0, def);
 }
 
 int PlayableCharacter::getHP() const {
@@ -100,11 +112,33 @@ void PlayableCharacter::giveBarrierSuit() {
 }
 
 void PlayableCharacter::usePotion(Potion *p) {
-    p->applyEffect(this);
+    p->potionGetUsed(this);
 }
 
 void PlayableCharacter::removeTempEffects() {
+    tempEffects.clear();
+}
 
+void PlayableCharacter::addTempEffect(unique_ptr<TempEffect> t) {
+    tempEffects.emplace_back(std::move(t));
+}
+
+void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {
+    // ADD IMPLEMENTATION
+    this->hp += hp;
+    attack += atk;
+    defense += def;
+    if (attack < 0) {
+        attack = 0;
+    }
+    if (defense < 0) {
+        defense = 0;
+    }
+    if (this->hp < 0) {
+        this->hp = 0;
+    } else if (this->hp > maxHP){
+        this->hp = maxHP;
+    }
 }
 
 PlayableCharacter::~PlayableCharacter() {}
