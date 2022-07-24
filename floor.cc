@@ -473,6 +473,7 @@ void Floor::updateEnemies() {
             int y = enemies[i].second.y;
             // find the neighbours of this enemy
             vector<Posn> nbrs = Floor::neighbours(x, y, false);
+            if (nbrs.size() == 0) continue;
             // pick a random neighbour
             int which = randnum() % nbrs.size();
             int x2 = nbrs[which].x;
