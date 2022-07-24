@@ -320,6 +320,8 @@ void Floor::generate() {
             numChambers--;
         }
     }
+    int whichEnemy = randnum() % 20;
+    enemies[whichEnemy].first->giveCompass();
 }
 
 vector<Posn> Floor::neighbours(int x, int y, bool isPlayer) {
