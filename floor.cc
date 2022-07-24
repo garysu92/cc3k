@@ -520,17 +520,17 @@ void Floor::attack(Direction d) {
         p->attackEnemy(content[ay][ax]->getEnemy());
     } else return;
     
-    if (content[ax][ay]->getEnemy()->isDead()) {
+    if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
-        /*
+        
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
                 enemies.erase(enemies.begin() + i);
             }
         }
         // detach from cell
-        */
-        //content[ay][ax]->clear();     
+        
+        content[ay][ax]->clear();     
            
     }
     
