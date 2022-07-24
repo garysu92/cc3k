@@ -3,7 +3,6 @@
 #include "cell.h"
 #include "../Potions/potion.h"
 #include "../Treasure/treasure.h"
-
 #include "../Entities/enemy.h"
 
 class PlayableCharacter;
