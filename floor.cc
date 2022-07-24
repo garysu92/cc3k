@@ -518,16 +518,16 @@ void Floor::attack(Direction d) {
         p->dealDmg(content[ay][ax]->getEnemy());
     }
     
-    if (content[ax][ay]->getEnemy()->isDead()) {
-        // remove from enemies vector
-        for (int i = 0; i < enemies.size(); i++) {
-            if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
-                enemies.erase(enemies.begin() + i);
-            }
-        }
-        // detach from cell
-        content[ay][ax]->clear();        
-    }
+    // if (content[ax][ay]->getEnemy()->isDead()) {
+    //     // remove from enemies vector
+    //     for (int i = 0; i < enemies.size(); i++) {
+    //         if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
+    //             enemies.erase(enemies.begin() + i);
+    //         }
+    //     }
+    //     // detach from cell
+    //     content[ay][ax]->clear();        
+    // }
 }
 
 void Floor::usePotion(Direction d) {
