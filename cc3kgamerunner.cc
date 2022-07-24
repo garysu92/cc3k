@@ -9,7 +9,7 @@
 #include "floor.h"
 #include "Races/human.h"
 #include "Races/orc.h"
-#include "mapDisplay.h"
+#include "Display/mapDisplay.h"
 
 using namespace std;
 
