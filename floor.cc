@@ -519,7 +519,7 @@ void Floor::attack(Direction d) {
     if (content[ay][ax]->hasEnemy()) {
         p->attackEnemy(content[ay][ax]->getEnemy());
     } else return;
-    
+    /*
     if (content[ax][ay]->getEnemy()->isDead()) {
         // remove from enemies vector
         for (int i = 0; i < enemies.size(); i++) {
@@ -530,6 +530,7 @@ void Floor::attack(Direction d) {
         // detach from cell
         content[ay][ax]->clear();        
     }
+    */
 }
 
 void Floor::usePotion(Direction d) {
