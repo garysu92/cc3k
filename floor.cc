@@ -48,8 +48,7 @@ class Enemy;
 
 using namespace std;
 
-Floor::Floor(const vector<vector<char>> &v, std::shared_ptr<PlayableCharacter> p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
-    // hi
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -160,7 +159,7 @@ void Floor::generate() {
     int random2 = randnum() % numTilesInChamber; // to numTilesInChamber - 1
     int x = tempChambers[random1][random2].x;
     int y = tempChambers[random1][random2].y;
-    content[y][x]->setPC(p.get());
+    content[y][x]->setPC(p);
     // erase that position from available
     pcLocation.x = x;
     pcLocation.y = y;
@@ -298,7 +297,7 @@ void Floor::generate() {
         int whichEnemy = randnum() % 18 + 1;
         if (whichEnemy <= 4) {
             unique_ptr<Enemy> e = make_unique<Werewolf>();
-            enemies.emplace_back(move(e), Posn{y, x});
+            enemies.emplace_back(move(e), Posn{x, y});
             content[y][x]->setEnemy(enemies.back().first.get());
         } else if (whichEnemy <= 7) {
             unique_ptr<Enemy> e = make_unique<Vampire>();
@@ -329,12 +328,12 @@ void Floor::generate() {
     }
 }
 
-vector<Posn> Floor::neighbours(int x, int y) {
+vector<Posn> Floor::neighbours(int x, int y, bool isPlayer) {
     vector<Posn> tmp;
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
             if (x + i >= 0 && x + i < 25 && y + k >= 0 && y + k < 79 && \
-            	!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
+            	!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() 
             	&& !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall()) {
                 tmp.emplace_back(x + i, y + k);
             }
@@ -401,7 +400,7 @@ void Floor::movePC(Direction d) {
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
-        content[pcLocation.y][pcLocation.x]->setPC(p.get());
+        content[pcLocation.y][pcLocation.x]->setPC(p);
     }
 }
 
