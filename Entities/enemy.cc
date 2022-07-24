@@ -69,11 +69,7 @@ bool Enemy::checkCompass() {
 }
 
 bool Enemy::isDragon() {
-    return isDragon;
-}
-
-bool Enemy::isMerchant() {
-    return isMerchant;
+    return drag;
 }
 
 void Enemy::giveCompass() {

@@ -15,7 +15,6 @@ class Enemy {
     bool hasCompass;
     char symbol;
     bool drag;
-    bool merch;
   public:
     // Constructor and Destructor
     Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon = false);
@@ -28,7 +27,6 @@ class Enemy {
     int getMaxHP() const;
     char getSymbol() const;
     bool isDragon();
-    bool isMerchant();
 
     // Checkers
     bool checkCompass();

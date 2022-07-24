@@ -2,12 +2,15 @@
 #define MERCHANT_H
 
 #include "../Entities/enemy.h"
-
+#include "../posn.h"
 class Merchant: public Enemy {
     static bool hostile;
   public:
     Merchant();
     bool isHostile();
+    Posn getProtect() {
+        return Posn{-1, -1};
+    }
 };
 
 #endif
