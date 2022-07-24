@@ -1,8 +1,9 @@
 #ifndef MAPDISPLAY_H
-#define MAPDISPLAY_h
+#define MAPDISPLAY_H
 
 #include <vector>
-#include "../Cells/cell.h"
+
+class Cell;
 
 class Mapdisplay {
     std::vector<std::vector<Cell *>> gameMap; // Noting that these are const ptrs within the same floor

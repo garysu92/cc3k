@@ -30,7 +30,7 @@
 #include "Cells/wall.h"
 #include "Cells/stair.h"
 #include "Cells/passage.h"
-#include "potion.h"
+#include "Potions/potion.h"
 
 
 

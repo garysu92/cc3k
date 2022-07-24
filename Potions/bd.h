@@ -7,14 +7,9 @@ class BD : public Potion {
     static bool visible;
   public:
   	BD(): Potion() {}
-    Type getType() override {
-        return Potion::BD;
-    }
-    void setVisible() {
-      visible = true;
-    }
+    Type getType() const override ;
+    void setVisible();
+    void applyEffect(PlayableCharacter *pc) const override;
 };
-
-bool BD::visible = false;
 
 #endif

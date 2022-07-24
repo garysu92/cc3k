@@ -1,13 +1,14 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include "../Entities/enemy.h"
-#include "../potion.h"
-#include "../treasure.h"
-
-class PlayableCharacter;
 
 #include <memory> 
+
+#include "../Entities/enemy.h"
+#include "../Potions/potion.h"
+#include "../Treasure/treasure.h"
+
+class PlayableCharacter;
 
 class Cell {
     int x, y; 

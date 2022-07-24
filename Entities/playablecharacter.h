@@ -2,8 +2,10 @@
 #define PLAYABLECHARACTER_H
 
 #include <memory>
+#include <vector>
 #include <string>
 #include "../Cells/cell.h"
+#include "../TempEffects/tempeffect.h"
 
 class Enemy;
 
@@ -18,6 +20,7 @@ class PlayableCharacter {
     bool hasBarrierSuit;
     Cell * cellConnection;
     bool isDead;
+    std::vector<TempEffect> tempEffects;
 
   public:
     // Constructor and Destructor
@@ -48,6 +51,9 @@ class PlayableCharacter {
     void dealDmg(Enemy *e);
     void giveCompass();
     void giveBarrierSuit();
+
+    void usePotion(Potion *p);
+    void removeTempEffects();
 };
 
 #endif

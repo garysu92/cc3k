@@ -27,7 +27,7 @@ class Dungeon {
         Dungeon(shared_ptr<PlayableCharacter> p, int numFloors = 5);
 
         // Getters
-        std::vector<std::vector<std::unique_ptr<Cell>>> get_floorCells(int n);
+        std::vector<std::vector<std::unique_ptr<Cell>>> & get_floorContents();
         int get_curFloor();
         int get_numFloors(); 
 

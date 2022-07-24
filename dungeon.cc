@@ -89,13 +89,8 @@ static bool endOfRoom(string s) {
     return true;
 }
 
-std::vector<std::vector<std::unique_ptr<Cell>>> Dungeon::get_floorCells(int n) {
-    if (n >= 1 && n <= this->get_numFloors()) {
-        return ((this->floors).at(n)).content;
-    }
-    else {
-        cerr << "Error, Attempting to Get The Cells of an Invalid Floor." << endl;
-    }
+std::vector<std::vector<std::unique_ptr<Cell>>> & get_floorContents() {
+    return (this->floors).getContents();
 }
 
 int Dungeon::get_curFloor() {
