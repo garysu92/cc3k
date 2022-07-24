@@ -364,13 +364,13 @@ vector<Posn> Floor::neighbours(int x, int y, bool isPlayer) {
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
         	if (isPlayer) {
-				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
+				if (!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
                 	&& !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
                 	&& (content[k + y][x + i]->getsymbolRep() == '.' || content[k + y][x + i]->getsymbolRep() == '+' || content[k + y][x + i]->getsymbolRep() == '#')) {
                 	tmp.emplace_back(x + i, y + k);
             	}
         	} else {
-				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
+				if (!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
              	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
                    && content[k + y][x + i]->getsymbolRep() == '.') {
                    tmp.emplace_back(x + i, y + k);
@@ -517,7 +517,7 @@ void Floor::attack(Direction d) {
     if (content[ax][ay]->hasEnemy()) {
         p->dealDmg(content[ay][ax]->getEnemy());
     }
-    
+
     if (content[ax][ay]->getEnemy()->isDead()) {
         // remove from enemies vector
         for (int i = 0; i < enemies.size(); i++) {
