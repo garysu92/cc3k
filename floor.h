@@ -32,7 +32,7 @@ class Floor {
     void print();
     void movePC(Direction d);
     Posn getCoords(Direction d);
-    std::vector<std::vector<std::unique_ptr<Cell>>> & getContents(); //
+    std::vector<std::vector<std::unique_ptr<Cell>>> &getContents();
     void usePotion(Direction d);
     void attack(Direction d);
 };

@@ -386,7 +386,7 @@ Posn Floor::getCoords(Direction d) {
     return Posn(ax, ay);
 }
 
-std::vector<std::vector<std::unique_ptr<Cell>>> & getContents() {
+std::vector<std::vector<std::unique_ptr<Cell>>> &Floor::getContents() {
     return this->content; //
 }
 
