@@ -465,8 +465,8 @@ void Floor::updateEnemies() {
             }
             if (abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
                 enemies[i].first->dealDmg(p);
+                continue;
             }
-            continue;
         }
         if (!enemies[i].first->isDragon()) {
             int x = enemies[i].second.x;
