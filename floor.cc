@@ -500,6 +500,7 @@ void Floor::updateEnemies() {
                     }
                 }
             }
+            if (ourNeighbours.size() == 0) continue;
             int which = randnum() % ourNeighbours.size();
             int x3 = ourNeighbours[which].x;
             int y3 = ourNeighbours[which].y;
