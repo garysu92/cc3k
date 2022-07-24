@@ -65,6 +65,10 @@ int PlayableCharacter::getHP() const {
     return this->hp;
 }
 
+float PlayableCharacter::getcurGold() const {
+    return this->curGold;
+}
+
  int PlayableCharacter::getMaxHP() const {
     return this->maxHP;
  }

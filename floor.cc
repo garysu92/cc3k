@@ -13,7 +13,7 @@
 #include "posn.h"
 #include "Cells/cell.h"
 #include "Potions/potion.h"
-#include "TempEffects/tempeffect.h"
+#include "tempeffect.h"
 #include "Potions/rh.h"
 #include "Potions/ba.h"
 #include "Potions/bd.h"
@@ -253,7 +253,7 @@ void Floor::generate() {
         	// ensure that at least one neighbour
         	while (neighbours.size() <= 0) {
             	whichChamber = randnum() % tempChambers.size();
-            	while (tempChambers[whichChamber].size() <= 1) {
+            	while (tempChambers[whichChamber].size() < 1) {
                 	whichChamber = randnum() % tempChambers.size();
                 }
                 whichTile = randnum() % tempChambers[whichChamber].size();
@@ -269,7 +269,7 @@ void Floor::generate() {
             int where = randnum() % numNeighbours;
 		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
-            content[neighbours[where].y][neighbours[where].x]->setEnemy(dragon.get());
+            content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
 			// delete the dragon position from the available generation spots
             for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
                 if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
@@ -303,7 +303,7 @@ void Floor::generate() {
         // set a random neighbour (where) to have a dragon
         unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
         enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
-        content[neighbours[where].y][neighbours[where].x]->setEnemy(dragon.get());
+        content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
         // delete the dragon position from the available generation spots
         for (int w = 0; w < tempChambers[whichC].size(); w++) {
             if (tempChambers[whichC][w].x == neighbours[where].x && tempChambers[whichC][w].y == neighbours[where].y) {
@@ -529,7 +529,7 @@ void Floor::attack(Direction d) {
     //     content[ay][ax]->clear();        
     // }
 }
-
+/*
 void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
@@ -542,3 +542,4 @@ void Floor::usePotion(Direction d) {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
 }
+*/

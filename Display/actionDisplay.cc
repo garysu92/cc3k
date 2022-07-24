@@ -1,27 +1,32 @@
+#include <iostream>
 #include <string>
-#include "Entities/playablecharacter.h"
+#include "actionDisplay.h"
+#include "../Entities/playablecharacter.h"
 
 using namespace std; 
 
 Actiondisplay::Actiondisplay(PlayableCharacter * newPC) : PC{newPC} {}
 
-void set_curAction(string newAction) {
+void Actiondisplay::set_curAction(string newAction) {
     this->curAction = newAction;
 }
 
-void set_PC(PlayableCharacter * newPC) {
+void Actiondisplay::set_PC(PlayableCharacter * newPC) {
     this->PC = newPC;
 }
 
-string get_curAction() {
+string Actiondisplay::get_curAction() {
     return this->curAction;
 }
 
-PlayableCharacter * get_PC() {
+PlayableCharacter * Actiondisplay::get_PC() {
     return this->PC;
 }
         
-void printActionDisplay() {
-    // curGold getter field
-    //cout << "Race: " << (this->PC).getRace() << " Gold: " << (this->PC).
+void Actiondisplay::printActionDisplay() {
+    cout << "Race: " << (this->PC)->getRace() << "Gold: " << (this->PC)->getcurGold() << endl;
+    cout << "HP: " << (this->PC)->getHP() << endl;
+    cout << "Atk: " << (this->PC)->getAttack() << endl;
+    cout << "Def: " << (this->PC)->getDefense() << endl;
+    cout << "Action: " << this->curAction << endl;
 }

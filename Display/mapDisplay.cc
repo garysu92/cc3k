@@ -14,24 +14,15 @@ Mapdisplay::Mapdisplay(vector<vector<unique_ptr<Cell>>> & newFloor) : gameMap{} 
             (gameMap.at(i)).emplace_back((newFloor.at(i).at(j)).get());
         }
     }
-
-    for (int i = 0; i < dimx_len; i++) {
-        for (int j = 0; j < dimy_len; j++) {
-            if ((gameMap.at(i).at(j))->hasPC()) {
-                cout << "PC at (" << i << ", " << j << ") " << endl;
-            }
-        }
-    }
-
 }
 
 void Mapdisplay::printMap() {
     for (int i = 0; i < gameMap.size(); i++) {
         for (int j = 0; j < gameMap[0].size(); j++) {
-            if (gameMap.at(i).at(j)->hasPC()) cout << "\033[1;31m" << '@' << "\033[0m";
-            else if (gameMap.at(i).at(j)->hasEnemy()) cout << gameMap.at(i).at(j)->getEnemy()->getSymbol();
-            else if (gameMap.at(i).at(j)->hasPotion()) cout << gameMap.at(i).at(j)->getPotion()->getSymbol();
-            else if (gameMap.at(i).at(j)->hasTreasure()) cout << gameMap.at(i).at(j)->getTreasure()->getSymbol();
+            if (gameMap.at(i).at(j)->hasPC()) cout << "\033[1;32m" << '@' << "\033[0m";
+            else if (gameMap.at(i).at(j)->hasEnemy()) cout << "\033[1;31m" << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< "\033[0m";
+            else if (gameMap.at(i).at(j)->hasPotion()) cout << "\033[1;36m" << gameMap.at(i).at(j)->getPotion()->getSymbol()<< "\033[0m";
+            else if (gameMap.at(i).at(j)->hasTreasure()) cout << "\033[1;33m" << gameMap.at(i).at(j)->getTreasure()->getSymbol() << "\033[0m";
             else cout << gameMap.at(i).at(j)->getsymbolRep();
         }
         cout << endl;
