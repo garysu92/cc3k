@@ -10,17 +10,19 @@
 class Cell;
 class PlayableCharacter;
 class Floor;
+class Mapdisplay;
 
 const std::string floorLayout = "cc3kfloor.txt";
 
 class Dungeon {
     std::string fileName;
-    std::vector<Floor> floors; 
+    std::vector<Floor> floors;
     int curFloor;
     int numFloors;
     int floorWithBarrierSuit;
     PlayableCharacter *p;
     bool saveState;
+    std::unique_ptr<Mapdisplay> curMap;
 
     public: 
         // Constructor(s)

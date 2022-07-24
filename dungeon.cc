@@ -4,14 +4,20 @@
 #include <iomanip>
 #include <iostream>
 #include <cstdlib>
+#include <memory>
 #include "dungeon.h"
 #include "floor.h"
 #include "randnum.h"
 #include "Cells/cell.h"
+#include "Display/mapDisplay.h"
 
 using namespace std;
 
 extern const string floorLayout;
+
+std::vector<std::vector<std::unique_ptr<Cell>>> & Dungeon::get_floorContents() {
+    return floors[curFloor].getContents();
+}
 
 // maybe make static function of class
 static bool endOfRoom(string s) {
@@ -51,6 +57,8 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
     for (int q = 0; q < numFloors; q++) {
         floors.emplace_back(v, p);
     }
+
+    this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
 }
 
 // Constructor which makes floors with a file specified layout
@@ -88,11 +96,8 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
             }
             
         } catch (...) {}
-        
-}
 
-std::vector<std::vector<std::unique_ptr<Cell>>> & Dungeon::get_floorContents() {
-    return floors[curFloor].getContents();
+    this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
 }
 
 int Dungeon::get_curFloor() {
@@ -114,14 +119,17 @@ void Dungeon::set_numFloors(int newF) {
 void Dungeon::playerMove(Direction d) {
     floors[curFloor].movePC(d);
     floors[curFloor].updateEnemies();
+    (this->curMap)->printMap();
 }
 
 void Dungeon::playerAttack(Direction d) {
     floors[curFloor].attack(d);
     floors[curFloor].updateEnemies();
+    (this->curMap)->printMap();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor].usePotion(d);
     floors[curFloor].updateEnemies();
+    (this->curMap)->printMap();
 }
