@@ -12,24 +12,24 @@
 
 #include "posn.h"
 #include "Cells/cell.h"
-#include "potion.h"
-#include "tempeffect.h"
-#include "rh.h"
-#include "ba.h"
-#include "bd.h"
-#include "ph.h"
-#include "wa.h"
-#include "wd.h"
+#include "Potions/potion.h"
+#include "Tempeffects/tempeffect.h"
+#include "Potions/rh.h"
+#include "Potions/ba.h"
+#include "Potions/bd.h"
+#include "Potions/ph.h"
+#include "Potions/wa.h"
+#include "Potions/wd.h"
 #include "Cells/wall.h"
 #include "Cells/passage.h"
 #include "Cells/tile.h"
 #include "Cells/door.h"
 #include "Cells/space.h"
 #include "Cells/stair.h"
-#include "smallgold.h"
-#include "dragongold.h"
-#include "normalgold.h"
-#include "merchantgold.h"
+#include "Treasure/smallgold.h"
+#include "Treasure/dragongold.h"
+#include "Treasure/normalgold.h"
+#include "Treasure/merchantgold.h"
 #include "Enemies/dragon.h"
 #include "Enemies/werewolf.h"
 #include "Enemies/vampire.h"
@@ -38,21 +38,18 @@
 #include "Enemies/phoenix.h"
 #include "Enemies/merchant.h"
 #include "direction.h"
-#include "woundattack.h"
-#include "wounddefense.h"
-#include "boostattack.h"
-#include "boostdefense.h"
+#include "TempEffects/woundattack.h"
+#include "TempEffects/wounddefense.h"
+#include "TempEffects/boostattack.h"
+#include "TempEffects/boostdefense.h"
 
 class PlayableCharacter;
 class Enemy;
 
 using namespace std;
 
-bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p2) {
-    return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
-}
-
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, std::shared_ptr<PlayableCharacter> p, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1} {
+    // hi
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -163,7 +160,7 @@ void Floor::generate() {
     int random2 = randnum() % numTilesInChamber; // to numTilesInChamber - 1
     int x = tempChambers[random1][random2].x;
     int y = tempChambers[random1][random2].y;
-    content[y][x]->setPC(p);
+    content[y][x]->setPC(p.get());
     // erase that position from available
     pcLocation.x = x;
     pcLocation.y = y;
@@ -240,7 +237,7 @@ void Floor::generate() {
 		int whichTile = randnum() % tempChambers[whichChamber].size();
 		x = tempChambers[whichChamber][whichTile].x;
 		y = tempChambers[whichChamber][whichTile].y;
-		vector<Posn> neighbours = Floor::neighbours(x, y, false);
+		vector<Posn> neighbours = Floor::neighbours(x, y);
 		int whichGold = randnum() % 8 + 1;
 		if (whichGold <= 5) {
             unique_ptr<Treasure> sg = make_unique<SmallGold>();
@@ -258,18 +255,29 @@ void Floor::generate() {
                 whichTile = randnum() % tempChambers[whichChamber].size();
                 x = tempChambers[whichChamber][whichTile].x;
                 y = tempChambers[whichChamber][whichTile].y;
-                neighbours = Floor::neighbours(x, y, false);
+                neighbours = Floor::neighbours(x, y);
         	}
         	unique_ptr<Treasure> dg = make_unique<DragonGold>();
         	content[y][x]->setTreasure(dg);
         	// spawn the dragon guarding the hoarde
-            neighbours = Floor::neighbours(x, y, false);
+            neighbours = Floor::neighbours(x, y);
             int numNeighbours = neighbours.size();
             int where = randnum() % numNeighbours;
 		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
             content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
 			// delete the dragon position from the available generation spots
+            //     MIGHT    //
+            //     NEED     //
+            //     TO       //
+            //     DOUBLE   //
+            //     CHECK    //
+            //     THIS     //
+            for (int i = 0; i < tempChambers[whichChamber].size(); i++) {
+                if (tempChambers[whichChamber][i].x == x && tempChambers[whichChamber][i].y == y) {
+                    tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + i);
+                }
+            }
         }
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
         if (tempChambers[whichChamber].size() == 0)  {
@@ -290,27 +298,27 @@ void Floor::generate() {
         int whichEnemy = randnum() % 18 + 1;
         if (whichEnemy <= 4) {
             unique_ptr<Enemy> e = make_unique<Werewolf>();
-            enemies.emplace_back(move(e), Posn{x, y});
+            enemies.emplace_back(move(e), Posn{y, x});
             content[y][x]->setEnemy(enemies.back().first.get());
         } else if (whichEnemy <= 7) {
             unique_ptr<Enemy> e = make_unique<Vampire>();
-			enemies.emplace_back(move(e), Posn{x, y});
+			enemies.emplace_back(move(e), Posn{y, x});
             content[y][x]->setEnemy(enemies.back().first.get());
         } else if (whichEnemy <= 12) {
             unique_ptr<Enemy> e = make_unique<Goblin>();
-			enemies.emplace_back(move(e), Posn{x, y});
+			enemies.emplace_back(move(e), Posn{y, x});
             content[y][x]->setEnemy(enemies.back().first.get());
         } else if (whichEnemy <= 14) {
             unique_ptr<Enemy> e = make_unique<Troll>();
-			enemies.emplace_back(move(e), Posn{x, y});
+			enemies.emplace_back(move(e), Posn{y, x});
             content[y][x]->setEnemy(enemies.back().first.get());
         } else if (whichEnemy <= 16) {
             unique_ptr<Enemy> e = make_unique<Phoenix>();
-			enemies.emplace_back(move(e), Posn{x, y});
+			enemies.emplace_back(move(e), Posn{y, x});
             content[y][x]->setEnemy(enemies.back().first.get());
         } else {
             unique_ptr<Enemy> e = make_unique<Merchant>();
-			enemies.emplace_back(move(e), Posn{x, y});
+			enemies.emplace_back(move(e), Posn{y, x});
             content[y][x]->setEnemy(enemies.back().first.get());
         }
         tempChambers[chamb].erase(tempChambers[chamb].begin() + random6);
@@ -321,23 +329,15 @@ void Floor::generate() {
     }
 }
 
-vector<Posn> Floor::neighbours(int x, int y, bool isPlayer) {
+vector<Posn> Floor::neighbours(int x, int y) {
     vector<Posn> tmp;
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
-        	if (isPlayer) {
-				if (!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
-                	&& !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
-                	&& (content[k + y][x + i]->getsymbolRep() == '.' || content[k + y][x + i]->getsymbolRep() == '+' || content[k + y][x + i]->getsymbolRep() == '#')) {
-                	tmp.emplace_back(x + i, y + k);
-            	}
-        	} else {
-				if (!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
-             	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
-                   && content[k + y][x + i]->getsymbolRep() == '.') {
-                   tmp.emplace_back(x + i, y + k);
+            if (x + i >= 0 && x + i < 25 && y + k >= 0 && y + k < 79 && \
+            	!content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
+            	&& !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall()) {
+                tmp.emplace_back(x + i, y + k);
             }
-        	}
         }
     }
     return tmp;
@@ -386,18 +386,68 @@ Posn Floor::getCoords(Direction d) {
     return Posn(ax, ay);
 }
 
+std::vector<std::vector<std::unique_ptr<Cell>>> &Floor::getContents() {
+    return this->content; //
+}
+
 void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
-	if (!content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && !content[cy][cx]->hasTreasure() && \
+    if (!content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && !content[cy][cx]->hasTreasure() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
         || content[cy][cx]->getsymbolRep() == '#')) {
+        cout << "movable: " << content[cy][cx]->getsymbolRep() << endl;
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
-        content[pcLocation.y][pcLocation.x]->setPC(p);
+        content[pcLocation.y][pcLocation.x]->setPC(p.get());
     }
+}
+
+void Floor::attack(Direction d) {
+    Posn pos = getCoords(d);
+    int ax = pos.x;
+    int ay = pos.y;
+    if (ax >= 0 && ay >= 0 && ax <= content.size() && ay <= content[0].size() \
+        && content[ay][ax]->hasEnemy()) {
+        p->dealDmg(content[ay][ax]->getEnemy());
+    }
+}
+
+void Floor::usePotion(Direction d) {
+    Posn pos = getCoords(d);
+    int px = pos.x;
+    int py = pos.y;
+    if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
+        && content[py][px]->hasPotion()) {
+        content[py][px]->getPotion()->setVisible();
+        if (content[py][px]->getPotion()->getType() == Potion::BA) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<BoostAttack>(tmp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::PH) {
+            int hp = p->getHP();
+            hp = max(0, hp - 10);
+            p->setHP(hp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::RH) {
+            int hp = p->getHP();
+            hp = min(p->getMaxHP(), hp + 10);
+            p->setHP(hp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::BD) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<BoostDefense>(tmp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::WA) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<WoundAttack>(tmp);
+        } else if (content[py][px]->getPotion()->getType() == Potion::WD) {
+            shared_ptr<PlayableCharacter> tmp = p;
+            p = make_shared<WoundDefense>(tmp);
+        }
+    }
+}
+
+bool cmpPair(pair<unique_ptr<Enemy>, Posn> p1, pair<unique_ptr<Enemy>, Posn> p2) {
+    return (p1.second.x < p2.second.x || (p1.second.x == p2.second.x && p1.second.y < p2.second.y));
 }
 
 void Floor::moveEnemies() {
@@ -407,23 +457,20 @@ void Floor::moveEnemies() {
             int x = enemies[i].second.x;
             int y = enemies[i].second.y;
             // find the neighbours of this enemy
-            vector<Posn> nbrs = Floor::neighbours(x, y, false);
+            vector<Posn> nbrs = neighbours(x, y);
             // pick a random neighbour
             int which = randnum() % nbrs.size();
             int x2 = nbrs[which].x;
             int y2 = nbrs[which].y;
             // move enemy to new cell
-            content[y2][x2]->setEnemy(content[y][x]->getEnemy());
-            content[y][x]->clear();
-            enemies[i].second.x = x2;
-            enemies[i].second.y = y2;
+            content[y2][x2]->setEnemy(move(content[y][x]->getEnemy()));
         } else {
             int x = enemies[i].first->getProtect().x;
             int y = enemies[i].first->getProtect().y;
-            vector<Posn> protectNeigbours = neighbours(x, y, false);
+            vector<Posn> protectNeigbours = neighbours(enemies[i].first->getProtect().x, enemies[i].first->getProtect().y);
             int x2 = enemies[i].second.x;
             int y2 = enemies[i].second.y;
-            vector<Posn> myNeighbours = neighbours(x2, y2, false);
+            vector<Posn> myNeighbours = neighbours(x, y);
             vector<Posn> ourNeighbours;
             int sz1 = protectNeigbours.size();
             int sz2 = myNeighbours.size();
@@ -437,44 +484,47 @@ void Floor::moveEnemies() {
             int which = randnum() % ourNeighbours.size();
             int x3 = ourNeighbours[which].x;
             int y3 = ourNeighbours[which].y;
-            content[y3][x3]->setEnemy(content[y2][x2]->getEnemy());
-            content[y2][x2]->clear();
-            enemies[i].second.x = x3;
-            enemies[i].second.y = y3;
-		}
-    }
-}
-
-void Floor::attack(Direction d) {
-    Posn pos = getCoords(d);
-    int ax = pos.x;
-    int ay = pos.y;
-    if (ax >= 0 && ay >= 0 && ax <= content.size() && ay <= content[0].size() && content[ax][ay]->hasEnemy()) {
-        p->dealDmg(content[ax][ay]->getEnemy());
-    }
-}
-/*
-void Floor::usePotion(Direction d) {
-    Posn pos = getCoords(d);
-    int px = pos.x;
-    int py = pos.y;
-    if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
-        && content[px][py]->hasPotion()) {
-        content[px][py]->getPotion()->setVisible();
-        if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            unique_ptr<TempEffect> tmp = make_unique<BoostAttack>(p);
-            p = move(tmp.get());
-        } else if (content[px][py]->getPotion()->getType() == Potion::PH) {
-
-        } else if (content[px][py]->getPotion()->getType() == Potion::BA) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::BD) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::WA) {
-            
-        } else if (content[px][py]->getPotion()->getType() == Potion::WD) {
-            
+            content[y3][x3]->setEnemy(move(content[y][x]->getEnemy()));
         }
     }
 }
-*/
+
+
+void Floor::moveEnemies() {
+    // sort(enemies.begin(), enemies.end(), cmpPair);
+    for (int i = 0; i < 20; i++) {
+        if (!enemies[i].first->isDragon()) {
+            int x = enemies[i].second.x;
+            int y = enemies[i].second.y;
+            // find the neighbours of this enemy
+            vector<Posn> nbrs = neighbours(x, y);
+            // pick a random neighbour
+            int which = randnum() % nbrs.size();
+            int x2 = nbrs[which].x;
+            int y2 = nbrs[which].y;
+            // move enemy to new cell
+            content[y2][x2]->setEnemy(move(content[y][x]->getEnemy()));
+        } else {
+            int x = enemies[i].first->getProtect().x;
+            int y = enemies[i].first->getProtect().y;
+            vector<Posn> protectNeigbours = neighbours(enemies[i].first->getProtect().x, enemies[i].first->getProtect().y);
+            int x2 = enemies[i].second.x;
+            int y2 = enemies[i].second.y;
+            vector<Posn> myNeighbours = neighbours(x, y);
+            vector<Posn> ourNeighbours;
+            int sz1 = protectNeigbours.size();
+            int sz2 = myNeighbours.size();
+            for (int i = 0; i < sz1; i++) {
+                for (int k = 0; k < sz2; k++) {
+                    if (protectNeigbours[i].x == myNeighbours[k].x && protectNeigbours[i].y == myNeighbours[k].y) {
+                        ourNeighbours.emplace_back(protectNeigbours[i]);
+                    }
+                }
+            }
+            int which = randnum() % ourNeighbours.size();
+            int x3 = ourNeighbours[which].x;
+            int y3 = ourNeighbours[which].y;
+            content[y3][x3]->setEnemy(move(content[y][x]->getEnemy()));
+        }
+    }
+}
