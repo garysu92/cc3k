@@ -12,8 +12,8 @@
 
 #include "posn.h"
 #include "Cells/cell.h"
-#include "potion.h"
-#include "tempeffect.h"
+#include "Potions/potion.h"
+#include "TempEffects/tempeffect.h"
 #include "Potions/rh.h"
 #include "Potions/ba.h"
 #include "Potions/bd.h"
@@ -38,10 +38,10 @@
 #include "Enemies/phoenix.h"
 #include "Enemies/merchant.h"
 #include "direction.h"
-#include "woundattack.h"
-#include "wounddefense.h"
-#include "boostattack.h"
-#include "boostdefense.h"
+#include "TempEffects/woundattack.h"
+#include "TempEffects/wounddefense.h"
+#include "TempEffects/boostattack.h"
+#include "TempEffects/boostdefense.h"
 
 class PlayableCharacter;
 class Enemy;
