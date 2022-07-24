@@ -11,6 +11,8 @@
 #include "dungeon.h"
 #include "floor.h"
 #include "Display/mapDisplay.h"
+#include "Display/actionDisplay.h"
+
 
 using namespace std;
 

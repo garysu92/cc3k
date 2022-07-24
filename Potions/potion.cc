@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Potion::Potion(): sym{'P'} {}
+Potion::Potion(): sym{'P'}, used{false} {}
 
 Potion::~Potion() {}
 
@@ -15,5 +15,8 @@ char Potion::getSymbol() {
 }
 
 void Potion::potionGetUsed(PlayableCharacter *pc) {
-    applyEffect(pc);
+    if (!used) {
+        applyEffect(pc);
+        used = true;
+    }
 }
