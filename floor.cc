@@ -386,6 +386,10 @@ Posn Floor::getCoords(Direction d) {
     return Posn(ax, ay);
 }
 
+std::vector<std::vector<std::unique_ptr<Cell>>> & getContents() {
+    return this->content;
+}
+
 void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;

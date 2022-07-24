@@ -21,6 +21,7 @@ class Floor {
     std::vector<std::pair<std::unique_ptr<Enemy>, Posn>> enemies;
     Posn stairLocation;
     Posn pcLocation;
+    
   public:
     Floor(const std::vector<std::vector<char>> &v, std::shared_ptr<PlayableCharacter> p, bool exactLayout = false, bool save = false);
     // generates based on PC, stairway, potions, gold, enemy
@@ -31,6 +32,7 @@ class Floor {
     void print();
     void movePC(Direction d);
     Posn getCoords(Direction d);
+    std::vector<std::vector<std::unique_ptr<Cell>>> & getContents();
     void usePotion(Direction d);
     void attack(Direction d);
 };
