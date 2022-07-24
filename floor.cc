@@ -14,7 +14,7 @@
 #include "Cells/cell.h"
 #include "Potions/potion.h"
 #include "TempEffects/tempeffect.h"
-#include "Potions/rh.h"g
+#include "Potions/rh.h"
 #include "Potions/ba.h"
 #include "Potions/bd.h"
 #include "Potions/ph.h"
@@ -454,6 +454,7 @@ void Floor::updateEnemies() {
     for (int i = 0; i < enemies.size(); i++) {
         // check if enemy is hostile and is close to PC
         // if so, then enemy does not attack
+        enemies[i].first->dealDmg(p);
         if (enemies[i].first->isHostile()) {
             int xx, yy;
             if (enemies[i].first->isDragon()) {
