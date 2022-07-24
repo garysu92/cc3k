@@ -453,7 +453,7 @@ void Floor::attack(Direction d) {
         p->dealDmg(content[ax][ay]->getEnemy());
     }
 }
-/*
+
 void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
@@ -461,6 +461,8 @@ void Floor::usePotion(Direction d) {
     if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
         && content[px][py]->hasPotion()) {
         content[px][py]->getPotion()->setVisible();
+        p->usePotion(content[py][px]->getPotion().get());
+        /*
         if (content[px][py]->getPotion()->getType() == Potion::BA) {
             unique_ptr<TempEffect> tmp = make_unique<BoostAttack>(p);
             p = move(tmp.get());
@@ -474,7 +476,8 @@ void Floor::usePotion(Direction d) {
             
         } else if (content[px][py]->getPotion()->getType() == Potion::WD) {
             
-        }
+        }*/
+    } else {
+        // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
 }
-*/
