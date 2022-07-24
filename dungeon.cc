@@ -31,7 +31,7 @@ static bool endOfRoom(string s) {
 }
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{p} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{} {
     floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
@@ -59,11 +59,12 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         floors.emplace_back(v, p);
     }
     this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
+    this->curActionBar = make_unique<Actiondisplay>(this->p);
 }
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{1}, p{p}, curMap{}, curActionBar{p} {
+    fileName{fileName}, curFloor{1}, numFloors{1}, p{p}, curMap{}, curActionBar{} {
         try{
             fstream file{fileName};
             
@@ -98,6 +99,7 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
         } catch (...) {}
 
     this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
+    this->curActionBar = make_unique<Actiondisplay>(this->p);
 }
 
 int Dungeon::get_curFloor() {
@@ -126,16 +128,19 @@ void Dungeon::playerMove(Direction d) {
     cerr << "Printing map Display" << endl;
     (this->curMap)->printMap();
     cerr << "Map display printed sucessfully" << endl;
+    (this->curActionBar)->printActionDisplay();
 }
 
 void Dungeon::playerAttack(Direction d) {
     floors[curFloor].attack(d);
     floors[curFloor].updateEnemies();
     (this->curMap)->printMap();
+    (this->curActionBar)->printActionDisplay();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor].usePotion(d);
     floors[curFloor].updateEnemies();
     (this->curMap)->printMap();
+    (this->curActionBar)->printActionDisplay();
 }
