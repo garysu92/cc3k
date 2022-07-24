@@ -57,9 +57,9 @@ void CC3KGameRunner::play() {
     bool gameStarted = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
-    bool newFloorDisplay;
-    int curFloor;
-    unique_ptr<Mapdisplay> curMap;
+    // bool newFloorDisplay;
+    // int curFloor;
+    // unique_ptr<Mapdisplay> curMap;
 
     try {
         // running game
@@ -73,14 +73,13 @@ void CC3KGameRunner::play() {
                 // times
 
                 // choose race
-                // cout << "Select a race, type \"Human\" is the default" << endl;
-                // cout << "[Type] - [Enter to Select]:" << endl;
-                // cout << "Human - h" << endl;
-                // cout << "Elf - e" << endl;
-                // cout << "Dwarf - d" << endl;
-                // cout << "Orc - o" << endl;
-
-                // cout << "Enter your race: ";
+                cout << "Select a race, \"Human\" is the default race" << endl;
+                cout << "[Type] - [Enter to Select]:" << endl;
+                cout << "Human - h" << endl;
+                cout << "Elf - e" << endl;
+                cout << "Dwarf - d" << endl;
+                cout << "Orc - o" << endl;
+                cout << "Enter your race: ";
 
                 if (cmd == "h") {
                     p = make_unique<Human>();
@@ -95,7 +94,6 @@ void CC3KGameRunner::play() {
                     p = make_unique<Orc>();
                     continue;
                 }
-                // else do nothing
             }
 
             // play game commands
@@ -138,28 +136,17 @@ void CC3KGameRunner::play() {
                 } else {
                     game = make_unique<Dungeon>(p.get());
                 }
-                newFloorDisplay = true;
-                curFloor = 1;
-                cout << "test " << endl;
-            }
-
-            // Ensure going up a staircase sets newFloorDisplay = true, increment curFloor when going up stairs?
-            if (newFloorDisplay) {
-                newFloorDisplay = false; 
-                curMap = make_unique<Mapdisplay>(game->get_floorContents());
             }
 
             Direction temp = getDirection(cmd);
             if (directionCommandType == 'a') {
-                //game.playerAttack(temp);
+                game->playerAttack(temp);
             } else if (directionCommandType == 'u') {
-                //game.playerUsePotion(temp);
+                game->playerUsePotion(temp);
             } else {
                 // move
                 game->playerMove(temp);
             }
-
-            curMap->printMap();
         }
     } catch (ios::failure &) {
     }
