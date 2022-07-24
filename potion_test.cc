@@ -17,9 +17,12 @@
 
 using namespace std;
 int main(){
-    unique_ptr<PlayableCharacter> pc = make_unique<Human>();
-    unique_ptr<Potion> p = make_unique<BA>();
+    unique_ptr<PlayableCharacter> pc = make_unique<Elf>();
+    unique_ptr<Potion> p = make_unique<WD>();
+    //unique_ptr<Potion> p2 = make_unique<BD>();
     pc->usePotion(p.get());
+    //pc->usePotion(p2.get());
+    pc->removeTempEffects();
     cout << pc->getAttack() << endl;
     cout << pc->getDefense() << endl;
     cout << pc->getHP() << endl;

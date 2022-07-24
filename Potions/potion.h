@@ -8,6 +8,7 @@ class PlayableCharacter;
 
 class Potion {
     char sym;
+    bool used;
   public:
     Potion();
     enum Type {RH, BA, BD, PH, WA, WD};
