@@ -250,6 +250,7 @@ void Floor::generate() {
             unique_ptr<Treasure> ng = make_unique<NormalGold>();
             content[y][x]->setTreasure(ng);
         } else {
+            cout << "DRAGON HOARD SPAWNED" << endl;
         	// ensure that at least one neighbour
         	while (neighbours.size() <= 0) {
             	whichChamber = randnum() % tempChambers.size();
