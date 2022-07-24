@@ -531,7 +531,7 @@ void Floor::attack(Direction d) {
         content[ay][ax]->clear();        
     }
 }
-/*
+
 void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
@@ -544,4 +544,4 @@ void Floor::usePotion(Direction d) {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
 }
-*/
+

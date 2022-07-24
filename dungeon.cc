@@ -139,7 +139,7 @@ void Dungeon::playerAttack(Direction d) {
 }
 
 void Dungeon::playerUsePotion(Direction d) {
-    //floors[curFloor].usePotion(d);
+    floors[curFloor].usePotion(d);
     floors[curFloor].updateEnemies();
     (this->curMap)->printMap();
     (this->curActionBar)->printActionDisplay();
