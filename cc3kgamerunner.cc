@@ -6,9 +6,10 @@
 #include "direction.h"
 #include "Races/dwarf.h"
 #include "Races/elf.h"
-#include "floor.h"
 #include "Races/human.h"
 #include "Races/orc.h"
+#include "dungeon.h"
+#include "floor.h"
 #include "Display/mapDisplay.h"
 
 using namespace std;
@@ -139,6 +140,7 @@ void CC3KGameRunner::play() {
                 }
                 newFloorDisplay = true;
                 curFloor = 1;
+                cout << "test " << endl;
             }
 
             // Ensure going up a staircase sets newFloorDisplay = true, increment curFloor when going up stairs?
@@ -154,8 +156,10 @@ void CC3KGameRunner::play() {
                 //game.playerUsePotion(temp);
             } else {
                 // move
-                //game.playerMove(temp);
+                game->playerMove(temp);
             }
+
+            curMap->printMap();
         }
     } catch (ios::failure &) {
     }
