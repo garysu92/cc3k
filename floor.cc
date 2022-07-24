@@ -422,6 +422,8 @@ void Floor::usePotion(Direction d) {
     if (px >= 0 && py >= 0 && px <= content.size() && py <= content[0].size() \
         && content[py][px]->hasPotion()) {
         content[py][px]->getPotion()->setVisible();
+        p->usePotion(content[py][px]->getPotion().get());
+        /*
         if (content[py][px]->getPotion()->getType() == Potion::BA) {
             shared_ptr<PlayableCharacter> tmp = p;
             p = make_shared<BoostAttack>(tmp);
@@ -442,7 +444,7 @@ void Floor::usePotion(Direction d) {
         } else if (content[py][px]->getPotion()->getType() == Potion::WD) {
             shared_ptr<PlayableCharacter> tmp = p;
             p = make_shared<WoundDefense>(tmp);
-        }
+        }*/
     }
 }
 
