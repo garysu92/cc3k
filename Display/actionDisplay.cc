@@ -1,6 +1,8 @@
 #include <string>
 #include "Entities/playablecharacter.h"
 
+using namespace std; 
+
 Actiondisplay::Actiondisplay(PlayableCharacter * newPC) : PC{newPC} {}
 
 void set_curAction(string newAction) {
@@ -20,5 +22,6 @@ PlayableCharacter * get_PC() {
 }
         
 void printActionDisplay() {
-    
+    // curGold getter field
+    //cout << "Race: " << (this->PC).getRace() << " Gold: " << (this->PC).
 }

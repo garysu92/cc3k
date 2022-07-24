@@ -10,7 +10,7 @@ class Actiondisplay {
     
     public:
         // Constructor
-        Actiondisplay();
+        Actiondisplay(PlayableCharacter * newPC);
 
         // Setters
         void set_curAction(string newAction);
