@@ -4,10 +4,14 @@
 #include <iostream>
 #include "playablecharacter.h"
 #include "enemy.h"
+#include "../tempeffect.h"
 
 using namespace std;
 
-PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, hasBarrierSuit{false} {}
+PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, 
+                                                                attack{atk}, defense{def}, 
+                                                                hasCompass{false}, hasBarrierSuit{false},
+                                                                tempEffects{} {}
 
 string PlayableCharacter::getRace() const { 
     return ""; 
@@ -92,6 +96,14 @@ void PlayableCharacter::giveCompass() {
 
 void PlayableCharacter::giveBarrierSuit() {
     this->hasBarrierSuit = true;
+}
+
+void PlayableCharacter::usePotion(Potion *p) {
+    p->applyEffect(this);
+}
+
+void PlayableCharacter::removeTempEffects() {
+
 }
 
 PlayableCharacter::~PlayableCharacter() {}
