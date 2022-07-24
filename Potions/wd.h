@@ -2,6 +2,9 @@
 #define WD_H
 
 #include "potion.h"
+#include "../TempEffects/tempeffect.h"
+
+class PlayableCharacter;
 
 class WD : public Potion {
     static bool visible;
@@ -9,6 +12,7 @@ class WD : public Potion {
   	WD(): Potion() {}
     Type getType() const override;
     void setVisible();
+  private:
     void applyEffect(PlayableCharacter *pc) const override;
 };
 

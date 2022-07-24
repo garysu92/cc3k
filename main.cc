@@ -57,10 +57,10 @@ int main(int argc, char *argv[]) {
         }
         cout << endl;
     }
-    shared_ptr<PlayableCharacter> p = make_shared<Human>();
-    Floor f{v, p};
-    f.generate();
-    f.print();
+    //shared_ptr<PlayableCharacter> p = make_shared<Human>();
+    //Floor f{v, p};
+    //f.generate();
+    //f.print();
     /*
     unique_ptr<CC3KGameRunner> game;
     if (argc == 3) {

@@ -2,9 +2,11 @@
 #define POTION_H
 
 #include <string>
+#include <memory>
+
 class PlayableCharacter;
 
-struct Potion {
+class Potion {
     char sym;
   public:
     Potion();
@@ -13,6 +15,8 @@ struct Potion {
     char getSymbol();
     virtual void setVisible() = 0;
     virtual ~Potion() = 0;
+    void potionGetUsed(PlayableCharacter *pc);
+  private:
     virtual void applyEffect(PlayableCharacter *pc) const = 0;
 };
 
