@@ -50,17 +50,16 @@ CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()
 
 using namespace std;
 void CC3KGameRunner::play() {
-    // reinitializing fields
+    // Reinitializing fields
     game = unique_ptr<Dungeon>{};
     p = make_unique<Human>();
-    // d = unique_ptr<TextDisplay>{};// maybe not necessary
-
     bool gameStarted = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
     bool newFloorDisplay;
     int curFloor;
     unique_ptr<Mapdisplay> curMap;
+
     try {
         // running game
         while (true) {
@@ -149,9 +148,9 @@ void CC3KGameRunner::play() {
             }
 
             Direction temp = getDirection(cmd);
-            if (directionCommandType = 'a') {
+            if (directionCommandType == 'a') {
                 //game.playerAttack(temp);
-            } else if (directionCommandType = 'u') {
+            } else if (directionCommandType == 'u') {
                 //game.playerUsePotion(temp);
             } else {
                 // move
