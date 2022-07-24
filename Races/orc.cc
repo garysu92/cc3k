@@ -10,7 +10,7 @@ string Orc::getRace() const {
 }
 
 void Orc::addGold(int gold) {
-    curGold += gold / 2;
+    curGold += gold / 2.0;
 }
 
 Orc::~Orc() {}
