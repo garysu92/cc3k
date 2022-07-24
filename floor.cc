@@ -442,3 +442,10 @@ void Floor::usePotion(Direction d) {
     }
 }
 
+bool cmpPair(pair<unique_ptr<Enemy>, Posn> p1, pair<unique_ptr<Enemy>, Posn> p2) {
+    return (p1.second.x < p2.second.x || (p1.second.x == p2.second.x && p1.second.y < p2.second.y));
+}
+
+void Floor::moveEnemies() {
+    sort(enemies.begin(), enemies.end(), cmpPair);
+}
