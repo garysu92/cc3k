@@ -507,8 +507,18 @@ void Floor::attack(Direction d) {
     Posn pos = getCoords(d);
     int ax = pos.x;
     int ay = pos.y;
-    if (ax >= 0 && ay >= 0 && ax <= content.size() && ay <= content[0].size() && content[ax][ay]->hasEnemy()) {
-        p->dealDmg(content[ax][ay]->getEnemy());
+    if (content[ax][ay]->hasEnemy()) {
+        p->dealDmg(content[ay][ax]->getEnemy());
+    }
+    if (content[ax][ay]->getEnemy()->isDead()) {
+        // remove from enemies vector
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
+                enemies.erase(enemies.begin() + i);
+            }
+        }
+        // detach from cell
+        content[ay][ax]->clear();        
     }
 }
 
