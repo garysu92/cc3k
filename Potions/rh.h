@@ -16,6 +16,5 @@ class RH : public Potion {
     void applyEffect(PlayableCharacter *pc) const override;
 };
 
-bool RH::visible = false;
 
 #endif

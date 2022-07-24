@@ -13,18 +13,18 @@ class Cell;
 std::string floorLayout = "cc3kfloor.txt";
 
 class Dungeon {
-    string fileName;
+    std::string fileName;
     std::vector<Floor> floors; 
     int curFloor;
     int numFloors;
     int floorWithBarrierSuit;
-    shared_ptr<PlayableCharacter> p;
+    PlayableCharacter *p;
     bool saveState;
 
     public: 
         // Constructor(s)
-        Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save = false);
-        Dungeon(shared_ptr<PlayableCharacter> p, int numFloors = 5);
+        Dungeon(std::string fileName, PlayableCharacter *p, bool save = false);
+        Dungeon(PlayableCharacter *p, int numFloors = 5);
 
         // Getters
         std::vector<std::vector<std::unique_ptr<Cell>>> & get_floorContents();

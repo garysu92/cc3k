@@ -43,10 +43,10 @@ static Direction getDirection(string s) {
     }
 }
 
-CC3KGameRunner::CC3KGameRunner() : game{}, p{make_shared<Human>()}, d{}, filename{} {}
+CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, filename{} {}
 
-CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_shared<Human>()},
-                                                     d{}, filename{make_unique<string>(filename)} {}
+CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()},
+                                                     filename{make_unique<string>(filename)} {}
 
 using namespace std;
 void CC3KGameRunner::play() {
@@ -60,7 +60,7 @@ void CC3KGameRunner::play() {
     string cmd;
     bool newFloorDisplay;
     int curFloor;
-    Mapdisplay * curMap;
+    unique_ptr<Mapdisplay> curMap;
     try {
         // running game
         while (true) {
@@ -83,16 +83,16 @@ void CC3KGameRunner::play() {
                 // cout << "Enter your race: ";
 
                 if (cmd == "h") {
-                    p = make_shared<Human>();
+                    p = make_unique<Human>();
                     continue;
                 } else if (cmd == "e") {
-                    p = make_shared<Elf>();
+                    p = make_unique<Elf>();
                     continue;
                 } else if (cmd == "d") {
-                    p = make_shared<Dwarf>();
+                    p = make_unique<Dwarf>();
                     continue;
                 } else if (cmd == "o") {
-                    p = make_shared<Orc>();
+                    p = make_unique<Orc>();
                     continue;
                 }
                 // else do nothing
@@ -145,7 +145,7 @@ void CC3KGameRunner::play() {
             // Ensure going up a staircase sets newFloorDisplay = true, increment curFloor when going up stairs?
             if (newFloorDisplay) {
                 newFloorDisplay = false; 
-                curDisplay{game->getFloor(curFloor)};
+                curMap = make_unique<Mapdisplay>(game->get_floorContents());
             }
 
             Direction temp = getDirection(cmd);
