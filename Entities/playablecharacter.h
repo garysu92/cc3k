@@ -34,6 +34,7 @@ class PlayableCharacter {
     int getMaxHP() const;
     Cell * getCell() const;
     bool getState() const;
+
     // Setters
     void setCell(Cell * newCell);
     void setState(bool alive);
@@ -50,7 +51,6 @@ class PlayableCharacter {
     void dealDmg(Enemy *e);
     void giveCompass();
     void giveBarrierSuit();
-
     void usePotion(Potion *p);
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);
