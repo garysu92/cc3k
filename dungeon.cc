@@ -11,6 +11,8 @@
 
 using namespace std;
 
+extern const string floorLayout;
+
 // maybe make static function of class
 static bool endOfRoom(string s) {
     for (int i = 1; i < s.size() - 1; i++) {
@@ -22,7 +24,7 @@ static bool endOfRoom(string s) {
 }
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{""}, curFloor{1}, numFloors{numFloors}, p{p} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p} {
     floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
@@ -110,13 +112,16 @@ void Dungeon::set_numFloors(int newF) {
 }
 
 void Dungeon::playerMove(Direction d) {
-    floors[curFloor].movePC();
+    floors[curFloor].movePC(d);
+    floors[curFloor].updateEnemies();
 }
 
 void Dungeon::playerAttack(Direction d) {
     floors[curFloor].attack(d);
+    floors[curFloor].updateEnemies();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor].usePotion(d);
+    floors[curFloor].updateEnemies();
 }
