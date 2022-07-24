@@ -11,6 +11,8 @@
 class Cell;
 class PlayableCharacter;
 class Floor;
+class Mapdisplay;
+class Actiondisplay;
 
 const std::string floorLayout = "cc3kfloor.txt";
 
@@ -23,6 +25,7 @@ class Dungeon {
     PlayableCharacter *p;
     bool saveState;
     std::unique_ptr<Mapdisplay> curMap;
+    std::unique_ptr<Actiondisplay> curActionBar;
 
     public: 
         // Constructor(s)
