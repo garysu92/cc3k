@@ -10,6 +10,7 @@
 #include "randnum.h"
 #include "Cells/cell.h"
 #include "Display/mapDisplay.h"
+#include "Display/actionDisplay.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ static bool endOfRoom(string s) {
 }
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{p} {
     floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
@@ -62,7 +63,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{1}, p{p}, curMap{} {
+    fileName{fileName}, curFloor{1}, numFloors{1}, p{p}, curMap{}, curActionBar{p} {
         try{
             fstream file{fileName};
             

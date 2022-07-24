@@ -14,15 +14,6 @@ Mapdisplay::Mapdisplay(vector<vector<unique_ptr<Cell>>> & newFloor) : gameMap{} 
             (gameMap.at(i)).emplace_back((newFloor.at(i).at(j)).get());
         }
     }
-
-    for (int i = 0; i < dimx_len; i++) {
-        for (int j = 0; j < dimy_len; j++) {
-            if ((gameMap.at(i).at(j))->hasPC()) {
-                cout << "PC at (" << i << ", " << j << ") " << endl;
-            }
-        }
-    }
-
 }
 
 void Mapdisplay::printMap() {

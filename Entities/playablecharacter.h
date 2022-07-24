@@ -31,6 +31,7 @@ class PlayableCharacter {
     virtual int getAttack() const;
     virtual int getDefense() const;
     virtual int getHP() const;
+    float getcurGold() const;
     int getMaxHP() const;
     Cell * getCell() const;
     bool getState() const;
@@ -39,7 +40,6 @@ class PlayableCharacter {
     void setCell(Cell * newCell);
     void setState(bool alive);
     virtual void setHP(int k);
-
 
     // Checkers
     bool checkCompass();
@@ -55,7 +55,6 @@ class PlayableCharacter {
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);
     void addPermanentEffects(int hp, int atk, int def);
-
     void attackEnemy(Enemy *em);
     void getAttackedByEnemy(Enemy *em);
 };
