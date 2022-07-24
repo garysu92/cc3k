@@ -2,11 +2,12 @@
 #include <fstream>
 #include <vector>
 #include <iomanip>
+#include <iostream>
 #include <cstdlib>
 #include "dungeon.h"
 #include "floor.h"
 #include "randnum.h"
-#include "cell.h"
+#include "Cells/cell.h"
 
 using namespace std;
 
