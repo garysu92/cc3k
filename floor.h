@@ -19,6 +19,7 @@ class Floor {
     std::vector<std::pair<std::unique_ptr<Enemy>, Posn>> enemies;
     Posn stairLocation;
     Posn pcLocation;
+    
   public:
     // Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p);
     Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p, bool exactLayout = false, bool save = false);
@@ -29,6 +30,7 @@ class Floor {
     std::vector<Posn> neighbours(int x, int y, bool isPlayer);
     void print();
     void movePC(Direction d);
+    std::vector<std::vector<std::unique_ptr<Cell>>> & getContents();
     Posn getCoords(Direction d);
     void usePotion(Direction d);
     void attack(Direction d);
