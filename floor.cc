@@ -530,7 +530,7 @@ void Floor::attack(Direction d) {
         }
         // detach from cell
         */
-        content[ay][ax]->clear();     
+        //content[ay][ax]->clear();     
            
     }
     
