@@ -8,6 +8,8 @@ class Orc : public PlayableCharacter {
     Orc();
     std::string getRace() const override;
     ~Orc();
+  private:
+    void addGold(int gold) override;
 };
 
 #endif

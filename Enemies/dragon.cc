@@ -12,3 +12,7 @@ bool Dragon::isHostile() {
 Posn Dragon::getProtect() {
     return protectLocation;
 }
+
+/*void Dragon::enemyAttack(PlayableCharacter *pc) {
+    if 
+}*/
