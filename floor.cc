@@ -26,10 +26,11 @@
 #include "Cells/door.h"
 #include "Cells/space.h"
 #include "Cells/stair.h"
-#include "smallgold.h"
-#include "dragongold.h"
-#include "normalgold.h"
-#include "merchantgold.h"
+#include "Treasure/smallgold.h"
+#include "Treasure/dragongold.h"
+#include "Treasure/normalgold.h"
+#include "Treasure/merchantgold.h"
+#include "Treasure/treasure.h"
 #include "Enemies/dragon.h"
 #include "Enemies/werewolf.h"
 #include "Enemies/vampire.h"
@@ -386,7 +387,7 @@ Posn Floor::getCoords(Direction d) {
     return Posn(ax, ay);
 }
 
-std::vector<std::vector<std::unique_ptr<Cell>>> & Floor::getContents() {
+std::vector<std::vector<std::unique_ptr<Cell>>> &Floor::getContents() {
     return this->content;
 }
 
