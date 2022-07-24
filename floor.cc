@@ -454,6 +454,7 @@ void Floor::updateEnemies() {
     for (int i = 0; i < enemies.size(); i++) {
         // check if enemy is hostile and is close to PC
         // if so, then enemy does not attack
+        enemies[i].first->dealDmg(p);
         if (enemies[i].first->isHostile()) {
             int xx, yy;
             if (enemies[i].first->isDragon()) {
