@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n, char symbol):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol} {}
+Enemy::Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon):  goldDrop{n}, hp{hp}, attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, drag{isDragon} {}
 
 int Enemy::goldDropped() {
     return this->goldDrop;
@@ -66,6 +66,14 @@ char Enemy::getSymbol() const {
 
 bool Enemy::checkCompass() {
     return this->hasCompass;
+}
+
+bool Enemy::isDragon() {
+    return isDragon;
+}
+
+bool Enemy::isMerchant() {
+    return isMerchant;
 }
 
 void Enemy::giveCompass() {

@@ -5,6 +5,7 @@
 
 class PlayableCharacter;
 class Cell;
+class Posn;
 
 class Enemy {
     const int goldDrop;
@@ -13,9 +14,11 @@ class Enemy {
     int defense;
     bool hasCompass;
     char symbol;
+    bool drag;
+    bool merch;
   public:
     // Constructor and Destructor
-    Enemy(int atk, int def, int hp, int n, char symbol);
+    Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon = false);
     virtual ~Enemy() = 0;
 
     // Getters
@@ -24,6 +27,8 @@ class Enemy {
     int getHP() const;
     int getMaxHP() const;
     char getSymbol() const;
+    bool isDragon();
+    bool isMerchant();
 
     // Checkers
     bool checkCompass();
@@ -34,6 +39,7 @@ class Enemy {
     virtual bool isHostile() = 0;
     int goldDropped();
     void takeDmg(PlayableCharacter *pc);
+    virtual Posn getProtect() = 0;
 
     // Non -virtual interface
     // bool isDead();

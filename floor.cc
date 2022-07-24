@@ -452,4 +452,39 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> p1, pair<unique_ptr<Enemy>, Posn> p2)
 
 void Floor::moveEnemies() {
     sort(enemies.begin(), enemies.end(), cmpPair);
+    for (int i = 0; i < 20; i++) {
+        if (!enemies[i].first->isDragon()) {
+            int x = enemies[i].second.x;
+            int y = enemies[i].second.y;
+            // find the neighbours of this enemy
+            vector<Posn> nbrs = neighbours(x, y);
+            // pick a random neighbour
+            int which = randnum() % nbrs.size();
+            int x2 = nbrs[which].x;
+            int y2 = nbrs[which].y;
+            // move enemy to new cell
+            content[y2][x2]->setEnemy(move(content[y][x]->getEnemy()));
+        } else {
+            int x = enemies[i].first->getProtect().x;
+            int y = enemies[i].first->getProtect().y;
+            vector<Posn> protectNeigbours = neighbours(enemies[i].first->getProtect().x, enemies[i].first->getProtect().y);
+            int x2 = enemies[i].second.x;
+            int y2 = enemies[i].second.y;
+            vector<Posn> myNeighbours = neighbours(x, y);
+            vector<Posn> ourNeighbours;
+            int sz1 = protectNeigbours.size();
+            int sz2 = myNeighbours.size();
+            for (int i = 0; i < sz1; i++) {
+                for (int k = 0; k < sz2; k++) {
+                    if (protectNeigbours[i].x == myNeighbours[k].x && protectNeigbours[i].y == myNeighbours[k].y) {
+                        ourNeighbours.emplace_back(protectNeigbours[i]);
+                    }
+                }
+            }
+            int which = randnum() % ourNeighbours.size();
+            int x3 = ourNeighbours[which].x;
+            int y3 = ourNeighbours[which].y;
+            content[y3][x3]->setEnemy(move(content[y][x]->getEnemy()));
+        }
+    }
 }

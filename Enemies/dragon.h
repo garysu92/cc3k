@@ -9,6 +9,7 @@ class Dragon : public Enemy {
   public:
     Dragon(int x, int y);
     bool isHostile();
+    Posn getProtect() override;
 };
 
 #endif
