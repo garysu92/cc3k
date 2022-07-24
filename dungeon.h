@@ -5,12 +5,13 @@
 #include <vector>
 #include <string>
 
-#include "floor.h"
 #include "direction.h"
 
 class Cell;
+class PlayableCharacter;
+class Floor;
 
-std::string floorLayout = "cc3kfloor.txt";
+const std::string floorLayout = "cc3kfloor.txt";
 
 class Dungeon {
     std::string fileName;

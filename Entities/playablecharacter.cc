@@ -141,4 +141,12 @@ void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {
     }
 }
 
+void PlayableCharacter::attackEnemy(Enemy *em) {
+    em->getAttackedByPlayer(this);
+}
+
+void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
+    
+}    
+
 PlayableCharacter::~PlayableCharacter() {}

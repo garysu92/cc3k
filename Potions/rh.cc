@@ -5,7 +5,7 @@
 
 bool RH::visible = false;
 
-Potion::Type Potion::getType() const{
+Potion::Type RH::getType() const{
     return Potion::RH;
 }
 

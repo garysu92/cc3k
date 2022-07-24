@@ -11,8 +11,18 @@
 
 using namespace std;
 
+// maybe make static function of class
+static bool endOfRoom(string s) {
+    for (int i = 1; i < s.size() - 1; i++) {
+        if (s[i] != '-') {
+            return false;
+        }
+    }
+    return true;
+}
+
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{""}, curFloor{1}, numFloors{numFloors}, p{p} {
     floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
@@ -43,7 +53,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
-    fileName{fileName}, p{p}, curFloor{1}, numFloors{1} {
+    fileName{fileName}, curFloor{1}, numFloors{1}, p{p} {
         try{
             fstream file{fileName};
             
@@ -79,16 +89,6 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
         
 }
 
-// maybe make static function of class
-static bool endOfRoom(string s) {
-    for (int i = 1; i < s.size() - 1; i++) {
-        if (s[i] != '-') {
-            return false;
-        }
-    }
-    return true;
-}
-
 std::vector<std::vector<std::unique_ptr<Cell>>> & Dungeon::get_floorContents() {
     return floors[curFloor].getContents();
 }
@@ -105,8 +105,8 @@ void Dungeon::set_curFloor(int curF) {
     this->curFloor = curF;
 }
 
-void Dungeon::set_curFloor(int newF) {
-    this->curFloor = newF;
+void Dungeon::set_numFloors(int newF) {
+    this->numFloors = newF;
 }
 
 void Dungeon::playerMove(Direction d) {

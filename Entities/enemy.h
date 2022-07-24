@@ -41,8 +41,10 @@ class Enemy {
 
     // Non -virtual interface
     // bool isDead();
-    // void attackPlayer(PlayableCharacter *pc);
-    // void getAttackedByPlayer(PlayableCharacter *pc);
+    void attackPlayer(PlayableCharacter *pc);
+    void getAttackedByPlayer(PlayableCharacter *pc);
+    
+    
     void dealDmg(PlayableCharacter *pc);
 };
 
