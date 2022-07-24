@@ -89,8 +89,8 @@ static bool endOfRoom(string s) {
     return true;
 }
 
-std::vector<std::vector<std::unique_ptr<Cell>>> & get_floorContents() {
-    return (this->floors).getContents();
+std::vector<std::vector<std::unique_ptr<Cell>>> & Dungeon::get_floorContents() {
+    return floors[curFloor].getContents();
 }
 
 int Dungeon::get_curFloor() {
