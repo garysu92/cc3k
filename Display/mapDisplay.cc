@@ -1,5 +1,5 @@
 #include <iostream>
-#include "cell.h"
+#include "../Cells/cell.h"
 #include "mapDisplay.h"
 
 using namespace std;
