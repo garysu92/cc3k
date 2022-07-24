@@ -12,25 +12,25 @@
 
 #include "posn.h"
 #include "Cells/cell.h"
-#include "Potions/potion.h"
-#include "TempEffects/tempeffect.h"
-#include "Potions/rh.h"
-#include "Potions/ba.h"
-#include "Potions/bd.h"
-#include "Potions/ph.h"
-#include "Potions/wa.h"
-#include "Potions/wd.h"
+#include "potion.h"
+#include "tempeffect.h"
+#include "rh.h"
+#include "ba.h"
+#include "bd.h"
+#include "ph.h"
+#include "wa.h"
+#include "wd.h"
 #include "Cells/wall.h"
 #include "Cells/passage.h"
 #include "Cells/tile.h"
 #include "Cells/door.h"
 #include "Cells/space.h"
 #include "Cells/stair.h"
-#include "Treasure/smallgold.h"
-#include "Treasure/dragongold.h"
-#include "Treasure/normalgold.h"
-#include "Treasure/merchantgold.h"
-#include "Treasure/treasure.h"
+#include "smallgold.h"
+#include "dragongold.h"
+#include "normalgold.h"
+#include "merchantgold.h"
+#include "treasure.h"
 #include "Enemies/dragon.h"
 #include "Enemies/werewolf.h"
 #include "Enemies/vampire.h"
@@ -39,10 +39,10 @@
 #include "Enemies/phoenix.h"
 #include "Enemies/merchant.h"
 #include "direction.h"
-#include "TempEffects/woundattack.h"
-#include "TempEffects/wounddefense.h"
-#include "TempEffects/boostattack.h"
-#include "TempEffects/boostdefense.h"
+#include "woundattack.h"
+#include "wounddefense.h"
+#include "boostattack.h"
+#include "boostdefense.h"
 
 class PlayableCharacter;
 class Enemy;
@@ -250,11 +250,10 @@ void Floor::generate() {
             unique_ptr<Treasure> ng = make_unique<NormalGold>();
             content[y][x]->setTreasure(ng);
         } else {
-            cout << "DRAGON HOARD SPAWNED" << endl;
         	// ensure that at least one neighbour
         	while (neighbours.size() <= 0) {
             	whichChamber = randnum() % tempChambers.size();
-            	while (tempChambers[whichChamber].size() <= 1) {
+            	while (tempChambers[whichChamber].size() < 1) {
                 	whichChamber = randnum() % tempChambers.size();
                 }
                 whichTile = randnum() % tempChambers[whichChamber].size();
@@ -270,14 +269,14 @@ void Floor::generate() {
             int where = randnum() % numNeighbours;
 		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
-            content[neighbours[where].y][neighbours[where].x]->setEnemy(dragon.get());
+            content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
 			// delete the dragon position from the available generation spots
-            for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
-                if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
-                    tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
-                    break;
-                }
-            }
+//            for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
+  //              if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
+    //                tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
+      //              break;
+        //        }
+          //  }
         }
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
         if (tempChambers[whichChamber].size() == 0)  {
@@ -304,7 +303,7 @@ void Floor::generate() {
         // set a random neighbour (where) to have a dragon
         unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
         enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
-        content[neighbours[where].y][neighbours[where].x]->setEnemy(dragon.get());
+        content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
         // delete the dragon position from the available generation spots
         for (int w = 0; w < tempChambers[whichC].size(); w++) {
             if (tempChambers[whichC][w].x == neighbours[where].x && tempChambers[whichC][w].y == neighbours[where].y) {
@@ -455,7 +454,7 @@ void Floor::updateEnemies() {
     for (int i = 0; i < enemies.size(); i++) {
         // check if enemy is hostile and is close to PC
         // if so, then enemy does not attack
-        if (enemies[i].first->isHostile()) {
+        /*if (enemies[i].first->isHostile()) {
             int xx, yy;
             if (enemies[i].first->isDragon()) {
                 xx = enemies[i].first->getProtect().x;
@@ -468,7 +467,7 @@ void Floor::updateEnemies() {
                 enemies[i].first->dealDmg(p);
                 continue;
             }
-        }
+        }*/
         if (!enemies[i].first->isDragon()) {
             int x = enemies[i].second.x;
             int y = enemies[i].second.y;
@@ -530,7 +529,7 @@ void Floor::attack(Direction d) {
     //     content[ay][ax]->clear();        
     // }
 }
-
+/*
 void Floor::usePotion(Direction d) {
     Posn pos = getCoords(d);
     int px = pos.x;
@@ -553,8 +552,9 @@ void Floor::usePotion(Direction d) {
             
         } else if (content[px][py]->getPotion()->getType() == Potion::WD) {
             
-        }*/
+        }
     } else {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
 }
+*/
