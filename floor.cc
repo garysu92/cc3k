@@ -518,7 +518,7 @@ void Floor::attack(Direction d) {
     int ay = pos.y;
     if (content[ay][ax]->hasEnemy()) {
         p->attackEnemy(content[ay][ax]->getEnemy());
-    }
+    } else return;
     
     if (content[ax][ay]->getEnemy()->isDead()) {
         // remove from enemies vector
