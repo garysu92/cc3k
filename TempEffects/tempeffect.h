@@ -2,7 +2,6 @@
 #define TEMPEFFECT_H
 
 #include <memory>
-#include "../Entities/playablecharacter.h"
 
 class TempEffect {
   int atkEffect, defEffect;

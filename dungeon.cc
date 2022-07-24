@@ -12,7 +12,7 @@
 using namespace std;
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
+Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, p{p}, curFloor{1}, numFloors{numFloors} {
     floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
     vector<vector<char>> v;
     try {
@@ -42,7 +42,7 @@ Dungeon::Dungeon(shared_ptr<PlayableCharacter> p, int numFloors) : fileName{floo
 }
 
 // Constructor which makes floors with a file specified layout
-Dungeon::Dungeon(string fileName, shared_ptr<PlayableCharacter> p, bool save) : 
+Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
     fileName{fileName}, p{p}, curFloor{1}, numFloors{1} {
         try{
             fstream file{fileName};

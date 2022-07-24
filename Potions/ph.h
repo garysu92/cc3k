@@ -15,6 +15,4 @@ class PH : public Potion {
     void applyEffect(PlayableCharacter *pc) const override;
 };
 
-bool PH::visible = false;
-
 #endif

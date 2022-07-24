@@ -17,6 +17,4 @@ class WA : public Potion {
     void applyEffect(PlayableCharacter *pc) const override;
 };
 
-bool WA::visible = false;
-
 #endif

@@ -410,6 +410,22 @@ void Floor::movePC(Direction d) {
 void Floor::updateEnemies() {
     sort(enemies.begin(), enemies.end(), cmpPair);
     for (int i = 0; i < 20; i++) {
+        // check if enemy is hostile and is close to PC
+        // if so, then enemy does not attack
+        if (enemies[i].first->isHostile()) {
+            int xx, yy;
+            if (enemies[i].first->isDragon()) {
+                xx = enemies[i].first->getProtect().x;
+                yy = enemies[i].first->getProtect().y;
+            } else {
+                xx = enemies[i].second.x;
+                yy = enemies[i].second.y;
+            }
+            if (abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
+                enemies[i].first->dealDmg(p);
+            }
+            continue;
+        }
         if (!enemies[i].first->isDragon()) {
             int x = enemies[i].second.x;
             int y = enemies[i].second.y;
