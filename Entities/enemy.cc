@@ -80,5 +80,6 @@ void Enemy::dropCompass() {
     this->hasCompass = false;
 }
 
+void Enemy::attackPlayer(Playable)
 
 Enemy::~Enemy() {}

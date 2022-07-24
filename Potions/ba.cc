@@ -9,7 +9,7 @@
 
 bool BA::visible = false;
 
-Potion::Type Potion::getType() const{
+Potion::Type BA::getType() const{
     return Potion::BA;
 }
 
