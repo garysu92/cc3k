@@ -271,12 +271,12 @@ void Floor::generate() {
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
             content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
 			// delete the dragon position from the available generation spots
-//            for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
-  //              if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
-    //                tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
-      //              break;
-        //        }
-          //  }
+            for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
+                if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
+                    tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
+                    break;
+                }
+            }
         }
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
         if (tempChambers[whichChamber].size() == 0)  {
@@ -454,7 +454,7 @@ void Floor::updateEnemies() {
     for (int i = 0; i < enemies.size(); i++) {
         // check if enemy is hostile and is close to PC
         // if so, then enemy does not attack
-        /*if (enemies[i].first->isHostile()) {
+        if (enemies[i].first->isHostile()) {
             int xx, yy;
             if (enemies[i].first->isDragon()) {
                 xx = enemies[i].first->getProtect().x;
@@ -467,7 +467,7 @@ void Floor::updateEnemies() {
                 enemies[i].first->dealDmg(p);
                 continue;
             }
-        }*/
+        }
         if (!enemies[i].first->isDragon()) {
             int x = enemies[i].second.x;
             int y = enemies[i].second.y;
