@@ -13,7 +13,7 @@
 #include "posn.h"
 #include "Cells/cell.h"
 #include "Potions/potion.h"
-#include "tempeffect.h"
+#include "TempEffects/tempeffect.h"
 #include "Potions/rh.h"
 #include "Potions/ba.h"
 #include "Potions/bd.h"
