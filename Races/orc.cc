@@ -1,5 +1,6 @@
 #include "../Entities/playablecharacter.h"
 #include "orc.h"
+#include <string>
 
 using namespace std;
 

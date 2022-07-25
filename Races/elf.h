@@ -2,6 +2,7 @@
 #define ELF_H
 
 #include "../Entities/playablecharacter.h"
+#include <string>
 
 class Elf : public PlayableCharacter {
   public:
@@ -11,8 +12,6 @@ class Elf : public PlayableCharacter {
     int getAttack() const override;
     void addPermanentEffects(int hp, int atk, int def) override;
     ~Elf();
-  private:
-    void addGold(int gold) override;
 };
 
 #endif

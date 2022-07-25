@@ -2,6 +2,7 @@
 #define ORC_H
 
 #include "../Entities/playablecharacter.h"
+#include <string>
 
 class Orc : public PlayableCharacter {
   public:

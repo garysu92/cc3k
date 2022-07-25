@@ -1,5 +1,6 @@
 #include "../Entities/playablecharacter.h"
 #include "elf.h"
+#include <string>
 
 using namespace std;
 
@@ -7,10 +8,6 @@ Elf::Elf(): PlayableCharacter{30, 10, 140} {}
 
 string Elf::getRace() const {
     return "Elf";
-}
-
-void Elf::addGold(int gold) {
-    curGold += 2 * gold;
 }
 
 void Elf::addPermanentEffects(int hp, int atk, int def) {
