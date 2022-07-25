@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include "playablecharacter.h"
 #include <cmath>
+#include <string>
 #include <iostream>
 #include <memory>
 #include <random>
@@ -60,6 +61,10 @@ bool Enemy::checkCompass() {
 
 bool Enemy::isDragon() {
     return drag;
+}
+
+string Enemy::getType() const { 
+    return ""; 
 }
 
 void Enemy::giveCompass() {

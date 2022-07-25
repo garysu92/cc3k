@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include <memory>
+#include <string>
 
 class PlayableCharacter;
 class Cell;
@@ -28,6 +29,7 @@ class Enemy {
     int getMaxHP() const;
     char getSymbol() const;
     bool isDragon();
+    virtual std::string getType() const;
 
     // Checkers
     bool checkCompass();
