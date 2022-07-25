@@ -8,6 +8,7 @@ class Actiondisplay {
     PlayableCharacter * PC; 
     std::string curAction;
     int curFloor;
+    
     public:
         // Constructor
         Actiondisplay(PlayableCharacter * newPC, int curFloor);
