@@ -178,7 +178,7 @@ void Floor::generate() {
     // spawn the stair
     int random3 = randnum() % numChambers;
     // ensure that stair chamber and player chamber are not the same
-    while (random3 != random1) {
+    while (random3 == random1) {
         random3 = randnum() % numChambers;
     }
     numTilesInChamber = tempChambers[random3].size();
