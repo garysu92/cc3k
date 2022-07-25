@@ -189,6 +189,7 @@ void Floor::generate() {
     stairLocation.y = y;
     unique_ptr<Cell> stair = make_unique<Stair>(x, y);
     content[y][x] = move(stair);
+    content[y][x]->setStair();
     tempChambers[random3].erase(tempChambers[random3].begin() + random4);
     if (tempChambers[random3].size() == 0)  {
         tempChambers.erase(tempChambers.begin() + random3);
