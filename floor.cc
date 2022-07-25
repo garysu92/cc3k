@@ -461,16 +461,20 @@ void Floor::updateEnemies() {
         // if so, then enemy does not attack
         if (enemies[i].first->isHostile()) {
             int xx, yy;
+            int xxx = enemies[i].second.x;
+            int yyy = enemies[i].second.y;
             if (enemies[i].first->isDragon()) {
                 xx = enemies[i].first->getProtect().x;
                 yy = enemies[i].first->getProtect().y;
+                if (abs(pcLocation.x - xxx) <= 1 && abs(pcLocation.y - yyy) <= 1 && abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
+                    enemies[i].first->attackPlayer(p);
+                    continue;
+                }
             } else {
-                xx = enemies[i].second.x;
-                yy = enemies[i].second.y;
-            }
-            if (abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
-                enemies[i].first->attackPlayer(p);
-                continue;
+                if (abs(pcLocation.x - xxx) <= 1 && abs(pcLocation.y - yyy) <= 1) {
+                    enemies[i].first->attackPlayer(p);
+                    continue;
+                }
             }
         }
         if (!enemies[i].first->isDragon()) {
