@@ -20,7 +20,7 @@ class Floor {
     Posn stairLocation;
     Posn pcLocation;
     bool bs;
-    bool isOnStair;
+    bool isOnStair = false;;
     
   public:
     // Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p);
