@@ -444,8 +444,8 @@ void Floor::movePC(Direction d) {
     }
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
-        || content[cy][cx]->getsymbolRep() == '#') && !content[cy][cx]->getTreasure()->isDragonHoarde() || \
-        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) {
+        || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (!content[cy][cx]->getTreasure()->isDragonHoarde()) || \
+        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr))) {
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
