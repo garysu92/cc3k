@@ -432,7 +432,7 @@ void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
-	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && \
+	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
         || content[cy][cx]->getsymbolRep() == '#')) {
         content[pcLocation.y][pcLocation.x]->clear();
