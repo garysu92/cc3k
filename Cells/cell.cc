@@ -107,5 +107,5 @@ void Cell::clear() {
     if (hasPC()) pc = nullptr;
     if (hasEnemy()) enemy = nullptr;
     if (hasPotion()) potion.reset();
-    if (hasTreasure()) treasure.reset()
+    if (hasTreasure()) treasure.reset();
 }
