@@ -74,13 +74,15 @@ void CC3KGameRunner::play() {
                 // times
 
                 // choose race
+                cout << endl;
                 cout << "Select a race, \"Human\" is the default race" << endl;
                 cout << "[Type] - [Enter to Select]:" << endl;
-                cout << "Human - h" << endl;
-                cout << "Elf - e" << endl;
-                cout << "Dwarf - d" << endl;
-                cout << "Orc - o" << endl;
-                cout << "Enter your race: ";
+                cout << "Human - h      HP: 120  ATK: 20  DEF: 20  MISC: Endgame score is doubled" << endl;
+                cout << "Elf - e        HP: 140  ATK: 30  DEF: 10  MISC: All negative effect potions are converted to their postive counterpart" << endl;
+                cout << "Dwarf - d      HP: 100  ATK: 20  DEF: 30  MISC: All gold is doubled" << endl;
+                cout << "Orc - o        HP: 180  ATK: 30  DEF: 25  MISC: All gold is halved" << endl;
+                cout << "Enter your race OR press q to quit the game: ";
+                cout << endl;
 
                 cin >> cmd;
 
@@ -92,8 +94,8 @@ void CC3KGameRunner::play() {
                     p = make_unique<Dwarf>();
                 } else if (cmd == "o") {
                     p = make_unique<Orc>();
-                } else {
-                    return; // Quit if invalid race
+                } else if (cmd == "q") {
+                    return; 
                 }
                 raceChosen = true;
                 continue;
