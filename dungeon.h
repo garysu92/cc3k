@@ -49,6 +49,7 @@ class Dungeon {
         bool end() const;
     private:
         void nextFloor();
+        void postMoveCheck();
 };
 
 #endif
