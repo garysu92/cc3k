@@ -454,6 +454,8 @@ void Floor::movePC(Direction d) {
     } else {
         return;
     }
+    cout << "PC LOCATION: " << pcLocation.x << ", " << pcLocation.y << endl;
+    cout << "STAIR LOCATION: " << stairLocation.x << ", " << stairLocation.y << endl;
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
