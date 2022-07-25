@@ -1,0 +1,1656 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+ 
+# Built for x86_64-pc-msys
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Mon Jul 25 18:58:26 2022
+
+# Variables
+
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+SYSTEMDRIVE = C:
+# environment
+JAVA_HOME = C:\Program Files\Java\jdk
+# environment
+LC_ALL = C
+# environment
+USERPROFILE = C:\Users\garys
+# environment
+VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+# environment
+LOCALAPPDATA = C:\Users\garys\AppData\Local
+# environment
+VSCODE_CWD = C:\Users\garys\AppData\Local\Programs\Microsoft VS Code
+# environment
+SYSTEMROOT = C:\WINDOWS
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15588_OWIZAGXTMPLHEQDA
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\garys\AppData\Roaming\Code\CachedData\3b889b090b5ad5793f524b5d1d39fda662b96a2a
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = /c/Temp
+# default
+.INCLUDE_DIRS = /usr/include /usr/include
+# environment
+CONFIGSETROOT = C:\WINDOWS\ConfigSetRoot
+# makefile
+MAKEFLAGS = pqrR
+# environment
+ONEDRIVE = C:\Users\garys\OneDrive
+# makefile
+CURDIR := /c/Users/garys/Desktop/cc3k
+# makefile (from 'Makefile', line 5)
+DEPENDS = ${OBJECTS:.o=.d}
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+ 
+# environment
+PROGRAMFILES = C:\Program Files
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+!C: = c:\Users\garys\Desktop\cc3k
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Display/actionDisplay.d', line 1)
+MAKEFILE_LIST := Makefile main.d floor.d Entities/playablecharacter.d Cells/space.d Cells/door.d Cells/cell.d Cells/tile.d Cells/wall.d Cells/stair.d Cells/passage.d Enemies/goblin.d Enemies/dragon.d Enemies/merchant.d Enemies/phoenix.d Enemies/troll.d Enemies/vampire.d Enemies/werewolf.d Entities/enemy.d Potions/potion.d Potions/ba.d Potions/bd.d Potions/ph.d Potions/rh.d Potions/wa.d Potions/wd.d Treasure/smallgold.d Treasure/normalgold.d Treasure/dragongold.d Treasure/treasure.d TempEffects/woundattack.d TempEffects/wounddefense.d TempEffects/boostattack.d TempEffects/boostdefense.d TempEffects/tempeffect.d Display/mapDisplay.d cc3kgamerunner.d dungeon.d Races/dwarf.d Races/elf.d Races/human.d Races/orc.d randnum.d Display/actionDisplay.d
+# automatic
+@F = $(notdir $@)
+# environment
+PT8HOME = C:\Program Files\Cisco Packet Tracer 8.0
+# environment
+VSCODE_PID = 15588
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# makefile (from 'Makefile', line 3)
+EXEC = program
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+ONEDRIVECONSUMER = C:\Users\garys\OneDrive
+# default
+MAKE_HOST := x86_64-pc-msys
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := /bin/sh
+# environment
+HOMEPATH = \Users\garys
+# default
+MAKECMDGOALS := all
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /c/Program Files (x86)/Common Files/Oracle/Java/javapath:/c/WINDOWS/system64:/c/WINDOWS:/c/WINDOWS/System32/Wbem:/c/WINDOWS/System32/WindowsPowerShell/v1.0:/c/WINDOWS/System32/OpenSSH:/c/Program Files/Java/jdk1.8.0_212/bin:/c/Program Files/Java/jre1.8.0_212/bin:/c/Program Files/Java/jdk/bin:/c/Program Files/Java/jre/bin:/c/Program Files/Intel/WiFi/bin:/c/Program Files/Common Files/Intel/WirelessCommon:/c/Program Files/Git/cmd:/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/c/Program Files/PuTTY:/c/Program Files/Git/usr/bin:/usr/bin:/mingw64/bin:/c/Users/garys/AppData/Local/Programs/Python/Python36/Scripts:/c/Users/garys/AppData/Local/Programs/Python/Python36:/c/Users/garys/AppData/Local/Microsoft/WindowsApps:/c/Users/garys/AppData/Local/Programs/Microsoft VS Code/bin:/c/MinGW/bin:/usr/bin:/mingw64/bin
+# environment
+ZES_ENABLE_SYSMAN = 1
+# environment
+COMPUTERNAME = LAPTOP-9IOP1GSK
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = $P$G
+# environment
+QT_DEVICE_PIXEL_RATIO = auto
+# environment
+LOGONSERVER = \\LAPTOP-9IOP1GSK
+# environment
+USERNAME = garys
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# automatic
+?F = $(notdir $?)
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# makefile (from 'Makefile', line 4)
+OBJECTS = main.o floor.o Entities/playablecharacter.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o Potions/potion.o Potions/ba.o Potions/bd.o Potions/ph.o Potions/rh.o Potions/wa.o Potions/wd.o Treasure/smallgold.o Treasure/normalgold.o Treasure/dragongold.o Treasure/treasure.o TempEffects/woundattack.o TempEffects/wounddefense.o TempEffects/boostattack.o TempEffects/boostdefense.o TempEffects/tempeffect.o Display/mapDisplay.o cc3kgamerunner.o dungeon.o Races/dwarf.o Races/elf.o Races/human.o Races/orc.o randnum.o Display/actionDisplay.o
+# environment
+USERDOMAIN = LAPTOP-9IOP1GSK
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+OS = Windows_NT
+# makefile
+.DEFAULT_GOAL := program
+# default
+MAKE_VERSION := 4.3
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = LAPTOP-9IOP1GSK
+# environment
+NUMBER_OF_PROCESSORS = 8
+# environment
+PUBLIC = C:\Users\Public
+# environment
+APPDATA = C:\Users\garys\AppData\Roaming
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/garys
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = /c/Temp
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\463858b2af8289728670c63f5dfd7995-1.69.2-main-sock
+# environment
+TERM = xterm-256color
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+ 
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# makefile (from 'Makefile', line 2)
+CXXFLAGS = -std=c++14 -Wall -MMD
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+PROCESSOR_REVISION = 8e0a
+# makefile (from 'Makefile', line 1)
+CXX = g++
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
+# variable set hash-table stats:
+# Load=103/1024=10%, Rehash=0, Collisions=14/220=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 1653366647, inode 16044073672826125): 42 files, no impossibilities.
+
+# 42 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+TempEffects/boostdefense.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/space.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:14
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Races/orc.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Enemies/vampire.o: Enemies/vampire.cc Enemies/vampire.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../Entities/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../TempEffects/wounddefense.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/../Entities/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+# Not a target:
+Enemies/goblin.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../Entities/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+randnum.o: randnum.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dungeon.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:22
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Potions/rh.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:18
+#  File has been updated.
+#  Successfully updated.
+
+TempEffects/woundattack.o: TempEffects/woundattack.cc TempEffects/woundattack.h TempEffects/tempeffect.h TempEffects/../Entities/playablecharacter.h TempEffects/../Entities/../Cells/cell.h TempEffects/../Entities/../Cells/../Entities/enemy.h TempEffects/../Entities/../Cells/../Potions/potion.h TempEffects/../Entities/../Cells/../Treasure/treasure.h TempEffects/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/../Entities/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/boostdefense.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:20
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+TempEffects/wounddefense.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Potions/wa.o: Potions/wa.cc Potions/wa.h Potions/potion.h Potions/../TempEffects/tempeffect.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h Potions/../TempEffects/woundattack.h Potions/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/mapDisplay.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/door.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/door.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/wounddefense.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:20
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Display/../Entities/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Races/orc.o: Races/orc.cc Races/../Entities/playablecharacter.h Races/../Entities/../Cells/cell.h Races/../Entities/../Cells/../Entities/enemy.h Races/../Entities/../Cells/../Potions/potion.h Races/../Entities/../Cells/../Treasure/treasure.h Races/../Entities/../TempEffects/tempeffect.h Races/orc.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/phoenix.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Enemies/dragon.o: Enemies/dragon.cc Enemies/dragon.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/mapDisplay.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 01:03:05
+#  File has been updated.
+#  Successfully updated.
+
+TempEffects/boostdefense.o: TempEffects/boostdefense.cc TempEffects/boostdefense.h TempEffects/tempeffect.h TempEffects/../Entities/playablecharacter.h TempEffects/../Entities/../Cells/cell.h TempEffects/../Entities/../Cells/../Entities/enemy.h TempEffects/../Entities/../Cells/../Potions/potion.h TempEffects/../Entities/../Cells/../Treasure/treasure.h TempEffects/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/rh.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/normalgold.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/enemy.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:17
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Treasure/dragongold.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Enemies/goblin.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/human.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:23
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Races/dwarf.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:23
+#  File has been updated.
+#  Successfully updated.
+
+Display/mapDisplay.o: Display/mapDisplay.cc Display/../Cells/cell.h Display/../Cells/../Entities/enemy.h Display/../Cells/../Potions/potion.h Display/../Cells/../Treasure/treasure.h Display/mapDisplay.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/../randnum.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/human.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/actionDisplay.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/door.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:14
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Cells/passage.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Races/dwarf.o: Races/dwarf.cc Races/../Entities/playablecharacter.h Races/../Entities/../Cells/cell.h Races/../Entities/../Cells/../Entities/enemy.h Races/../Entities/../Cells/../Potions/potion.h Races/../Entities/../Cells/../Treasure/treasure.h Races/../Entities/../TempEffects/tempeffect.h Races/dwarf.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+dungeon.o: dungeon.cc dungeon.h direction.h Display/mapDisplay.h Display/actionDisplay.h Display/../Entities/playablecharacter.h Display/../Entities/../Cells/cell.h Display/../Entities/../Cells/../Entities/enemy.h Display/../Entities/../Cells/../Potions/potion.h Display/../Entities/../Cells/../Treasure/treasure.h Display/../Entities/../TempEffects/tempeffect.h floor.h Cells/cell.h Entities/playablecharacter.h Entities/enemy.h posn.h randnum.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../Entities/playablecharacter.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../TempEffects/boostattack.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/troll.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+randnum.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/elf.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/boostattack.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/actionDisplay.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/smallgold.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Enemies/vampire.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+floor.o: floor.cc floor.h Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Entities/playablecharacter.h Entities/../Cells/cell.h Entities/../TempEffects/tempeffect.h Entities/enemy.h posn.h direction.h Potions/potion.h TempEffects/tempeffect.h Potions/rh.h Potions/potion.h Potions/ba.h Potions/bd.h Potions/ph.h Potions/wa.h Potions/../TempEffects/tempeffect.h Potions/wd.h Cells/wall.h Cells/cell.h Cells/passage.h Cells/tile.h Cells/door.h Cells/space.h Cells/stair.h Treasure/smallgold.h Treasure/treasure.h Treasure/dragongold.h Treasure/normalgold.h Treasure/merchantgold.h Treasure/treasure.h Enemies/dragon.h Enemies/../Entities/enemy.h Enemies/../posn.h Enemies/werewolf.h Enemies/vampire.h Enemies/goblin.h Enemies/troll.h Enemies/phoenix.h Enemies/merchant.h TempEffects/woundattack.h TempEffects/tempeffect.h TempEffects/wounddefense.h TempEffects/boostattack.h TempEffects/boostdefense.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/ph.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/cell.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:14
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+TempEffects/boostdefense.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+floor.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../TempEffects/boostdefense.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:32:59
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Cells/space.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/vampire.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/werewolf.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:17
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Display/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/wall.o: Cells/wall.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Cells/wall.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/wa.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Display/actionDisplay.o: Display/actionDisplay.cc Display/actionDisplay.h Display/../Entities/playablecharacter.h Display/../Entities/../Cells/cell.h Display/../Entities/../Cells/../Entities/enemy.h Display/../Entities/../Cells/../Potions/potion.h Display/../Entities/../Cells/../Treasure/treasure.h Display/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Entities/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+randnum.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/stair.o: Cells/stair.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Cells/stair.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/woundattack.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/wd.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/normalgold.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/door.o: Cells/door.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Cells/door.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/treasure.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Potions/ph.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Enemies/werewolf.o: Enemies/werewolf.cc Enemies/werewolf.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+# Not a target:
+Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/playablecharacter.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:14
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+TempEffects/../Entities/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 15):
+	rm ${DEPENDS} ${OBJECTS} ${EXEC}
+
+# Not a target:
+Potions/bd.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/stair.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/../posn.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/smallgold.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/cell.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/wd.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Races/orc.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:24
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Enemies/vampire.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:16
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Enemies/dragon.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/werewolf.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/merchant.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/werewolf.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/passage.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/phoenix.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:16
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Potions/../Entities/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/treasure.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/../Entities/playablecharacter.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/mapDisplay.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Potions/wd.o: Potions/wd.cc Potions/wd.h Potions/potion.h Potions/../TempEffects/tempeffect.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h Potions/../TempEffects/wounddefense.h Potions/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/elf.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+# Not a target:
+Enemies/merchant.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/ba.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/goblin.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:15
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Treasure/merchantgold.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/playablecharacter.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/stair.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 01:03:04
+#  File has been updated.
+#  Successfully updated.
+
+Potions/rh.o: Potions/rh.cc Potions/rh.h Potions/potion.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Entities/playablecharacter.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/bd.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:18
+#  File has been updated.
+#  Successfully updated.
+
+TempEffects/boostattack.o: TempEffects/boostattack.cc TempEffects/boostattack.h TempEffects/tempeffect.h TempEffects/../Entities/playablecharacter.h TempEffects/../Entities/../Cells/cell.h TempEffects/../Entities/../Cells/../Entities/enemy.h TempEffects/../Entities/../Cells/../Potions/potion.h TempEffects/../Entities/../Cells/../Treasure/treasure.h TempEffects/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/tile.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/../Entities/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/human.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Entities/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/wall.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/potion.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/smallgold.h:
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/tempeffect.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/merchant.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:16
+#  File has been updated.
+#  Successfully updated.
+
+Potions/ba.o: Potions/ba.cc Potions/ba.h Potions/potion.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h Potions/../TempEffects/tempeffect.h Potions/../TempEffects/boostattack.h Potions/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/cell.o: Cells/cell.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/ba.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/../Entities/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/dwarf.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/tile.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:14
+#  File has been updated.
+#  Successfully updated.
+
+Races/elf.o: Races/elf.cc Races/../Entities/playablecharacter.h Races/../Entities/../Cells/cell.h Races/../Entities/../Cells/../Entities/enemy.h Races/../Entities/../Cells/../Potions/potion.h Races/../Entities/../Cells/../Treasure/treasure.h Races/../Entities/../TempEffects/tempeffect.h Races/elf.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Potions/ph.o: Potions/ph.cc Potions/ph.h Potions/potion.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../Entities/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/dragon.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+Enemies/phoenix.o: Enemies/phoenix.cc Enemies/phoenix.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ 
+Potions/../TempEffects/woundattack.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/../Entities/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/wd.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+cc3kgamerunner.o: cc3kgamerunner.cc cc3kgamerunner.h dungeon.h direction.h Display/mapDisplay.h Display/actionDisplay.h Display/../Entities/playablecharacter.h Display/../Entities/../Cells/cell.h Display/../Entities/../Cells/../Entities/enemy.h Display/../Entities/../Cells/../Potions/potion.h Display/../Entities/../Cells/../Treasure/treasure.h Display/../Entities/../TempEffects/tempeffect.h Entities/playablecharacter.h Races/dwarf.h Races/../Entities/playablecharacter.h Races/elf.h Races/human.h Races/orc.h floor.h Cells/cell.h Entities/enemy.h posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Potions/potion.o: Potions/potion.cc Potions/potion.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/elf.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:23
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Potions/wa.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+TempEffects/tempeffect.o: TempEffects/tempeffect.cc TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/../Entities/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/space.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+cc3kgamerunner.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/space.o: Cells/space.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Cells/space.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/../Entities/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Entities/enemy.o: Entities/enemy.cc Entities/enemy.h Entities/playablecharacter.h Entities/../Cells/cell.h Entities/../Cells/../Entities/enemy.h Entities/../Cells/../Potions/potion.h Entities/../Cells/../Treasure/treasure.h Entities/../TempEffects/tempeffect.h Entities/../randnum.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/../Entities/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/../Entities/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/dragon.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:16
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Races/dwarf.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/../Entities/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/rh.cc:
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/../Entities/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+main.o: main.cc floor.h Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Entities/playablecharacter.h Entities/../Cells/cell.h Entities/../TempEffects/tempeffect.h Entities/enemy.h posn.h direction.h Potions/potion.h TempEffects/tempeffect.h Potions/rh.h Potions/potion.h Potions/ba.h Potions/bd.h Potions/ph.h Potions/wa.h Potions/../TempEffects/tempeffect.h Potions/wd.h Cells/wall.h Cells/cell.h Cells/passage.h Cells/tile.h Cells/door.h Cells/space.h Cells/stair.h Treasure/smallgold.h Treasure/treasure.h Treasure/dragongold.h Treasure/normalgold.h Treasure/merchantgold.h Treasure/treasure.h Enemies/dragon.h Enemies/../Entities/enemy.h Enemies/../posn.h Enemies/werewolf.h Enemies/vampire.h Enemies/goblin.h Enemies/troll.h Enemies/phoenix.h Enemies/merchant.h TempEffects/woundattack.h TempEffects/tempeffect.h TempEffects/wounddefense.h TempEffects/boostattack.h TempEffects/boostdefense.h dungeon.h Display/mapDisplay.h Display/actionDisplay.h Display/../Entities/playablecharacter.h cc3kgamerunner.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Entities/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Enemies/troll.o: Enemies/troll.cc Enemies/troll.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/passage.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:15
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Treasure/normalgold.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+TempEffects/wounddefense.o: TempEffects/wounddefense.cc TempEffects/wounddefense.h TempEffects/tempeffect.h TempEffects/../Entities/playablecharacter.h TempEffects/../Entities/../Cells/cell.h TempEffects/../Entities/../Cells/../Entities/enemy.h TempEffects/../Entities/../Cells/../Potions/potion.h TempEffects/../Entities/../Cells/../Treasure/treasure.h TempEffects/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+cc3kgamerunner.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:21
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Cells/wall.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Entities/playablecharacter.o: Entities/playablecharacter.cc Entities/playablecharacter.h Entities/../Cells/cell.h Entities/../Cells/../Entities/enemy.h Entities/../Cells/../Potions/potion.h Entities/../Cells/../Treasure/treasure.h Entities/../TempEffects/tempeffect.h Entities/enemy.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/../Entities/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+floor.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:53:55
+#  File has been updated.
+#  Successfully updated.
+
+Races/human.o: Races/human.cc Races/../Entities/playablecharacter.h Races/../Entities/../Cells/cell.h Races/../Entities/../Cells/../Entities/enemy.h Races/../Entities/../Cells/../Potions/potion.h Races/../Entities/../Cells/../Treasure/treasure.h Races/../Entities/../TempEffects/tempeffect.h Races/human.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/woundattack.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Races/../Entities/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+floor.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/enemy.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/wounddefense.cc:
+ 
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/orc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/phoenix.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+direction.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+main.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+cc3kgamerunner.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/tempeffect.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:20
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+main.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:35:32
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Entities/../Cells/../Entities/enemy.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/tile.o: Cells/tile.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Cells/tile.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/../Entities/playablecharacter.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dungeon.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Potions/bd.o: Potions/bd.cc Potions/bd.h Potions/potion.h Potions/../Entities/playablecharacter.h Potions/../Entities/../Cells/cell.h Potions/../Entities/../Cells/../Entities/enemy.h Potions/../Entities/../Cells/../Potions/potion.h Potions/../Entities/../Cells/../Treasure/treasure.h Potions/../Entities/../TempEffects/tempeffect.h Potions/../TempEffects/tempeffect.h Potions/../TempEffects/boostdefense.h Potions/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dungeon.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/../TempEffects/tempeffect.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Treasure/normalgold.o: Treasure/normalgold.cc Treasure/normalgold.h Treasure/treasure.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+# Not a target:
+Cells/tile.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/actionDisplay.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:24
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Entities/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/../Entities/../Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Cells/passage.o: Cells/passage.cc Cells/cell.h Cells/../Entities/enemy.h Cells/../Potions/potion.h Cells/../Treasure/treasure.h Cells/passage.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Cells/wall.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:15
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Treasure/../Entities/playablecharacter.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Races/../Entities/../Cells/cell.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Entities/playablecharacter.h:
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Enemies/troll.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+randnum.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:24
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Treasure/dragongold.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Treasure/smallgold.o: Treasure/smallgold.cc Treasure/smallgold.h Treasure/treasure.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/boostattack.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:20
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Potions/ba.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:17
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+TempEffects/woundattack.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+ 
+#  File has not been updated.
+
+Treasure/treasure.o: Treasure/treasure.cc Treasure/treasure.h Treasure/../Entities/playablecharacter.h Treasure/../Entities/../Cells/cell.h Treasure/../Entities/../Cells/../Entities/enemy.h Treasure/../Entities/../Cells/../Potions/potion.h Treasure/../Entities/../Cells/../Treasure/treasure.h Treasure/../Entities/../TempEffects/tempeffect.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Enemies/merchant.o: Enemies/merchant.cc Enemies/merchant.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/wa.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:19
+#  File has been updated.
+#  Successfully updated.
+
+Treasure/dragongold.o: Treasure/dragongold.cc Treasure/dragongold.h Treasure/treasure.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/potion.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:17
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Cells/../Potions/potion.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+TempEffects/boostattack.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/bd.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Treasure/dragongold.cc:
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Potions/ph.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:18
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Enemies/troll.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 00:33:16
+#  File has been updated.
+#  Successfully updated.
+
+program: main.o floor.o Entities/playablecharacter.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o Potions/potion.o Potions/ba.o Potions/bd.o Potions/ph.o Potions/rh.o Potions/wa.o Potions/wd.o Treasure/smallgold.o Treasure/normalgold.o Treasure/dragongold.o Treasure/treasure.o TempEffects/woundattack.o TempEffects/wounddefense.o TempEffects/boostattack.o TempEffects/boostdefense.o TempEffects/tempeffect.o Display/mapDisplay.o cc3kgamerunner.o dungeon.o Races/dwarf.o Races/elf.o Races/human.o Races/orc.o randnum.o Display/actionDisplay.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 8):
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+
+# Not a target:
+Cells/stair.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Enemies/goblin.o: Enemies/goblin.cc Enemies/goblin.h Enemies/../Entities/enemy.h Enemies/../posn.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+posn.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Display/../Entities/../Cells/../Treasure/treasure.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=231/1024=23%, Rehash=0, Collisions=111/776=14%
+# VPATH Search Paths
+
+ 
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 251 / storage = 5279 B / avg = 21 B
+# current buf: size = 8162 B / used = 5279 B / count = 251 / avg = 21 B
+
+# strcache performance: lookups = 676 / hit rate = 62%
+# hash-table stats:
+# Load=251/8192=3%, Rehash=0, Collisions=14/676=2%
+# Finished Make data base on Mon Jul 25 18:58:26 2022
+
+ 
