@@ -454,13 +454,11 @@ void Floor::movePC(Direction d) {
     } else {
         return;
     }
-    cout << "PC LOCATION: " << pcLocation.x << ", " << pcLocation.y << endl;
-    cout << "STAIR LOCATION: " << stairLocation.x << ", " << stairLocation.y << endl;
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
-        content[pcLocation.y][pcLocation.x]->setVisibility();
+        content[stairLocation.y][stairLocation.x]->setVisibility();
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
@@ -547,7 +545,6 @@ void Floor::attack(Direction d) {
     if (content[ay][ax]->hasEnemy()) {
         p->attackEnemy(content[ay][ax]->getEnemy());
     } else return;
-    
     if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
         bool hasCompass = false;
@@ -559,7 +556,7 @@ void Floor::attack(Direction d) {
             }
         }
         // detach from cell
-        content[ay][ax]->clear();     
+        content[ay][ax]->clear();
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
         }
