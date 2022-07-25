@@ -161,4 +161,9 @@ void PlayableCharacter::addGold(int gold) {
     curGold += gold;
 }
 
+void PlayableCharacter::pickupTreasure(Treasure *t) {
+    int gold = t->getAmount();
+    addGold(gold);
+}
+
 PlayableCharacter::~PlayableCharacter() {}
