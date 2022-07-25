@@ -1,7 +1,6 @@
-#include "werewolf.h"
-
-#include "../Entities/enemy.h"
 #include <string>
+#include "werewolf.h"
+#include "../Entities/enemy.h"
 
 using namespace std;
 
@@ -12,5 +11,5 @@ bool Werewolf::isHostile() {
 }
 
 string Werewolf::getType() const {
-    return "Werewolf (W)"
+    return "Werewolf (W)";
 }

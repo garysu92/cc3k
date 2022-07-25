@@ -4,6 +4,7 @@
 #include <string>
 #include "../Entities/enemy.h"
 #include "../posn.h"
+
 class Merchant: public Enemy {
     static bool hostile;
   public:

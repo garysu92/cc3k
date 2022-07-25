@@ -11,11 +11,7 @@ bool Dragon::isHostile() {
     return true; 
 }
 
-<<<<<<< HEAD
-std::string Dragon::getType() const {
-=======
 string Dragon::getType() const {
->>>>>>> d670a007c2f947c7fcc7b76b33f6860fd501b710
     return "Dragon (D)";
 }
 
