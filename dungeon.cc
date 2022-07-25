@@ -161,6 +161,7 @@ void Dungeon::nextFloor() {
     if (!end()) {
         curActionBar = make_unique<Actiondisplay>(p, curFloor);
         curMap = make_unique<Mapdisplay>(get_floorContents());
+        this->printGame();
     }
 }
 
