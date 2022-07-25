@@ -149,7 +149,7 @@ void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
     int curHP = this->getHP();
     takeDmg(em);
     int newHP = this->getHP();
-    this->curAction = this->curAction + em->getType() << " deals " + to_string(curHP - newHP) + " damage to PC. " ;
+    this->curAction = this->curAction + em->getType() + " deals " + to_string(curHP - newHP) + " damage to PC. " ;
 }  
 
 void PlayableCharacter::getDroppedGold(Enemy *em) {
