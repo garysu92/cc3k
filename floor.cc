@@ -443,13 +443,11 @@ void Floor::movePC(Direction d) {
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
     }
-    /*
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
-
-    } else if (content[pcLocation.y][pcLocation.x]->hasPotion()) {
-
+        p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
+        content[pcLocation.y][pcLocation.x]->clear();
+        content[pcLocation.y][pcLocation.x]->setPC(p);
     }
-    */
 }
 
 bool Floor::PConStair() {
@@ -463,16 +461,20 @@ void Floor::updateEnemies() {
         // if so, then enemy does not attack
         if (enemies[i].first->isHostile()) {
             int xx, yy;
+            int xxx = enemies[i].second.x;
+            int yyy = enemies[i].second.y;
             if (enemies[i].first->isDragon()) {
                 xx = enemies[i].first->getProtect().x;
                 yy = enemies[i].first->getProtect().y;
+                if (abs(pcLocation.x - xxx) <= 1 && abs(pcLocation.y - yyy) <= 1 && abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
+                    enemies[i].first->attackPlayer(p);
+                    continue;
+                }
             } else {
-                xx = enemies[i].second.x;
-                yy = enemies[i].second.y;
-            }
-            if (abs(pcLocation.x - xx) <= 1 && abs(pcLocation.y - yy) <= 1) {
-                enemies[i].first->attackPlayer(p);
-                continue;
+                if (abs(pcLocation.x - xxx) <= 1 && abs(pcLocation.y - yyy) <= 1) {
+                    enemies[i].first->attackPlayer(p);
+                    continue;
+                }
             }
         }
         if (!enemies[i].first->isDragon()) {
@@ -550,8 +552,8 @@ void Floor::usePotion(Direction d) {
     if (px >= 0 && py >= 0 && py <= content.size() && px <= content[0].size() \
         && content[py][px]->hasPotion()) {
         content[py][px]->getPotion()->setVisible();
-        p->usePotion(content[py][px]->getPotion().get()); 
-        
+        p->usePotion(content[py][px]->getPotion().get());
+        content[py][px]->clear();
     } else {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
