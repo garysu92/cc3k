@@ -36,6 +36,7 @@ class PlayableCharacter {
     int getMaxHP() const;
     Cell * getCell() const;
     bool getDead() const;
+    std::string getcurAction() const;
 
     // Setters
     void setCell(Cell * newCell);
