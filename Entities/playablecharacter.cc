@@ -14,11 +14,13 @@ using namespace std;
 PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, 
                                                                 attack{atk}, defense{def}, 
                                                                 hasCompass{false}, hasBarrierSuit{false},
-                                                                tempEffects{} {}
+                                                                tempEffects{}, dead{false} {}
 
 string PlayableCharacter::getRace() const { 
     return ""; 
 }
+
+
 
 // What about when playchar has barrier suit?
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
@@ -30,7 +32,7 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
     }
     setHP(max(0, this->getHP() - dmg));
     if (this->getHP() == 0) {
-        this->setState(true);               // Set PCs state to Dead
+        this->setDead(true);                // Set PCs state to Dead
         Cell * curPcell = this->getCell();  // Find the Cell PC is standing on
         curPcell->setPC(nullptr);           // Set the ptr from Cell to PC to nullptr, as PC is no longer is alive
         cout << "PC took " << dmg << " damage, now PC is Dead.";
@@ -38,10 +40,6 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
         cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
     }
 }
-
-/*void PlayableCharacter::dealDmg(Enemy *e) {
-    e->takeDmg(this);
-}*/
 
 int PlayableCharacter::getAttack() const {
     int atk = attack;
@@ -77,16 +75,16 @@ float PlayableCharacter::getcurGold() const {
     return this->cellConnection;
  }
 
-bool PlayableCharacter::getState() const {
-    return this->isDead;
+bool PlayableCharacter::getDead() const {
+    return this->dead;
 }
 
  void PlayableCharacter::setCell(Cell * newCell) {
     this->cellConnection = newCell;
  }
 
- void PlayableCharacter::setState(bool alive) {
-    this->isDead = alive;
+ void PlayableCharacter::setDead(bool dead) {
+    this->dead = dead;
  }
 
 void PlayableCharacter::setHP(int k) {

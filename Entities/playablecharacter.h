@@ -19,8 +19,9 @@ class PlayableCharacter {
     bool hasCompass;
     bool hasBarrierSuit;
     Cell * cellConnection;
-    bool isDead;
+    bool dead;
     std::vector<std::unique_ptr<TempEffect>> tempEffects;
+    string curAction;
 
   public:
     // Constructor and Destructor
@@ -34,11 +35,10 @@ class PlayableCharacter {
     float getcurGold() const;
     int getMaxHP() const;
     Cell * getCell() const;
-    bool getState() const;
+    bool getDead() const;
 
     // Setters
     void setCell(Cell * newCell);
-    void setState(bool alive);
     virtual void setHP(int k);
 
     // Checkers
@@ -47,7 +47,6 @@ class PlayableCharacter {
 
     // Misc
     virtual std::string getRace() const; // Maybe pure virtual??? Check implementation
-    
     //void dealDmg(Enemy *e);
     void giveCompass();
     void giveBarrierSuit();
@@ -55,7 +54,6 @@ class PlayableCharacter {
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);
     virtual void addPermanentEffects(int hp, int atk, int def);
-
     void attackEnemy(Enemy *em);
     void getAttackedByEnemy(Enemy *em);
     void getDroppedGold(Enemy *em);
@@ -64,6 +62,7 @@ class PlayableCharacter {
   private:
     virtual void addGold(int gold);
     void takeDmg(Enemy *e);
+    void setDead(bool alive);
 };
 
 #endif

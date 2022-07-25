@@ -7,12 +7,11 @@
 
 #include "direction.h"
 #include "Display/mapDisplay.h"
+#include "Display/actionDisplay.h"
 
 class Cell;
 class PlayableCharacter;
 class Floor;
-class Mapdisplay;
-class Actiondisplay;
 
 const std::string floorLayout = "cc3kfloor.txt";
 
@@ -45,6 +44,7 @@ class Dungeon {
         void playerMove(Direction d);
         void playerAttack(Direction d);
         void playerUsePotion(Direction d);
+        void printGame();
 };
 
 #endif
