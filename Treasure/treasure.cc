@@ -17,3 +17,7 @@ char Treasure::getSymbol() {
     return sym;
 }
 
+bool Treasure::isDragonHoarde() {
+    return dh;
+}
+
