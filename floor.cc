@@ -446,6 +446,7 @@ void Floor::movePC(Direction d) {
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
         content[pcLocation.y][pcLocation.x]->clear();
+        content[pcLocation.y][pcLocation.x]->setPC(p);
     }
 }
 
