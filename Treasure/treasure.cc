@@ -1,7 +1,7 @@
 #include "treasure.h"
 #include "../Entities/playablecharacter.h"
 
-Treasure::Treasure(int amount): sym{'G'}, amount{amount}, isPickedUp{false} {}
+Treasure::Treasure(int amount, bool dh): sym{'G'}, amount{amount}, isPickedUp{false}, dh{dh} {}
 
 Treasure::~Treasure() {}
 

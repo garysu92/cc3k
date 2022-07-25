@@ -20,7 +20,7 @@ class Cell {
     char symbolRep;
     bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
     bool isStair; // Does this need be defined here?
-
+    bool comp;
     public:
         // Constructor
         Cell(int x, int y, char sym, bool isEffWall, bool isStair);
@@ -37,6 +37,7 @@ class Cell {
         std::unique_ptr<Treasure> &getTreasure();
         char getsymbolRep();
         bool getisEffWall();
+        bool hasCompass();
 
         // Setters
         void setX(int x);
@@ -49,6 +50,8 @@ class Cell {
         void setisEffWall(bool isEffWall);
         void setStair(); 
         void setBarrierSuit(bool has);
+        void setCompass(bool b);
+        virtual void setVisibility() = 0;
         
         // Checkers check what's atop of the Cell
         bool hasEnemy();

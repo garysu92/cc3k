@@ -7,8 +7,8 @@ bool Stair::getVisibility() {
     return this->isVisible;
 }
 
-void Stair::setVisibility(bool isVisible) {
-    this->isVisible = isVisible;
+void Stair::setVisibility() {
+    this->isVisible = true;
     if (this->isVisible) {
         this->setsymbolRep('\\');
     }
