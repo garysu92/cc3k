@@ -83,11 +83,11 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
                     }
                     getline(file, s);
                     if (endOfRoom(s)) {
+                        for (int i = 0; i < s.length(); i++) {
+                            v.at(v.size() - 1).emplace_back(s[i]);
+                        }
                         break;
                     }
-                }
-                for (int i = 0; i < s.length(); i++) {
-                        v.at(v.size() - 1).emplace_back(s[i]);
                 }
                 if (save) {
                     floors.emplace_back(v, p, true, true);
