@@ -133,18 +133,21 @@ void Dungeon::playerMove(Direction d) {
     //cerr << "Enemies moved succesffuly " << endl;
     //cerr << "Printing Map and Action Display" << endl;
     this->printGame();
+    postMoveCheck();
 }
 
 void Dungeon::playerAttack(Direction d) {
     floors[curFloor - 1].attack(d);
     floors[curFloor - 1].updateEnemies();
     this->printGame();
+    postMoveCheck();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor - 1].usePotion(d);
     floors[curFloor - 1].updateEnemies();
     this->printGame();
+    postMoveCheck();
 }
 
 void Dungeon::postMoveCheck() {
