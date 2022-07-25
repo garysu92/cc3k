@@ -12,6 +12,10 @@ bool Merchant::isHostile() {
     return hostile;
 }
 
+void Merchant::deathProcedure() {
+    hostile = true;
+}
+
 std::string Merchant::getType() const {
     return "Merchant (M)";
 }

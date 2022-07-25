@@ -47,6 +47,7 @@ class Enemy {
     int goldDropped() const;
   private:
     virtual void enemyAttack(PlayableCharacter *pc);
+    virtual void deathProcedure();
     //void dropGold(PlayableCharacter *pc);
     void dealDmg(PlayableCharacter *pc);
     void takeDmg(PlayableCharacter *pc);

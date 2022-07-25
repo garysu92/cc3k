@@ -14,6 +14,8 @@ class Merchant: public Enemy {
     Posn getProtect() {
         return Posn{-1, -1};
     }
+  private:
+    void deathProcedure() override;
 };
 
 #endif

@@ -77,7 +77,7 @@ void Enemy::dropCompass() {
 
 void Enemy::attackPlayer(PlayableCharacter *pc) {
     int miss = randNum() % 2;
-    if (!miss) {
+    if (!miss && isHostile()) {
         enemyAttack(pc);
     }
     // else do nothing
@@ -91,6 +91,7 @@ void Enemy::getAttackedByPlayer(PlayableCharacter *pc) {
     // calculate damage 
     takeDmg(pc);
     if (isDead() && !hasDroppedGold) {
+        deathProcedure();
         pc->getDroppedGold(this);
         hasDroppedGold = true;
     }
@@ -114,5 +115,7 @@ int Enemy::goldDropped() const {
 bool Enemy::isDead() const{
     return hp == 0;
 }
+
+void Enemy::deathProcedure() {}
 
 Enemy::~Enemy() {}
