@@ -443,11 +443,10 @@ void Floor::movePC(Direction d) {
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
     }
-    // if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
-
-    // } else if (content[pcLocation.y][pcLocation.x]->hasPotion()) {
-
-    // }
+    if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
+        p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
+        content[pcLocation.y][pcLocation.x]->clear();
+    }
 }
 
 bool Floor::PConStair() {
