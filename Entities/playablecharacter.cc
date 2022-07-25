@@ -14,11 +14,13 @@ using namespace std;
 PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, 
                                                                 attack{atk}, defense{def}, 
                                                                 hasCompass{false}, hasBarrierSuit{false},
-                                                                tempEffects{} {}
+                                                                tempEffects{}, dead{false} {}
 
 string PlayableCharacter::getRace() const { 
     return ""; 
 }
+
+
 
 // What about when playchar has barrier suit?
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
@@ -38,10 +40,6 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
         cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
     }
 }
-
-/*void PlayableCharacter::dealDmg(Enemy *e) {
-    e->takeDmg(this);
-}*/
 
 int PlayableCharacter::getAttack() const {
     int atk = attack;
@@ -77,16 +75,16 @@ float PlayableCharacter::getcurGold() const {
     return this->cellConnection;
  }
 
-bool PlayableCharacter::getState() const {
-    return this->isDead;
+bool PlayableCharacter::getDead() const {
+    return this->dead;
 }
 
  void PlayableCharacter::setCell(Cell * newCell) {
     this->cellConnection = newCell;
  }
 
- void PlayableCharacter::setState(bool alive) {
-    this->isDead = alive;
+ void PlayableCharacter::setDead(bool dead) {
+    this->dead = dead;
  }
 
 void PlayableCharacter::setHP(int k) {
