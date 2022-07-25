@@ -66,13 +66,6 @@ void CC3KGameRunner::play() {
 
             if (gameStarted && raceChosen) {
                 cin >> cmd;
-                if (!isDirection(cmd)) { 
-                    invalidInput = true;
-                }
-                if (invalidInput) {
-                    cout << "Invalid Input" << endl;
-                    continue;
-                }
             }
             char directionCommandType = '\0'; // Default command is move
 
@@ -137,6 +130,14 @@ void CC3KGameRunner::play() {
                 // attack
                 cin >> cmd;
                 directionCommandType = 'a';
+            }
+
+            if (!isDirection(cmd)) { 
+                invalidInput = true;
+            }
+            if (invalidInput) {
+                cout << "Invalid Input" << endl;
+                continue;
             }
 
             Direction temp = getDirection(cmd);
