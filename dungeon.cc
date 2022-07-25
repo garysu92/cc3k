@@ -52,22 +52,22 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         }
 
         file.close();
+
+        for (int q = 0; q < numFloors; q++) {
+        floors.emplace_back(v, p);
+        }
+        this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
+        this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
     } catch(...){
     }
-    // loop 5 times to read in 5 potential different floor designs
-    for (int q = 0; q < numFloors; q++) {
-        floors.emplace_back(v, p);
-    }
-    this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
-    this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
+
 }
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{1}, p{p}, curMap{}, curActionBar{} {
+    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{} {
         try{
             fstream file{fileName};
-            
             while (true) {
                 string s = "";
                 getline(file, s);
@@ -95,11 +95,12 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
                     floors.emplace_back(v, p, true, false);
                 }
             }
-            
-        } catch (...) {}
+            numFloors = floors.size();
+            // NOTE, need to check for current floor in save
 
-    this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
-    this->curActionBar = make_unique<Actiondisplay>(this->p);
+            this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
+            this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
+        } catch (...) {}
 }
 
 int Dungeon::get_curFloor() {
@@ -144,6 +145,12 @@ void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor - 1].usePotion(d);
     floors[curFloor - 1].updateEnemies();
     this->printGame();
+}
+
+void Dungeon::postMoveCheck() {
+    if (floors.at(curFloor - 1).PConStair()) {
+        nextFloor();
+    }
 }
 
 void Dungeon::nextFloor() {

@@ -576,4 +576,3 @@ void Floor::usePotion(Direction d) {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
 }
-
