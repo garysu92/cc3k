@@ -1,11 +1,12 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include "actionDisplay.h"
 #include "../Entities/playablecharacter.h"
 
 using namespace std; 
 
-Actiondisplay::Actiondisplay(PlayableCharacter * newPC) : PC{newPC} {}
+Actiondisplay::Actiondisplay(PlayableCharacter * newPC, int curFloor) : PC{newPC}, curFloor{curFloor} {}
 
 void Actiondisplay::set_curAction(string newAction) {
     this->curAction = newAction;
@@ -24,7 +25,7 @@ PlayableCharacter * Actiondisplay::get_PC() {
 }
         
 void Actiondisplay::printActionDisplay() {
-    cout << "Race: " << (this->PC)->getRace() << " Gold: " << (this->PC)->getcurGold() << endl;
+    cout << "Race: " << (this->PC)->getRace() << " Gold: " << (this->PC)->getcurGold() << right << this->curFloor << endl;
     cout << "HP: " << (this->PC)->getHP() << endl;
     cout << "Atk: " << (this->PC)->getAttack() << endl;
     cout << "Def: " << (this->PC)->getDefense() << endl;
