@@ -110,6 +110,7 @@ bool Cell::getVisibility() {
 void Cell::setCompass(bool b) {
     comp = b;
 }
+
 void Cell::setVisibility() {}
 
 void Cell::setisEffWall(bool isEffWall) {

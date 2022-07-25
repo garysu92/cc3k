@@ -21,6 +21,7 @@ class Cell {
     bool isEffWall; // Dictates whether or not the Cell effectively behaves as a wall, meaning the PC/Enemy cannot move through it.
     bool isStair; // Does this need be defined here?
     bool comp;
+    
     public:
         // Constructor
         Cell(int x, int y, char sym, bool isEffWall, bool isStair);
