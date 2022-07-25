@@ -437,7 +437,7 @@ void Floor::movePC(Direction d) {
     for (int i = 0; i < nbrs.size(); i++) {
         int x = nbrs[i].x;
         int y = nbrs[i].y;
-        if (content[y][x]->getEnemy() && content[y][x]->getEnemy()->isDragon()) {
+        if (content[y][x]->hasEnemy() && content[y][x]->getEnemy()->isDragon()) {
             hasDragNbr = true;
             break;
         }
