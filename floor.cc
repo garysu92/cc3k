@@ -545,6 +545,7 @@ void Floor::attack(Direction d) {
     if (content[ay][ax]->hasEnemy()) {
         p->attackEnemy(content[ay][ax]->getEnemy());
     } else return;
+    
     if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
         bool hasCompass = false;
@@ -556,7 +557,7 @@ void Floor::attack(Direction d) {
             }
         }
         // detach from cell
-        content[ay][ax]->clear();
+        content[ay][ax]->clear();     
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
         }
