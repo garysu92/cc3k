@@ -11,8 +11,6 @@
 #include "dungeon.h"
 #include "floor.h"
 #include "Display/mapDisplay.h"
-#include "Display/actionDisplay.h"
-
 
 using namespace std;
 
@@ -57,20 +55,28 @@ void CC3KGameRunner::play() {
     game = unique_ptr<Dungeon>{};
     p = make_unique<Human>();
     bool gameStarted = false;
+    bool raceChosen = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
-    // bool newFloorDisplay;
-    // int curFloor;
-    // unique_ptr<Mapdisplay> curMap;
 
     try {
         // running game
         while (true) {
-
-            cin >> cmd;
             bool invalidInput = false;
-            char directionCommandType = '\0'; // default is move, not used if not move, use potion, attack
-            if (!gameStarted) {
+
+            if (gameStarted && raceChosen) {
+                cin >> cmd;
+                if (!isDirection(cmd)) { 
+                    invalidInput = true;
+                }
+                if (invalidInput) {
+                    cout << "Invalid Input" << endl;
+                    continue;
+                }
+            }
+            char directionCommandType = '\0'; // Default command is move
+
+            if (!raceChosen) {
                 // game has not started, so choosing race is valid input, can choose multiple
                 // times
 
@@ -83,19 +89,35 @@ void CC3KGameRunner::play() {
                 cout << "Orc - o" << endl;
                 cout << "Enter your race: ";
 
+                cin >> cmd;
+
                 if (cmd == "h") {
                     p = make_unique<Human>();
-                    continue;
                 } else if (cmd == "e") {
                     p = make_unique<Elf>();
-                    continue;
                 } else if (cmd == "d") {
                     p = make_unique<Dwarf>();
-                    continue;
                 } else if (cmd == "o") {
                     p = make_unique<Orc>();
-                    continue;
+                } else {
+                    return; // Quit if invalid race
                 }
+                raceChosen = true;
+                continue;
+            }
+
+            // game starts when first valid command that is not choosing a character
+            // is given
+            if (!gameStarted) {
+                gameStarted = true; // If this line runs, then game has started
+                if (filename != nullptr) {
+                    // this means the filename for floor layout was specified
+                    game = make_unique<Dungeon>(*filename, p.get());
+                } else {
+                    game = make_unique<Dungeon>(p.get());
+                }
+                game->printGame();
+                continue;
             }
 
             // play game commands
@@ -116,29 +138,6 @@ void CC3KGameRunner::play() {
                 cin >> cmd;
                 directionCommandType = 'a';
             }
-            
-            if (!isDirection(cmd)) {
-                invalidInput = true;
-            }
-
-            if (invalidInput) {
-                cout << "Invalid Input" << endl;
-                continue;
-            }
-
-            // game starts when first valid command that is not choosing a character
-            // is given
-            if (!gameStarted) {
-                gameStarted = true; // if this line runs, then game has started, 
-                                // cannot choose race anymore
-                // this part only runs when user executes a valid non-choose race command
-                if (filename != nullptr) {
-                    // this means the filename for floor layout was specified
-                    game = make_unique<Dungeon>(*filename, p.get());
-                } else {
-                    game = make_unique<Dungeon>(p.get());
-                }
-            }
 
             Direction temp = getDirection(cmd);
             if (directionCommandType == 'a') {
@@ -146,7 +145,6 @@ void CC3KGameRunner::play() {
             } else if (directionCommandType == 'u') {
                 game->playerUsePotion(temp);
             } else {
-                // move
                 game->playerMove(temp);
             }
         }

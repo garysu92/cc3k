@@ -120,31 +120,28 @@ void Dungeon::set_numFloors(int newF) {
 
 void Dungeon::printGame() {
     (this->curMap)->printMap();
+     (this->curActionBar)->printActionDisplay();
 }
 
 void Dungeon::playerMove(Direction d) {
-    cerr << "Moving player " << endl;
+    //cerr << "Moving player " << endl;
     floors[curFloor].movePC(d);
-    cerr << "Player moved succesffuly " << endl;
-    cerr << "Moving enemies " << endl;
+    //cerr << "Player moved succesffuly " << endl;
+    //cerr << "Moving enemies " << endl;
     floors[curFloor].updateEnemies();
-    cerr << "Enemies moved succesffuly " << endl;
-    cerr << "Printing map Display" << endl;
+    //cerr << "Enemies moved succesffuly " << endl;
+    //cerr << "Printing Map and Action Display" << endl;
     this->printGame();
-    cerr << "Map display printed sucessfully" << endl;
-    (this->curActionBar)->printActionDisplay();
 }
 
 void Dungeon::playerAttack(Direction d) {
     floors[curFloor].attack(d);
     floors[curFloor].updateEnemies();
     this->printGame();
-    (this->curActionBar)->printActionDisplay();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor].usePotion(d);
     floors[curFloor].updateEnemies();
     this->printGame();
-    (this->curActionBar)->printActionDisplay();
 }
