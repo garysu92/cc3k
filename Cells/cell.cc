@@ -99,6 +99,16 @@ bool Cell::hasBarrierSuit() {
     return bs;
 }
 
+bool Cell::hasCompass() {
+    return comp;
+}
+
+void Cell::setCompass(bool b) {
+    comp = b;
+}
+
+void Cell::setVisibility() {}
+
 void Cell::setisEffWall(bool isEffWall) {
     this->isEffWall = isEffWall;
 }

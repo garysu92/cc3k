@@ -432,16 +432,31 @@ void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
+    vector<Posn> nbrs = Floor::neighbours(cx, cy, false);
+    bool hasDragNbr = false;
+    for (int i = 0; i < nbrs.size(); i++) {
+        int x = nbrs[i].x;
+        int y = nbrs[i].y;
+        if (content[y][x]->getEnemy()->isDragon()) {
+            hasDragNbr = true;
+            break;
+        }
+    }
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' \
-        || content[cy][cx]->getsymbolRep() == '#')) {
+        || content[cy][cx]->getsymbolRep() == '#') && !content[cy][cx]->getTreasure()->isDragonHoarde() || \
+        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) {
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
         content[pcLocation.y][pcLocation.x]->setPC(p);
+    } else {
+        return;
     }
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
+    } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
+        content[pcLocation.y][pcLocation.x]->setCompass(false);
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
@@ -531,18 +546,20 @@ void Floor::attack(Direction d) {
     
     if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
-        
+        bool hasCompass = false;
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
+                hasCompass = enemies[i].first->checkCompass();
                 enemies.erase(enemies.begin() + i);
+                break;
             }
         }
         // detach from cell
-        
         content[ay][ax]->clear();     
-           
+        if (hasCompass) {
+            content[ay][ax]->setCompass(true);
+        }
     }
-    
 }
 
 void Floor::usePotion(Direction d) {

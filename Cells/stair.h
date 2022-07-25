@@ -8,8 +8,8 @@ class Stair : public Cell {
 
     public:
         Stair(int x, int y);
-        bool getVisibility();
-        void setVisibility(bool isVisible);
+        bool getVisibility() override;
+        void setVisibility() override;
 };
 
 #endif
