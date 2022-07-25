@@ -41,6 +41,7 @@ class PlayableCharacter {
     // Setters
     void setCell(Cell * newCell);
     virtual void setHP(int k);
+    void setcurAction(std::string curAction);
 
     // Checkers
     bool checkCompass();

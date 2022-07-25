@@ -97,6 +97,10 @@ void PlayableCharacter::setHP(int k) {
     }
 }
 
+void PlayableCharacter::setcurAction(std::string curAction) {
+    this->curAction = curAction;
+}
+
 bool PlayableCharacter::checkCompass() {
     return this->hasCompass;
 }
