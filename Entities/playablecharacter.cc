@@ -150,7 +150,7 @@ void PlayableCharacter::attackEnemy(Enemy *em) {
     int curHP = em->getHP();
     em->getAttackedByPlayer(this);
     int newHP = em->getHP();
-    this->curAction = this->curAction + "PC deals " + to_string(curHP - newHP) + " damage to " + em->getType() + "(" + to_string(newHP) + " hp left). ";
+    this->curAction = this->curAction + "PC deals " + to_string(curHP - newHP) + " damage to " + em->getType() + " and it has " + to_string(newHP) + " hp left. ";
 }
 
 void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
