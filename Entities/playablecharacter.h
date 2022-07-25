@@ -21,7 +21,7 @@ class PlayableCharacter {
     Cell * cellConnection;
     bool dead;
     std::vector<std::unique_ptr<TempEffect>> tempEffects;
-    string curAction;
+    std::string curAction;
 
   public:
     // Constructor and Destructor
