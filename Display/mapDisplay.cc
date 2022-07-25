@@ -20,7 +20,7 @@ void Mapdisplay::printMap() {
     for (int i = 0; i < gameMap.size(); i++) {
         for (int j = 0; j < gameMap[0].size(); j++) {
             if (gameMap.at(i).at(j)->hasPC()) cout << "\033[1;32m" << '@' << "\033[0m";
-            else if (gameMap.at(i).at(j)->s()) cout << "/" << endl;
+            else if (gameMap.at(i).at(j)->s()) cout << "/";
             else if (gameMap.at(i).at(j)->hasEnemy() && gameMap.at(i).at(j)->getEnemy()->checkCompass()) cout << "\033[1;31m" << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< "\033[0m";
             else if (gameMap.at(i).at(j)->hasEnemy() && !gameMap.at(i).at(j)->getEnemy()->checkCompass()) cout << "\033[1;34m" << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< "\033[0m";
             else if (gameMap.at(i).at(j)->hasPotion()) cout << "\033[1;36m" << gameMap.at(i).at(j)->getPotion()->getSymbol()<< "\033[0m";
