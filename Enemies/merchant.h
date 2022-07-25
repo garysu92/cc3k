@@ -15,7 +15,7 @@ class Merchant: public Enemy {
         return Posn{-1, -1};
     }
   private:
-    void deathProcedure() override;
+    void takeDmg(PlayableCharacter *pc) override;
 };
 
 #endif

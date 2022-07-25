@@ -1,4 +1,6 @@
 #include <string>
+#include <algorithm>
+
 #include "merchant.h"
 #include "../Entities/enemy.h"
 
@@ -12,8 +14,9 @@ bool Merchant::isHostile() {
     return hostile;
 }
 
-void Merchant::deathProcedure() {
+void Merchant::takeDmg(PlayableCharacter *pc) {
     hostile = true;
+    Enemy::takeDmg(pc);
 }
 
 std::string Merchant::getType() const {

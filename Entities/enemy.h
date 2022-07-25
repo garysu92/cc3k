@@ -45,12 +45,13 @@ class Enemy {
     void attackPlayer(PlayableCharacter *pc);
     void getAttackedByPlayer(PlayableCharacter *pc);
     int goldDropped() const;
-  private:
+  
+  protected:
     virtual void enemyAttack(PlayableCharacter *pc);
     virtual void deathProcedure();
     //void dropGold(PlayableCharacter *pc);
-    void dealDmg(PlayableCharacter *pc);
-    void takeDmg(PlayableCharacter *pc);
+    //virtual void dealDmg(PlayableCharacter *pc);
+    virtual void takeDmg(PlayableCharacter *pc);
 };
 
 #endif

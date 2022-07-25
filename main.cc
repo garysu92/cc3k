@@ -1,66 +1,56 @@
-#include <iostream>
-#include <memory>
-#include <string>
-#include <fstream>
+#include "floor.h"
+
 #include <vector>
-#include <iomanip>
+#include <memory>
+#include <algorithm>
+#include <stack>
+#include <cstdlib>
+#include <iostream>
+#include <utility>
+#include <random>
+#include <chrono>
 
-/*
-#include "cc3kgamerunner.h"
-#include "Entities/playablecharacter.h"
-#include "Entities/enemy.h"
-#include "Races/human.h"
-#include "goblin.h"
-#include "tempeffect.h"
-#include "woundattack.h"
-#include "wounddefense.h"
-#include "boostattack.h"
-#include "boostdefense.h"
-#include "potion.h"
-#include "floor.h"
-*/
-
-#include "floor.h"
-#include "Entities/playablecharacter.h"
-#include "Races/human.h"
-#include "Cells/space.h"
-#include "Cells/door.h"
+#include "posn.h"
 #include "Cells/cell.h"
-#include "Cells/tile.h"
-#include "Cells/wall.h"
-#include "Cells/stair.h"
-#include "Cells/passage.h"
 #include "Potions/potion.h"
-
-
+#include "TempEffects/tempeffect.h"
+#include "Potions/rh.h"
+#include "Potions/ba.h"
+#include "Potions/bd.h"
+#include "Potions/ph.h"
+#include "Potions/wa.h"
+#include "Potions/wd.h"
+#include "Cells/wall.h"
+#include "Cells/passage.h"
+#include "Cells/tile.h"
+#include "Cells/door.h"
+#include "Cells/space.h"
+#include "Cells/stair.h"
+#include "Treasure/smallgold.h"
+#include "Treasure/dragongold.h"
+#include "Treasure/normalgold.h"
+#include "Treasure/merchantgold.h"
+#include "Treasure/treasure.h"
+#include "Enemies/dragon.h"
+#include "Enemies/werewolf.h"
+#include "Enemies/vampire.h"
+#include "Enemies/goblin.h"
+#include "Enemies/troll.h"
+#include "Enemies/phoenix.h"
+#include "Enemies/merchant.h"
+#include "direction.h"
+#include "TempEffects/woundattack.h"
+#include "TempEffects/wounddefense.h"
+#include "TempEffects/boostattack.h"
+#include "TempEffects/boostdefense.h"
+#include "dungeon.h"
+#include "cc3kgamerunner.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    vector<vector<char>> v;
-    ifstream file{"cc3kfloor.txt"};
-    char c;
-    for (int r = 0; r < 25; r++) {
-        v.emplace_back();       
-        // loop 79 times to read the 79 columns
-        for (int t = 0; t < 79; t++) {
-            file >> noskipws >> c;
-            v[r].emplace_back(c);
-        }
-        file >> noskipws >> c;
-        
-    }
-    for (int r = 0; r < 25; r++) {
-        // loop 79 times to read the 79 columns
-        for (int t = 0; t < 79; t++) {
-            cout << v[r][t];
-        }
-        cout << endl;
-    }
-    //shared_ptr<PlayableCharacter> p = make_shared<Human>();
-    //Floor f{v, p};
-    //f.generate();
-    //f.print();
+	CC3KGameRunner game{};
+	game.play();
     /*
     unique_ptr<CC3KGameRunner> game;
     if (argc == 3) {

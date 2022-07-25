@@ -3,7 +3,7 @@
 
 #include <string>
 
-DeveloperOP::DeveloperOP(): PlayableCharacter{1000000, 1000000, 1000000} {}
+DeveloperOP::DeveloperOP(): PlayableCharacter{1000000, 0, 1000000} {}
 
 std::string DeveloperOP::getRace() const {
     return "OP";
