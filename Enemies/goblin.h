@@ -8,8 +8,8 @@
 class Goblin : public Enemy {
   public:
     Goblin();
+    std::string getType() const override;
     bool isHostile();
-    std::string getType() const;
     Posn getProtect() {
         return Posn{-1, -1};
     }

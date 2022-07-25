@@ -8,7 +8,7 @@
 class Vampire : public Enemy {
   public:
     Vampire();
-    std::string getType() const;
+    std::string getType() const override;
     bool isHostile();
     Posn getProtect() {
 		return Posn{-1, -1};
