@@ -1,6 +1,7 @@
 #ifndef MERCHANT_H
 #define MERCHANT_H
 
+#include <string>
 #include "../Entities/enemy.h"
 #include "../posn.h"
 class Merchant: public Enemy {

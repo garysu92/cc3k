@@ -1,5 +1,6 @@
 #include <string>
 #include "dragon.h"
+#include "../Entities/enemy.h"
 #include "../posn.h"
 
 using namespace std;
@@ -10,7 +11,7 @@ bool Dragon::isHostile() {
     return true; 
 }
 
-std::string getType() const {
+std::string Dragon::getType() const {
     return "Dragon (D)";
 }
 

@@ -1,5 +1,8 @@
 #include "phoenix.h"
 
+#include "../Entities/enemy.h"
+#include <string>
+
 using namespace std;
 
 Phoenix::Phoenix(): Enemy{35, 20, 50, 1, 'X'} {}

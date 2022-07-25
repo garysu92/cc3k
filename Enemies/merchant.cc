@@ -1,4 +1,6 @@
 #include "merchant.h"
+#include "../Entities/enemy.h"
+#include <string>
 
 using namespace std;
 
@@ -10,6 +12,6 @@ bool Merchant::isHostile() {
     return hostile;
 }
 
-std::string getType() const {
+std::string Merchant::getType() const {
     return "Merchant (M)";
 }

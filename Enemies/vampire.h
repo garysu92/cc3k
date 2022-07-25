@@ -1,6 +1,7 @@
 #ifndef VAMPIRE_H
 #define VAMPIRE_H
 
+#include <string>
 #include "../Entities/enemy.h"
 #include "../posn.h"
 

@@ -1,5 +1,8 @@
 #include "troll.h"
 
+#include "../Entities/enemy.h"
+#include <string>
+
 using namespace std;
 
 Troll::Troll(): Enemy{25, 15, 120, 1, 'T'} {}

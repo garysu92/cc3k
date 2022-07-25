@@ -1,4 +1,6 @@
 #include "goblin.h"
+#include "../Entities/enemy.h"
+#include <string>
 
 using namespace std;
 
@@ -8,6 +10,6 @@ bool Goblin::isHostile() {
     return true;
 }
 
-std::string getType() const {
+std::string Goblin::getType() const {
     return "Goblin (N)";
 }

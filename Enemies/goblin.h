@@ -1,7 +1,7 @@
 #ifndef GOBLIN_H
 #define GOBLIN_H
 
-#include <string.h>
+#include <string>
 #include "../Entities/enemy.h"
 #include "../posn.h"
 

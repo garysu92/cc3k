@@ -1,6 +1,7 @@
 #ifndef WEREWOLF_H
 #define WEREWOLF_H
 
+#include <string>
 #include "../Entities/enemy.h"
 #include "../posn.h"
 class Werewolf : public Enemy {

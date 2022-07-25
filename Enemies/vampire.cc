@@ -1,5 +1,8 @@
 #include "vampire.h"
 
+#include "../Entities/enemy.h"
+#include <string>
+
 using namespace std;
 
 Vampire::Vampire(): Enemy{25, 25, 50, 1, 'V'} {}
