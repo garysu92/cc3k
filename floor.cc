@@ -549,6 +549,7 @@ void Floor::usePotion(Direction d) {
         && content[py][px]->hasPotion()) {
         content[py][px]->getPotion()->setVisible();
         p->usePotion(content[py][px]->getPotion().get()); 
+        
     } else {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
