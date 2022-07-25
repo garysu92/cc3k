@@ -13,7 +13,7 @@ using namespace std;
 
 PlayableCharacter::PlayableCharacter(int atk, int def, int hp): curGold{0}, maxHP{hp}, hp{hp}, 
                                                                 attack{atk}, defense{def}, 
-                                                                hasCompass{false}, hasBarrierSuit{false}, cellConnection{nullptr}, dead{false}, tempEffect{}, curAction{""} {}
+                                                                hasCompass{false}, hasBarrierSuit{false}, cellConnection{nullptr}, dead{false}, tempEffects{}, curAction{""} {}
 
 string PlayableCharacter::getRace() const { 
     return ""; 
