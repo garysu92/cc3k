@@ -5,7 +5,7 @@
 
 using namespace std; 
 
-Actiondisplay::Actiondisplay(PlayableCharacter * newPC) : PC{newPC} {}
+Actiondisplay::Actiondisplay(PlayableCharacter * newPC, int curFloor) : PC{newPC}, curFloor{curFloor} {}
 
 void Actiondisplay::set_curAction(string newAction) {
     this->curAction = newAction;

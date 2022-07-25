@@ -17,7 +17,7 @@ using namespace std;
 extern const string floorLayout;
 
 std::vector<std::vector<std::unique_ptr<Cell>>> & Dungeon::get_floorContents() {
-    return floors[curFloor].getContents();
+    return floors[curFloor - 1].getContents();
 }
 
 // maybe make static function of class
@@ -59,7 +59,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         floors.emplace_back(v, p);
     }
     this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
-    this->curActionBar = make_unique<Actiondisplay>(this->p);
+    this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
 }
 
 // Constructor which makes floors with a file specified layout
@@ -125,23 +125,35 @@ void Dungeon::printGame() {
 
 void Dungeon::playerMove(Direction d) {
     //cerr << "Moving player " << endl;
-    floors[curFloor].movePC(d);
+    floors[curFloor - 1].movePC(d);
     //cerr << "Player moved succesffuly " << endl;
     //cerr << "Moving enemies " << endl;
-    floors[curFloor].updateEnemies();
+    floors[curFloor - 1].updateEnemies();
     //cerr << "Enemies moved succesffuly " << endl;
     //cerr << "Printing Map and Action Display" << endl;
     this->printGame();
 }
 
 void Dungeon::playerAttack(Direction d) {
-    floors[curFloor].attack(d);
-    floors[curFloor].updateEnemies();
+    floors[curFloor - 1].attack(d);
+    floors[curFloor - 1].updateEnemies();
     this->printGame();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
-    floors[curFloor].usePotion(d);
-    floors[curFloor].updateEnemies();
+    floors[curFloor - 1].usePotion(d);
+    floors[curFloor - 1].updateEnemies();
     this->printGame();
+}
+
+void Dungeon::nextFloor() {
+    ++curFloor;
+    if (!end()) {
+        curActionBar = make_unique<Actiondisplay>(p, curFloor);
+        curMap = make_unique<Mapdisplay>(get_floorContents());
+    }
+}
+
+bool Dungeon::end() const{
+    return curFloor > numFloors;
 }

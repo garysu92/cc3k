@@ -147,6 +147,14 @@ void CC3KGameRunner::play() {
             } else {
                 game->playerMove(temp);
             }
+            if (p->getDead()) {
+                // print end message
+                cout << "Nice Try" << endl;
+                return;
+            } else if (game->end()) {
+                // print message
+                return;
+            }
         }
     } catch (ios::failure &) {
     }
