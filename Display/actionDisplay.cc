@@ -29,5 +29,5 @@ void Actiondisplay::printActionDisplay() {
     cout << "HP: " << (this->PC)->getHP() << endl;
     cout << "Atk: " << (this->PC)->getAttack() << endl;
     cout << "Def: " << (this->PC)->getDefense() << endl;
-    cout << "Action: " << (this->PC)->curAction << endl;
+    cout << "Action: " << (this->PC)->getcurAction << endl;
 }

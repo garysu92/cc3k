@@ -75,6 +75,10 @@ bool PlayableCharacter::getDead() const {
     return this->dead;
 }
 
+string PlayableCharacter::getcurAction() const {
+    return this->curAction;
+}
+
  void PlayableCharacter::setCell(Cell * newCell) {
     this->cellConnection = newCell;
  }
