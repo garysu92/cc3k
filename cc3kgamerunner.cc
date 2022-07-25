@@ -78,9 +78,9 @@ void CC3KGameRunner::play() {
                 cout << "Select a race, \"Human\" is the default race" << endl;
                 cout << "[Type] - [Enter to Select]:" << endl;
                 cout << "Human - h      HP: 120  ATK: 20  DEF: 20  MISC: Endgame score is doubled" << endl;
-                cout << "Elf - e      HP: 140  ATK: 30  DEF: 10  MISC: All negative effect potions are converted to their postive counterpart" << endl;
+                cout << "Elf - e        HP: 140  ATK: 30  DEF: 10  MISC: All negative effect potions are converted to their postive counterpart" << endl;
                 cout << "Dwarf - d      HP: 100  ATK: 20  DEF: 30  MISC: All gold is doubled" << endl;
-                cout << "Orc - o      HP: 180  ATK: 30  DEF: 25  MISC: All gold is halved" << endl;
+                cout << "Orc - o        HP: 180  ATK: 30  DEF: 25  MISC: All gold is halved" << endl;
                 cout << "Enter your race: ";
 
                 cin >> cmd;
