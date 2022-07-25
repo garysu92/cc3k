@@ -443,13 +443,11 @@ void Floor::movePC(Direction d) {
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
     }
-    /*
-    if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
+    // if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
 
-    } else if (content[pcLocation.y][pcLocation.x]->hasPotion()) {
+    // } else if (content[pcLocation.y][pcLocation.x]->hasPotion()) {
 
-    }
-    */
+    // }
 }
 
 bool Floor::PConStair() {
@@ -551,7 +549,6 @@ void Floor::usePotion(Direction d) {
         && content[py][px]->hasPotion()) {
         content[py][px]->getPotion()->setVisible();
         p->usePotion(content[py][px]->getPotion().get()); 
-        
     } else {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
