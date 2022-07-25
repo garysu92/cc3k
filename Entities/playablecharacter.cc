@@ -140,17 +140,17 @@ void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {
 
 void PlayableCharacter::attackEnemy(Enemy *em) {
     int curHP = em->getHP();
-    this->curAction = this->curAction + "PC deals ";
     em->getAttackedByPlayer(this);
     int newHP = em->getHP();
-    //this->curAction = this->curAction + (newHP - curHP) + " damage to " + em->getType() + "(" + newHP + " hp left)";
+    this->curAction = this->curAction + "PC deals " + to_string(curHP - newHP) + " damage to " + em->getType() + "(" + to_string(newHP) + " hp left). ";
 }
 
 void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
     int curHP = this->getHP();
     takeDmg(em);
     int newHP = this->getHP();
-}    
+    this->curAction = this->curAction + em->getType() << " deals " + to_string(curHP - newHP) + " damage to PC. " ;
+}  
 
 void PlayableCharacter::getDroppedGold(Enemy *em) {
     int gold = em->goldDropped();
