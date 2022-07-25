@@ -10,7 +10,7 @@ bool Dragon::isHostile() {
     return true; 
 }
 
-std::string getType() const {
+string Dragon::getType() const {
     return "Dragon (D)";
 }
 

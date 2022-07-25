@@ -1,3 +1,4 @@
+#include <string>
 #include "goblin.h"
 
 using namespace std;
@@ -8,6 +9,6 @@ bool Goblin::isHostile() {
     return true;
 }
 
-std::string getType() const {
+string Goblin::getType() const {
     return "Goblin (N)";
 }

@@ -8,11 +8,13 @@
 class Dragon : public Enemy {
     Posn protectLocation;
     bool hostile;
+
   public:
     std::string getType() const override;
     Dragon(int x, int y);
     bool isHostile();
     Posn getProtect() override;
+    
   private:
     //void enemyAttack(PlayableCharacter *pc) override;
 };
