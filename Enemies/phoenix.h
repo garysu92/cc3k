@@ -6,6 +6,7 @@
 class Phoenix : public Enemy {
   public:
     Phoenix();
+    std::string getType() const;
     bool isHostile();
     Posn getProtect() {
         return Posn{-1, -1};

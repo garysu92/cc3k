@@ -8,6 +8,7 @@ class Merchant: public Enemy {
   public:
     Merchant();
     bool isHostile();
+    std::string getType() const;
     Posn getProtect() {
         return Posn{-1, -1};
     }

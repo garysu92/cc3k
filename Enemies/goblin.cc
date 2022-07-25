@@ -7,3 +7,7 @@ Goblin::Goblin(): Enemy{5, 10, 70, 1, 'N'} {}
 bool Goblin::isHostile() { 
     return true;
 }
+
+std::string getType() const {
+    return "Goblin (N)";
+}

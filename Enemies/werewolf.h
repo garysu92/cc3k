@@ -6,6 +6,7 @@
 class Werewolf : public Enemy {
   public:
     Werewolf();
+    std::string getType() const;
     bool isHostile();
     Posn getProtect() {
         return Posn{-1, -1};

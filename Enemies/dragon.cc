@@ -1,3 +1,4 @@
+#include <string>
 #include "dragon.h"
 #include "../posn.h"
 
@@ -7,6 +8,10 @@ Dragon::Dragon(int x, int y): Enemy{20, 20, 150, 0, 'D', true}, protectLocation{
 
 bool Dragon::isHostile() { 
     return true; 
+}
+
+std::string getType() const {
+    return "Dragon (D)";
 }
 
 Posn Dragon::getProtect() {
