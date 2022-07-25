@@ -159,6 +159,7 @@ void Dungeon::postMoveCheck() {
 void Dungeon::nextFloor() {
     ++curFloor;
     if (!end()) {
+        p->removeTempEffects();
         curActionBar = make_unique<Actiondisplay>(p, curFloor);
         curMap = make_unique<Mapdisplay>(get_floorContents());
         this->printGame();
