@@ -1,6 +1,6 @@
+#include <string>
 #include "merchant.h"
 #include "../Entities/enemy.h"
-#include <string>
 
 using namespace std;
 

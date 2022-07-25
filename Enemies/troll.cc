@@ -1,8 +1,6 @@
 #include <string>
 #include "troll.h"
-
 #include "../Entities/enemy.h"
-#include <string>
 
 using namespace std;
 
