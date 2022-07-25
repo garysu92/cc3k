@@ -19,7 +19,7 @@ class PlayableCharacter {
     bool hasCompass;
     bool hasBarrierSuit;
     Cell * cellConnection;
-    bool isDead;
+    bool dead;
     std::vector<std::unique_ptr<TempEffect>> tempEffects;
 
   public:
@@ -34,11 +34,13 @@ class PlayableCharacter {
     float getcurGold() const;
     int getMaxHP() const;
     Cell * getCell() const;
-    bool getState() const;
+
+
+    bool getDead() const;
 
     // Setters
     void setCell(Cell * newCell);
-    void setState(bool alive);
+    
     virtual void setHP(int k);
 
     // Checkers
@@ -64,6 +66,7 @@ class PlayableCharacter {
   private:
     virtual void addGold(int gold);
     void takeDmg(Enemy *e);
+    void setDead(bool alive);
 };
 
 #endif
