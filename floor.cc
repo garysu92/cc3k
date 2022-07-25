@@ -444,9 +444,9 @@ void Floor::movePC(Direction d) {
         isOnStair = true;
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
-        content[pcLocation.y][pcLocation.x]->clear();
+
     } else if (content[pcLocation.y][pcLocation.x]->hasPotion()) {
-        content[pcLocation.y][pcLocation.x]->clear();
+
     }
 }
 
