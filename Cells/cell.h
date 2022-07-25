@@ -38,6 +38,7 @@ class Cell {
         char getsymbolRep();
         bool getisEffWall();
         bool hasCompass();
+        virtual bool getVisibility();
 
         // Setters
         void setX(int x);
@@ -51,7 +52,7 @@ class Cell {
         void setStair(); 
         void setBarrierSuit(bool has);
         void setCompass(bool b);
-        virtual void setVisibility() = 0;
+        virtual void setVisibility();
         
         // Checkers check what's atop of the Cell
         bool hasEnemy();

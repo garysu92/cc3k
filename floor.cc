@@ -457,6 +457,7 @@ void Floor::movePC(Direction d) {
         isOnStair = true;
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
+        content[pcLocation.y][pcLocation.x]->setVisibility();
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
