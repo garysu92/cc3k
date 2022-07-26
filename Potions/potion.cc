@@ -14,8 +14,8 @@ char Potion::getSymbol() {
 
 void Potion::potionGetUsed(PlayableCharacter *pc) {
     if (!used) {
-        applyEffect(pc);
         used = true;
+        applyEffect(pc);
     }
 }
 
