@@ -552,6 +552,7 @@ void Floor::attack(Direction d) {
     
     if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
+        bool m = content[ay][ax]->getEnemy()->isMerchant();
         bool hasCompass = false;
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
@@ -564,6 +565,10 @@ void Floor::attack(Direction d) {
         content[ay][ax]->clear();     
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
+        }
+        if (m) {
+            unique_ptr<Treasure> mg = make_unique<MerchantGold>();
+            content[ay][ax]->setTreasure(mg);
         }
     }
 }

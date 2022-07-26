@@ -8,7 +8,7 @@ using namespace std;
 
 bool Merchant::hostile = false;
 
-Merchant::Merchant(): Enemy{70, 5, 30, 0, 'M'} {}
+Merchant::Merchant(): Enemy{70, 5, 30, 0, 'M', false, true} {}
 
 bool Merchant::isHostile() {
     return hostile;
