@@ -106,24 +106,29 @@ void PlayableCharacter::setcurAction(std::string curAction) {
 
 bool PlayableCharacter::checkCompass() {
     return this->hasCompass;
-    this->curAction = this->curAction + "PC picked up the Compass, the stairs to the next-floor are now visible, look for the \\! "; 
 }
 
 bool PlayableCharacter::checkBarrierSuit() {
     return this->hasBarrierSuit;
-    this->curAction = this->curAction + "PC picked up the Barrier Suit, and now feels stronger. "; 
 }
 
-void PlayableCharacter::giveCompass() {
-    this->hasCompass = true;
+void PlayableCharacter::setCompass(bool hasCompass) {
+    this->hasCompass = hasCompass;
+    if (hasCompass) {
+        this->curAction = this->curAction + "PC picked up the Compass, the stairs to the next floor are now visible. Look for the \\ symbol on the map. "; 
+    }
 }
 
-void PlayableCharacter::giveBarrierSuit() {
-    this->hasBarrierSuit = true;
+void PlayableCharacter::setBarrierSuit(bool hasBarrierSuit) {
+    this->hasBarrierSuit = hasBarrierSuit;
+    if (hasBarrierSuit) {
+        this->curAction = this->curAction + "PC picked up the Barrier Suit, and now feels stronger. "; 
+    }
 }
 
 void PlayableCharacter::usePotion(Potion *p) {
     p->potionGetUsed(this);
+    this->curAction = this->curAction + "PC used a " + p->getPotType() + " potion. ";
 }
 
 void PlayableCharacter::removeTempEffects() {
