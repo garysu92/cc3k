@@ -1,9 +1,8 @@
-#include "tempeffect.h"
 #include <memory>
 #include <iostream> 
-using namespace std;
+#include "tempeffect.h"
 
-class PlayableCharacter;
+using namespace std;
 
 TempEffect::TempEffect(int atkEffect, int defEffect): atkEffect{atkEffect}, defEffect{defEffect} {}
 

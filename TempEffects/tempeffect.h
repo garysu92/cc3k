@@ -5,6 +5,7 @@
 
 class TempEffect {
   int atkEffect, defEffect;
+  
   public:
     TempEffect( int atkEffect, int defEffect);
     int getAttackEffect() const;
