@@ -552,13 +552,16 @@ void Floor::movePC(Direction d) {
         content[pcLocation.y][pcLocation.x]->setPC(p);
     } else if (content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && hasDragNbr) {
         p->appendcurAction("This gold is being guarded by a dragon. ");
+        updateEnemies();
         return;
     } else if (content[cy][cx]->hasBarrierSuit() && hasDragNbr) {
         p->appendcurAction("The Barrier Suit is being guarded by a dragon. ");
+        updateEnemies();
         return;
     } else {
         p->appendcurAction("Invalid Move. ");
-            return;
+        updateEnemies();
+        return;
     }
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
