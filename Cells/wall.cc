@@ -1,4 +1,4 @@
 #include "cell.h"
 #include "wall.h"
 
-Wall::Wall(int x, int y, char sym) : Cell{x, y, sym, true, false} {}
+Wall::Wall(char sym) : Cell{sym, true, false} {}

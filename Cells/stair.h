@@ -7,7 +7,7 @@ class Stair : public Cell {
     bool isVisible = false;
 
     public:
-        Stair(int x, int y);
+        Stair();
         bool getVisibility() override;
         void setVisibility() override;
 };

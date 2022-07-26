@@ -171,7 +171,7 @@ void Floor::generate() {
     y = tempChambers[random3][random4].y;
     stairLocation.x = x;
     stairLocation.y = y;
-    unique_ptr<Cell> stair = make_unique<Stair>(x, y);
+    unique_ptr<Cell> stair = make_unique<Stair>();
     content[y][x] = move(stair);
     content[y][x]->setStair();
     tempChambers[random3].erase(tempChambers[random3].begin() + random4);
@@ -443,6 +443,7 @@ void Floor::movePC(Direction d) {
     //   #           #
     if (content[pcLocation.y][pcLocation.x]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) {
         p->appendcurAction("Invalid Move. ");
+        return;
     }
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
@@ -609,11 +610,11 @@ void Floor::attack(Direction d) {
                 break;
             }
         }
-        m = !hasCompass;
         // detach from cell
         content[ay][ax]->clear();     
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
+            return;
         }
         if (m) {
             unique_ptr<Treasure> mg = make_unique<MerchantGold>();

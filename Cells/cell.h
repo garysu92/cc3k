@@ -11,7 +11,6 @@
 class PlayableCharacter;
 
 class Cell {
-    int x, y; 
     PlayableCharacter *pc; // Not unique ptr as PC and enemy can move off of the Cell
     Enemy *enemy;
     std::unique_ptr<Potion> potion;
@@ -24,7 +23,7 @@ class Cell {
     
     public:
         // Constructor
-        Cell(int x, int y, char sym, bool isEffWall, bool isStair);
+        Cell(char sym, bool isEffWall, bool isStair);
 
         // Destructor (Pure Virtual???)
         // Virtual ~Cell() = 0;

@@ -5,7 +5,7 @@
 
 class Door : public Cell {
   public:
-    Door(int x, int y);
+    Door();
 };
 
 #endif
