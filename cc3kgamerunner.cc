@@ -107,9 +107,9 @@ void CC3KGameRunner::play() {
         // initialize game
         if (filename != nullptr) {
             // this means the filename for floor layout was specified
-            game = make_unique<Dungeon>(*filename, p.get());
+            game = make_unique<Dungeon>(*filename, p.get(), developerMode);
         } else {
-            game = make_unique<Dungeon>(p.get());
+            game = make_unique<Dungeon>(p.get(), developerMode);
         }
         game->printGame();
 

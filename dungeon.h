@@ -28,8 +28,8 @@ class Dungeon {
 
     public: 
         // Constructor(s)
-        Dungeon(std::string fileName, PlayableCharacter *p, bool save = false);
-        Dungeon(PlayableCharacter *p, int numFloors = 5);
+        Dungeon(std::string fileName, PlayableCharacter *p, bool dev, bool save = false);
+        Dungeon(PlayableCharacter *p, bool dev, int numFloors = 5);
 
         // Getters
         std::vector<std::vector<std::unique_ptr<Cell>>> & get_floorContents();
