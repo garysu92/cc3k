@@ -105,7 +105,7 @@ void PlayableCharacter::setcurAction(string curAction) {
 }
 
 void PlayableCharacter::appendcurAction(string curAction) {
-    this->curAction += curAction;
+    this->curAction = this->curAction + curAction;
 }
 
 bool PlayableCharacter::checkCompass() {

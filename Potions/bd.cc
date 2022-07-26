@@ -19,10 +19,11 @@ Potion::Type BD::getType() const{
     return Potion::BD;
 }
 
-void BD::setVisible() {
+void BD::applyEffect(PlayableCharacter *pc) const {
+    pc->addTempEffect(std::move(std::make_unique<BoostDefense>()));
     visible = true;
 }
 
-void BD::applyEffect(PlayableCharacter *pc) const {
-    pc->addTempEffect(std::move(std::make_unique<BoostDefense>()));
+bool BD::isVisible() {
+    return visible;
 }

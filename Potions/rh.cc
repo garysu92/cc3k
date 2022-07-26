@@ -15,10 +15,12 @@ Potion::Type RH::getType() const{
     return Potion::RH;
 }
 
-void RH::setVisible() {
-    visible = true;
-}
 
 void RH::applyEffect(PlayableCharacter *pc) const{
     pc->addPermanentEffects(10, 0, 0);
+    visible = true;
+}
+
+bool RH::isVisible() {
+    return visible;
 }

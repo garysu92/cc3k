@@ -19,10 +19,12 @@ Potion::Type BA::getType() const{
     return Potion::BA;
 }
 
-void BA::setVisible() {
-    visible = true;
-}
 
 void BA::applyEffect(PlayableCharacter *pc) const {
     pc->addTempEffect(std::move(std::make_unique<BoostAttack>()));
+    visible = true;
+}
+
+bool BA::isVisible() {
+    return visible;
 }

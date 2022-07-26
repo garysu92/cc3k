@@ -54,7 +54,7 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
     return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
 }
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs}, bsLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bsLocation{-1, -1}, bs{bs} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -478,24 +478,28 @@ void Floor::movePC(Direction d) {
         int x = neighbours[i].x;
         int y = neighbours[i].y;
         if (content[y][x]->hasPotion()) {
+<<<<<<< HEAD
             cout << "potion" << endl;
             p->appendcurAction("PC sees " + content[y][x]->getPotion()->getPotType());
+=======
+            p->appendcurAction("PC sees a " + content[y][x]->getPotion()->getPotType() + " potion ");
+>>>>>>> 784c8b6fddd6ae5affd494bd86ae92d7f090064e
             if (x == pcLocation.x && y == pcLocation.y + 1) {
-                p->appendcurAction(" to the East. ");
+                p->appendcurAction("to the East. ");
             } else if (x == pcLocation.x && y == pcLocation.y - 1) {
-                p->appendcurAction(" to the West. ");
+                p->appendcurAction("to the West. ");
             } else if (x == pcLocation.x + 1 && y == pcLocation.y) {
-                p->appendcurAction(" to the North. ");
+                p->appendcurAction("to the North. ");
             } else if (x == pcLocation.x - 1 && y == pcLocation.y) {
-                p->appendcurAction(" to the South. ");
+                p->appendcurAction("to the South. ");
             } else if (x == pcLocation.x + 1 && y == pcLocation.y + 1) {
-                p->appendcurAction(" to the NorthEast. ");
+                p->appendcurAction("to the NorthEast. ");
             } else if (x == pcLocation.x + 1 && y == pcLocation.y - 1) {
-                p->appendcurAction(" to the NorthWest. ");
+                p->appendcurAction("to the NorthWest. ");
             } else if (x == pcLocation.x - 1 && y == pcLocation.y - 1) {
-                p->appendcurAction(" to the SouthWest. ");
+                p->appendcurAction("to the SouthWest. ");
             } else if (x == pcLocation.x - 1 && y == pcLocation.y + 1) {
-                p->appendcurAction(" to the SouthEast. ");
+                p->appendcurAction("to the SouthEast. ");
             }
         }
     }
