@@ -39,7 +39,7 @@ class Cell {
         bool getisEffWall();
         bool hasCompass();
         virtual bool getVisibility();
-
+        bool stair();
 
         // Setters
         void setX(int x);
