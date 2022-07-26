@@ -11,7 +11,7 @@ class Human: public PlayableCharacter {
     ~Human();
     
   private:
-    double playerGetScore() override;
+    double playerGetScore() const override;
 };
 
 #endif
