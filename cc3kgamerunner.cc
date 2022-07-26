@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
 #include "cc3kgamerunner.h"
 #include "direction.h"
 #include "Races/dwarf.h"

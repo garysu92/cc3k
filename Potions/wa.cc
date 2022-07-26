@@ -11,7 +11,7 @@ using namespace std;
 
 bool WA::visible = false;
 
-string WA::getPotType() const {
+string WA::getPotOutput() const {
     return "Wound Attack (-5Atk)";
 }
 
@@ -25,6 +25,6 @@ void WA::applyEffect(PlayableCharacter *pc) const {
     visible = true;
 }
 
-bool WA::isVisible() {
+bool WA::isVisible() const {
     return visible;
 }

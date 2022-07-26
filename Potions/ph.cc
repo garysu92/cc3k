@@ -7,7 +7,7 @@ using namespace std;
 
 bool PH::visible = false;
 
-string PH::getPotType() const {
+string PH::getPotOutput() const {
     return "Poison Health (-10HP)";
 }
 
@@ -21,6 +21,6 @@ void PH::applyEffect(PlayableCharacter *pc) const{
     visible = true;
 }
 
-bool PH::isVisible() {
+bool PH::isVisible() const {
     return visible;
 }

@@ -11,7 +11,7 @@ using namespace std;
 
 bool BD::visible = false;
 
-string BD::getPotType() const {
+string BD::getPotOutput() const {
     return "Boost Defense (+5Def)";
 }
 
@@ -24,6 +24,6 @@ void BD::applyEffect(PlayableCharacter *pc) const {
     visible = true;
 }
 
-bool BD::isVisible() {
+bool BD::isVisible() const {
     return visible;
 }

@@ -10,11 +10,11 @@ class PH : public Potion {
 
   public:
   	PH() : Potion() {}
-    std::string getPotType() const override;
     Type getType() const override;
     void setVisible();
-    bool isVisible() override;
   private:
+    bool isVisible()  const  override;
+    std::string getPotOutput() const override;
     void applyEffect(PlayableCharacter *pc) const override;
 };
 

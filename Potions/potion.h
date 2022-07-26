@@ -13,14 +13,15 @@ class Potion {
   public:
     Potion();
     enum Type {RH, BA, BD, PH, WA, WD};
-    virtual std::string getPotType() const = 0;
+    std::string getPotType() const;
     virtual Type getType() const = 0;
     char getSymbol();
-    virtual bool isVisible() = 0;
     virtual ~Potion() = 0;
     void potionGetUsed(PlayableCharacter *pc);
 
   private:
+    virtual bool isVisible() const;
+    virtual std::string getPotOutput() const;
     virtual void applyEffect(PlayableCharacter *pc) const = 0;
 };
 
