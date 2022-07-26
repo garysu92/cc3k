@@ -68,7 +68,6 @@ Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floor
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) : 
     fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{}, dev{dev} {
         try {
-            cout << "start" << endl;
             ifstream file{fileName};
             while (true) {
                 string s = "";
@@ -93,21 +92,16 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) :
                     }
                 }
                 if (save) {
-                    floors.emplace_back(v, p, true, true);
+                    floors.emplace_back(v, p, false, true, true);
                 } else {
-                    cout << "floor" << endl;
-                    floors.emplace_back(v, p, true, false);
-                    cout << "floor" << endl;
+                    floors.emplace_back(v, p, false, true, false);
                 }
             }
             file.close();
             numFloors = floors.size();
             // NOTE, need to check for current floor in save
-            cerr << "a" << endl;
             this->curMap = make_unique<Mapdisplay>(this->get_floorContents(), dev);
-            cerr << "b" << endl;
             this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
-            cerr << "c" << endl;
             p->appendcurAction("PC has spawned. ");
         } catch (...) {}
 }
