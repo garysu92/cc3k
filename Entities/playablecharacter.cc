@@ -178,18 +178,23 @@ void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
 }  
 
 void PlayableCharacter::getDroppedGold(Enemy *em) {
+    int oldGold = this->curGold;
     int gold = em->goldDropped();
     addGold(gold);
+    int newGold = this->curGold;
+    this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
 }
 
 void PlayableCharacter::addGold(int gold) {
     curGold += gold;
-    this->curAction = this->curAction + "PC picked up " + to_string(gold) + " gold. ";
 }
 
 void PlayableCharacter::pickupTreasure(Treasure *t) {
+    int oldGold = this->curGold;
     int gold = t->getAmount();
     addGold(gold);
+    int newGold = this->curGold;
+    this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
 }
 
 PlayableCharacter::~PlayableCharacter() {}
