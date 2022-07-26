@@ -56,7 +56,6 @@ Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floor
             if (q == floorWithBarrierSuit) floors.emplace_back(v, p, true);
             else floors.emplace_back(v, p, false);
         }
-        cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS" << endl;
         this->curMap = make_unique<Mapdisplay>(this->get_floorContents(), dev);
         this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
         p->appendcurAction("PC has spawned. ");
