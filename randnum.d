@@ -1,1 +1,0 @@
-randnum.o: randnum.cc
