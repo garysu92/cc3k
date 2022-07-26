@@ -297,6 +297,7 @@ void Floor::generate() {
                 if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
                     cerr << 2020 << endl;
                     tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
+                    if (w == whichTile) cout << "somehow same..." << endl;
                     break;
                 }
                 cerr << 2121 << endl;
