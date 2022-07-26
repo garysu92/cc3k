@@ -45,7 +45,6 @@ class Dungeon {
         void playerAttack(Direction d);
         void playerUsePotion(Direction d);
         void printGame();
-
         bool end() const;
 
     private:

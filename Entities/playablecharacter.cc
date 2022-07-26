@@ -186,7 +186,9 @@ void PlayableCharacter::getDroppedGold(Enemy *em) {
     int gold = em->goldDropped();
     addGold(gold);
     float newGold = this->curGold;
-    this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    if ((newGold - oldGold) != 0) {
+        this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    }
 }
 
 void PlayableCharacter::addGold(int gold) {
@@ -198,7 +200,9 @@ void PlayableCharacter::pickupTreasure(Treasure *t) {
     int gold = t->getAmount();
     addGold(gold);
     float newGold = this->curGold;
-    this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    if ((newGold - oldGold) != 0) {
+        this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    }
 }
 
 double PlayableCharacter::getScore() {
