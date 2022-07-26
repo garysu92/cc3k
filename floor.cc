@@ -56,7 +56,7 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
 
 // from input file, checks if the cell is a tile
 static bool isTile(char c) {
-    return c != '|' && c != '-' && c != ' ' && c != '+' && c != '+';
+    return c != '|' && c != '-' && c != ' ' && c != '+' && c != '#';
 }
 
 Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bsLocation{-1, -1}, bs{bs} {
