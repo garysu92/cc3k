@@ -21,7 +21,7 @@ string PlayableCharacter::getRace() const {
 
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
 void PlayableCharacter::takeDmg(Enemy *enemy) {
-    cout << "PC currently has " << this->getHP() << " hp. ";
+    //cout << "PC currently has " << this->getHP() << " hp. ";
     int dmg = ceil((100.0 / (100.0 + getDefense())) * enemy->getAttack());
     if (this->hasBarrierSuit) {
         dmg = ceil(dmg/2);
