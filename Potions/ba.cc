@@ -11,7 +11,7 @@ using namespace std;
 
 bool BA::visible = false;
 
-string getPotType() const {
+string BA::getPotType() const {
     return "Boost Attack (+5Atk)";
 }
 

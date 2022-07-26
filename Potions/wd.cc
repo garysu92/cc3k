@@ -7,9 +7,11 @@
 #include "../TempEffects/tempeffect.h"
 #include "../TempEffects/wounddefense.h"
 
+using namespace std;
+
 bool WD::visible = false;
 
-string getPotType() const {
+string WD::getPotType() const {
     return "Wound Defense (-5Def)";
 }
 
