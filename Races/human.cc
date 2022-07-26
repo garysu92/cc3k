@@ -10,4 +10,8 @@ string Human::getRace() const {
     return "Human";
 }
 
+double Human::playerGetScore() {
+    return 1.5 * getcurGold();
+}
+
 Human::~Human() {}
