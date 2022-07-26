@@ -48,7 +48,7 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     unique_ptr<CC3KGameRunner> game{};
     bool developerMode = false;
     string filename = "";
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
         // no command line args
 	    game = make_unique<CC3KGameRunner>();
     } else if (argc > 1) {
-        for (int i = 1; i <= argc; i++) {
+        for (int i = 1; i < argc; i++) {
             string s = argv[i];
             if (s == "-d") {
                 // developer mode flag
