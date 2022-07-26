@@ -223,16 +223,29 @@ void CC3KGameRunner::play() {
             } else {
                 game->playerMove(temp);
             }
+
+            bool gameEnd = false;
             if (p->getDead()) {
                 // print end message
-                cout << "Nice Try" << endl;
-                cout << "Your score is " << p->getScore() << endl;
-                return;
+                cout << "You have died, Nice Try" << endl;
+                
+                gameEnd = true;
             } else if (game->end()) {
                 // print message
                 cout << "game end" << endl;
-                return;
+                cout << "Your score is " << p->getScore() << endl;
+                gameEnd = true;
             }
+            if (gameEnd) {
+                cout << "To play again, enter r" << endl;
+                cin >> cmd;
+                if (cmd == "r") {
+                    play();
+                    return;
+                } else {
+                    return;
+                }
+            } 
         }
     } catch (ios::failure &) {
     }
