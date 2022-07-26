@@ -32,7 +32,7 @@ static bool endOfRoom(string s) {
 
 // Constructor which makes numFloors floors with same layout for each
 Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{} {
-    floorWithBarrierSuit = randNum() % 5 + 1; // Is not actually used
+    floorWithBarrierSuit = randNum() % 5;
     vector<vector<char>> v;
     try {
         ifstream file{fileName};
@@ -54,8 +54,9 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         file.close();
 
         for (int q = 0; q < numFloors; q++) {
-        floors.emplace_back(v, p);
+            floors.emplace_back(v, p, q == floorWithBarrierSuit);
         }
+        cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS";
         this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
         this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
     } catch(...){

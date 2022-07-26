@@ -29,6 +29,7 @@ void Mapdisplay::printMap() {
     for (int i = 0; i < gameMap.size(); i++) {
         for (int j = 0; j < gameMap[0].size(); j++) {
             if (gameMap.at(i).at(j)->hasPC()) cout << GREEN << '@' << RESET;
+            else if (gameMap.at(i).at(j)->hasBarrierSuit()) cout << 'B';
             else if (gameMap.at(i).at(j)->hasEnemy() && gameMap.at(i).at(j)->getEnemy()->checkCompass()) cout << RED << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< RESET;
             else if (gameMap.at(i).at(j)->hasEnemy() && !gameMap.at(i).at(j)->getEnemy()->checkCompass()) cout << CYAN << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< RESET;
             else if (gameMap.at(i).at(j)->hasPotion()) cout << BLUE << gameMap.at(i).at(j)->getPotion()->getSymbol()<< RESET;

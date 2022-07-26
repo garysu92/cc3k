@@ -360,22 +360,22 @@ void Floor::generate() {
     enemies[whichEnemy].first->giveCompass();
 }
 
-vector<Posn> Floor::neighbours(int x, int y, bool isPlayer) {
+vector<Posn> Floor::neighbours(int x, int y, bool isGold) {
     vector<Posn> tmp;
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
-        	if (isPlayer) {
-				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
-                	&& !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
-                	&& (content[k + y][x + i]->getsymbolRep() == '.' || content[k + y][x + i]->getsymbolRep() == '+' || content[k + y][x + i]->getsymbolRep() == '#')) {
-                	tmp.emplace_back(x + i, y + k);
-            	}
-        	} else {
-				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
+        	if (isGold) {
+				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasPC() \
              	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
                    && content[k + y][x + i]->getsymbolRep() == '.') {
                    tmp.emplace_back(x + i, y + k);
-            }
+                }
+        	} else {
+                if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
+             	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
+                   && content[k + y][x + i]->getsymbolRep() == '.' && !content[k + y][x + i]->hasBarrierSuit()) {
+                   tmp.emplace_back(x + i, y + k);
+                }
         	}
         }
     }
@@ -433,7 +433,7 @@ void Floor::movePC(Direction d) {
     Posn pos = getCoords(d);
     int cx = pos.x;
     int cy = pos.y;
-    vector<Posn> nbrs = Floor::neighbours(cx, cy, false);
+    vector<Posn> nbrs = Floor::neighbours(cx, cy, true);
     bool hasDragNbr = false;
     for (int i = 0; i < nbrs.size(); i++) {
         int x = nbrs[i].x;
@@ -443,10 +443,14 @@ void Floor::movePC(Direction d) {
             break;
         }
     }
+    cout << hasDragNbr << endl;
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
-        || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (!content[cy][cx]->getTreasure()->isDragonHoarde()) || \
+        || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
         (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr))) {
+        if (!content[cy][cx]->hasTreasure()) cout << 1 << endl;
+        if (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) cout << 1 << endl;
+        if(content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr) cout << 3 << endl;
         content[pcLocation.y][pcLocation.x]->clear();
         pcLocation.x = cx;
         pcLocation.y = cy;
