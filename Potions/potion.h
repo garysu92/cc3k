@@ -16,7 +16,7 @@ class Potion {
     virtual std::string getPotType() const = 0;
     virtual Type getType() const = 0;
     char getSymbol();
-    virtual void setVisible() = 0;
+    virtual bool isVisible() = 0;
     virtual ~Potion() = 0;
     void potionGetUsed(PlayableCharacter *pc);
 
