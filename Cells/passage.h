@@ -5,7 +5,7 @@
 
 class Passage : public Cell {
   public:
-    Passage(int x, int y);
+    Passage();
 };
 
 #endif

@@ -93,7 +93,7 @@ void Enemy::enemyAttack(PlayableCharacter *pc) {
 void Enemy::getAttackedByPlayer(PlayableCharacter *pc) {
     // calculate damage 
     takeDmg(pc);
-    if (isDead() && !hasDroppedGold) {
+    if (isDead() && !hasDroppedGold && !drag) {
         deathProcedure();
         pc->getDroppedGold(this);
         hasDroppedGold = true;

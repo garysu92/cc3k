@@ -5,7 +5,7 @@
 
 class Space : public Cell {
   public:
-    Space(int x, int y);
+    Space();
 };
 
 #endif

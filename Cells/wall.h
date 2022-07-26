@@ -5,7 +5,7 @@
 
 class Wall : public Cell {
     public:
-        Wall(int x, int y, char sym);
+        Wall(char sym);
 };
 
 #endif

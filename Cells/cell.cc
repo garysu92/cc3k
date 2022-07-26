@@ -9,15 +9,7 @@ class PlayableCharacter;
 
 using namespace std;
 
-Cell::Cell(int x, int y, char sym, bool isEffWall, bool isStair) : x{x}, y{y}, pc{nullptr}, enemy{nullptr}, potion{}, treasure{}, symbolRep{sym}, isEffWall{isEffWall}, isStair{false}, comp{false}, bs{false} {}
-
-int Cell::getX() {
-    return this->x;
-}
-
-int Cell::getY() {
-    return this->y;
-}
+Cell::Cell(char sym, bool isEffWall, bool isStair) : pc{nullptr}, enemy{nullptr}, potion{}, treasure{}, symbolRep{sym}, isEffWall{isEffWall}, isStair{false}, comp{false}, bs{false} {}
 
 PlayableCharacter *Cell::getPC() {
     return this->pc;
@@ -41,14 +33,6 @@ char Cell::getsymbolRep() {
 
 bool Cell::getisEffWall() {
     return this->isEffWall;
-}
-
-void Cell::setX(int x) {
-    this->x = x;
-}
-
-void Cell::setY(int y) {
-    this->y = y;
 }
 
 void Cell::setPC(PlayableCharacter *pc) {

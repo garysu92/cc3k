@@ -256,7 +256,7 @@ void Floor::generate() {
     y = tempChambers[random3][random4].y;
     stairLocation.x = x;
     stairLocation.y = y;
-    unique_ptr<Cell> stair = make_unique<Stair>(x, y);
+    unique_ptr<Cell> stair = make_unique<Stair>();
     content[y][x] = move(stair);
     content[y][x]->setStair();
     tempChambers[random3].erase(tempChambers[random3].begin() + random4);
@@ -526,7 +526,10 @@ void Floor::movePC(Direction d) {
     //   #           @
     // @ # -> (ne) # #
     //   #           #
-    if (content[cy][cx]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) return;
+    if (content[pcLocation.y][pcLocation.x]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) {
+        p->appendcurAction("Invalid Move. ");
+        return;
+    }
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
@@ -539,12 +542,12 @@ void Floor::movePC(Direction d) {
         pcLocation.y = cy;
         content[pcLocation.y][pcLocation.x]->setPC(p);
     } else {
+        p->appendcurAction("Invalid Move. ");
         return;
     }
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
         p->setCompass(false);
-        p->setBarrierSuit(false);
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
         content[stairLocation.y][stairLocation.x]->setVisibility();
@@ -557,6 +560,23 @@ void Floor::movePC(Direction d) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
         content[pcLocation.y][pcLocation.x]->clear();
         content[pcLocation.y][pcLocation.x]->setPC(p);
+    }
+    if (d == Direction::no) {
+        p->appendcurAction("PC moved North. ");
+    } else if (d == Direction::so) {
+        p->appendcurAction("PC moved South. ");
+    } else if (d == Direction::we) {
+        p->appendcurAction("PC moved West. ");
+    } else if (d == Direction::ea) {
+        p->appendcurAction("PC moved East. ");
+    } else if (d == Direction::ne) {
+        p->appendcurAction("PC moved North-East. ");
+    } else if (d == Direction::nw) {
+        p->appendcurAction("PC moved North-West. ");
+    } else if (d == Direction::se) {
+        p->appendcurAction("PC moved South-East. ");
+    } else if (d == Direction::sw) {
+        p->appendcurAction("PC moved South-West. ");
     }
     vector<Posn> neighbours = Floor::neighbours(pcLocation.x, pcLocation.y, false, true);
     for (int i = 0; i < neighbours.size(); i++) {
@@ -675,11 +695,11 @@ void Floor::attack(Direction d) {
                 break;
             }
         }
-        m = !hasCompass;
         // detach from cell
         content[ay][ax]->clear();     
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
+            return;
         }
         if (m) {
             unique_ptr<Treasure> mg = make_unique<MerchantGold>();

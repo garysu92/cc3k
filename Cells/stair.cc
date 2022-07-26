@@ -1,7 +1,7 @@
 #include "cell.h"
 #include "stair.h"
 
-Stair::Stair(int x, int y) : Cell{x, y, '.', false, true} {}
+Stair::Stair() : Cell{'.', false, true} {}
 
 bool Stair::getVisibility() {
     return this->isVisible;
