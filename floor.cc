@@ -590,6 +590,7 @@ void Floor::attack(Direction d) {
                 break;
             }
         }
+        m = !hasCompass;
         // detach from cell
         content[ay][ax]->clear();     
         if (hasCompass) {
