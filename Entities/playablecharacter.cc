@@ -21,7 +21,7 @@ string PlayableCharacter::getRace() const {
 
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
 void PlayableCharacter::takeDmg(Enemy *enemy) {
-    cout << "PC currently has " << this->getHP() << " hp. ";
+    //cout << "PC currently has " << this->getHP() << " hp. ";
     int dmg = ceil((100.0 / (100.0 + getDefense())) * enemy->getAttack());
     if (this->hasBarrierSuit) {
         dmg = ceil(dmg/2);
@@ -31,10 +31,10 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
         this->setDead(true);                // Set PCs state to Dead
         //Cell * curPcell = this->getCell();  // Find the Cell PC is standing on
         //curPcell->setPC(nullptr);           // Set the ptr from Cell to PC to nullptr, as PC is no longer is alive
-        cout << "PC took " << dmg << " damage, now PC is Dead.";
-    } else {
-        cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
-    }
+        //cout << "PC took " << dmg << " damage, now PC is Dead." << endl;;
+    } //else {
+        //cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
+    //}
 }
 
 int PlayableCharacter::getAttack() const {

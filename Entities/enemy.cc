@@ -28,10 +28,10 @@ bool Enemy::isHostile() {
 // What about when playchar has barrier suit?
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar, and should change for every subclass rather than couting "enemy has"
 void Enemy::takeDmg(PlayableCharacter *pc) {
-    cout << "Enemy has " << this->hp << " hp. ";
+    //cout << "Enemy has " << this->hp << " hp. ";
     int dmg = ceil((100.0 / (100.0 + defense)) * pc->getAttack());
     this->hp = max(0, hp - dmg); // Use setter instead?
-    cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl; 
+    //cout << "Enemy took " << dmg << " damage, now Enemy has " << this->getHP() << " hp remaining. " << endl; 
 }
 
 /*void Enemy::dealDmg(PlayableCharacter *pc) {
