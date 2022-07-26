@@ -61,8 +61,6 @@ void CC3KGameRunner::play() {
     //bool raceChosen = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
-
-
     try {
         // choosing race
 
@@ -78,35 +76,34 @@ void CC3KGameRunner::play() {
             cout << "UP Dev - d2    HP: 1  ATK: 1  DEF: 1" << endl;
         }
 
-        cout << "Enter your race, default is human. Enter s when you are ready to start the game. OR press q to quit the game: ";
+        cout << "Enter your race OR Enter a valid command OR press q to quit the game: ";
         cout << endl;
 
-        while (true) {
+        cin >> cmd;
+
+        if (cmd == "h") {
+            p = make_unique<Human>();
             cin >> cmd;
-
-            if (cmd == "s") {
-                // start game
-                break;
-            }
-
-            if (cmd == "h") {
-                p = make_unique<Human>();
-            } else if (cmd == "e") {
-                p = make_unique<Elf>();
-            } else if (cmd == "d") {
-                p = make_unique<Dwarf>();
-            } else if (cmd == "o") {
-                p = make_unique<Orc>();
-            } else if (developerMode && cmd == "d1") {
-                p = make_unique<DeveloperOP>();
-            } else if (developerMode && cmd == "d2") {
-                p = make_unique<DeveloperUP>();
-            } else if (cmd == "q") {
-                return; 
-            } else {
-                // invalid command during race selection, quit
-                return;
-            }
+        } else if (cmd == "e") {
+            p = make_unique<Elf>();
+            cin >> cmd;
+        } else if (cmd == "d") {
+            p = make_unique<Dwarf>();
+            cin >> cmd;
+        } else if (cmd == "o") {
+            p = make_unique<Orc>();
+            cin >> cmd;
+        } else if (developerMode && cmd == "d1") {
+            p = make_unique<DeveloperOP>();
+            cin >> cmd;
+        } else if (developerMode && cmd == "d2") {
+            p = make_unique<DeveloperUP>();
+            cin >> cmd;
+        } else if (cmd == "q") {
+            return; 
+        } else if (cmd != "a" && cmd != "u" && cmd != "r" && cmd != "q" && !isDirection(cmd)) {
+            // invalid command quit
+            return;
         }
 
         // initialize game
@@ -122,7 +119,6 @@ void CC3KGameRunner::play() {
     
         // running game
         while (true) {
-            cin >> cmd;
             bool invalidInput = false;
 
             /*if (gameStarted && raceChosen) {
@@ -223,29 +219,17 @@ void CC3KGameRunner::play() {
             } else {
                 game->playerMove(temp);
             }
-
-            bool gameEnd = false;
             if (p->getDead()) {
                 // print end message
-                cout << "You have died, Nice Try" << endl;
-                
-                gameEnd = true;
+                cout << "Nice Try" << endl;
+                return;
             } else if (game->end()) {
                 // print message
                 cout << "game end" << endl;
-                cout << "Your score is " << p->getScore() << endl;
-                gameEnd = true;
+                return;
             }
-            if (gameEnd) {
-                cout << "To play again, enter r" << endl;
-                cin >> cmd;
-                if (cmd == "r") {
-                    play();
-                    return;
-                } else {
-                    return;
-                }
-            } 
+
+            cin >> cmd;
         }
     } catch (ios::failure &) {
     }
