@@ -61,7 +61,7 @@ static bool isTile(char c) {
 
 Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bsLocation{-1, -1}, bs{bs} {
     int row = v.size();
-    int col = v[0].size();
+    int col = v.at(0).size();
     for (int i = 0; i < row; i++) {
         content.emplace_back();
         chamberMap.emplace_back();
@@ -74,7 +74,8 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
             else if (c == ' ') content[i].emplace_back(make_unique<Space>());
             else if (c == '.') content[i].emplace_back(make_unique<Tile>());
 
-            if (exactLayout) {
+            if (exactLayout && isTile(v[i][j]) && v[i][j] != '.') {
+                cerr << "exact" << endl;
                 content.at(i).emplace_back(make_unique<Tile>());
                 if (v[i][j] == '@') {
                     //player location
@@ -117,11 +118,11 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                     t = make_unique<DragonGold>();
                 }
                 if (p != nullptr) {
-                    content[i][j]->setPotion(p);
+                    content.at(i).at(j)->setPotion(p);
                 }
 
                 if (t != nullptr) {
-                    content[i][j]->setTreasure(t);
+                    content.at(i).at(j)->setTreasure(t);
                 }
 
                 if (v[i][j] == 'B') {
@@ -735,6 +736,7 @@ void Floor::usePotion(Direction d) {
 
 void Floor::generateCompass(){
     int random = abs(randNum());
+    cerr << "division" << endl;
     int enemyIndex = random % enemies.size();
     enemies.at(enemyIndex).first->giveCompass();
 }

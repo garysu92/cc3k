@@ -69,7 +69,8 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
     fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{} {
         try {
-            fstream file{fileName};
+            cout << "start" << endl;
+            ifstream file{fileName};
             while (true) {
                 string s = "";
                 getline(file, s);
@@ -91,12 +92,15 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
                         break;
                     }
                 }
-                if (save) {
+                /*if (save) {
                     floors.emplace_back(v, p, true, true);
                 } else {
+                    cout << "floor" << endl;
                     floors.emplace_back(v, p, true, false);
-                }
+                }*/
             }
+            cout << "file" << endl;
+            file.close();
             numFloors = floors.size();
             // NOTE, need to check for current floor in save
 

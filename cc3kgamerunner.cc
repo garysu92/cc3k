@@ -183,5 +183,6 @@ void CC3KGameRunner::play() {
 
         }
     } catch (ios::failure &) {
+        
     }
 }
