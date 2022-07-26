@@ -63,11 +63,96 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
         for (int j = 0; j < col; j++) {
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
-            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(c));
-            else if (c == '#') content[i].emplace_back(make_unique<Passage>());
-            else if (c == '+') content[i].emplace_back(make_unique<Door>());
-            else if (c == ' ') content[i].emplace_back(make_unique<Space>());
-            else content[i].emplace_back(make_unique<Tile>());
+            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(j, i, c));
+            else if (c == '#') content[i].emplace_back(make_unique<Passage>(j, i));
+            else if (c == '+') content[i].emplace_back(make_unique<Door>(j, i));
+            else if (c == ' ') content[i].emplace_back(make_unique<Space>(j, i));
+            else if (c == '.') content[i].emplace_back(make_unique<Tile>(j, i));
+
+            if (exactLayout) {
+                content.at(i).emplace_back(make_unique<Tile>(j,i));
+                if (v[i][j] == '@') {
+                    //player location
+                    pcLocation.x = j;
+                    pcLocation.y = i;
+                    content.at(i).at(j)->setPC(p);
+                }
+                
+                if (v[i][j] == '\\') {
+                    // stair location
+                    content.at(i).at(j) = make_unique<Stair>();
+                    stairLocation.x = j;
+                    stairLocation.y = i;
+                    content.at(i).at(j)->setStair();
+                }
+
+
+                // potion or treasure
+                unique_ptr<Potion> p{};
+                unique_ptr<Treasure> t{};
+                if (v[i][j] == '0') {
+                    p = make_unique<RH>();
+                } else if (v[i][j] == '1') {
+                    p = make_unique<BA>();
+                } else if (v[i][j] == '2') {
+                    p = make_unique<BD>();
+                } else if (v[i][j] == '3') {
+                    p = make_unique<PH>();
+                } else if (v[i][j] == '4') {
+                    p = make_unique<WA>();
+                } else if (v[i][j] == '5') {
+                    p = make_unique<WD>();
+                } else if (v[i][j] == '6') {
+                    t = make_unique<NormalGold>();
+                } else if (v[i][j] == '7') {
+                    t = make_unique<SmallGold>();
+                } else if (v[i][j] == '8') {
+                    t = make_unique<MerchantGold>();
+                } else if (v[i][j] == '9') {
+                    t = make_unique<DragonGold>();
+                }
+                if (p != nullptr) {
+                    content[i][j]->setPotion(p);
+                }
+
+                if (t != nullptr) {
+                    content[i][j]->setTreasure(t);
+                }
+
+                //enemy
+                unique_ptr<Enemy> en{};
+                if (v[i][j] == 'V') {
+                    en = make_unique<Vampire>();
+                } else if (v[i][j] == 'W') {
+                    en = make_unique<Werewolf>();
+                } else if (v[i][j] == 'N') {
+                    en = make_unique<Goblin>();
+                } else if (v[i][j] == 'M') {
+                    en = make_unique<Merchant>();
+                } else if (v[i][j] == 'D') {
+                    // requires that dragon is not near two dragonhordes
+                    // also requires dragon is spawned near the thing its protecting
+                    // and that the thing is spwaned
+                    for (int dy = -1; dy <= 1; dy++) {
+                        for (int dx = -1; dx <= 1; dx++) {
+                            if (v[i + dy][j + dx] == '9') {
+                                //dragon horde
+                                en = make_unique<Dragon>(j + dx, i + dy);
+                            }
+                            // CHECK BARRIERSUIT___________________
+                        }
+                    }
+                    
+                } else if (v[i][j] == 'T') {
+                    en = make_unique<Troll>();
+                } else if (v[i][j] == 'X') {
+                    en = make_unique<Phoenix>();
+                }
+                if (en != nullptr) {
+                    enemies.emplace_back(en, Posn{j, i});
+                }
+                
+            }
         }
     }
 
