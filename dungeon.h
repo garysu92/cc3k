@@ -8,10 +8,10 @@
 #include "direction.h"
 #include "Display/mapDisplay.h"
 #include "Display/actionDisplay.h"
+#include "floor.h"
 
 class Cell;
 class PlayableCharacter;
-class Floor;
 
 const std::string floorLayout = "cc3kfloor.txt";
 
@@ -47,6 +47,7 @@ class Dungeon {
         void printGame();
 
         bool end() const;
+
     private:
         void nextFloor();
         void postMoveCheck();
