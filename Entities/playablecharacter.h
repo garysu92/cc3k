@@ -61,6 +61,7 @@ class PlayableCharacter {
     void getDroppedGold(Enemy *em);
     void pickupTreasure(Treasure *t);
     double getScore(); 
+    
   private:
     virtual void addGold(int gold);
     virtual double playerGetScore();
