@@ -173,7 +173,7 @@ void CC3KGameRunner::play() {
             }
 
             if (gameEnd) {
-                cout << "To retry, enter r:" << endl;
+                cout << "To play again, enter r:" << endl;
                 cin >> cmd;
                 if (cmd == "r") {
                     play();

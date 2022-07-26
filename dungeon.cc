@@ -66,7 +66,7 @@ Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floor
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{}, dev{dev}, curActionBar{} {
+    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{}, dev{dev} {
         try {
             cout << "start" << endl;
             ifstream file{fileName};
