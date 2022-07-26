@@ -236,7 +236,7 @@ void Floor::generate() {
     }
 	for (int i = 0; i < 10; i++) {
 		int whichChamber = randnum() % tempChambers.size();
-		while (tempChambers[whichChamber].size() <= 1) {
+		while (tempChambers[whichChamber].size() < 1) {
 			whichChamber = randnum() % tempChambers.size();
 		}
 		int whichTile = randnum() % tempChambers[whichChamber].size();
@@ -301,6 +301,7 @@ void Floor::generate() {
         // set this cell to barriersuit
         content[y][x]->setBarrierSuit(true);
         int where = randnum() % neighbours.size();
+        p->setBarrierSuit(true);
         // set a random neighbour (where) to have a dragon
         unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
         enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
@@ -447,7 +448,7 @@ void Floor::movePC(Direction d) {
     //   #           @
     // @ # -> (ne) # #
     //   #           #
-    if  (content[cy][cx]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) return;
+    if (content[cy][cx]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) return;
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
@@ -465,6 +466,7 @@ void Floor::movePC(Direction d) {
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
         p->setCompass(false);
+        p->setBarrierSuit(false);
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
         content[stairLocation.y][stairLocation.x]->setVisibility();
