@@ -27,9 +27,7 @@ class Floor {
     // Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p);
     Floor(const std::vector<std::vector<char>> &v, PlayableCharacter *p, bool barrierSuit = false, bool exactLayout = false, bool save = false);
     // generates based on PC, stairway, potions, gold, enemy
-    void generate();
-    void movePC();
-    void updateEnemies();
+
     std::vector<Posn> neighbours(int x, int y, bool isGold = false, bool isPlayer = false);
     void print();
     void movePC(Direction d);
@@ -38,6 +36,10 @@ class Floor {
     void usePotion(Direction d);
     void attack(Direction d);
     bool PConStair();
+  private:
+    void generate();
+    void updateEnemies();
+    void generateCompass();
 };
 
 #endif

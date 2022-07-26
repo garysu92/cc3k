@@ -54,6 +54,11 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
     return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
 }
 
+// from input file, checks if the cell is a tile
+static bool isTile(char c) {
+    return c != '|' && c != '-' && c != ' ' && c != '+' && c != '+';
+}
+
 Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bsLocation{-1, -1}, bs{bs} {
     int row = v.size();
     int col = v[0].size();
@@ -119,6 +124,11 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                     content[i][j]->setTreasure(t);
                 }
 
+                if (v[i][j] == 'B') {
+                    // barrier suit
+                    content.at(i).at(j)->setBarrierSuit(true);
+                }
+
                 //enemy
                 unique_ptr<Enemy> en{};
                 if (v[i][j] == 'V') {
@@ -140,6 +150,9 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                                 en = make_unique<Dragon>(j + dx, i + dy);
                             }
                             // CHECK BARRIERSUIT___________________
+                            if (v[i + dy][j + dx] == 'B') {
+                                en = make_unique<Dragon>(j + dx, i + dy);
+                            }
                         }
                     }
                     
@@ -160,7 +173,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
     int chamberCount = 0;
     for (int i = 1; i < row - 1; ++i) {
         for (int j = 1; j < col - 1; ++j) {
-            if (!isVisited[i][j] && v[i][j] == '.') {
+            if (!isVisited[i][j] && isTile(v[i][j])) {
                 // new chamber
                 chamberCount++;
                 chamberMap[i][j] = chamberCount;
@@ -177,7 +190,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                         for (int b = -1; b <= 1; b++) {
                             int x = tempP.x + b;
                             int y = tempP.y + a;
-                            if (!isVisited.at(y).at(x) && v.at(y).at(x) == '.') {
+                            if (!isVisited.at(y).at(x) && isTile(v.at(y).at(x))) {
                                 isVisited.at(y).at(x) = true;
                                 chambers.at(chamberCount - 1).emplace_back(x, y);
                                 chamberMap.at(y).at(x) = chamberCount;
@@ -195,11 +208,10 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
     }
     
     if (exactLayout) {
-        /*for () {
-            
-        }*/
         if (save) {
             
+        } else {
+            generateCompass();
         }
     } else {
         generate();
@@ -534,13 +546,10 @@ void Floor::movePC(Direction d) {
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
         (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) && (!content[cy][cx]->hasBarrierSuit() || (content[cy][cx]->hasBarrierSuit() && !hasDragNbr))) {
-        if (!content[cy][cx]->hasTreasure()) cout << 1 << endl;
-        if (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) cout << 1 << endl;
-        if(content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr) cout << 3 << endl;
-        content[pcLocation.y][pcLocation.x]->clear();
-        pcLocation.x = cx;
-        pcLocation.y = cy;
-        content[pcLocation.y][pcLocation.x]->setPC(p);
+            content[pcLocation.y][pcLocation.x]->clear();
+            pcLocation.x = cx;
+            pcLocation.y = cy;
+            content[pcLocation.y][pcLocation.x]->setPC(p);
     } else {
         p->appendcurAction("Invalid Move. ");
         return;
@@ -603,6 +612,7 @@ void Floor::movePC(Direction d) {
             }
         }
     }
+    updateEnemies();
 }
 
 bool Floor::PConStair() {
@@ -706,6 +716,7 @@ void Floor::attack(Direction d) {
             content[ay][ax]->setTreasure(mg);
         }
     }
+    updateEnemies();
 }
 
 void Floor::usePotion(Direction d) {
@@ -719,4 +730,11 @@ void Floor::usePotion(Direction d) {
     } else {
         // MAKE CHANGE NO POTION DO SOMETHING_____________________________________________
     }
+    updateEnemies();
+}
+
+void Floor::generateCompass(){
+    int random = abs(randNum());
+    int enemyIndex = random % enemies.size();
+    enemies.at(enemyIndex).first->giveCompass();
 }

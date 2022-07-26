@@ -30,5 +30,3 @@ std::string Potion::getPotType() const {
         return this->getPotOutput();
     }
 }
-
-

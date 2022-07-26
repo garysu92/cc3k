@@ -18,5 +18,4 @@ class RH : public Potion {
     void applyEffect(PlayableCharacter *pc) const override;
 };
 
-
 #endif

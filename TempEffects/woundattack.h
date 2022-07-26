@@ -3,7 +3,6 @@
 
 #include <memory>
 #include "tempeffect.h"
-class PlayableCharacter;
 
 class WoundAttack : public TempEffect {
   public:

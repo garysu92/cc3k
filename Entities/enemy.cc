@@ -84,7 +84,7 @@ void Enemy::attackPlayer(PlayableCharacter *pc) {
         enemyAttack(pc);
     }
     else {
-        pc->appendcurAction(this->getType() + "tried to attack PC but missed. " )        
+        pc->appendcurAction(this->getType() + " tried to attack PC but missed. ");     
     }
 }
 

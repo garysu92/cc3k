@@ -132,7 +132,7 @@ void Dungeon::playerMove(Direction d) {
     floors[curFloor - 1].movePC(d);
     //cerr << "Player moved succesffuly " << endl;
     //cerr << "Moving enemies " << endl;
-    floors[curFloor - 1].updateEnemies();
+    //floors[curFloor - 1].updateEnemies();
     //cerr << "Enemies moved succesffuly " << endl;
     //cerr << "Printing Map and Action Display" << endl;
     this->printGame();
@@ -141,14 +141,14 @@ void Dungeon::playerMove(Direction d) {
 
 void Dungeon::playerAttack(Direction d) {
     floors[curFloor - 1].attack(d);
-    floors[curFloor - 1].updateEnemies();
+    //floors[curFloor - 1].updateEnemies();
     this->printGame();
     postMoveCheck();
 }
 
 void Dungeon::playerUsePotion(Direction d) {
     floors[curFloor - 1].usePotion(d);
-    floors[curFloor - 1].updateEnemies();
+    //floors[curFloor - 1].updateEnemies();
     this->printGame();
     postMoveCheck();
 }

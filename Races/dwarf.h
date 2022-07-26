@@ -9,6 +9,7 @@ class Dwarf : public PlayableCharacter {
     Dwarf();
     std::string getRace() const override;
     ~Dwarf();
+    
   private:
     void addGold(int gold) override;
 };

@@ -1,9 +1,10 @@
 #ifndef UP_H
 #define UP_H
-#include "../Entities/playablecharacter.h"
+
 #include <string>
+#include "../Entities/playablecharacter.h"
  
-// for testing, instantly dies if attacked
+// For developer testing, this race dies easily
 class DeveloperUP: public PlayableCharacter {
     public:
         DeveloperUP();

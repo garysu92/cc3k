@@ -12,6 +12,7 @@ class WA : public Potion {
   public:
   	WA() : Potion() {}
     Type getType() const override;
+    
   private:
     bool isVisible()  const override;
     std::string getPotOutput() const override;

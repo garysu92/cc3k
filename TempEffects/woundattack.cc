@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <memory>
 #include "woundattack.h"
-#include "../Entities/playablecharacter.h"
 
 using namespace std;
 
