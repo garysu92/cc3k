@@ -3,7 +3,6 @@
 #include <vector>
 #include <iomanip>
 #include <iostream>
-#include <cstdlib>
 #include <memory>
 #include "dungeon.h"
 #include "floor.h"
