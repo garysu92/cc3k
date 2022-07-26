@@ -165,6 +165,7 @@ void Dungeon::nextFloor() {
         p->removeTempEffects();
         curActionBar = make_unique<Actiondisplay>(p, curFloor);
         curMap = make_unique<Mapdisplay>(get_floorContents());
+        p->appendcurAction("PC has moved to Floor " + to_string(curFloor) + ". ");
         this->printGame();
     }
 }
