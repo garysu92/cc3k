@@ -478,23 +478,23 @@ void Floor::movePC(Direction d) {
         int x = neighbours[i].x;
         int y = neighbours[i].y;
         if (content[y][x]->hasPotion()) {
-            p->appendcurAction("PC sees " + content[y][x]->getPotion()->getPotType());
+            p->appendcurAction("PC sees a " + content[y][x]->getPotion()->getPotType() + " potion ");
             if (x == pcLocation.x && y == pcLocation.y + 1) {
-                p->appendcurAction(" to the East. ");
+                p->appendcurAction("to the East. ");
             } else if (x == pcLocation.x && y == pcLocation.y - 1) {
-                p->appendcurAction(" to the West. ");
+                p->appendcurAction("to the West. ");
             } else if (x == pcLocation.x + 1 && y == pcLocation.y) {
-                p->appendcurAction(" to the North. ");
+                p->appendcurAction("to the North. ");
             } else if (x == pcLocation.x - 1 && y == pcLocation.y) {
-                p->appendcurAction(" to the South. ");
+                p->appendcurAction("to the South. ");
             } else if (x == pcLocation.x + 1 && y == pcLocation.y + 1) {
-                p->appendcurAction(" to the NorthEast. ");
+                p->appendcurAction("to the NorthEast. ");
             } else if (x == pcLocation.x + 1 && y == pcLocation.y - 1) {
-                p->appendcurAction(" to the NorthWest. ");
+                p->appendcurAction("to the NorthWest. ");
             } else if (x == pcLocation.x - 1 && y == pcLocation.y - 1) {
-                p->appendcurAction(" to the SouthWest. ");
+                p->appendcurAction("to the SouthWest. ");
             } else if (x == pcLocation.x - 1 && y == pcLocation.y + 1) {
-                p->appendcurAction(" to the SouthEast. ");
+                p->appendcurAction("to the SouthEast. ");
             }
         }
     }
