@@ -9,6 +9,7 @@ class Human: public PlayableCharacter {
     Human();
     std::string getRace() const override;
     ~Human();
+    
   private:
     double playerGetScore() override;
 };

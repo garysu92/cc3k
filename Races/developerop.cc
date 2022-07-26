@@ -1,7 +1,6 @@
+#include <string>
 #include "developerop.h"
 #include "../Entities/playablecharacter.h"
-
-#include <string>
 
 DeveloperOP::DeveloperOP(): PlayableCharacter{1000000, 0, 1000000} {}
 
@@ -10,4 +9,3 @@ std::string DeveloperOP::getRace() const {
 }
 
 DeveloperOP::~DeveloperOP() {}
-

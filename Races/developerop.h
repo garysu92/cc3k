@@ -1,9 +1,10 @@
 #ifndef OP_H
 #define OP_H
-#include "../Entities/playablecharacter.h"
+
 #include <string>
+#include "../Entities/playablecharacter.h"
  
-// for testing has a lot of attack, defense, and hp
+// For developer testing, this race is over-powered!
 class DeveloperOP: public PlayableCharacter {
     public:
         DeveloperOP();

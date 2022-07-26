@@ -1,7 +1,6 @@
+#include <string>
 #include "../Entities/playablecharacter.h"
 #include "dwarf.h"
-
-#include <string>
 
 using namespace std;
 

@@ -1,6 +1,6 @@
+#include <string>
 #include "../Entities/playablecharacter.h"
 #include "elf.h"
-#include <string>
 
 using namespace std;
 
