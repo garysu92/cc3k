@@ -25,7 +25,7 @@ bool Potion::isVisible() const  {
 
 std::string Potion::getPotType() const {
     if (!isVisible()) {
-        return "Unknown potion";
+        return "Unknown";
     } else {
         return this->getPotOutput();
     }
