@@ -196,7 +196,6 @@ void PlayableCharacter::getDroppedGold(Enemy *em) {
     }
 }
 
-
 void PlayableCharacter::addGold(int gold) {
     curGold += gold;
 }
