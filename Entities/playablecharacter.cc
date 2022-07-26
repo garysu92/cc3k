@@ -218,4 +218,8 @@ double PlayableCharacter::getScore() const {
     return playerGetScore();
 }
 
+double PlayableCharacter::playerGetScore() const {
+    return curGold;
+}
+
 PlayableCharacter::~PlayableCharacter() {}

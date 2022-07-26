@@ -51,8 +51,7 @@ class PlayableCharacter {
     bool checkBarrierSuit();
 
     // Misc
-    virtual std::string getRace() const; // Maybe pure virtual??? Check implementation
-    //void dealDmg(Enemy *e);
+    virtual std::string getRace() const;
     void usePotion(Potion *p);
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);
@@ -61,11 +60,11 @@ class PlayableCharacter {
     void getAttackedByEnemy(Enemy *em);
     void getDroppedGold(Enemy *em);
     void pickupTreasure(Treasure *t);
-    double getScore(); 
+    double getScore() const; 
 
   private:
     virtual void addGold(int gold);
-    virtual double playerGetScore();
+    virtual double playerGetScore() const;
     void takeDmg(Enemy *e);
     void setDead(bool alive);
 };
