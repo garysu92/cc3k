@@ -237,54 +237,79 @@ void Floor::generate() {
     }
     cerr << 6 << endl;
 	for (int i = 0; i < 10; i++) {
+        cerr << 11 << endl;
 		int whichChamber = randnum() % tempChambers.size();
 		while (tempChambers[whichChamber].size() < 1) {
 			whichChamber = randnum() % tempChambers.size();
 		}
+        cerr << 22 << endl;
 		int whichTile = randnum() % tempChambers[whichChamber].size();
 		x = tempChambers[whichChamber][whichTile].x;
 		y = tempChambers[whichChamber][whichTile].y;
 		vector<Posn> neighbours = Floor::neighbours(x, y, false);
 		int whichGold = randnum() % 8 + 1;
+        cerr << 33 << endl;
 		if (whichGold <= 5) {
+            cerr << 44 << endl;
             unique_ptr<Treasure> sg = make_unique<SmallGold>();
             content[y][x]->setTreasure(sg);
+            cerr << 55 << endl;
         } else if (whichGold <= 7) {
+            cerr << 66 << endl;
             unique_ptr<Treasure> ng = make_unique<NormalGold>();
             content[y][x]->setTreasure(ng);
+            cerr << 77 << endl;
         } else {
+            cerr << 88 << endl;
         	// ensure that at least one neighbour
         	while (neighbours.size() <= 0) {
+                cerr << 99 << endl;
             	whichChamber = randnum() % tempChambers.size();
             	while (tempChambers[whichChamber].size() < 1) {
+                    cerr << 1010 << endl;
                 	whichChamber = randnum() % tempChambers.size();
+                    cerr << 1111 << endl;
                 }
+                cerr << 1212 << endl;
                 whichTile = randnum() % tempChambers[whichChamber].size();
                 x = tempChambers[whichChamber][whichTile].x;
                 y = tempChambers[whichChamber][whichTile].y;
                 neighbours = Floor::neighbours(x, y, false);
+                cerr << 1313 << endl;
         	}
+            cerr << 1414 << endl;
         	unique_ptr<Treasure> dg = make_unique<DragonGold>();
         	content[y][x]->setTreasure(dg);
         	// spawn the dragon guarding the hoarde
             neighbours = Floor::neighbours(x, y, false);
+            cerr << 1515 << endl;
             int numNeighbours = neighbours.size();
             int where = randnum() % numNeighbours;
 		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
+            cerr << 1616 << endl;
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
+            cerr << 1717 << endl;
             content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
+            cerr << 1818 << endl;
 			// delete the dragon position from the available generation spots
             for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
+                cerr << 1919 << endl;
                 if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
+                    cerr << 2020 << endl;
                     tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
                     break;
                 }
+                cerr << 2121 << endl;
             }
         }
+        cerr << 2222 << endl;
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
+        cerr << 2323 << endl;
         if (tempChambers[whichChamber].size() == 0)  {
+            cerr << 2424 << endl;
             tempChambers.erase(tempChambers.begin() + whichChamber);
         	numChambers--;
+            cerr << 2525 << endl;
         }
 	}
     cerr << 7 << endl;
