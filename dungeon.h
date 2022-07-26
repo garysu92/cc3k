@@ -17,6 +17,7 @@ const std::string floorLayout = "cc3kfloor.txt";
 
 class Dungeon {
     std::string fileName;
+    bool dev;
     std::vector<Floor> floors;
     int curFloor;
     int numFloors;
