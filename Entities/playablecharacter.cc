@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <utility>
 #include <algorithm>
@@ -198,7 +199,10 @@ void PlayableCharacter::pickupTreasure(Treasure *t) {
     int gold = t->getAmount();
     addGold(gold);
     float newGold = this->curGold;
-    this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    ostringstream oss;
+    oss << newGold - oldGold;
+    string s{oss.str()};
+    this->curAction = this->curAction + "PC picked up " + s + " gold. ";
 }
 
 double PlayableCharacter::getScore() {

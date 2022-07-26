@@ -473,6 +473,23 @@ void Floor::movePC(Direction d) {
         content[pcLocation.y][pcLocation.x]->clear();
         content[pcLocation.y][pcLocation.x]->setPC(p);
     }
+    if (d == Direction::no) {
+        p->appendcurAction("PC moved North. ");
+    } else if (d == Direction::so) {
+        p->appendcurAction("PC moved South. ");
+    } else if (d == Direction::we) {
+        p->appendcurAction("PC moved West. ");
+    } else if (d == Direction::ea) {
+        p->appendcurAction("PC moved East. ");
+    } else if (d == Direction::ne) {
+        p->appendcurAction("PC moved North-East. ");
+    } else if (d == Direction::nw) {
+        p->appendcurAction("PC moved North-West. ");
+    } else if (d == Direction::se) {
+        p->appendcurAction("PC moved South-East. ");
+    } else if (d == Direction::sw) {
+        p->appendcurAction("PC moved South-West. ");
+    }
     vector<Posn> neighbours = Floor::neighbours(pcLocation.x, pcLocation.y, false, true);
     for (int i = 0; i < neighbours.size(); i++) {
         int x = neighbours[i].x;
