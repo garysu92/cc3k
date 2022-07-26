@@ -19,10 +19,12 @@ Potion::Type WD::getType() const{
     return Potion::WD;
 }
 
-void WD::setVisible() {
-    visible = true;
-}
 
 void WD::applyEffect(PlayableCharacter *pc) const {
     pc->addTempEffect(std::move(std::make_unique<WoundDefense>()));
+    visible = true;
+}
+
+bool WD::isVisible() {
+    return visible;
 }
