@@ -226,6 +226,7 @@ void CC3KGameRunner::play() {
             if (p->getDead()) {
                 // print end message
                 cout << "Nice Try" << endl;
+                cout << "Your score is " << p->getScore() << endl;
                 return;
             } else if (game->end()) {
                 // print message

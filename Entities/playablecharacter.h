@@ -11,7 +11,7 @@ class Enemy;
 
 class PlayableCharacter {
   protected:
-    float curGold;
+    double curGold;
     const int maxHP;
     int hp;
     int attack;
@@ -60,9 +60,10 @@ class PlayableCharacter {
     void getAttackedByEnemy(Enemy *em);
     void getDroppedGold(Enemy *em);
     void pickupTreasure(Treasure *t);
-
+    double getScore(); 
   private:
     virtual void addGold(int gold);
+    virtual double playerGetScore();
     void takeDmg(Enemy *e);
     void setDead(bool alive);
 };

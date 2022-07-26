@@ -197,4 +197,12 @@ void PlayableCharacter::pickupTreasure(Treasure *t) {
     this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
 }
 
+double PlayableCharacter::getScore() {
+    return playerGetScore();
+}
+
+double PlayableCharacter::playerGetScore() {
+    return curGold;
+}
+
 PlayableCharacter::~PlayableCharacter() {}
