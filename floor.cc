@@ -63,11 +63,11 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
         for (int j = 0; j < col; j++) {
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
-            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(col, row, c));
-            else if (c == '#') content[i].emplace_back(make_unique<Passage>(col, row));
-            else if (c == '+') content[i].emplace_back(make_unique<Door>(col, row));
-            else if (c == ' ') content[i].emplace_back(make_unique<Space>(col, row));
-            else content[i].emplace_back(make_unique<Tile>(col, row));
+            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(c));
+            else if (c == '#') content[i].emplace_back(make_unique<Passage>());
+            else if (c == '+') content[i].emplace_back(make_unique<Door>());
+            else if (c == ' ') content[i].emplace_back(make_unique<Space>());
+            else content[i].emplace_back(make_unique<Tile>());
         }
     }
 
@@ -462,7 +462,6 @@ void Floor::movePC(Direction d) {
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
         isOnStair = true;
         p->setCompass(false);
-        p->setBarrierSuit(false);
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
         content[stairLocation.y][stairLocation.x]->setVisibility();
