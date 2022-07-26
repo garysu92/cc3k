@@ -3,15 +3,17 @@
 
 #include "potion.h"
 
-
 class PlayableCharacter;
 
 class RH : public Potion {
     static bool visible;
+
   public:
-  	RH(): Potion() {}
+  	RH() : Potion() {}
+    std::string getPotType() const override;
     Type getType() const override;
     void setVisible();
+
   private:
     void applyEffect(PlayableCharacter *pc) const override;
 };

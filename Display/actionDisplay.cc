@@ -25,9 +25,10 @@ PlayableCharacter * Actiondisplay::get_PC() {
 }
         
 void Actiondisplay::printActionDisplay() {
-    cout << "Race: " << (this->PC)->getRace() << ", Gold: " << (this->PC)->getcurGold() << setw(60) << "Floor: " << right << this->curFloor << endl; // Fix setw
+    cout << "Race: " << (this->PC)->getRace() << ", Gold: " << (this->PC)->getcurGold() << setw(60) << "Floor: " << right << this->curFloor << endl;
     cout << "HP: " << (this->PC)->getHP() << endl;
     cout << "Atk: " << (this->PC)->getAttack() << endl;
     cout << "Def: " << (this->PC)->getDefense() << endl;
-    cout << "Action: " << this->curAction << endl;
+    cout << "Action: " << (this->PC)->getcurAction() << endl;
+    (this->PC)->setcurAction(""); // Reset PCs Action Bar
 }

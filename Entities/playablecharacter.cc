@@ -75,11 +75,18 @@ bool PlayableCharacter::getDead() const {
     return this->dead;
 }
 
+string PlayableCharacter::getcurAction() const {
+    return this->curAction;
+}
+
  void PlayableCharacter::setCell(Cell * newCell) {
     this->cellConnection = newCell;
  }
 
  void PlayableCharacter::setDead(bool dead) {
+    if (dead and !this->dead) {
+        this->curAction = this->curAction + "PC has died. ";
+    }
     this->dead = dead;
  }
 
@@ -93,12 +100,18 @@ void PlayableCharacter::setHP(int k) {
     }
 }
 
+void PlayableCharacter::setcurAction(std::string curAction) {
+    this->curAction = curAction;
+}
+
 bool PlayableCharacter::checkCompass() {
     return this->hasCompass;
+    this->curAction = this->curAction + "PC picked up the Compass, the stairs to the next-floor are now visible, look for the \\! "; 
 }
 
 bool PlayableCharacter::checkBarrierSuit() {
     return this->hasBarrierSuit;
+    this->curAction = this->curAction + "PC picked up the Barrier Suit, and now feels stronger. "; 
 }
 
 void PlayableCharacter::giveCompass() {
@@ -140,17 +153,24 @@ void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {
 
 void PlayableCharacter::attackEnemy(Enemy *em) {
     int curHP = em->getHP();
-    this->curAction = this->curAction + "PC deals ";
     em->getAttackedByPlayer(this);
     int newHP = em->getHP();
-    //this->curAction = this->curAction + (newHP - curHP) + " damage to " + em->getType() + "(" + newHP + " hp left)";
+    if (newHP > 0) {
+        this->curAction = this->curAction + "PC deals " + to_string(curHP - newHP) + " damage to " + em->getType() + " and it has " + to_string(newHP) + " hp left. ";
+    }
+    else {
+        this->curAction = this->curAction + "PC deals " + to_string(curHP - newHP) + " damage to " + em->getType() + " and kills it. ";
+    }
 }
 
 void PlayableCharacter::getAttackedByEnemy(Enemy *em) {
     int curHP = this->getHP();
     takeDmg(em);
     int newHP = this->getHP();
-}    
+    if (newHP > 0) {
+        this->curAction = this->curAction + em->getType() + " deals " + to_string(curHP - newHP) + " damage to PC. ";
+    }
+}  
 
 void PlayableCharacter::getDroppedGold(Enemy *em) {
     int gold = em->goldDropped();
@@ -159,6 +179,7 @@ void PlayableCharacter::getDroppedGold(Enemy *em) {
 
 void PlayableCharacter::addGold(int gold) {
     curGold += gold;
+    this->curAction = this->curAction + "PC picked up " + to_string(gold) + " gold. ";
 }
 
 void PlayableCharacter::pickupTreasure(Treasure *t) {

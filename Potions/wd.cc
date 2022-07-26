@@ -1,13 +1,17 @@
-#include "wd.h"
-
 #include <memory>
 #include <utility>
+#include <string>
 #include "potion.h"
+#include "wd.h"
 #include "../Entities/playablecharacter.h"
 #include "../TempEffects/tempeffect.h"
 #include "../TempEffects/wounddefense.h"
 
 bool WD::visible = false;
+
+string getPotType() const {
+    return "Wound Defense (-5Def)";
+}
 
 Potion::Type WD::getType() const{
     return Potion::WD;

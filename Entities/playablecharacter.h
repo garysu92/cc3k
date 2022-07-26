@@ -36,10 +36,12 @@ class PlayableCharacter {
     int getMaxHP() const;
     Cell * getCell() const;
     bool getDead() const;
+    std::string getcurAction() const;
 
     // Setters
     void setCell(Cell * newCell);
     virtual void setHP(int k);
+    void setcurAction(std::string curAction);
 
     // Checkers
     bool checkCompass();

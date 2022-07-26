@@ -8,6 +8,9 @@
 #include "Races/elf.h"
 #include "Races/human.h"
 #include "Races/orc.h"
+#include "Races/developerop.h"
+#include "Races/developerup.h"
+#include "Races/orc.h"
 #include "dungeon.h"
 #include "floor.h"
 #include "Display/mapDisplay.h"
@@ -59,7 +62,26 @@ void CC3KGameRunner::play() {
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
 
+    bool developerMode = false;
+
     try {
+        // choose developer mode
+
+        cout << "Developer Mode: (y/n): " << endl;
+        while(true) {
+            string s = "";
+            cin >> s;
+            if (s == "y" || s == "n") {
+                if (s == "y") {
+                    developerMode = true;
+                }
+                break;
+            } else {
+                cout << "Invalid input, please enter choice (y/n): " << endl;
+            }
+        }
+
+
         // running game
         while (true) {
             bool invalidInput = false;
@@ -81,6 +103,12 @@ void CC3KGameRunner::play() {
                 cout << "Elf - e        HP: 140  ATK: 30  DEF: 10  MISC: All negative effect potions are converted to their postive counterpart" << endl;
                 cout << "Dwarf - d      HP: 100  ATK: 20  DEF: 30  MISC: All gold is doubled" << endl;
                 cout << "Orc - o        HP: 180  ATK: 30  DEF: 25  MISC: All gold is halved" << endl;
+
+                if (developerMode) {
+                    cout << "OP Dev - d1    HP: 1000000  ATK: 1000000  DEF: 0" << endl;
+                    cout << "UP Dev - d2    HP: 1  ATK: 1  DEF: 1" << endl;
+                }
+
                 cout << "Enter your race OR press q to quit the game: ";
                 cout << endl;
 
@@ -96,6 +124,13 @@ void CC3KGameRunner::play() {
                     p = make_unique<Orc>();
                 } else if (cmd == "q") {
                     return; 
+                }
+                if (developerMode) {
+                    if (cmd == "d1") {
+                        p = make_unique<DeveloperOP>();
+                    } else if (cmd == "d2") {
+                        p = make_unique<DeveloperUP>();
+                    }
                 }
                 raceChosen = true;
                 continue;
