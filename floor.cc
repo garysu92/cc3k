@@ -63,14 +63,14 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
         for (int j = 0; j < col; j++) {
             char c = v[i][j];
             chamberMap[i].emplace_back(0);
-            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(j, i, c));
-            else if (c == '#') content[i].emplace_back(make_unique<Passage>(j, i));
-            else if (c == '+') content[i].emplace_back(make_unique<Door>(j, i));
-            else if (c == ' ') content[i].emplace_back(make_unique<Space>(j, i));
-            else if (c == '.') content[i].emplace_back(make_unique<Tile>(j, i));
+            if (c == '|' || c == '-') content[i].emplace_back(make_unique<Wall>(c));
+            else if (c == '#') content[i].emplace_back(make_unique<Passage>());
+            else if (c == '+') content[i].emplace_back(make_unique<Door>());
+            else if (c == ' ') content[i].emplace_back(make_unique<Space>());
+            else if (c == '.') content[i].emplace_back(make_unique<Tile>());
 
             if (exactLayout) {
-                content.at(i).emplace_back(make_unique<Tile>(j,i));
+                content.at(i).emplace_back(make_unique<Tile>());
                 if (v[i][j] == '@') {
                     //player location
                     pcLocation.x = j;
@@ -149,7 +149,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                     en = make_unique<Phoenix>();
                 }
                 if (en != nullptr) {
-                    enemies.emplace_back(en, Posn{j, i});
+                    enemies.emplace_back(move(en), Posn{j, i});
                 }
                 
             }
