@@ -13,9 +13,8 @@
 
 using namespace std;
 
-Enemy::Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon):  goldDrop{n}, hp{hp},
-         attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, drag{isDragon},
-          hasDroppedGold{false}{}
+Enemy::Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon, bool isMerchant):  goldDrop{n}, hp{hp},
+         attack{atk}, defense{def}, hasCompass{false}, symbol{symbol}, drag{isDragon}, merch{isMerchant}, hasDroppedGold{false} {}
 
 /*int Enemy::goldDropped() {
     return this->goldDrop;
@@ -59,12 +58,12 @@ bool Enemy::checkCompass() {
     return this->hasCompass;
 }
 
-bool Enemy::isDragon() {
+bool Enemy::isDragon() const {
     return drag;
 }
 
-bool Enemy::isMerchant() {
-    return drag;
+bool Enemy::isMerchant() const {
+    return merch;
 }
 
 string Enemy::getType() const { 
