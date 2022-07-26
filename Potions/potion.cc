@@ -30,3 +30,11 @@ std::string Potion::getPotType() const {
         return this->getPotOutput();
     }
 }
+
+std::string Potion::getPotOutput() const {
+    if (isVisible()) {
+        return "Unknown potion";
+    } else {
+        return this->getPotOutput();
+    }
+}
