@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <utility>
 #include <algorithm>
@@ -191,6 +192,7 @@ void PlayableCharacter::getDroppedGold(Enemy *em) {
     }
 }
 
+
 void PlayableCharacter::addGold(int gold) {
     curGold += gold;
 }
@@ -200,8 +202,12 @@ void PlayableCharacter::pickupTreasure(Treasure *t) {
     int gold = t->getAmount();
     addGold(gold);
     float newGold = this->curGold;
-    if ((newGold - oldGold) != 0) {
-        this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    float goldDiff = newGold - oldGold;
+    if (goldDiff != 0) {
+        ostringstream oss;
+        oss << goldDiff;
+        string s{oss.str()};
+        this->curAction = this->curAction + "PC picked up " + s + " gold. ";
     }
 }
 

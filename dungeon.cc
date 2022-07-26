@@ -59,6 +59,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS" << endl;
         this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
         this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
+        p->appendcurAction("PC has spawned. ");
     } catch (...) {
     }
 
@@ -67,7 +68,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
     fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{} {
-        try{
+        try {
             fstream file{fileName};
             while (true) {
                 string s = "";
@@ -101,6 +102,7 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
 
             this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
             this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
+            p->appendcurAction("PC has spawned. ");
         } catch (...) {}
 }
 
@@ -122,7 +124,7 @@ void Dungeon::set_numFloors(int newF) {
 
 void Dungeon::printGame() {
     (this->curMap)->printMap();
-     (this->curActionBar)->printActionDisplay();
+    (this->curActionBar)->printActionDisplay();
 }
 
 void Dungeon::playerMove(Direction d) {
