@@ -66,7 +66,7 @@ Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floor
 
 // Constructor which makes floors with a file specified layout
 Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{}, dev{dev} {
+    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{}, dev{dev}, curActionBar{} {
         try {
             cout << "start" << endl;
             ifstream file{fileName};
@@ -77,34 +77,37 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) :
                     break;
                 }
                 // new floor
-                vector<vector<char>> v{};
-                v.emplace_back();
+                vector<vector<char>> v;
                 while(true){
+                    v.emplace_back();
                     for (int i = 0; i < s.length(); i++) {
                         v.at(v.size() - 1).emplace_back(s[i]);
                     }
                     getline(file, s);
                     if (endOfRoom(s)) {
+                        v.emplace_back();
                         for (int i = 0; i < s.length(); i++) {
                             v.at(v.size() - 1).emplace_back(s[i]);
                         }
                         break;
                     }
                 }
-                /*if (save) {
+                if (save) {
                     floors.emplace_back(v, p, true, true);
                 } else {
                     cout << "floor" << endl;
                     floors.emplace_back(v, p, true, false);
-                }*/
+                    cout << "floor" << endl;
+                }
             }
-            cout << "file" << endl;
             file.close();
             numFloors = floors.size();
             // NOTE, need to check for current floor in save
-
+            cerr << "a" << endl;
             this->curMap = make_unique<Mapdisplay>(this->get_floorContents(), dev);
+            cerr << "b" << endl;
             this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
+            cerr << "c" << endl;
             p->appendcurAction("PC has spawned. ");
         } catch (...) {}
 }
