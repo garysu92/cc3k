@@ -54,7 +54,7 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
     return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
 }
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs}, bsLocation{-1, -1} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bsLocation{-1, -1}, bs{bs} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
