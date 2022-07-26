@@ -306,6 +306,7 @@ void Floor::generate() {
             }
         }
         cerr << 2222 << endl;
+        if (whichChamber >= tempChambers.size()) cout << "largeeeee" << endl;
         if (whichTile == tempChambers[whichChamber].size()) cout << "large" << endl;
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
         cerr << 2323 << endl;
