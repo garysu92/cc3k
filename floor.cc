@@ -135,6 +135,7 @@ static unsigned int randnum() {
 }
 
 void Floor::generate() {
+    cerr << 1 << endl;
     int numChambers = chambers.size();
     vector<vector<Posn>> tempChambers = chambers;
 
@@ -146,7 +147,7 @@ void Floor::generate() {
     for (int i = 0; i < numChambers; i++) {
         tempChambersIndex.emplace_back(i);
     }
-
+    cerr << 2 << endl;
     // generate player location
 
     // shuffle(tempChambersIndex.begin(), tempChambersIndex.end(), rng);
@@ -158,7 +159,7 @@ void Floor::generate() {
     // Posn pcPosn = tempChambers.at(chamberIndex).at(0);
     // content.at(pcPosn.y).at(pcPosn.x)->setPC(p);
 
-
+    cerr << 3 << endl;
     int random1 = randnum() % numChambers; // 0 to numtempChambers - 1
     int numTilesInChamber = tempChambers[random1].size();
     int random2 = randnum() % numTilesInChamber; // to numTilesInChamber - 1
@@ -169,7 +170,7 @@ void Floor::generate() {
     pcLocation.x = x;
     pcLocation.y = y;
     tempChambers[random1].erase(tempChambers[random1].begin() + random2);
-
+    cerr << 4 << endl;
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
     if (tempChambers[random1].size() == 0)  {
         tempChambers.erase(tempChambers.begin() + random1);
@@ -195,6 +196,7 @@ void Floor::generate() {
         tempChambers.erase(tempChambers.begin() + random3);
         numChambers--;
     }
+    cerr << 5 << endl;
     // generate the potions
     for (int i = 0; i < 10; i++) {
         int chamb = randnum() % numChambers;
@@ -234,6 +236,7 @@ void Floor::generate() {
             numChambers--;
         }
     }
+    cerr << 6 << endl;
 	for (int i = 0; i < 10; i++) {
 		int whichChamber = randnum() % tempChambers.size();
 		while (tempChambers[whichChamber].size() < 1) {
@@ -285,6 +288,7 @@ void Floor::generate() {
         	numChambers--;
         }
 	}
+    cerr << 7 << endl;
     if (bs) {
         int whichC = randnum() % tempChambers.size();
         int whichTile = randnum() % tempChambers[whichC].size();
@@ -314,6 +318,7 @@ void Floor::generate() {
             }
         }
     }
+    cerr << 8 << endl;
     // generate the enemies
     while (enemies.size() < 20) {
         int chamb = randnum() % tempChambers.size();
@@ -356,6 +361,7 @@ void Floor::generate() {
             numChambers--;
         }
     }
+    cerr << 9 << endl;
     // give compass to one of the enemies
     int whichEnemy = randnum() % 20;
     enemies[whichEnemy].first->giveCompass();
