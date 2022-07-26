@@ -1,5 +1,4 @@
 #include "treasure.h"
-#include "../Entities/playablecharacter.h"
 
 Treasure::Treasure(int amount, bool dh): sym{'G'}, amount{amount}, isPickedUp{false}, dh{dh} {}
 
@@ -20,4 +19,3 @@ char Treasure::getSymbol() {
 bool Treasure::isDragonHoarde() {
     return dh;
 }
-
