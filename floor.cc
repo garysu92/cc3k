@@ -54,7 +54,7 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
     return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
 }
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs}, bsLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -288,7 +288,8 @@ void Floor::generate() {
         // set this cell to barriersuit
         content[y][x]->setBarrierSuit(true);
         int where = abs(randNum()) % neighbours.size();
-        p->setBarrierSuit(true);
+        bsLocation.x = x;
+        bsLocation.y = y;
         // set a random neighbour (where) to have a dragon
         unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
         enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
@@ -440,7 +441,7 @@ void Floor::movePC(Direction d) {
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
-        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr))) {
+        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) && (!content[cy][cx]->hasBarrierSuit() || (content[cy][cx]->hasBarrierSuit() && !hasDragNbr))) {
         if (!content[cy][cx]->hasTreasure()) cout << 1 << endl;
         if (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) cout << 1 << endl;
         if(content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr) cout << 3 << endl;
@@ -459,6 +460,9 @@ void Floor::movePC(Direction d) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
         content[stairLocation.y][stairLocation.x]->setVisibility();
         p->setCompass(true);
+    } else if (pcLocation.x == bsLocation.x && pcLocation.y == bsLocation.y) {
+        content[pcLocation.y][pcLocation.x]->setBarrierSuit(false);
+        p->setBarrierSuit(true);
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
@@ -548,6 +552,7 @@ void Floor::attack(Direction d) {
     
     if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
+        bool m = content[ay][ax]->getEnemy()->isMerchant();
         bool hasCompass = false;
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
@@ -560,6 +565,10 @@ void Floor::attack(Direction d) {
         content[ay][ax]->clear();     
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
+        }
+        if (m) {
+            unique_ptr<Treasure> mg = make_unique<MerchantGold>();
+            content[ay][ax]->setTreasure(mg);
         }
     }
 }
