@@ -31,10 +31,10 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
         this->setDead(true);                // Set PCs state to Dead
         //Cell * curPcell = this->getCell();  // Find the Cell PC is standing on
         //curPcell->setPC(nullptr);           // Set the ptr from Cell to PC to nullptr, as PC is no longer is alive
-        cout << "PC took " << dmg << " damage, now PC is Dead.";
-    } else {
-        cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
-    }
+        //cout << "PC took " << dmg << " damage, now PC is Dead." << endl;;
+    } //else {
+        //cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
+    //}
 }
 
 int PlayableCharacter::getAttack() const {
@@ -100,30 +100,35 @@ void PlayableCharacter::setHP(int k) {
     }
 }
 
-void PlayableCharacter::setcurAction(std::string curAction) {
+void PlayableCharacter::setcurAction(string curAction) {
     this->curAction = curAction;
 }
 
 bool PlayableCharacter::checkCompass() {
     return this->hasCompass;
-    this->curAction = this->curAction + "PC picked up the Compass, the stairs to the next-floor are now visible, look for the \\! "; 
 }
 
 bool PlayableCharacter::checkBarrierSuit() {
     return this->hasBarrierSuit;
-    this->curAction = this->curAction + "PC picked up the Barrier Suit, and now feels stronger. "; 
 }
 
-void PlayableCharacter::giveCompass() {
-    this->hasCompass = true;
+void PlayableCharacter::setCompass(bool hasCompass) {
+    this->hasCompass = hasCompass;
+    if (hasCompass) {
+        this->curAction = this->curAction + "PC picked up the Compass, the stairs to the next floor are now visible. Look for the \\ symbol on the map. "; 
+    }
 }
 
-void PlayableCharacter::giveBarrierSuit() {
-    this->hasBarrierSuit = true;
+void PlayableCharacter::setBarrierSuit(bool hasBarrierSuit) {
+    this->hasBarrierSuit = hasBarrierSuit;
+    if (hasBarrierSuit) {
+        this->curAction = this->curAction + "PC picked up the Barrier Suit, and now feels stronger. "; 
+    }
 }
 
 void PlayableCharacter::usePotion(Potion *p) {
     p->potionGetUsed(this);
+    this->curAction = this->curAction + "PC used a " + p->getPotType() + " potion. ";
 }
 
 void PlayableCharacter::removeTempEffects() {
@@ -131,7 +136,7 @@ void PlayableCharacter::removeTempEffects() {
 }
 
 void PlayableCharacter::addTempEffect(unique_ptr<TempEffect> t) {
-    tempEffects.emplace_back(std::move(t));
+    tempEffects.emplace_back(move(t));
 }
 
 void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {

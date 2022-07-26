@@ -42,6 +42,8 @@ class PlayableCharacter {
     void setCell(Cell * newCell);
     virtual void setHP(int k);
     void setcurAction(std::string curAction);
+    void setCompass(bool hasCompass);
+    void setBarrierSuit(bool hasBarrierSuit);
 
     // Checkers
     bool checkCompass();
@@ -50,8 +52,6 @@ class PlayableCharacter {
     // Misc
     virtual std::string getRace() const; // Maybe pure virtual??? Check implementation
     //void dealDmg(Enemy *e);
-    void giveCompass();
-    void giveBarrierSuit();
     void usePotion(Potion *p);
     void removeTempEffects();
     void addTempEffect(std::unique_ptr<TempEffect>);

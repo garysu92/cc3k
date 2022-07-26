@@ -2,8 +2,8 @@
 #include <random>
 #include <chrono>
 
-unsigned int randNum() {
-    unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+int randNum() {
+    int seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::default_random_engine rng{seed};
 
     std::vector<int> v{};
