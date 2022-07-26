@@ -546,13 +546,10 @@ void Floor::movePC(Direction d) {
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
         (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) && (!content[cy][cx]->hasBarrierSuit() || (content[cy][cx]->hasBarrierSuit() && !hasDragNbr))) {
-        if (!content[cy][cx]->hasTreasure()) cout << 1 << endl;
-        if (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) cout << 1 << endl;
-        if(content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr) cout << 3 << endl;
-        content[pcLocation.y][pcLocation.x]->clear();
-        pcLocation.x = cx;
-        pcLocation.y = cy;
-        content[pcLocation.y][pcLocation.x]->setPC(p);
+            content[pcLocation.y][pcLocation.x]->clear();
+            pcLocation.x = cx;
+            pcLocation.y = cy;
+            content[pcLocation.y][pcLocation.x]->setPC(p);
     } else {
         p->appendcurAction("Invalid Move. ");
         return;
