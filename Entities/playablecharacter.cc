@@ -187,8 +187,12 @@ void PlayableCharacter::getDroppedGold(Enemy *em) {
     int gold = em->goldDropped();
     addGold(gold);
     float newGold = this->curGold;
-    if ((newGold - oldGold) != 0) {
-        this->curAction = this->curAction + "PC picked up " + to_string(newGold - oldGold) + " gold. ";
+    float goldDiff = newGold - oldGold;
+    if (goldDiff != 0) {
+        ostringstream oss;
+        oss << goldDiff;
+        string s{oss.str()};
+        this->curAction = this->curAction + "PC picked up " + s + " gold. ";
     }
 }
 

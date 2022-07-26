@@ -30,7 +30,7 @@ void Actiondisplay::printActionDisplay() {
     ostringstream oss;
     oss << (this->PC)->getcurGold();
     string s(oss.str());
-    cout << s << "                                Floor: " << right << this->curFloor << endl;
+    cout << s << "                                            Floor: " << right << this->curFloor << endl;
     cout << "HP: " << (this->PC)->getHP() << endl;
     cout << "Atk: " << (this->PC)->getAttack() << endl;
     cout << "Def: " << (this->PC)->getDefense() << endl;

@@ -441,7 +441,9 @@ void Floor::movePC(Direction d) {
     //   #           @
     // @ # -> (ne) # #
     //   #           #
-    if (content[cy][cx]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) return;
+    if (content[cy][cx]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) {
+        p->appendcurAction("Invalid Move. ");
+    }
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
@@ -454,6 +456,7 @@ void Floor::movePC(Direction d) {
         pcLocation.y = cy;
         content[pcLocation.y][pcLocation.x]->setPC(p);
     } else {
+        p->appendcurAction("Invalid Move. ");
         return;
     }
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {
