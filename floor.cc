@@ -54,7 +54,7 @@ bool cmpPair(pair<unique_ptr<Enemy>, Posn> &p1, pair<unique_ptr<Enemy>, Posn> &p
     return (p1.second.y < p2.second.y || (p1.second.y == p2.second.y && p1.second.x < p2.second.x));
 }
 
-Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs} {
+Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool exactLayout, bool save): p{p}, content{}, chambers{}, chamberMap{}, stairLocation{-1, -1}, pcLocation{-1, -1}, bs{bs}, bsLocation{-1, -1} {
     int row = v.size();
     int col = v[0].size();
     for (int i = 0; i < row; i++) {
@@ -122,7 +122,6 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
 }
 
 void Floor::generate() {
-    cerr << 1 << endl;
     int numChambers = chambers.size();
     vector<vector<Posn>> tempChambers = chambers;
 
@@ -134,7 +133,6 @@ void Floor::generate() {
     for (int i = 0; i < numChambers; i++) {
         tempChambersIndex.emplace_back(i);
     }
-    cerr << 2 << endl;
     // generate player location
 
     // shuffle(tempChambersIndex.begin(), tempChambersIndex.end(), rng);
@@ -146,7 +144,6 @@ void Floor::generate() {
     // Posn pcPosn = tempChambers.at(chamberIndex).at(0);
     // content.at(pcPosn.y).at(pcPosn.x)->setPC(p);
 
-    cerr << 3 << endl;
     int random1 = abs(randNum()) % numChambers; // 0 to numtempChambers - 1
     int numTilesInChamber = tempChambers[random1].size();
     int random2 = abs(randNum()) % numTilesInChamber; // to numTilesInChamber - 1
@@ -157,7 +154,6 @@ void Floor::generate() {
     pcLocation.x = x;
     pcLocation.y = y;
     tempChambers[random1].erase(tempChambers[random1].begin() + random2);
-    cerr << 4 << endl;
     // if the chamber no longer has any that are available, then remove that whole chamber from being available
     if (tempChambers[random1].size() == 0)  {
         tempChambers.erase(tempChambers.begin() + random1);
@@ -183,7 +179,6 @@ void Floor::generate() {
         tempChambers.erase(tempChambers.begin() + random3);
         numChambers--;
     }
-    cerr << 5 << endl;
     // generate the potions
     for (int i = 0; i < 10; i++) {
         int chamb = abs(randNum()) % numChambers;
@@ -223,91 +218,60 @@ void Floor::generate() {
             numChambers--;
         }
     }
-    cerr << 6 << endl;
 	for (int i = 0; i < 10; i++) {
-        cerr << 11 << endl;
 		int whichChamber = abs(randNum()) % tempChambers.size();
 		while (tempChambers[whichChamber].size() < 1) {
 			whichChamber = abs(randNum()) % tempChambers.size();
 		}
-        cerr << 22 << endl;
 		int whichTile = abs(randNum()) % tempChambers[whichChamber].size();
 		x = tempChambers[whichChamber][whichTile].x;
 		y = tempChambers[whichChamber][whichTile].y;
 		vector<Posn> neighbours = Floor::neighbours(x, y, false);
 		int whichGold = abs(randNum()) % 8 + 1;
-        cerr << 33 << endl;
 		if (whichGold <= 5) {
-            cerr << 44 << endl;
             unique_ptr<Treasure> sg = make_unique<SmallGold>();
             content[y][x]->setTreasure(sg);
-            cerr << 55 << endl;
         } else if (whichGold <= 7) {
-            cerr << 66 << endl;
             unique_ptr<Treasure> ng = make_unique<NormalGold>();
             content[y][x]->setTreasure(ng);
-            cerr << 77 << endl;
         } else {
-            cerr << 88 << endl;
         	// ensure that at least one neighbour
         	while (neighbours.size() <= 0) {
-                cerr << 99 << endl;
             	whichChamber = abs(randNum()) % tempChambers.size();
             	while (tempChambers[whichChamber].size() < 1) {
-                    cerr << 1010 << endl;
                 	whichChamber = abs(randNum()) % tempChambers.size();
-                    cerr << 1111 << endl;
                 }
-                cerr << 1212 << endl;
                 whichTile = abs(randNum()) % tempChambers[whichChamber].size();
                 x = tempChambers[whichChamber][whichTile].x;
                 y = tempChambers[whichChamber][whichTile].y;
                 neighbours = Floor::neighbours(x, y, false);
-                cerr << 1313 << endl;
         	}
-            cerr << 1414 << endl;
         	unique_ptr<Treasure> dg = make_unique<DragonGold>();
         	content[y][x]->setTreasure(dg);
         	// spawn the dragon guarding the hoarde
             neighbours = Floor::neighbours(x, y, false);
-            cerr << 1515 << endl;
             int numNeighbours = neighbours.size();
             int where = abs(randNum()) % numNeighbours;
 		    unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
-            cerr << 1616 << endl;
             enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
-            cerr << 1717 << endl;
             content[neighbours[where].y][neighbours[where].x]->setEnemy(enemies.back().first.get());
-            cerr << 1818 << endl;
 			// delete the dragon position from the available generation spots
             for (int w = 0; w < tempChambers[whichChamber].size(); w++) {
-                cerr << 1919 << endl;
                 if (tempChambers[whichChamber][w].x == neighbours[where].x && tempChambers[whichChamber][w].y == neighbours[where].y) {
-                    cerr << 2020 << endl;
                     tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + w);
                     if (w < whichTile) {
                         whichTile--;
                     }
                     break;
                 }
-                cerr << 2121 << endl;
             }
         }
-        cerr << 2222 << endl;
-        cerr << whichChamber << " " << whichTile << endl;
-        if (whichChamber >= tempChambers.size()) cerr << "largeeeee" << endl;
-        if (whichTile == tempChambers[whichChamber].size()) cerr << "large" << endl;
-        cerr << 22.5 << endl;
         tempChambers[whichChamber].erase(tempChambers[whichChamber].begin() + whichTile);
-        cerr << 2323 << endl;
         if (tempChambers[whichChamber].size() == 0)  {
-            cerr << 2424 << endl;
             tempChambers.erase(tempChambers.begin() + whichChamber);
         	numChambers--;
-            cerr << 2525 << endl;
         }
 	}
-    cerr << 7 << endl;
     if (bs) {
         int whichC = abs(randNum()) % tempChambers.size();
         int whichTile = abs(randNum()) % tempChambers[whichC].size();
@@ -324,7 +288,8 @@ void Floor::generate() {
         // set this cell to barriersuit
         content[y][x]->setBarrierSuit(true);
         int where = abs(randNum()) % neighbours.size();
-        p->setBarrierSuit(true);
+        bsLocation.x = x;
+        bsLocation.y = y;
         // set a random neighbour (where) to have a dragon
         unique_ptr<Enemy> dragon = make_unique<Dragon>(x, y);
         enemies.emplace_back(move(dragon), Posn{neighbours[where].x, neighbours[where].y});
@@ -337,7 +302,6 @@ void Floor::generate() {
             }
         }
     }
-    cerr << 8 << endl;
     // generate the enemies
     while (enemies.size() < 20) {
         int chamb = abs(randNum()) % tempChambers.size();
@@ -380,7 +344,6 @@ void Floor::generate() {
             numChambers--;
         }
     }
-    cerr << 9 << endl;
     // give compass to one of the enemies
     int whichEnemy = abs(randNum()) % 20;
     enemies[whichEnemy].first->giveCompass();
@@ -478,7 +441,7 @@ void Floor::movePC(Direction d) {
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
-        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr))) {
+        (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) && (!content[cy][cx]->hasBarrierSuit() || (content[cy][cx]->hasBarrierSuit() && !hasDragNbr))) {
         if (!content[cy][cx]->hasTreasure()) cout << 1 << endl;
         if (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) cout << 1 << endl;
         if(content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr) cout << 3 << endl;
@@ -497,6 +460,9 @@ void Floor::movePC(Direction d) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
         content[stairLocation.y][stairLocation.x]->setVisibility();
         p->setCompass(true);
+    } else if (pcLocation.x == bsLocation.x && pcLocation.y == bsLocation.y) {
+        content[pcLocation.y][pcLocation.x]->setBarrierSuit(false);
+        p->setBarrierSuit(true);
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
@@ -586,6 +552,7 @@ void Floor::attack(Direction d) {
     
     if (content[ay][ax]->getEnemy()->isDead()) {
         // remove from enemies vector
+        bool m = content[ay][ax]->getEnemy()->isMerchant();
         bool hasCompass = false;
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies[i].second.x == ax && enemies[i].second.y == ay) {
@@ -598,6 +565,10 @@ void Floor::attack(Direction d) {
         content[ay][ax]->clear();     
         if (hasCompass) {
             content[ay][ax]->setCompass(true);
+        }
+        if (m) {
+            unique_ptr<Treasure> mg = make_unique<MerchantGold>();
+            content[ay][ax]->setTreasure(mg);
         }
     }
 }

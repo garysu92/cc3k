@@ -19,6 +19,7 @@ class Floor {
     std::vector<std::pair<std::unique_ptr<Enemy>, Posn>> enemies;
     Posn stairLocation;
     Posn pcLocation;
+    Posn bsLocation;
     bool bs;
     bool isOnStair = false;;
     

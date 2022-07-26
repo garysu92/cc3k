@@ -59,7 +59,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS" << endl;
         this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
         this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
-    } catch(...){
+    } catch (...) {
     }
 
 }

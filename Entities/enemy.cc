@@ -63,6 +63,10 @@ bool Enemy::isDragon() {
     return drag;
 }
 
+bool Enemy::isMerchant() {
+    return drag;
+}
+
 string Enemy::getType() const { 
     return ""; 
 }

@@ -16,10 +16,11 @@ class Enemy {
     bool hasCompass;
     char symbol;
     bool drag;
+    bool merch;
     bool hasDroppedGold;
   public:
     // Constructor and Destructor
-    Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon = false);
+    Enemy(int atk, int def, int hp, int n, char symbol, bool isDragon = false, bool isMerchant = false);
     virtual ~Enemy() = 0;
 
     // Getters
@@ -28,7 +29,8 @@ class Enemy {
     int getHP() const;
     int getMaxHP() const;
     char getSymbol() const;
-    bool isDragon();
+    bool isDragon() const;
+    bool isMerchant() const;
     virtual std::string getType() const;
 
     // Checkers
