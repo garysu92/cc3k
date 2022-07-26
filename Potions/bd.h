@@ -7,10 +7,13 @@ class PlayableCharacter;
 
 class BD : public Potion {
     static bool visible;
+
   public:
-  	BD(): Potion() {}
-    Type getType() const override ;
+  	BD() : Potion() {}
+    std::string getPotType() const override;
+    Type getType() const override;
     void setVisible();
+
   private:
     void applyEffect(PlayableCharacter *pc) const override;
 };
