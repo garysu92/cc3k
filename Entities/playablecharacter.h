@@ -42,6 +42,7 @@ class PlayableCharacter {
     void setCell(Cell * newCell);
     virtual void setHP(int k);
     void setcurAction(std::string curAction);
+    void appendcurAction(std::string curAction);
     void setCompass(bool hasCompass);
     void setBarrierSuit(bool hasBarrierSuit);
 
@@ -61,7 +62,7 @@ class PlayableCharacter {
     void getDroppedGold(Enemy *em);
     void pickupTreasure(Treasure *t);
     double getScore(); 
-    
+
   private:
     virtual void addGold(int gold);
     virtual double playerGetScore();
