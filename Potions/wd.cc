@@ -11,7 +11,7 @@ using namespace std;
 
 bool WD::visible = false;
 
-string WD::getPotType() const {
+string WD::getPotOutput() const {
     return "Wound Defense (-5Def)";
 }
 
@@ -25,6 +25,6 @@ void WD::applyEffect(PlayableCharacter *pc) const {
     visible = true;
 }
 
-bool WD::isVisible() {
+bool WD::isVisible() const  {
     return visible;
 }

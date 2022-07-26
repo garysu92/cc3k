@@ -18,3 +18,15 @@ void Potion::potionGetUsed(PlayableCharacter *pc) {
         used = true;
     }
 }
+
+bool Potion::isVisible() const  {
+    return false;
+}
+
+std::string Potion::getPotType() const {
+    if (isVisible()) {
+        return "Unknown potion";
+    } else {
+        return this->getPotOutput();
+    }
+}

@@ -11,7 +11,7 @@ using namespace std;
 
 bool BA::visible = false;
 
-string BA::getPotType() const {
+string BA::getPotOutput() const {
     return "Boost Attack (+5Atk)";
 }
 
@@ -25,6 +25,6 @@ void BA::applyEffect(PlayableCharacter *pc) const {
     visible = true;
 }
 
-bool BA::isVisible() {
+bool BA::isVisible() const {
     return visible;
 }

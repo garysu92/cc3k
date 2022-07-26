@@ -7,7 +7,7 @@ using namespace std;
 
 bool RH::visible = false;
 
-string RH::getPotType() const {
+string RH::getPotOutput() const {
     return "Restore Health (+10HP)";
 }
 
@@ -21,6 +21,6 @@ void RH::applyEffect(PlayableCharacter *pc) const{
     visible = true;
 }
 
-bool RH::isVisible() {
+bool RH::isVisible() const  {
     return visible;
 }
