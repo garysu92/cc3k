@@ -83,7 +83,9 @@ void Enemy::attackPlayer(PlayableCharacter *pc) {
     if (!miss && isHostile()) {
         enemyAttack(pc);
     }
-    // else do nothing
+    else {
+        pc->appendcurAction(this->getType() + "tried to attack PC but missed. " )        
+    }
 }
 
 void Enemy::enemyAttack(PlayableCharacter *pc) {
