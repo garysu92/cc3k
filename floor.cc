@@ -443,7 +443,11 @@ void Floor::movePC(Direction d) {
             break;
         }
     }
-    cout << hasDragNbr << endl;
+    // make sure cannot jump diagonally in chambers
+    //   #           @
+    // @ # -> (ne) # #
+    //   #           #
+    if  (content[cy][cx]->getsymbolRep() == '#' && (d == Direction::nw || d == Direction::ne || d == Direction::sw || d == Direction::se)) return;
 	if (cy < content.size() && cx < content[0].size() && !content[cy][cx]->hasEnemy() && !content[cy][cx]->hasPotion() && \
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
@@ -464,6 +468,7 @@ void Floor::movePC(Direction d) {
     } else if (content[pcLocation.y][pcLocation.x]->hasCompass()) {
         content[pcLocation.y][pcLocation.x]->setCompass(false);
         content[stairLocation.y][stairLocation.x]->setVisibility();
+        p->giveCompass();
     }
     if (content[pcLocation.y][pcLocation.x]->hasTreasure()) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
