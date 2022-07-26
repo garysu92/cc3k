@@ -11,9 +11,6 @@ class Merchant: public Enemy {
     Merchant();
     bool isHostile();
     std::string getType() const;
-    Posn getProtect() {
-        return Posn{-1, -1};
-    }
   private:
     void takeDmg(PlayableCharacter *pc) override;
 };
