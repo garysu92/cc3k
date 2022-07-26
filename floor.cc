@@ -395,6 +395,7 @@ vector<Posn> Floor::neighbours(int x, int y, bool isGold) {
     vector<Posn> tmp;
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
+            if (i == 0 && k == 0) continue;
         	if (isGold) {
 				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasPC() \
              	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
