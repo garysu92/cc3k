@@ -349,7 +349,7 @@ void Floor::generate() {
     enemies[whichEnemy].first->giveCompass();
 }
 
-vector<Posn> Floor::neighbours(int x, int y, bool isGold, bool isPlayer = false) {
+vector<Posn> Floor::neighbours(int x, int y, bool isGold, bool isPlayer) {
     vector<Posn> tmp;
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
