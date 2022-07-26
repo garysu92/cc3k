@@ -21,7 +21,7 @@ class Potion {
 
   private:
     virtual bool isVisible() const;
-    virtual std::string getPotOutput() const;
+    virtual std::string getPotOutput() const = 0;
     virtual void applyEffect(PlayableCharacter *pc) const = 0;
 };
 
