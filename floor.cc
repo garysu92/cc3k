@@ -354,13 +354,13 @@ vector<Posn> Floor::neighbours(int x, int y, bool isGold, bool isPlayer) {
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
             if (i == 0 && k == 0) continue;
-        	if (isGold) {
+        	if (isGold && !isPlayer) {
 				if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasPC() \
              	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
                    && content[k + y][x + i]->getsymbolRep() == '.') {
                    tmp.emplace_back(x + i, y + k);
                 }
-        	} else if (!isGold) {
+        	} else if (!isGold && !isPlayer) {
                 if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
              	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
                    && content[k + y][x + i]->getsymbolRep() == '.' && !content[k + y][x + i]->hasBarrierSuit()) {
@@ -473,7 +473,7 @@ void Floor::movePC(Direction d) {
         content[pcLocation.y][pcLocation.x]->clear();
         content[pcLocation.y][pcLocation.x]->setPC(p);
     }
-    vector<Posn> neighbours = Floor::neighbours(pcLocation.x, pcLocation.y, true);
+    vector<Posn> neighbours = Floor::neighbours(pcLocation.x, pcLocation.y, false, true);
     for (int i = 0; i < neighbours.size(); i++) {
         int x = neighbours[i].x;
         int y = neighbours[i].y;
