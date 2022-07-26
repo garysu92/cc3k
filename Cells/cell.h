@@ -23,7 +23,7 @@ class Cell {
     
     public:
         // Constructor
-        Cell(char sym, bool isEffWall, bool isStair);
+        Cell(char sym, bool isEffWall, bool isStair = false);
 
         // Destructor (Pure Virtual???)
         // Virtual ~Cell() = 0;
@@ -39,7 +39,7 @@ class Cell {
         bool getisEffWall();
         bool hasCompass();
         virtual bool getVisibility();
-
+        bool stair();
 
         // Setters
         void setX(int x);

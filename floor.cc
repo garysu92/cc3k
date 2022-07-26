@@ -547,12 +547,21 @@ void Floor::movePC(Direction d) {
         (content[cy][cx]->getsymbolRep() == '.' || content[cy][cx]->getsymbolRep() == '+' || content[cy][cx]->getsymbolRep() == '\\' \
         || content[cy][cx]->getsymbolRep() == '#') && (!content[cy][cx]->hasTreasure() || (content[cy][cx]->hasTreasure() && !content[cy][cx]->getTreasure()->isDragonHoarde()) || \
         (content[cy][cx]->getTreasure()->isDragonHoarde() && !hasDragNbr)) && (!content[cy][cx]->hasBarrierSuit() || (content[cy][cx]->hasBarrierSuit() && !hasDragNbr))) {
-            content[pcLocation.y][pcLocation.x]->clear();
-            pcLocation.x = cx;
-            pcLocation.y = cy;
-            content[pcLocation.y][pcLocation.x]->setPC(p);
+        content[pcLocation.y][pcLocation.x]->clear();
+        pcLocation.x = cx;
+        pcLocation.y = cy;
+        content[pcLocation.y][pcLocation.x]->setPC(p);
+    } else if (content[cy][cx]->hasTreasure() && content[cy][cx]->getTreasure()->isDragonHoarde() && hasDragNbr) {
+        p->appendcurAction("This gold is being guarded by a dragon. ");
+        updateEnemies();
+        return;
+    } else if (content[cy][cx]->hasBarrierSuit() && hasDragNbr) {
+        p->appendcurAction("The Barrier Suit is being guarded by a dragon. ");
+        updateEnemies();
+        return;
     } else {
         p->appendcurAction("Invalid Move. ");
+        updateEnemies();
         return;
     }
     if (pcLocation.x == stairLocation.x && pcLocation.y == stairLocation.y) {

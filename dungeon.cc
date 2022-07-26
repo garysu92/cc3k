@@ -30,7 +30,7 @@ static bool endOfRoom(string s) {
 }
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{} {
+Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floorLayout}, dev{dev}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{} {
     floorWithBarrierSuit = randNum() % 5;
     vector<vector<char>> v;
     try {
@@ -56,8 +56,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
             if (q == floorWithBarrierSuit) floors.emplace_back(v, p, true);
             else floors.emplace_back(v, p, false);
         }
-        cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS" << endl;
-        this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
+        this->curMap = make_unique<Mapdisplay>(this->get_floorContents(), dev);
         this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
         p->appendcurAction("PC has spawned. ");
     } catch (...) {
@@ -66,8 +65,8 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
 }
 
 // Constructor which makes floors with a file specified layout
-Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) : 
-    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{} {
+Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) : 
+    fileName{fileName}, curFloor{1}, numFloors{0}, p{p}, curMap{}, curActionBar{}, dev{dev} {
         try {
             cout << "start" << endl;
             ifstream file{fileName};
@@ -104,7 +103,7 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool save) :
             numFloors = floors.size();
             // NOTE, need to check for current floor in save
 
-            this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
+            this->curMap = make_unique<Mapdisplay>(this->get_floorContents(), dev);
             this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
             p->appendcurAction("PC has spawned. ");
         } catch (...) {}
@@ -168,7 +167,8 @@ void Dungeon::nextFloor() {
     if (!end()) {
         p->removeTempEffects();
         curActionBar = make_unique<Actiondisplay>(p, curFloor);
-        curMap = make_unique<Mapdisplay>(get_floorContents());
+        curMap = make_unique<Mapdisplay>(get_floorContents(), dev);
+        p->appendcurAction("PC has moved to Floor " + to_string(curFloor) + ". ");
         this->printGame();
     }
 }
