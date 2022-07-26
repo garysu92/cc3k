@@ -14,8 +14,8 @@ char Potion::getSymbol() {
 
 void Potion::potionGetUsed(PlayableCharacter *pc) {
     if (!used) {
-        applyEffect(pc);
         used = true;
+        applyEffect(pc);
     }
 }
 
@@ -24,17 +24,11 @@ bool Potion::isVisible() const  {
 }
 
 std::string Potion::getPotType() const {
-    if (isVisible()) {
+    if (!isVisible()) {
         return "Unknown potion";
     } else {
         return this->getPotOutput();
     }
 }
 
-std::string Potion::getPotOutput() const {
-    if (isVisible()) {
-        return "Unknown potion";
-    } else {
-        return this->getPotOutput();
-    }
-}
+
