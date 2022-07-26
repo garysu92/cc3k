@@ -30,7 +30,7 @@ class Floor {
     void generate();
     void movePC();
     void updateEnemies();
-    std::vector<Posn> neighbours(int x, int y, bool isPlayer);
+    std::vector<Posn> neighbours(int x, int y, bool isGold = false, bool isPlayer = false);
     void print();
     void movePC(Direction d);
     std::vector<std::vector<std::unique_ptr<Cell>>> & getContents();

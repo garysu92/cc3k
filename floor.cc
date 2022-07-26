@@ -349,7 +349,7 @@ void Floor::generate() {
     enemies[whichEnemy].first->giveCompass();
 }
 
-vector<Posn> Floor::neighbours(int x, int y, bool isGold) {
+vector<Posn> Floor::neighbours(int x, int y, bool isGold, bool isPlayer) {
     vector<Posn> tmp;
     for (int i = -1; i <= 1; i++) {
         for (int k = -1; k <= 1; k++) {
@@ -360,13 +360,17 @@ vector<Posn> Floor::neighbours(int x, int y, bool isGold) {
                    && content[k + y][x + i]->getsymbolRep() == '.') {
                    tmp.emplace_back(x + i, y + k);
                 }
-        	} else {
+        	} else if (!isGold) {
                 if (k + y < content.size() && x + i < content[0].size() && !content[k + y][x + i]->hasEnemy() && !content[k + y][x + i]->hasPC() \
              	   && !content[k + y][x + i]->hasPotion() && !content[k + y][x + i]->hasTreasure() && !content[k + y][x + i]->getisEffWall() \
                    && content[k + y][x + i]->getsymbolRep() == '.' && !content[k + y][x + i]->hasBarrierSuit()) {
                    tmp.emplace_back(x + i, y + k);
                 }
-        	}
+        	} else if (isPlayer) {
+                if (k + y < content.size() && x + i < content[0].size()) {
+                   tmp.emplace_back(x + i, y + k);
+                }
+            }
         }
     }
     return tmp;
@@ -468,6 +472,31 @@ void Floor::movePC(Direction d) {
         p->pickupTreasure(content[pcLocation.y][pcLocation.x]->getTreasure().get());
         content[pcLocation.y][pcLocation.x]->clear();
         content[pcLocation.y][pcLocation.x]->setPC(p);
+    }
+    vector<Posn> neighbours = Floor::neighbours(pcLocation.x, pcLocation.y, true);
+    for (int i = 0; i < neighbours.size(); i++) {
+        int x = neighbours[i].x;
+        int y = neighbours[i].y;
+        if (content[y][x]->hasPotion()) {
+            p->appendcurAction("PC sees " + content[y][x]->getPotion()->getPotType());
+            if (x == pcLocation.x && y == pcLocation.y + 1) {
+                p->appendcurAction(" to the East. ");
+            } else if (x == pcLocation.x && y == pcLocation.y - 1) {
+                p->appendcurAction(" to the West. ");
+            } else if (x == pcLocation.x + 1 && y == pcLocation.y) {
+                p->appendcurAction(" to the North. ");
+            } else if (x == pcLocation.x - 1 && y == pcLocation.y) {
+                p->appendcurAction(" to the South. ");
+            } else if (x == pcLocation.x + 1 && y == pcLocation.y + 1) {
+                p->appendcurAction(" to the NorthEast. ");
+            } else if (x == pcLocation.x + 1 && y == pcLocation.y - 1) {
+                p->appendcurAction(" to the NorthWest. ");
+            } else if (x == pcLocation.x - 1 && y == pcLocation.y - 1) {
+                p->appendcurAction(" to the SouthWest. ");
+            } else if (x == pcLocation.x - 1 && y == pcLocation.y + 1) {
+                p->appendcurAction(" to the SouthEast. ");
+            }
+        }
     }
 }
 
@@ -579,7 +608,6 @@ void Floor::usePotion(Direction d) {
     int py = pos.y;
     if (px >= 0 && py >= 0 && py <= content.size() && px <= content[0].size() \
         && content[py][px]->hasPotion()) {
-        content[py][px]->getPotion()->setVisible();
         p->usePotion(content[py][px]->getPotion().get());
         content[py][px]->clear();
     } else {
