@@ -478,7 +478,7 @@ void Floor::movePC(Direction d) {
         int x = neighbours[i].x;
         int y = neighbours[i].y;
         if (content[y][x]->hasPotion()) {
-            p->appendcurAction("PC sees " + content[y][x]->getPotion()->getPotType() " potion to the ");
+            p->appendcurAction("PC sees " + content[y][x]->getPotion()->getPotType() + " potion to the ");
             if (x == pcLocation.x && y == pcLocation.y + 1) {
                 p->appendcurAction("East. ");
             } else if (x == pcLocation.x && y == pcLocation.y - 1) {
