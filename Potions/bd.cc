@@ -7,9 +7,11 @@
 #include "../TempEffects/tempeffect.h"
 #include "../TempEffects/boostdefense.h"
 
+using namespace std;
+
 bool BD::visible = false;
 
-string getPotType() const {
+string BD::getPotType() const {
     return "Boost Defense (+5Def)";
 }
 

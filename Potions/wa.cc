@@ -7,10 +7,12 @@
 #include "../TempEffects/tempeffect.h"
 #include "../TempEffects/woundattack.h"
 
+using namespace std;
+
 bool WA::visible = false;
 
-string getPotType() const {
-    return "Wound Attack (-5Atk)"
+string WA::getPotType() const {
+    return "Wound Attack (-5Atk)";
 }
 
 Potion::Type WA::getType() const{

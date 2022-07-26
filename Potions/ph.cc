@@ -3,9 +3,11 @@
 #include "potion.h"
 #include "../Entities/playablecharacter.h"
 
+using namespace std;
+
 bool PH::visible = false;
 
-string getPotType() const {
+string PH::getPotType() const {
     return "Poison Health (-10HP)";
 }
 
