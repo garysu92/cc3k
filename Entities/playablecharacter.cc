@@ -21,7 +21,7 @@ string PlayableCharacter::getRace() const {
 
 // Also technically shouldnt sent to cout but rather a string which is taken by action bar
 void PlayableCharacter::takeDmg(Enemy *enemy) {
-    //cout << "PC currently has " << this->getHP() << " hp. ";
+    cout << "PC currently has " << this->getHP() << " hp. ";
     int dmg = ceil((100.0 / (100.0 + getDefense())) * enemy->getAttack());
     if (this->hasBarrierSuit) {
         dmg = ceil(dmg/2);
@@ -100,7 +100,7 @@ void PlayableCharacter::setHP(int k) {
     }
 }
 
-void PlayableCharacter::setcurAction(std::string curAction) {
+void PlayableCharacter::setcurAction(string curAction) {
     this->curAction = curAction;
 }
 
@@ -136,7 +136,7 @@ void PlayableCharacter::removeTempEffects() {
 }
 
 void PlayableCharacter::addTempEffect(unique_ptr<TempEffect> t) {
-    tempEffects.emplace_back(std::move(t));
+    tempEffects.emplace_back(move(t));
 }
 
 void PlayableCharacter::addPermanentEffects(int hp, int atk, int def) {
