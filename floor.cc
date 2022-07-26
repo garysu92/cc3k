@@ -118,7 +118,6 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
     } else {
         generate();
     }
-    
 }
 
 static unsigned int randnum() {
