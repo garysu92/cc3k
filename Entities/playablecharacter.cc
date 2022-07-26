@@ -214,12 +214,8 @@ void PlayableCharacter::pickupTreasure(Treasure *t) {
     }
 }
 
-double PlayableCharacter::getScore() {
+double PlayableCharacter::getScore() const {
     return playerGetScore();
-}
-
-double PlayableCharacter::playerGetScore() {
-    return curGold;
 }
 
 PlayableCharacter::~PlayableCharacter() {}

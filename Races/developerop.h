@@ -8,7 +8,8 @@
 class DeveloperOP: public PlayableCharacter {
     public:
         DeveloperOP();
-        std::string getRace() const override;
         ~DeveloperOP();
+        std::string getRace() const override;
 };
+
 #endif
