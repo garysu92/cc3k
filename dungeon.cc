@@ -56,7 +56,7 @@ Dungeon::Dungeon(PlayableCharacter *p, int numFloors) : fileName{floorLayout}, c
         for (int q = 0; q < numFloors; q++) {
             floors.emplace_back(v, p, q == floorWithBarrierSuit);
         }
-        cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS";
+        cout << "FLOOR " << floorWithBarrierSuit + 1 <<  " HAS THE BS" << endl;
         this->curMap = make_unique<Mapdisplay>(this->get_floorContents());
         this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
     } catch(...){

@@ -459,7 +459,6 @@ void Floor::movePC(Direction d) {
         pcLocation.x = cx;
         pcLocation.y = cy;
         content[pcLocation.y][pcLocation.x]->setPC(p);
-        cout << "VALID MOVE" << endl;
     } else {
         return;
     }
