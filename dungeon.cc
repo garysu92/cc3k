@@ -30,7 +30,7 @@ static bool endOfRoom(string s) {
 }
 
 // Constructor which makes numFloors floors with same layout for each
-Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floorLayout}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{}, dev{dev} {
+Dungeon::Dungeon(PlayableCharacter *p, bool dev, int numFloors) : fileName{floorLayout}, dev{dev}, curFloor{1}, numFloors{numFloors}, p{p}, curMap{}, curActionBar{} {
     floorWithBarrierSuit = randNum() % 5;
     vector<vector<char>> v;
     try {
