@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <string>
 #include "actionDisplay.h"
@@ -25,7 +26,11 @@ PlayableCharacter * Actiondisplay::get_PC() {
 }
         
 void Actiondisplay::printActionDisplay() {
-    cout << "Race: " << (this->PC)->getRace() << ", Gold: " << (this->PC)->getcurGold() << setw(60) << "Floor: " << right << this->curFloor << endl;
+    cout << "Race: " << (this->PC)->getRace() << ", Gold: ";
+    ostringstream oss;
+    oss << (this->PC)->getcurGold();
+    string s(oss.str());
+    cout << s << "Floor: " << right << this->curFloor << endl;
     cout << "HP: " << (this->PC)->getHP() << endl;
     cout << "Atk: " << (this->PC)->getAttack() << endl;
     cout << "Def: " << (this->PC)->getDefense() << endl;
