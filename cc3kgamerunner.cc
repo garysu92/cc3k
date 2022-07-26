@@ -47,51 +47,89 @@ static Direction getDirection(string s) {
     }
 }
 
-CC3KGameRunner::CC3KGameRunner() : game{}, p{make_unique<Human>()}, filename{} {}
+CC3KGameRunner::CC3KGameRunner(bool developerMode) : game{}, p{make_unique<Human>()}, filename{}, developerMode{developerMode} {}
 
-CC3KGameRunner::CC3KGameRunner(string filename) : game{}, p{make_unique<Human>()},
-                                                     filename{make_unique<string>(filename)} {}
+CC3KGameRunner::CC3KGameRunner(string filename, bool developerMode) : game{}, p{make_unique<Human>()},
+                                                     filename{make_unique<string>(filename)}, developerMode{developerMode} {}
 
 using namespace std;
 void CC3KGameRunner::play() {
     // Reinitializing fields
     game = unique_ptr<Dungeon>{};
     p = make_unique<Human>();
-    bool gameStarted = false;
-    bool raceChosen = false;
+    //bool gameStarted = false;
+    //bool raceChosen = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
 
-    bool developerMode = false;
 
     try {
-        // choose developer mode
+        // choosing race
 
-        cout << "Developer Mode: (y/n): " << endl;
-        while(true) {
-            string s = "";
-            cin >> s;
-            if (s == "y" || s == "n") {
-                if (s == "y") {
-                    developerMode = true;
-                }
-                break;
-            } else {
-                cout << "Invalid input, please enter choice (y/n): " << endl;
-            }
+        cout << "Select a race, \"Human\" is the default race" << endl;
+        cout << "[Type] - [Enter to Select]:" << endl;
+        cout << "Human - h      HP: 120  ATK: 20  DEF: 20  MISC: Endgame score is doubled" << endl;
+        cout << "Elf - e        HP: 140  ATK: 30  DEF: 10  MISC: All negative effect potions are converted to their postive counterpart" << endl;
+        cout << "Dwarf - d      HP: 100  ATK: 20  DEF: 30  MISC: All gold is doubled" << endl;
+        cout << "Orc - o        HP: 180  ATK: 30  DEF: 25  MISC: All gold is halved" << endl;
+
+        if (developerMode) {
+            cout << "OP Dev - d1    HP: 1000000  ATK: 1000000  DEF: 0" << endl;
+            cout << "UP Dev - d2    HP: 1  ATK: 1  DEF: 1" << endl;
         }
 
+        cout << "Enter your race OR Enter a valid command OR press q to quit the game: ";
+        cout << endl;
 
+        cin >> cmd;
+
+        if (cmd == "h") {
+            p = make_unique<Human>();
+            cin >> cmd;
+        } else if (cmd == "e") {
+            p = make_unique<Elf>();
+            cin >> cmd;
+        } else if (cmd == "d") {
+            p = make_unique<Dwarf>();
+            cin >> cmd;
+        } else if (cmd == "o") {
+            p = make_unique<Orc>();
+            cin >> cmd;
+        } else if (developerMode && cmd == "d1") {
+            p = make_unique<DeveloperOP>();
+            cin >> cmd;
+        } else if (developerMode && cmd == "d2") {
+            p = make_unique<DeveloperUP>();
+            cin >> cmd;
+        } else if (cmd == "q") {
+            return; 
+        } else if (cmd != "a" && cmd != "u" && cmd != "r" && cmd != "q" && !isDirection(cmd)) {
+            // invalid command quit
+            return;
+        }
+
+        // initialize game
+        if (filename != nullptr) {
+            // this means the filename for floor layout was specified
+            game = make_unique<Dungeon>(*filename, p.get());
+        } else {
+            game = make_unique<Dungeon>(p.get());
+        }
+        game->printGame();
+
+        //raceChosen = true;
+    
         // running game
         while (true) {
             bool invalidInput = false;
 
-            if (gameStarted && raceChosen) {
+            /*if (gameStarted && raceChosen) {
                 cin >> cmd;
-            }
+            }*/
+
             char directionCommandType = '\0'; // Default command is move
 
-            if (!raceChosen) {
+            /*if (!raceChosen) {
                 // game has not started, so choosing race is valid input, can choose multiple
                 // times
 
@@ -122,23 +160,19 @@ void CC3KGameRunner::play() {
                     p = make_unique<Dwarf>();
                 } else if (cmd == "o") {
                     p = make_unique<Orc>();
+                } else if (developerMode && cmd == "d1") {
+                    p = make_unique<DeveloperOP>();
+                } else if (developerMode && cmd == "d2") {
+                    p = make_unique<DeveloperUP>();
                 } else if (cmd == "q") {
                     return; 
                 }
-                if (developerMode) {
-                    if (cmd == "d1") {
-                        p = make_unique<DeveloperOP>();
-                    } else if (cmd == "d2") {
-                        p = make_unique<DeveloperUP>();
-                    }
-                }
                 raceChosen = true;
-                continue;
-            }
+            }*/
 
             // game starts when first valid command that is not choosing a character
             // is given
-            if (!gameStarted) {
+            /*if (!gameStarted) {
                 gameStarted = true; // If this line runs, then game has started
                 if (filename != nullptr) {
                     // this means the filename for floor layout was specified
@@ -147,8 +181,7 @@ void CC3KGameRunner::play() {
                     game = make_unique<Dungeon>(p.get());
                 }
                 game->printGame();
-                continue;
-            }
+            }*/
 
             // play game commands
             if (cmd == "r") {
@@ -172,8 +205,11 @@ void CC3KGameRunner::play() {
             if (!isDirection(cmd)) { 
                 invalidInput = true;
             }
+
+
             if (invalidInput) {
                 cout << "Invalid Input" << endl;
+                cin >> cmd;
                 continue;
             }
 
@@ -191,8 +227,11 @@ void CC3KGameRunner::play() {
                 return;
             } else if (game->end()) {
                 // print message
+                cout << "game end" << endl;
                 return;
             }
+
+            cin >> cmd;
         }
     } catch (ios::failure &) {
     }

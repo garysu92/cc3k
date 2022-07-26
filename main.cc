@@ -49,56 +49,30 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	CC3KGameRunner game{};
-	game.play();
-    /*
-    unique_ptr<CC3KGameRunner> game;
-    if (argc == 3) {
-        string filename{argv[1]};
-        //game = make_uniq
-    } else if (argc == 2) {
-        // passed in command line arg
-        string filename{argv[1]};
-        game = make_unique<CC3KGameRunner>(filename);
-    } else {
-        // no command line arg
-        game = make_unique<CC3KGameRunner>();
+    unique_ptr<CC3KGameRunner> game{};
+    bool developerMode = false;
+    string filename = "";
+    if (argc == 1) {
+        // no command line args
+	    game = make_unique<CC3KGameRunner>();
+    } else if (argc > 1) {
+        for (int i = 1; i <= argc; i++) {
+            string s = argv[i];
+            if (s == "-d") {
+                // developer mode flag
+                developerMode = true;
+            } else if (s == "num") {
+                // NOTE, check number
+            } else {
+                // assume filename
+                filename = s;
+            }
+            if (filename != "") {
+                game = make_unique<CC3KGameRunner> (filename, developerMode);
+            } else {
+                game = make_unique<CC3KGameRunner> (developerMode);
+            }
+        }
     }
-    game->play();
-    */
-    // Potion p{RESTOREHEALTH};
-    // if (p == RESTOREHEALTH) cout << "yes" << endl;
-    // unique_ptr<PlayableCharacter> pc = make_unique<Human>();
-    //PlayableCharacter *p = new Human();
-    // unique_ptr<Enemy> e = make_unique<Goblin>();
-    // // e->dealDmg(move(pc));
-    // cout << "goblin attack (5): " << e->getAttack() << endl;
-    // cout << "player character defense (20): " << pc->getDefense() << endl;
-    //unique_ptr<TempEffect> te = make_unique<WoundAttack>(move(p));
-    // unique_ptr<TempEffect> te2 = make_unique<BoostDefense>(move(te));
-    // cout << "player character attack (20 - 5 = 15): " << pc->getAttack() << endl;
-    // cout << "player character defense (20 + 5 = 25): " << pc->getDefense() << endl;
-    // cout << "player character hp (140): " << pc->getHP() << endl;
-    // e->dealDmg(pc);
-    // cout << "player character hp (140 - 5 = 135): " << pc->getHP() << endl;
-    // pc->setHP(100);
-    // cout << "player character hp (set to 100): " << pc->getHP() << endl;
-    /*
-    unique_ptr<WoundDefense> te = make_unique(); //new WoundDefense{pc};
-    TempEffect *te2 = new WoundDefense{te};
-    TempEffect *te3 = new WoundDefense{te2};
-    pc = te3;
-    cout << pc->getDefense() << endl;
-    TempEffect *te4 = new WoundDefense{te3};
-    pc = te4; // prob a mem leak
-    cout << pc->getDefense() << endl;
-    TempEffect *te5 = new WoundDefense{te4};
-    pc = te5;
-    cout << pc->getDefense() << endl;
-    delete pc;
-    */
-    //cout << pc->getHP() << endl;
-    //cout << te->getHP();
-    //e->dealDmg(pc);
-    //cout << pc->getHP() << endl;
+	game->play();
 }

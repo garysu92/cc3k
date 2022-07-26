@@ -11,10 +11,11 @@ class CC3KGameRunner {
     std::unique_ptr<Dungeon> game;
     std::unique_ptr<PlayableCharacter> p;
     std::unique_ptr<std::string> filename;
+    bool developerMode;
 
     public: 
-        CC3KGameRunner(std::string filename);
-        CC3KGameRunner();
+        CC3KGameRunner(std::string filename, bool developerMode = false);
+        CC3KGameRunner(bool developerMode = false);
         void play();
 };
 
