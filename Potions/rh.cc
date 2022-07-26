@@ -8,7 +8,7 @@ using namespace std;
 bool RH::visible = false;
 
 string RH::getPotType() const {
-    return "Poison Health (-10HP)";
+    return "Restore Health (+10HP)";
 }
 
 Potion::Type RH::getType() const{
