@@ -60,6 +60,8 @@ void CC3KGameRunner::play() {
     //bool raceChosen = false;
     cin.exceptions(ios::eofbit | ios::failbit);
     string cmd;
+    cout << endl;
+    cout << endl;
     cout << "________/\\\\\\\\\\\\\\\\\\________/\\\\\\\\\\\\\\\\\\_____/\\\\\\\\\\\\\\\\\\___/\\\\\\________/\\\\\\_        " << endl;
     cout << " _____/\\\\\\////////______/\\\\\\////////____/\\\\\\///////\\\\\\_\\/\\\\\\_____/\\\\\\//__       " << endl;
     cout << "  ___/\\\\\\/_____________/\\\\\\/____________\\///______/\\\\\\__\\/\\\\\\__/\\\\\\//_____" << endl;      
@@ -72,6 +74,7 @@ void CC3KGameRunner::play() {
     try {
         // choosing race
 		cout << endl;
+        cout << endl;
         cout << "Select a race, \"Human\" is the default race" << endl;
         cout << "[Type] - [Enter to Select]:" << endl;
         cout << "Human - h      HP: 120  ATK: 20  DEF: 20  MISC: Endgame score is doubled" << endl;
