@@ -75,14 +75,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
             else if (c == '.') content[i].emplace_back(make_unique<Tile>());
 
             if (exactLayout && isTile(v[i][j]) && v[i][j] != '.') {
-                cerr << "exact" << endl;
                 content.at(i).emplace_back(make_unique<Tile>());
-                if (v[i][j] == '@') {
-                    //player location
-                    pcLocation.x = j;
-                    pcLocation.y = i;
-                    content.at(i).at(j)->setPC(p);
-                }
                 
                 if (v[i][j] == '\\') {
                     // stair location
@@ -92,6 +85,12 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                     content.at(i).at(j)->setStair();
                 }
 
+                if (v[i][j] == '@') {
+                    //player location
+                    pcLocation.x = j;
+                    pcLocation.y = i;
+                    content.at(i).at(j)->setPC(p);
+                }
 
                 // potion or treasure
                 unique_ptr<Potion> p{};
@@ -163,6 +162,7 @@ Floor::Floor(const vector<vector<char>> &v, PlayableCharacter *p, bool bs, bool 
                     en = make_unique<Phoenix>();
                 }
                 if (en != nullptr) {
+                    content.at(i).at(j)->setEnemy(en.get());
                     enemies.emplace_back(move(en), Posn{j, i});
                 }
                 
@@ -745,7 +745,6 @@ void Floor::usePotion(Direction d) {
 
 void Floor::generateCompass(){
     int random = abs(randNum());
-    cerr << "division" << endl;
     int enemyIndex = random % enemies.size();
     enemies.at(enemyIndex).first->giveCompass();
 }

@@ -9,6 +9,7 @@
 #include <utility>
 #include <algorithm>
 #include "../Cells/cell.h"
+#include "../posn.h"
 #include "../randnum.h"
 
 using namespace std;
@@ -122,5 +123,9 @@ bool Enemy::isDead() const{
 }
 
 void Enemy::deathProcedure() {}
+
+Posn Enemy::getProtect() {
+    return Posn{-1,-1};
+}
 
 Enemy::~Enemy() {}

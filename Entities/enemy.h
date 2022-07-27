@@ -40,7 +40,7 @@ class Enemy {
 
     // Misc
     virtual bool isHostile() = 0;
-    virtual Posn getProtect() = 0;
+    virtual Posn getProtect();
 
     // Non -virtual interface
     bool isDead() const;

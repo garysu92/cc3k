@@ -10,9 +10,6 @@ class Goblin : public Enemy {
     Goblin();
     std::string getType() const override;
     bool isHostile();
-    Posn getProtect() {
-        return Posn{-1, -1};
-    }
 };
 
 #endif

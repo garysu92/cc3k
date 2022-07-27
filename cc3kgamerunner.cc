@@ -98,7 +98,7 @@ void CC3KGameRunner::play() {
                 p = make_unique<DeveloperUP>();
             } else if (cmd == "q") {
                 return; 
-            } else if (cmd != "a" && cmd != "u" && cmd != "r" && cmd != "q" && !isDirection(cmd)) {
+            } else {
                 // invalid command quit
                 return;
             }

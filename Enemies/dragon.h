@@ -15,8 +15,6 @@ class Dragon : public Enemy {
     bool isHostile();
     Posn getProtect() override;
     
-  private:
-    //void enemyAttack(PlayableCharacter *pc) override;
 };
 
 #endif

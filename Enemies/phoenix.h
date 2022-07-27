@@ -10,9 +10,6 @@ class Phoenix : public Enemy {
     Phoenix();
     std::string getType() const override;
     bool isHostile();
-    Posn getProtect() {
-        return Posn{-1, -1};
-    }
 };
 
 #endif

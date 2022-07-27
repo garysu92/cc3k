@@ -18,7 +18,3 @@ string Dragon::getType() const {
 Posn Dragon::getProtect() {
     return protectLocation;
 }
-
-/*void Dragon::enemyAttack(PlayableCharacter *pc) {
-    if 
-}*/
