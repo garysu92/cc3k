@@ -11,11 +11,11 @@ class Actiondisplay {
     
     public:
         // Constructor
-        Actiondisplay(PlayableCharacter * newPC, int curFloor);
+        Actiondisplay(PlayableCharacter *newPC, int curFloor);
 
         // Setters
         void set_curAction(std::string newAction);
-        void set_PC(PlayableCharacter * newPC);
+        void set_PC(PlayableCharacter *newPC);
 
         // Getters
         std::string get_curAction();

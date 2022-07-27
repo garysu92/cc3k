@@ -14,7 +14,7 @@ const string GREEN = "\033[1;32m";
 const string MAGENTA = "\033[1;35m";
 const string RESET = "\033[0m";
 
-Mapdisplay::Mapdisplay(vector<vector<unique_ptr<Cell>>> & newFloor, bool dm) : gameMap{}, dm{dm} {
+Mapdisplay::Mapdisplay(vector<vector<unique_ptr<Cell>>> &newFloor, bool dm) : gameMap{}, dm{dm} {
     int dimx_len = newFloor.size();
     int dimy_len = (newFloor.at(0)).size();
     for (int i = 0; i < dimx_len; i++) {

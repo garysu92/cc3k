@@ -1,0 +1,97 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/c/Users/garys/Desktop/cc3k'
+g++ -std=c++14 -Wall -MMD -g   -c -o main.o main.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o floor.o floor.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Entities/playablecharacter.o Entities/playablecharacter.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/space.o Cells/space.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/door.o Cells/door.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/cell.o Cells/cell.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/tile.o Cells/tile.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/wall.o Cells/wall.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/stair.o Cells/stair.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Cells/passage.o Cells/passage.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/goblin.o Enemies/goblin.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/dragon.o Enemies/dragon.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/merchant.o Enemies/merchant.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/phoenix.o Enemies/phoenix.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/troll.o Enemies/troll.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/vampire.o Enemies/vampire.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Enemies/werewolf.o Enemies/werewolf.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Entities/enemy.o Entities/enemy.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/potion.o Potions/potion.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/ba.o Potions/ba.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/bd.o Potions/bd.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/ph.o Potions/ph.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/rh.o Potions/rh.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/wa.o Potions/wa.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Potions/wd.o Potions/wd.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Treasure/smallgold.o Treasure/smallgold.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Treasure/normalgold.o Treasure/normalgold.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Treasure/dragongold.o Treasure/dragongold.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Treasure/treasure.o Treasure/treasure.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o TempEffects/woundattack.o TempEffects/woundattack.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o TempEffects/wounddefense.o TempEffects/wounddefense.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o TempEffects/boostattack.o TempEffects/boostattack.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o TempEffects/boostdefense.o TempEffects/boostdefense.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o TempEffects/tempeffect.o TempEffects/tempeffect.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Display/mapDisplay.o Display/mapDisplay.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o cc3kgamerunner.o cc3kgamerunner.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o dungeon.o dungeon.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Races/dwarf.o Races/dwarf.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Races/elf.o Races/elf.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Races/human.o Races/human.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Races/orc.o Races/orc.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o randnum.o randnum.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Display/actionDisplay.o Display/actionDisplay.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Races/developerop.o Races/developerop.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Races/developerup.o Races/developerup.cc
+ 
+g++ -std=c++14 -Wall -MMD -g   -c -o Treasure/merchantgold.o Treasure/merchantgold.cc
+ 
+g++ -std=c++14 -Wall -MMD -g main.o floor.o Entities/playablecharacter.o Cells/space.o Cells/door.o Cells/cell.o Cells/tile.o Cells/wall.o Cells/stair.o Cells/passage.o Enemies/goblin.o Enemies/dragon.o Enemies/merchant.o Enemies/phoenix.o Enemies/troll.o Enemies/vampire.o Enemies/werewolf.o Entities/enemy.o Potions/potion.o Potions/ba.o Potions/bd.o Potions/ph.o Potions/rh.o Potions/wa.o Potions/wd.o Treasure/smallgold.o Treasure/normalgold.o Treasure/dragongold.o Treasure/treasure.o TempEffects/woundattack.o TempEffects/wounddefense.o TempEffects/boostattack.o TempEffects/boostdefense.o TempEffects/tempeffect.o Display/mapDisplay.o cc3kgamerunner.o dungeon.o Races/dwarf.o Races/elf.o Races/human.o Races/orc.o randnum.o Display/actionDisplay.o Races/developerop.o Races/developerup.o Treasure/merchantgold.o -o cc3k
+make: Leaving directory '/c/Users/garys/Desktop/cc3k'
+ 

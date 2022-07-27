@@ -30,12 +30,7 @@ void PlayableCharacter::takeDmg(Enemy *enemy) {
     setHP(max(0, this->getHP() - dmg));
     if (this->getHP() == 0) {
         this->setDead(true);                // Set PCs state to Dead
-        //Cell * curPcell = this->getCell();  // Find the Cell PC is standing on
-        //curPcell->setPC(nullptr);           // Set the ptr from Cell to PC to nullptr, as PC is no longer is alive
-        //cout << "PC took " << dmg << " damage, now PC is Dead." << endl;;
-    } //else {
-        //cout << "PC took " << dmg << " damage, now PC has " << this->getHP() << " hp remaining. " << endl;
-    //}
+    }
 }
 
 int PlayableCharacter::getAttack() const {
@@ -68,7 +63,7 @@ float PlayableCharacter::getcurGold() const {
     return this->maxHP;
  }
 
- Cell * PlayableCharacter::getCell() const {
+ Cell *PlayableCharacter::getCell() const {
     return this->cellConnection;
  }
 
@@ -80,7 +75,7 @@ string PlayableCharacter::getcurAction() const {
     return this->curAction;
 }
 
- void PlayableCharacter::setCell(Cell * newCell) {
+ void PlayableCharacter::setCell(Cell *newCell) {
     this->cellConnection = newCell;
  }
 

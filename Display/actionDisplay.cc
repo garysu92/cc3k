@@ -7,13 +7,13 @@
 
 using namespace std; 
 
-Actiondisplay::Actiondisplay(PlayableCharacter * newPC, int curFloor) : PC{newPC}, curFloor{curFloor} {}
+Actiondisplay::Actiondisplay(PlayableCharacter *newPC, int curFloor) : PC{newPC}, curFloor{curFloor} {}
 
 void Actiondisplay::set_curAction(string newAction) {
     this->curAction = newAction;
 }
 
-void Actiondisplay::set_PC(PlayableCharacter * newPC) {
+void Actiondisplay::set_PC(PlayableCharacter *newPC) {
     this->PC = newPC;
 }
 
@@ -21,7 +21,7 @@ string Actiondisplay::get_curAction() {
     return this->curAction;
 }
 
-PlayableCharacter * Actiondisplay::get_PC() {
+PlayableCharacter *Actiondisplay::get_PC() {
     return this->PC;
 }
         

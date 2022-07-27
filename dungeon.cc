@@ -15,7 +15,7 @@ using namespace std;
 
 extern const string floorLayout;
 
-std::vector<std::vector<std::unique_ptr<Cell>>> & Dungeon::get_floorContents() {
+std::vector<std::vector<std::unique_ptr<Cell>>> &Dungeon::get_floorContents() {
     return floors[curFloor - 1].getContents();
 }
 
@@ -128,13 +128,7 @@ void Dungeon::printGame() {
 }
 
 void Dungeon::playerMove(Direction d) {
-    //cerr << "Moving player " << endl;
     floors[curFloor - 1].movePC(d);
-    //cerr << "Player moved succesffuly " << endl;
-    //cerr << "Moving enemies " << endl;
-    //floors[curFloor - 1].updateEnemies();
-    //cerr << "Enemies moved succesffuly " << endl;
-    //cerr << "Printing Map and Action Display" << endl;
     this->printGame();
     postMoveCheck();
 }

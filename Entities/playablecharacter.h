@@ -18,7 +18,7 @@ class PlayableCharacter {
     int defense;
     bool hasCompass;
     bool hasBarrierSuit;
-    Cell * cellConnection;
+    Cell *cellConnection;
     bool dead;
     std::vector<std::unique_ptr<TempEffect>> tempEffects;
     std::string curAction;
@@ -34,12 +34,12 @@ class PlayableCharacter {
     virtual int getHP() const;
     float getcurGold() const;
     int getMaxHP() const;
-    Cell * getCell() const;
+    Cell *getCell() const;
     bool getDead() const;
     std::string getcurAction() const;
 
     // Setters
-    void setCell(Cell * newCell);
+    void setCell(Cell *newCell);
     virtual void setHP(int k);
     void setcurAction(std::string curAction);
     void appendcurAction(std::string curAction);
