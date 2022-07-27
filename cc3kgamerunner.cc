@@ -174,9 +174,9 @@ void CC3KGameRunner::play() {
             bool gameEnd = false;
             if (p->getDead()) {
                 // print end message
-                cout << "___________" << endl;
-                cout << "Nice Try..." << endl;
-                cout << "___________" << endl;
+                cout << endl;
+                cout << "Nice Try... o.0" << endl;
+                cout << endl;
                 gameEnd = true;                
             } else if (game->end()) {
                 // print message
