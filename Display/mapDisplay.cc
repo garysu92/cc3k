@@ -31,7 +31,10 @@ void Mapdisplay::printMap() {
             if (gameMap.at(i).at(j)->hasPC()) cout << GREEN << '@' << RESET;
             else if (gameMap.at(i).at(j)->hasBarrierSuit()) cout << 'B';
             else if (gameMap.at(i).at(j)->stair() && dm) cout << '\\';
-            else if (gameMap.at(i).at(j)->hasEnemy() && gameMap.at(i).at(j)->getEnemy()->checkCompass() && dm) cout << RED << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< RESET;
+            else if (gameMap.at(i).at(j)->hasEnemy() && gameMap.at(i).at(j)->getEnemy()->checkCompass()) {
+				if (dm) cout << RED << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< RESET;
+				else  cout << CYAN << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< RESET;
+            }
             else if (gameMap.at(i).at(j)->hasEnemy() && !gameMap.at(i).at(j)->getEnemy()->checkCompass()) cout << CYAN << gameMap.at(i).at(j)->getEnemy()->getSymbol()<< RESET;
             else if (gameMap.at(i).at(j)->hasPotion()) cout << BLUE << gameMap.at(i).at(j)->getPotion()->getSymbol()<< RESET;
             else if (gameMap.at(i).at(j)->hasTreasure()) cout << YELLOW << gameMap.at(i).at(j)->getTreasure()->getSymbol() << RESET;
