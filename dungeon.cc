@@ -95,15 +95,16 @@ Dungeon::Dungeon(string fileName, PlayableCharacter *p, bool dev, bool save) :
                 if (save) {
                     floors.emplace_back(v, p, true, true);
                 } else {
-                    cout << "floor" << endl;
+                    cerr << "floor" << endl;
                     floors.emplace_back(v, p, true, false);
-                    cout << "floor" << endl;
+                    cerr << "floor" << endl;
                 }
             }
             file.close();
             numFloors = floors.size();
             // NOTE, need to check for current floor in save
             cerr << "a" << endl;
+
             this->curMap = make_unique<Mapdisplay>(this->get_floorContents(), dev);
             cerr << "b" << endl;
             this->curActionBar = make_unique<Actiondisplay>(this->p, curFloor);
