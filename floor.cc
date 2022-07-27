@@ -233,15 +233,6 @@ void Floor::generate() {
     }
     // generate player location
 
-    // shuffle(tempChambersIndex.begin(), tempChambersIndex.end(), rng);
-    // // take the first number in tempchambersindex as index of the randomly generated floor
-    // int chamberIndex = tempChambersIndex.at(0);
-    // // shuffle the coordinates of tiles in that chamber
-    // shuffle(tempChambers.at(chamberIndex).begin(), tempChambers.at(chamberIndex).end(), rng);
-    // // choose the first in the vector
-    // Posn pcPosn = tempChambers.at(chamberIndex).at(0);
-    // content.at(pcPosn.y).at(pcPosn.x)->setPC(p);
-
     int random1 = abs(randNum()) % numChambers; // 0 to numtempChambers - 1
     int numTilesInChamber = tempChambers[random1].size();
     int random2 = abs(randNum()) % numTilesInChamber; // to numTilesInChamber - 1
